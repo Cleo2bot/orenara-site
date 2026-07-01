@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Star, BadgeCheck, Quote } from "lucide-react";
 import AnonReviewsCarousel from "@/components/sections/AnonReviewsCarousel";
+import PhotoCarousel from "@/components/sections/PhotoCarousel";
 
 const photos = [
   {
@@ -86,15 +86,15 @@ export default function InstallerReview() {
           }}
           data-testid="installer-review"
         >
-          <div className="p-8 md:p-12" style={{ position: "relative" }}>
+          <div className="p-6 md:p-8" style={{ position: "relative" }}>
             {/* Decorative quote mark */}
             <Quote
               aria-hidden="true"
-              size={80}
+              size={56}
               style={{
                 position: "absolute",
-                top: "24px",
-                right: "28px",
+                top: "20px",
+                right: "22px",
                 color: "#F5B25C",
                 opacity: 0.08,
                 transform: "scaleX(-1)",
@@ -103,19 +103,19 @@ export default function InstallerReview() {
             />
 
             {/* Rating row */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-3 mb-7">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-5">
               <div
-                className="flex items-center gap-1"
+                className="flex items-center gap-0.5"
                 role="img"
                 aria-label="Rated 5 out of 5 stars"
               >
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={18} style={{ color: "#F5B25C" }} fill="#F5B25C" />
+                  <Star key={i} size={14} style={{ color: "#F5B25C" }} fill="#F5B25C" />
                 ))}
               </div>
               <span
                 style={{
-                  fontSize: "0.9375rem",
+                  fontSize: "0.8125rem",
                   fontWeight: 700,
                   color: "#F4F1EA",
                   letterSpacing: "0.01em",
@@ -126,17 +126,17 @@ export default function InstallerReview() {
               <span
                 className="inline-flex items-center gap-1.5"
                 style={{
-                  fontSize: "0.75rem",
+                  fontSize: "0.7rem",
                   fontWeight: 600,
                   color: "#F5B25C",
                   background: "rgba(245,178,92,0.08)",
                   border: "1px solid rgba(245,178,92,0.22)",
-                  padding: "4px 10px",
+                  padding: "3px 9px",
                   borderRadius: "999px",
                   letterSpacing: "0.02em",
                 }}
               >
-                <BadgeCheck size={13} aria-hidden="true" />
+                <BadgeCheck size={12} aria-hidden="true" />
                 Verified trade customer
               </span>
             </div>
@@ -144,11 +144,11 @@ export default function InstallerReview() {
             {/* Quote */}
             <blockquote
               style={{
-                fontSize: "clamp(1rem, 1.4vw, 1.1875rem)",
-                color: "#E8E6DF",
-                lineHeight: 1.7,
+                fontSize: "0.9375rem",
+                color: "#C9CCD4",
+                lineHeight: 1.65,
                 letterSpacing: "-0.005em",
-                maxWidth: "820px",
+                maxWidth: "760px",
               }}
             >
               <p>
@@ -169,17 +169,17 @@ export default function InstallerReview() {
 
             {/* Attribution — no name */}
             <div
-              className="mt-8 flex items-center gap-3"
+              className="mt-6 flex items-center gap-3"
               style={{
-                paddingTop: "24px",
+                paddingTop: "18px",
                 borderTop: "1px solid rgba(91,100,120,0.2)",
               }}
             >
               <div style={{ position: "relative", flexShrink: 0 }}>
                 <div
                   style={{
-                    width: "44px",
-                    height: "44px",
+                    width: "36px",
+                    height: "36px",
                     borderRadius: "50%",
                     background: "rgba(245,178,92,0.1)",
                     border: "1px solid rgba(245,178,92,0.25)",
@@ -187,7 +187,7 @@ export default function InstallerReview() {
                     alignItems: "center",
                     justifyContent: "center",
                     fontWeight: 700,
-                    fontSize: "0.85rem",
+                    fontSize: "0.72rem",
                     color: "#F5B25C",
                     letterSpacing: "0.03em",
                   }}
@@ -195,7 +195,7 @@ export default function InstallerReview() {
                   QLD
                 </div>
                 <BadgeCheck
-                  size={18}
+                  size={15}
                   aria-hidden="true"
                   style={{
                     position: "absolute",
@@ -210,14 +210,14 @@ export default function InstallerReview() {
               <div>
                 <p
                   style={{
-                    fontSize: "0.9375rem",
+                    fontSize: "0.8125rem",
                     fontWeight: 600,
                     color: "#F4F1EA",
                   }}
                 >
                   Licensed electrical installer
                 </p>
-                <p style={{ fontSize: "0.85rem", color: "#9A9DA8" }}>
+                <p style={{ fontSize: "0.78rem", color: "#9A9DA8" }}>
                   Brisbane, QLD · Verified install
                 </p>
               </div>
@@ -244,58 +244,7 @@ export default function InstallerReview() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {photos.map((photo, i) => (
-              <figure
-                key={i}
-                className="rounded-xl overflow-hidden"
-                style={{
-                  background: "#1F222B",
-                  border: "1px solid rgba(91,100,120,0.25)",
-                }}
-                data-testid={`review-photo-${i}`}
-              >
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    aspectRatio: "4 / 3",
-                    background: "#15171C",
-                  }}
-                >
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <figcaption style={{ padding: "16px 18px 18px" }}>
-                  <p
-                    className="font-bold"
-                    style={{
-                      fontSize: "0.9375rem",
-                      color: "#F4F1EA",
-                      letterSpacing: "-0.01em",
-                    }}
-                  >
-                    {photo.title}
-                  </p>
-                  <p
-                    style={{
-                      marginTop: "6px",
-                      fontSize: "0.85rem",
-                      color: "#9A9DA8",
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {photo.caption}
-                  </p>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+          <PhotoCarousel photos={photos} />
         </div>
 
         {/* More reviews — anonymous, auto-sliding carousel */}
