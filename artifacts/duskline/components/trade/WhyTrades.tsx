@@ -124,10 +124,41 @@ export default function WhyTrades() {
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(180deg, rgba(21,23,28,0) 60%, rgba(21,23,28,0.35) 100%)",
+                "linear-gradient(90deg, rgba(21,23,28,0.8) 0%, rgba(21,23,28,0.2) 55%, rgba(21,23,28,0) 100%)",
               pointerEvents: "none",
             }}
           />
+          <div
+            style={{
+              position: "absolute",
+              left: "clamp(20px, 5vw, 56px)",
+              top: "50%",
+              transform: "translateY(-50%)",
+              maxWidth: "460px",
+            }}
+          >
+            <p
+              className="font-bold"
+              style={{
+                fontSize: "clamp(1.25rem, 3vw, 2rem)",
+                color: "#F4F1EA",
+                letterSpacing: "-0.02em",
+                lineHeight: 1.2,
+              }}
+            >
+              The kind of finish that wins the next job.
+            </p>
+            <p
+              style={{
+                marginTop: "12px",
+                fontSize: "0.9375rem",
+                color: "#C9CCD4",
+                lineHeight: 1.6,
+              }}
+            >
+              Spec it right once and the client&apos;s neighbours come asking who did it.
+            </p>
+          </div>
         </div>
       </div>
     </section>

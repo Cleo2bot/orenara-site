@@ -138,40 +138,10 @@ export default function TradeHero() {
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(180deg, rgba(21,23,28,0) 40%, rgba(21,23,28,0.9) 100%)",
+                  "linear-gradient(180deg, rgba(21,23,28,0) 55%, rgba(21,23,28,0.5) 100%)",
                 pointerEvents: "none",
               }}
             />
-            <div
-              style={{
-                position: "absolute",
-                left: "clamp(20px, 4vw, 32px)",
-                right: "clamp(20px, 4vw, 32px)",
-                bottom: "clamp(20px, 4vw, 28px)",
-              }}
-            >
-              <p
-                className="font-bold"
-                style={{
-                  fontSize: "clamp(1.15rem, 2.2vw, 1.6rem)",
-                  color: "#F4F1EA",
-                  letterSpacing: "-0.02em",
-                  lineHeight: 1.2,
-                }}
-              >
-                The kind of finish that wins the next job.
-              </p>
-              <p
-                style={{
-                  marginTop: "8px",
-                  fontSize: "0.9rem",
-                  color: "#C9CCD4",
-                  lineHeight: 1.55,
-                }}
-              >
-                Spec it right once and the client&apos;s neighbours come asking who did it.
-              </p>
-            </div>
           </div>
         </div>
       </div>
