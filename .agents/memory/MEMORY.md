@@ -2,3 +2,4 @@
 - [Proxy shadows Next /api/*](proxy-api-routing.md) — all /api/* routes to the Express api-server; put duskline form-submit endpoints on a `/`-owned path (e.g. /trade/enquire), not app/api/**.
 - [Screenshot quirks (Next.js dev)](screenshot-nextjs-quirks.md) — blank app_preview on first capture after edits & on ~3000px viewports; re-take and keep height ≤~2200px
 - [GitHub integration quirks](github-integration-quirks.md) — bind "could not be assigned" is often a false negative (verify via listConnections); async-exec git pushes; notebook wipes globalThis.
+- [Vercel deploy of Next.js monorepo artifact](vercel-deploy-nextjs-monorepo.md) — blocker chain: Root Directory → vercel.json framework=nextjs → commit-author noreply email; wrap route disk writes (read-only FS).
