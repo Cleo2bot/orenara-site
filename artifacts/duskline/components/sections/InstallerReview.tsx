@@ -1,29 +1,6 @@
-import Image from "next/image";
-import { Star, BadgeCheck, Quote, Camera } from "lucide-react";
+import { Star, BadgeCheck, Quote } from "lucide-react";
 import TradeReviews from "@/components/sections/TradeReviews";
-
-const reviewPhotos = [
-  {
-    src: "/assets/review-kit-box.jpg",
-    label: "The full kit as delivered",
-    alt: "Duskline outdoor LED kit as delivered — coiled white IP68 neon-flex strip, LTECH LED driver, 0–10V wall dimmer and 240V plug lead packed in the box",
-  },
-  {
-    src: "/assets/review-ip68-label.jpg",
-    label: "IP68 end cap & CE label",
-    alt: "Close-up of the sealed IP68 strip end cap with CE marking and 'Do Not Cut' label on the factory-terminated lead",
-  },
-  {
-    src: "/assets/review-driver-flickerfree.jpg",
-    label: "Flicker-free LTECH driver",
-    alt: "LTECH constant-voltage 24V LED driver labelled Flicker Free to IEEE 1789 with 0–10V and PWM dimming support",
-  },
-  {
-    src: "/assets/review-dimmer.jpg",
-    label: "0–10V wall dimmer",
-    alt: "LTECH 0–10V touch wall dimmer panel showing 25/50/75/100% brightness scale next to the LED driver",
-  },
-];
+import ReviewPhotos from "@/components/sections/ReviewPhotos";
 
 export default function InstallerReview() {
   return (
@@ -202,62 +179,7 @@ export default function InstallerReview() {
             </div>
 
             {/* Verified customer photos */}
-            <div
-              className="mt-8"
-              style={{
-                paddingTop: "22px",
-                borderTop: "1px solid rgba(91,100,120,0.2)",
-              }}
-            >
-              <div className="flex items-center gap-2 mb-4">
-                <Camera size={14} style={{ color: "#F5B25C" }} aria-hidden="true" />
-                <span
-                  style={{
-                    fontSize: "0.72rem",
-                    fontWeight: 600,
-                    color: "#9A9DA8",
-                    letterSpacing: "0.05em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Photos from a verified trade delivery
-                </span>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {reviewPhotos.map((photo) => (
-                  <figure key={photo.src} style={{ margin: 0 }}>
-                    <div
-                      style={{
-                        position: "relative",
-                        aspectRatio: "4 / 3",
-                        borderRadius: "10px",
-                        overflow: "hidden",
-                        border: "1px solid rgba(91,100,120,0.25)",
-                        background: "#15171C",
-                      }}
-                    >
-                      <Image
-                        src={photo.src}
-                        alt={photo.alt}
-                        fill
-                        sizes="(max-width: 640px) 45vw, 220px"
-                        style={{ objectFit: "cover" }}
-                      />
-                    </div>
-                    <figcaption
-                      style={{
-                        marginTop: "8px",
-                        fontSize: "0.72rem",
-                        color: "#9A9DA8",
-                        lineHeight: 1.35,
-                      }}
-                    >
-                      {photo.label}
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-            </div>
+            <ReviewPhotos />
           </div>
 
         </div>
