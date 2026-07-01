@@ -124,6 +124,49 @@ export default function TradeSteps() {
             );
           })}
         </div>
+
+        {/* Product finish image */}
+        <div
+          className="glow-amber-sm"
+          style={{
+            marginTop: "16px",
+            borderRadius: "16px",
+            overflow: "hidden",
+            border: "1px solid rgba(91,100,120,0.25)",
+            position: "relative",
+          }}
+        >
+          <img
+            src="/assets/generated/trade-sandstone-wall.png"
+            alt="Continuous warm Duskline strip glow washing across a coastal sandstone retaining wall at dusk."
+            style={{ display: "block", width: "100%", height: "auto" }}
+          />
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(180deg, rgba(21,23,28,0) 55%, rgba(21,23,28,0.75) 100%)",
+              pointerEvents: "none",
+            }}
+          />
+          <p
+            className="font-bold"
+            style={{
+              position: "absolute",
+              left: "clamp(20px, 4vw, 32px)",
+              right: "clamp(20px, 4vw, 32px)",
+              bottom: "22px",
+              fontSize: "0.9375rem",
+              color: "#F4F1EA",
+              letterSpacing: "-0.01em",
+              lineHeight: 1.4,
+            }}
+          >
+            One clean ribbon of light — no dots, no hot spots. The finish your client signs off on.
+          </p>
+        </div>
       </div>
     </section>
   );

@@ -102,3 +102,21 @@ id = "Fs1H_YautgQo5CK_7rNTu"
 uri = "file://artifacts/duskline/public/assets/generated/kit-pathway-coastal2.png"
 type = "image"
 title = "coastal path with more sea mist, no spotlight"
+
+[[generated]]
+id = "SM-DnYo2ftB30K3s2JV6t"
+uri = "file://artifacts/duskline/public/assets/generated/trade-hero-tailgate.png"
+type = "image"
+title = "tradies ute tailgate driveway"
+
+[[generated]]
+id = "aFf6onAsPYQ2_2hrahdSP"
+uri = "file://artifacts/duskline/public/assets/generated/trade-sandstone-wall.png"
+type = "image"
+title = "sandstone wall warm strip glow"
+
+[[generated]]
+id = "rVvjBEDIdg4WxWyBZ0lgp"
+uri = "file://artifacts/duskline/public/assets/generated/trade-mansion-coast.png"
+type = "image"
+title = "coastal mansion dusk warm lighting"

@@ -20,16 +20,10 @@ export default function Navbar() {
         <div className="flex items-center gap-5">
           <Link
             href="/trade"
-            className="hidden sm:inline-flex"
-            style={{
-              color: "#9A9DA8",
-              fontSize: "0.875rem",
-              fontWeight: 500,
-              textDecoration: "none",
-            }}
+            className="btn-trade hidden sm:inline-flex"
             data-testid="nav-trade-link"
           >
-            Trade?
+            Trade Order?
           </Link>
           <button
             onClick={scrollToForm}
