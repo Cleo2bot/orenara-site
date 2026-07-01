@@ -82,7 +82,7 @@ export default function Footer() {
               Important
             </p>
             <p style={{ fontSize: "0.8125rem", color: "#5B6478", lineHeight: 1.7 }}>
-              Duskline is a supply-only business. We supply the lighting system;
+              Duskline is a supply-only business. We supply components only;
               installation is your responsibility and must be carried out by a licensed
               electrician where required by Australian standards.
             </p>
