@@ -1,5 +1,38 @@
 import Image from "next/image";
-import { Star, BadgeCheck, Quote } from "lucide-react";
+import { Star, BadgeCheck, Quote, EyeOff } from "lucide-react";
+
+const anonReviews = [
+  {
+    trade: "Electrician",
+    location: "QLD",
+    quote:
+      "Sealed connectors that actually seal. Ran it under pool coping, no dramas six months on. Doesn't drop out mid-run like the cheap stuff I keep getting called back to replace.",
+  },
+  {
+    trade: "Electrician",
+    location: "NSW",
+    quote:
+      "Tested a length in a bucket before I put it in — genuinely IP68, strip and end caps. Flicker-free on the dimmer too. This is what I run now, full stop.",
+  },
+  {
+    trade: "Landscaper",
+    location: "VIC",
+    quote:
+      "Went along a retaining wall and through a garden bed. Curves clean, no hotspots, client couldn't be happier. Lead time landed exactly when they said it would.",
+  },
+  {
+    trade: "Builder",
+    location: "QLD",
+    quote:
+      "Pre-specced kits meant a lot less mucking around on site. Strip, driver and dimmer all matched out of the box, sparky signed it off no questions.",
+  },
+  {
+    trade: "Homeowner",
+    location: "WA",
+    quote:
+      "Not a tradie, just fussy. Got my electrician to put it in. Two summers outside now and it looks the same as day one. No dead sections, no colour drift.",
+  },
+];
 
 const photos = [
   {
@@ -267,6 +300,121 @@ export default function InstallerReview() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* More reviews — anonymous */}
+        <div className="mt-14">
+          <div className="flex flex-wrap items-baseline justify-between gap-2 mb-6">
+            <h3
+              className="font-bold"
+              style={{
+                fontSize: "clamp(1.125rem, 2vw, 1.375rem)",
+                color: "#F4F1EA",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              More from the trade.
+            </h3>
+            <p style={{ fontSize: "0.8125rem", color: "#9A9DA8" }}>
+              Names hidden by request — no forms, just the verdict.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {anonReviews.map((review, i) => (
+              <div
+                key={i}
+                className="rounded-xl"
+                style={{
+                  background: "#1F222B",
+                  border: "1px solid rgba(91,100,120,0.25)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+                data-testid={`anon-review-${i}`}
+              >
+                {/* Rating */}
+                <div
+                  className="flex items-center gap-1 mb-4"
+                  role="img"
+                  aria-label="Rated 5 out of 5 stars"
+                >
+                  {Array.from({ length: 5 }).map((_, s) => (
+                    <Star key={s} size={15} style={{ color: "#F5B25C" }} fill="#F5B25C" />
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <blockquote
+                  style={{
+                    fontSize: "0.9375rem",
+                    color: "#E8E6DF",
+                    lineHeight: 1.65,
+                    flexGrow: 1,
+                  }}
+                >
+                  &ldquo;{review.quote}&rdquo;
+                </blockquote>
+
+                {/* Attribution — anonymous */}
+                <div
+                  className="mt-5 flex items-center gap-3"
+                  style={{
+                    paddingTop: "16px",
+                    borderTop: "1px solid rgba(91,100,120,0.2)",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "38px",
+                      height: "38px",
+                      borderRadius: "50%",
+                      background: "rgba(91,100,120,0.15)",
+                      border: "1px solid rgba(91,100,120,0.3)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <EyeOff size={16} aria-hidden="true" style={{ color: "#9A9DA8" }} />
+                  </div>
+                  <div style={{ minWidth: 0 }}>
+                    <p
+                      style={{
+                        fontSize: "0.875rem",
+                        fontWeight: 600,
+                        color: "#F4F1EA",
+                      }}
+                    >
+                      Anonymous
+                    </p>
+                    <p
+                      className="inline-flex items-center gap-1.5"
+                      style={{ fontSize: "0.8rem", color: "#9A9DA8" }}
+                    >
+                      <span
+                        style={{
+                          fontSize: "0.72rem",
+                          fontWeight: 600,
+                          color: "#F5B25C",
+                          background: "rgba(245,178,92,0.08)",
+                          border: "1px solid rgba(245,178,92,0.22)",
+                          padding: "2px 8px",
+                          borderRadius: "999px",
+                          letterSpacing: "0.02em",
+                        }}
+                      >
+                        {review.trade}
+                      </span>
+                      <span>· {review.location}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
