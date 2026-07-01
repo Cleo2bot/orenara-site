@@ -37,67 +37,77 @@ export default function SpecSection() {
       }}
     >
       <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="mb-16">
-          <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
-            Technical specification
-          </p>
-          <h2
-            className="font-bold"
-            style={{
-              fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              color: "#F4F1EA",
-              letterSpacing: "-0.03em",
-              lineHeight: 1.15,
-              maxWidth: "640px",
-            }}
-          >
-            Getting the fundamentals right.
-          </h2>
-          <p
-            style={{
-              marginTop: "16px",
-              color: "#9A9DA8",
-              fontSize: "1rem",
-              lineHeight: 1.7,
-              maxWidth: "560px",
-            }}
-          >
-            Three specifications that determine whether outdoor lighting lasts two years
-            or ten. Most products get at least one wrong.
-          </p>
-        </div>
-
-        {/* IP68 proof image */}
+        {/* Catalogue-style hero — heading overlaid on the proof image */}
         <div
-          className="rounded-lg overflow-hidden mb-16"
+          className="glow-amber mb-16"
           style={{
+            borderRadius: "16px",
+            overflow: "hidden",
+            border: "1px solid rgba(245,178,92,0.2)",
             position: "relative",
-            aspectRatio: "16 / 9",
-            maxHeight: "460px",
-            border: "1px solid rgba(91,100,120,0.2)",
           }}
         >
-          <Image
-            src="/assets/generated/spec-cove-green.png"
-            alt="Duskline continuous dot-free LED lighting concealed beneath a sandstone coping, casting an even emerald-green glow over a wet terrazzo path with lush tropical foliage leaning in as rain falls"
-            fill
-            sizes="(max-width: 768px) 100vw, 1200px"
-            style={{ objectFit: "cover" }}
+          <div
+            style={{
+              position: "relative",
+              aspectRatio: "16 / 9",
+              maxHeight: "460px",
+              minHeight: "clamp(380px, 60vw, 460px)",
+            }}
+          >
+            <Image
+              src="/assets/generated/spec-cove-green.png"
+              alt="Duskline continuous dot-free LED lighting concealed beneath a sandstone coping, casting an even emerald-green glow over a wet terrazzo path with lush tropical foliage leaning in as rain falls"
+              fill
+              sizes="(max-width: 768px) 100vw, 1200px"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(90deg, rgba(21,23,28,0.9) 0%, rgba(21,23,28,0.4) 55%, rgba(21,23,28,0.05) 100%)",
+              pointerEvents: "none",
+            }}
           />
           <div
             style={{
               position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              padding: "16px 20px",
-              background: "linear-gradient(transparent, rgba(21,23,28,0.92))",
-              fontSize: "0.8125rem",
-              color: "#9A9DA8",
+              left: "clamp(20px, 5vw, 56px)",
+              top: "50%",
+              transform: "translateY(-50%)",
+              maxWidth: "540px",
             }}
           >
-            IP68 — running live in the rain. Rated for 1.5&nbsp;m submersion, 30&nbsp;minutes.
+            <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
+              Technical specification
+            </p>
+            <h2
+              className="font-bold"
+              style={{
+                fontSize: "clamp(1.5rem, 3.5vw, 2.5rem)",
+                color: "#F4F1EA",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.15,
+              }}
+            >
+              Getting the fundamentals right.
+            </h2>
+            <p
+              style={{
+                marginTop: "16px",
+                color: "#C9CCD4",
+                fontSize: "0.9375rem",
+                lineHeight: 1.6,
+                maxWidth: "440px",
+              }}
+            >
+              Three specifications that determine whether outdoor lighting lasts two years
+              or ten. Most products get at least one wrong.
+            </p>
           </div>
         </div>
 

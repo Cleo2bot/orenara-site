@@ -34,42 +34,66 @@ export default function HowItWorks() {
       }}
     >
       <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="mb-16">
-          <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
-            How it works
-          </p>
-          <h2
-            className="font-bold"
-            style={{
-              fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              color: "#F4F1EA",
-              letterSpacing: "-0.03em",
-              lineHeight: 1.15,
-              maxWidth: "580px",
-            }}
-          >
-            Simple process. Honest lead times.
-          </h2>
-        </div>
-
-        {/* Process visual */}
+        {/* Catalogue-style hero — heading overlaid on the image */}
         <div
-          className="rounded-lg overflow-hidden mb-16"
+          className="glow-amber mb-16"
           style={{
+            borderRadius: "16px",
+            overflow: "hidden",
+            border: "1px solid rgba(245,178,92,0.2)",
             position: "relative",
-            aspectRatio: "16 / 9",
-            maxHeight: "420px",
-            border: "1px solid rgba(91,100,120,0.2)",
           }}
         >
-          <Image
-            src="/assets/generated/how-it-works.png"
-            alt="Outdoor alfresco entertaining area at dusk lit with warm amber LED strip lighting"
-            fill
-            sizes="(max-width: 768px) 100vw, 1200px"
-            style={{ objectFit: "cover" }}
+          <div
+            style={{
+              position: "relative",
+              aspectRatio: "16 / 9",
+              maxHeight: "420px",
+              minHeight: "clamp(320px, 56vw, 420px)",
+            }}
+          >
+            <Image
+              src="/assets/generated/how-it-works.png"
+              alt="Outdoor alfresco entertaining area at dusk lit with warm amber LED strip lighting"
+              fill
+              sizes="(max-width: 768px) 100vw, 1200px"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(90deg, rgba(21,23,28,0.9) 0%, rgba(21,23,28,0.4) 55%, rgba(21,23,28,0.05) 100%)",
+              pointerEvents: "none",
+            }}
           />
+          <div
+            style={{
+              position: "absolute",
+              left: "clamp(20px, 5vw, 56px)",
+              top: "50%",
+              transform: "translateY(-50%)",
+              maxWidth: "540px",
+            }}
+          >
+            <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
+              How it works
+            </p>
+            <h2
+              className="font-bold"
+              style={{
+                fontSize: "clamp(1.5rem, 3.5vw, 2.5rem)",
+                color: "#F4F1EA",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.15,
+              }}
+            >
+              Simple process. Honest lead times.
+            </h2>
+          </div>
         </div>
 
         {/* Steps */}
