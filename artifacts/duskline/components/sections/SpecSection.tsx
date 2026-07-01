@@ -79,8 +79,8 @@ export default function SpecSection() {
           }}
         >
           <Image
-            src="/assets/generated/spec-rain-green.png"
-            alt="Duskline outdoor LED strip lighting a curved garden path in rich emerald-green while rain falls, water beading on the sealed silicone sleeve and reflecting off the wet path"
+            src="/assets/generated/spec-cove-green.png"
+            alt="Duskline continuous dot-free LED lighting concealed beneath a sandstone coping, casting an even emerald-green glow over a wet terrazzo path with lush tropical foliage leaning in as rain falls"
             fill
             sizes="(max-width: 768px) 100vw, 1200px"
             style={{ objectFit: "cover" }}

@@ -78,3 +78,9 @@ id = "Eea0QJyU_46kKpH9t0cDB"
 uri = "file://artifacts/duskline/public/assets/generated/spec-rain-green.png"
 type = "image"
 title = "green garden path in rain"
+
+[[generated]]
+id = "s5ala4UpT_vTnMqmql23y"
+uri = "file://artifacts/duskline/public/assets/generated/spec-cove-green.png"
+type = "image"
+title = "hidden cove green glow, sandstone, terrazzo"
