@@ -7,6 +7,7 @@ import HowItWorks from "@/components/sections/HowItWorks";
 import SpecSection from "@/components/sections/SpecSection";
 import InstallerReview from "@/components/sections/InstallerReview";
 import EnquiryForm from "@/components/sections/EnquiryForm";
+import OutcomeSection from "@/components/sections/OutcomeSection";
 import Footer from "@/components/sections/Footer";
 
 export default function HomePage() {
@@ -22,6 +23,7 @@ export default function HomePage() {
         <SpecSection />
         <InstallerReview />
         <EnquiryForm />
+        <OutcomeSection />
       </main>
       <Footer />
     </>

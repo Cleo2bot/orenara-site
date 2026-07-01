@@ -120,3 +120,9 @@ id = "rVvjBEDIdg4WxWyBZ0lgp"
 uri = "file://artifacts/duskline/public/assets/generated/trade-mansion-coast.png"
 type = "image"
 title = "coastal mansion dusk warm lighting"
+
+[[generated]]
+id = "cSTwskxbqFRevsMsyKIct"
+uri = "file://artifacts/duskline/public/assets/generated/home-outcome-deck.png"
+type = "image"
+title = "generated_image"
