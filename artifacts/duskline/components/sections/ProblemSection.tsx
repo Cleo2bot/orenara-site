@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { AlertTriangle, Droplets, Sun, Zap } from "lucide-react";
 
 const failures = [
@@ -50,25 +49,6 @@ export default function ProblemSection() {
           >
             Why most outdoor strip lighting fails in Australia.
           </h2>
-        </div>
-
-        {/* Problem visual */}
-        <div
-          className="rounded-lg overflow-hidden mb-16"
-          style={{
-            position: "relative",
-            aspectRatio: "16 / 9",
-            maxHeight: "420px",
-            border: "1px solid rgba(91,100,120,0.2)",
-          }}
-        >
-          <Image
-            src="/assets/generated/problem.png"
-            alt="Close-up of a degraded outdoor LED strip connector showing moisture ingress and yellowing silicone"
-            fill
-            sizes="(max-width: 768px) 100vw, 1200px"
-            style={{ objectFit: "cover" }}
-          />
         </div>
 
         {/* Failure points */}

@@ -183,7 +183,7 @@ export default function Hero() {
             Enquire for Pricing
           </button>
           <p style={{ fontSize: "0.8125rem", color: "#5B6478", letterSpacing: "0.02em" }}>
-            Made to order.&nbsp;&nbsp;Ships in 4–8 weeks.
+            Made to order.&nbsp;&nbsp;Ships in 20 business days.
           </p>
         </div>
       </div>

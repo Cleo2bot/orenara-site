@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Star } from "lucide-react";
+import { Star, BadgeCheck, Quote } from "lucide-react";
 
 const photos = [
   {
@@ -59,39 +59,77 @@ export default function InstallerReview() {
 
         {/* Review card */}
         <div
-          className="rounded-lg"
+          className="rounded-xl"
           style={{
             background: "#1F222B",
-            border: "1px solid rgba(245,178,92,0.25)",
+            border: "1px solid rgba(91,100,120,0.25)",
             overflow: "hidden",
           }}
           data-testid="installer-review"
         >
-          <div className="p-8 md:p-12">
-            {/* Stars */}
-            <div
-              className="flex items-center gap-1 mb-6"
-              role="img"
-              aria-label="Rated 5 out of 5 stars"
-            >
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  key={i}
-                  size={20}
-                  style={{ color: "#F5B25C" }}
-                  fill="#F5B25C"
-                />
-              ))}
+          <div className="p-8 md:p-12" style={{ position: "relative" }}>
+            {/* Decorative quote mark */}
+            <Quote
+              aria-hidden="true"
+              size={80}
+              style={{
+                position: "absolute",
+                top: "24px",
+                right: "28px",
+                color: "#F5B25C",
+                opacity: 0.08,
+                transform: "scaleX(-1)",
+                pointerEvents: "none",
+              }}
+            />
+
+            {/* Rating row */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-3 mb-7">
+              <div
+                className="flex items-center gap-1"
+                role="img"
+                aria-label="Rated 5 out of 5 stars"
+              >
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} size={18} style={{ color: "#F5B25C" }} fill="#F5B25C" />
+                ))}
+              </div>
+              <span
+                style={{
+                  fontSize: "0.9375rem",
+                  fontWeight: 700,
+                  color: "#F4F1EA",
+                  letterSpacing: "0.01em",
+                }}
+              >
+                5.0
+              </span>
+              <span
+                className="inline-flex items-center gap-1.5"
+                style={{
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  color: "#F5B25C",
+                  background: "rgba(245,178,92,0.08)",
+                  border: "1px solid rgba(245,178,92,0.22)",
+                  padding: "4px 10px",
+                  borderRadius: "999px",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                <BadgeCheck size={13} aria-hidden="true" />
+                Verified trade customer
+              </span>
             </div>
 
             {/* Quote */}
             <blockquote
               style={{
-                fontSize: "clamp(1.125rem, 2vw, 1.375rem)",
-                color: "#F4F1EA",
-                lineHeight: 1.6,
-                letterSpacing: "-0.01em",
-                maxWidth: "880px",
+                fontSize: "clamp(1rem, 1.4vw, 1.1875rem)",
+                color: "#E8E6DF",
+                lineHeight: 1.7,
+                letterSpacing: "-0.005em",
+                maxWidth: "820px",
               }}
             >
               &ldquo;I install a lot of outdoor strip and most of it I end up
@@ -115,23 +153,37 @@ export default function InstallerReview() {
                 borderTop: "1px solid rgba(91,100,120,0.2)",
               }}
             >
-              <div
-                style={{
-                  width: "42px",
-                  height: "42px",
-                  borderRadius: "50%",
-                  background: "rgba(245,178,92,0.1)",
-                  border: "1px solid rgba(245,178,92,0.25)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontWeight: 700,
-                  fontSize: "0.9rem",
-                  color: "#F5B25C",
-                  flexShrink: 0,
-                }}
-              >
-                QLD
+              <div style={{ position: "relative", flexShrink: 0 }}>
+                <div
+                  style={{
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "50%",
+                    background: "rgba(245,178,92,0.1)",
+                    border: "1px solid rgba(245,178,92,0.25)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: 700,
+                    fontSize: "0.85rem",
+                    color: "#F5B25C",
+                    letterSpacing: "0.03em",
+                  }}
+                >
+                  QLD
+                </div>
+                <BadgeCheck
+                  size={18}
+                  aria-hidden="true"
+                  style={{
+                    position: "absolute",
+                    bottom: "-3px",
+                    right: "-3px",
+                    color: "#F5B25C",
+                    background: "#1F222B",
+                    borderRadius: "50%",
+                  }}
+                />
               </div>
               <div>
                 <p
@@ -144,40 +196,61 @@ export default function InstallerReview() {
                   Licensed electrical installer
                 </p>
                 <p style={{ fontSize: "0.85rem", color: "#9A9DA8" }}>
-                  Brisbane, QLD
+                  Brisbane, QLD · Verified install
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Installer's photos */}
+          {/* Installer's photos — horizontal scroll */}
           <div
             style={{
               borderTop: "1px solid rgba(91,100,120,0.2)",
-              padding: "24px",
+              padding: "24px 0 28px",
               background: "#15171C",
             }}
           >
-            <p
+            <div className="flex items-center justify-between px-6 md:px-8 mb-4">
+              <p
+                style={{
+                  fontSize: "0.8125rem",
+                  color: "#9A9DA8",
+                  fontWeight: 500,
+                }}
+              >
+                Photos supplied by the installer
+              </p>
+              <p
+                style={{
+                  fontSize: "0.75rem",
+                  color: "#5B6478",
+                }}
+              >
+                Scroll for more →
+              </p>
+            </div>
+            <div
+              className="flex gap-3 overflow-x-auto px-6 md:px-8 pb-2"
+              role="region"
+              aria-label="Scrollable gallery of photos supplied by the installer"
+              tabIndex={0}
               style={{
-                fontSize: "0.8125rem",
-                color: "#5B6478",
-                fontWeight: 500,
-                marginBottom: "16px",
+                scrollSnapType: "x mandatory",
+                WebkitOverflowScrolling: "touch",
               }}
             >
-              Photos supplied by the installer
-            </p>
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
               {photos.map((photo, i) => (
                 <div
                   key={i}
                   className="rounded-lg overflow-hidden"
                   style={{
                     position: "relative",
+                    flexShrink: 0,
+                    width: "clamp(180px, 44vw, 232px)",
                     aspectRatio: "1 / 1",
                     background: "#1F222B",
                     border: "1px solid rgba(91,100,120,0.2)",
+                    scrollSnapAlign: "start",
                   }}
                   data-testid={`review-photo-${i}`}
                 >
@@ -185,7 +258,7 @@ export default function InstallerReview() {
                     src={photo.src}
                     alt={photo.alt}
                     fill
-                    sizes="(max-width: 768px) 33vw, 16vw"
+                    sizes="232px"
                     style={{ objectFit: "cover" }}
                   />
                 </div>

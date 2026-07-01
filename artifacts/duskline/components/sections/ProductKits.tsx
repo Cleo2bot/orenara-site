@@ -226,8 +226,8 @@ export default function ProductKits() {
           style={{ fontSize: "0.8125rem", color: "#5B6478", lineHeight: 1.6 }}
         >
           Pricing is enquiry-only — no pricing is displayed on this site.
-          All products are made to order; typical lead time is 4–8 weeks from order
-          confirmation. Duskline supplies the system only; installation is arranged
+          All products are made to order; typical lead time is 20 business days from
+          order confirmation. Duskline supplies the system only; installation is arranged
           separately by you or your electrician.
         </p>
       </div>

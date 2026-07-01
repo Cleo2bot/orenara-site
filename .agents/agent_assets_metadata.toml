@@ -54,3 +54,9 @@ id = "pzSmP3kXwRFYEE2Pxpg1I"
 uri = "file://artifacts/duskline/public/assets/generated/og-image.png"
 type = "image"
 title = "og social share"
+
+[[generated]]
+id = "0FKKIhVDwA6_7OCxzaIJy"
+uri = "file://artifacts/duskline/public/assets/generated/rain-proof.png"
+type = "image"
+title = "led strip in rain"

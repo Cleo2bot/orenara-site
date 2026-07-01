@@ -79,8 +79,8 @@ export default function SpecSection() {
           }}
         >
           <Image
-            src="/assets/generated/spec-ip68.png"
-            alt="IP68 LED strip connector joint submerged in water with the seal intact"
+            src="/assets/generated/rain-proof.png"
+            alt="Duskline outdoor LED strip glowing warm amber while being rained on, water beading on the sealed silicone sleeve"
             fill
             sizes="(max-width: 768px) 100vw, 1200px"
             style={{ objectFit: "cover" }}
@@ -97,7 +97,7 @@ export default function SpecSection() {
               color: "#9A9DA8",
             }}
           >
-            IP68 — sealed connector joint under water. Rated for 1.5&nbsp;m submersion, 30&nbsp;minutes.
+            IP68 — running live in the rain. Rated for 1.5&nbsp;m submersion, 30&nbsp;minutes.
           </div>
         </div>
 

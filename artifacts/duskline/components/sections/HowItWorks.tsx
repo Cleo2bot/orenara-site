@@ -18,7 +18,7 @@ const steps = [
     icon: Package,
     number: "03",
     title: "Made to order. Shipped to you.",
-    body: "Your order is manufactured and shipped from China. Current lead time is 4–8 weeks from order confirmation — not from enquiry. We'll keep you updated through the process. Duskline supplies the system; your electrician handles installation.",
+    body: "Your order is manufactured to spec and dispatched direct to you. Current lead time is 20 business days from order confirmation — not from enquiry. We'll keep you updated through the process. Duskline supplies the system; your electrician handles installation.",
   },
 ];
 
@@ -169,7 +169,7 @@ export default function HowItWorks() {
               className="font-semibold mb-1"
               style={{ color: "#F4F1EA", fontSize: "0.9375rem" }}
             >
-              4–8 week lead time — set the right expectation from the start.
+              20 business day lead time — set the right expectation from the start.
             </p>
             <p style={{ color: "#9A9DA8", fontSize: "0.875rem", lineHeight: 1.7 }}>
               This is a made-to-order product. We don't hold stock. The lead time runs from
