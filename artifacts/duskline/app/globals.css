@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-dusk-900: #15171C;
+  --color-dusk-800: #1F222B;
+  --color-dusk-700: #252831;
+  --color-amber: #F5B25C;
+  --color-amber-dark: #D4913A;
+  --color-steel: #5B6478;
+  --color-warm-white: #F4F1EA;
+  --color-muted: #9A9DA8;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #15171C;
+  color: #F4F1EA;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(245, 178, 92, 0.3);
+  color: #F4F1EA;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; filter: blur(40px); }
+  50% { opacity: 0.8; filter: blur(50px); }
+}
+
+@keyframes strip-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease forwards;
+}
+
+.animate-fade-up-delay-1 {
+  animation: fade-up 0.7s ease 0.1s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.7s ease 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-delay-3 {
+  animation: fade-up 0.7s ease 0.35s forwards;
+  opacity: 0;
+}
+
+.glow-amber {
+  box-shadow: 0 0 60px rgba(245, 178, 92, 0.25), 0 0 120px rgba(245, 178, 92, 0.08);
+}
+
+.glow-amber-sm {
+  box-shadow: 0 0 20px rgba(245, 178, 92, 0.2);
+}
+
+.border-amber-glow {
+  border-color: rgba(245, 178, 92, 0.3);
+  box-shadow: inset 0 0 0 1px rgba(245, 178, 92, 0.15);
+}
+
+.text-gradient-amber {
+  background: linear-gradient(135deg, #F5B25C 0%, #E8962E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.wordmark-line::after {
+  content: '';
+  display: block;
+  height: 2px;
+  margin-top: 3px;
+  background: linear-gradient(90deg, #F5B25C 0%, transparent 100%);
+  border-radius: 1px;
+}
+
+.section-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(91, 100, 120, 0.4), transparent);
+}
+
+.kit-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.kit-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(245, 178, 92, 0.35);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(245, 178, 92, 0.08);
+}
+
+.spec-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245, 178, 92, 0.08);
+  border: 1px solid rgba(245, 178, 92, 0.2);
+  color: #F5B25C;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.enquiry-input {
+  width: 100%;
+  background: rgba(37, 40, 49, 0.8);
+  border: 1px solid rgba(91, 100, 120, 0.4);
+  color: #F4F1EA;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+}
+
+.enquiry-input::placeholder {
+  color: #9A9DA8;
+}
+
+.enquiry-input:focus {
+  border-color: rgba(245, 178, 92, 0.5);
+  box-shadow: 0 0 0 3px rgba(245, 178, 92, 0.08);
+}
+
+.enquiry-input option {
+  background: #1F222B;
+  color: #F4F1EA;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #F5B25C;
+  color: #15171C;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.02em;
+  padding: 14px 28px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: #E8962E;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(245, 178, 92, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: #F5B25C;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid rgba(245, 178, 92, 0.4);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  text-decoration: none;
+  width: 100%;
+}
+
+.btn-outline:hover {
+  background: rgba(245, 178, 92, 0.08);
+  border-color: rgba(245, 178, 92, 0.6);
+}
