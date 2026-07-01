@@ -1,0 +1,35 @@
+# Replit Follow-Up Prompt — Add "Curves Are The Hard Part" Section
+
+Paste this into Replit's AI agent to add a new section to the existing Duskline site. Place it after "Why most outdoor strip lighting fails in Australia" and before the kits section — this is where the mounting mechanism belongs, before the customer picks a kit.
+
+---
+
+## SECTION: Straight Lines vs. Curves — The Mounting System
+
+**Section eyebrow:** THE MOUNTING SYSTEM
+**Headline:** Straight lines are easy. Curves are the hard part.
+
+**Intro line:** Any strip lights up fine in a straight run. The hard part — the part most products get wrong — is a curve that still looks intentional five years in.
+
+### Two mounting systems, same strip:
+
+**1. Rigid Channel — for straight lines**
+- Aluminium channel, click-in strip mounting
+- For pergola beams, benchtops, straight garden edges — anywhere the line doesn't need to bend
+- Zero flex, zero risk of the strip sagging or pulling loose over time
+
+**2. Flexible Segmented Track — for curves**
+- This is the part that actually matters. Most "flexible" strip lighting just relies on the silicone sleeve itself bending — no structure, no consistent radius, and it shows: uneven light spacing at the bend, visible strain points, and a strip that slowly works itself loose from whatever clip was holding it.
+- Duskline's track is segmented specifically to bend into a clean, consistent curve — garden paths, pool edges, curved pergola lines — and the strip clicks directly into the track. It's mechanically secured into the track, not just resting in a channel and hoping.
+- Horizontal bend only. This isn't a garden hose — it won't loop vertically, and we won't tell you it does.
+
+**Closing line:** Pick your mounting system based on the geometry of your space, not the limitations of the product. Straight run: rigid channel. Curve: segmented track. Both take the same strip, same connectors, same IP68 rating end to end.
+
+---
+
+## Visual/layout notes for the agent:
+
+- Present as a two-column comparison (Rigid Channel | Flexible Segmented Track) rather than a stacked list — this is a decision the customer needs to make, so a side-by-side read helps
+- Small icon or simple line diagram for each: a straight line icon for the channel, a curved/S-shape icon for the track
+- Keep the "horizontal bend only" caveat visible, not buried in fine print — this is an honesty signal consistent with the rest of the site's tone, not a limitation to hide
+- If a product photo of the segmented track (the grey clip-together track piece, not the strip itself) is available, this is the section to use it — it's the most visually distinct hardware on the whole site and worth showing plainly

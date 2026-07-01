@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "Duskline",
     images: [
       {
-        url: "/assets/og-image.jpg",
+        url: "/assets/generated/og-image.png",
         width: 1200,
         height: 630,
         alt: "Duskline IP68 Outdoor LED Strip Lighting",

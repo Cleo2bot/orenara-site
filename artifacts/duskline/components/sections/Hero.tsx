@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function Hero() {
   const scrollToForm = () => {
     document.getElementById("enquire")?.scrollIntoView({ behavior: "smooth" });
@@ -10,6 +12,33 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{ background: "#15171C" }}
     >
+      {/* Hero background photo */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <Image
+          src="/assets/generated/hero.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(21,23,28,0.82) 0%, rgba(21,23,28,0.64) 38%, rgba(21,23,28,0.72) 60%, rgba(21,23,28,0.94) 100%)",
+          }}
+        />
+        {/* Center scrim to protect text over bright horizon */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 55% at 50% 45%, rgba(21,23,28,0.55) 0%, transparent 75%)",
+          }}
+        />
+      </div>
+
       {/* Ambient glow background */}
       <div
         className="absolute inset-0 pointer-events-none"

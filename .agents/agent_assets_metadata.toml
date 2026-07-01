@@ -1,0 +1,56 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "fG_c1l_WJMEjk2XsgOz0k"
+uri = "file://artifacts/duskline/public/assets/generated/hero.png"
+type = "image"
+title = "hero pathway dusk"
+
+[[generated]]
+id = "7qKWmcsnWpWzCqK9BUxZi"
+uri = "file://artifacts/duskline/public/assets/generated/problem.png"
+type = "image"
+title = "failing connector macro"
+
+[[generated]]
+id = "f5PFoskbf6UWpqSYncDNi"
+uri = "file://artifacts/duskline/public/assets/generated/kit-pathway.png"
+type = "image"
+title = "pathway kit"
+
+[[generated]]
+id = "bXGFmLdJB1tAr3SnwTdAH"
+uri = "file://artifacts/duskline/public/assets/generated/kit-pergola.png"
+type = "image"
+title = "pergola kit"
+
+[[generated]]
+id = "b3Iftk42YhAH6IUQJijca"
+uri = "file://artifacts/duskline/public/assets/generated/kit-pool.png"
+type = "image"
+title = "pool kit"
+
+[[generated]]
+id = "cqvvHS5B-5poFW40lB8Z8"
+uri = "file://artifacts/duskline/public/assets/generated/kit-custom.png"
+type = "image"
+title = "custom zone kit"
+
+[[generated]]
+id = "rQTYoTUBz2ZSnG366J9KM"
+uri = "file://artifacts/duskline/public/assets/generated/spec-ip68.png"
+type = "image"
+title = "ip68 submerged joint"
+
+[[generated]]
+id = "264GOEhftcCv6GXR3HEv-"
+uri = "file://artifacts/duskline/public/assets/generated/how-it-works.png"
+type = "image"
+title = "alfresco process"
+
+[[generated]]
+id = "pzSmP3kXwRFYEE2Pxpg1I"
+uri = "file://artifacts/duskline/public/assets/generated/og-image.png"
+type = "image"
+title = "og social share"

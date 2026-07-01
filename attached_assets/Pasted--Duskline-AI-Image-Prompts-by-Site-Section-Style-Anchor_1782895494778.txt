@@ -1,0 +1,76 @@
+# Duskline — AI Image Prompts by Site Section
+
+## Style Anchor (paste this context into every prompt, or prepend it)
+
+> Cinematic dusk/twilight photography. Deep charcoal-navy sky transitioning to warm amber at the horizon. Warm amber-gold LED light (2700K–3000K) as the only strong light source in frame — no daylight, no harsh flash. Australian residential architecture: rendered walls, stone paving, timber decking, native landscaping. Photorealistic, shot on a full-frame camera, shallow depth of field, no visible text, no logos, no people's faces in focus (silhouettes or out-of-focus figures okay for scale). Moody, premium, architectural — not a bright lifestyle catalogue shot.
+
+Use 16:9 for hero/wide sections, 4:5 or 1:1 for kit cards, 1200x630 for the OG/social image.
+
+---
+
+## 1. Hero Section (16:9, wide)
+
+> Twilight photo of a winding stone garden pathway lit from below by a thin continuous line of warm amber LED strip light, curving alongside a small water feature with a shallow waterfall. Deep blue-purple dusk sky above a modern Australian house with rendered walls. The LED line is the clear focal point, glowing softly against wet stone. Camera low to the ground, wide angle, cinematic. No people. No text.
+
+---
+
+## 2. "Why Most Outdoor Strip Lighting Fails" — Problem Section (4:5 or 16:9)
+
+> Macro/close-up photo of a cheap outdoor LED strip connector at night, slightly degraded — visible yellowing of the silicone sleeve, a faint water droplet sitting at a seam, one segment of the strip visibly dimmer than the rest. Shot at dusk, moody lighting, shallow depth of field, focus on the failure point (the connector) with the rest of the strip soft in the background. Documentary/technical photography style, not glamorous. No text.
+
+---
+
+## 3. Pathway Kit (4:5, kit card image)
+
+> Twilight photo of a garden pathway edge lit by a continuous warm amber LED strip line following the curve of a paved walkway through native Australian landscaping (grass trees, low shrubs). Strip is mounted flush at ground level. Deep dusk sky, house lights faintly visible in the background out of focus. Clean, architectural, no people. No text.
+
+---
+
+## 4. Pergola Kit (4:5, kit card image)
+
+> Twilight photo looking up at the underside of a timber pergola structure, with a warm amber LED strip line running along the structural beams, outlining the geometry of the pergola against a darkening sky. An outdoor dining table faintly visible below, out of focus. Shot from below at a slight angle, architectural photography style. No people in focus. No text.
+
+---
+
+## 5. Pool & Water Feature Kit (4:5, kit card image)
+
+> Night photo of a pool edge with a warm amber LED strip line submerged just below the waterline, glowing through the water and creating a soft rippling reflection on the pool's edge stonework. Deep black night sky, no other light sources visible except the strip and faint ambient house glow in the far background. Water surface has gentle ripples. No people. No text.
+
+---
+
+## 6. Custom Zone Kit (4:5, kit card image)
+
+> Wide twilight photo of a large multi-level outdoor entertaining area — steps, a raised deck, and a garden bed — each edge lined with warm amber LED strip lighting, showing multiple lighting zones working together across different levels of the property. Deep dusk sky, architectural composition, slightly elevated camera angle to show the full layout. No people in focus. No text.
+
+---
+
+## 7. Spec / Proof Section — "Duskline is IP68 end to end" (16:9 or 4:5)
+
+> Close-up macro photo of an LED strip connector joint fully submerged in shallow water, showing water droplets beading on the sealed silicone housing without any moisture visible inside — emphasising the seal integrity. Warm amber glow from the strip visible through the clear water. Shot at a slight angle, dramatic side lighting, dark background. Technical but visually striking. No text.
+
+---
+
+## 8. How It Works / Process Section (optional supporting image, 16:9)
+
+> Twilight photo of an outdoor kitchen/alfresco area mid-dusk, warm amber LED strip lighting under the benchtop and along a pergola beam above, a stainless BBQ and dining setup visible, house glow warm in the background windows. Feels lived-in and calm rather than showroom-staged. Soft focus on background elements, sharp focus on the light line itself. No people in focus. No text.
+
+---
+
+## 9. OG / Social Share Image (1200x630)
+
+> Twilight photo of a winding pathway lit by warm amber LED strip lighting leading toward a modern Australian home with a small illuminated water feature in the foreground — similar composition to the hero image but framed wider and slightly darker at the edges to leave clean space for a logo/wordmark overlay in the corner. No text baked into the image itself.
+
+---
+
+## 10. Footer / Closing CTA Section (16:9, optional, can reuse hero variant)
+
+> Wide twilight shot of a dusk sky fading from deep amber at the horizon to near-black navy overhead, with a single thin line of warm LED light tracing along a rooftop or deck edge in silhouette below. Minimal, atmospheric, almost abstract — works well as a closing visual with lots of negative sky space for a final CTA overlay. No text.
+
+---
+
+## Notes on Generation
+
+- If using Midjourney: append `--ar 16:9` or `--ar 4:5` per section, and `--style raw` tends to keep these less "AI-glossy" and more photographic
+- If using DALL-E/GPT image tools: explicitly repeat "no text, no logos, no watermarks" — these models like to add lettering unprompted
+- Keep the color temperature language (warm amber, 2700K-3000K) consistent across every generation — this is what makes the set feel like one cohesive shoot rather than eight unrelated images
+- Generate 3–4 variations per section and pick the one where the LED line reads clearly as the focal point — busy compositions bury the product

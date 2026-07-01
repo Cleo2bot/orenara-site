@@ -1,8 +1,11 @@
 "use client";
 
+import Image from "next/image";
+
 const kits = [
   {
     name: "Pathway Kit",
+    image: "/assets/generated/kit-pathway.png",
     tagline: "Garden edges, walkways, water features",
     description:
       "Designed for ground-level and near-ground applications. Fully flexible strip with horizontal-bend capability. Pairs with an RCM-compliant 24V driver and 0–10V dimmer.",
@@ -12,6 +15,7 @@ const kits = [
   },
   {
     name: "Pergola Kit",
+    image: "/assets/generated/kit-pergola.png",
     tagline: "Overhead structural runs, BBQ and alfresco zones",
     description:
       "Built for overhead installation in structural channels. High-output 24V strip with consistent colour temperature. Suitable for spans up to 10m per run from a single driver.",
@@ -21,6 +25,7 @@ const kits = [
   },
   {
     name: "Pool & Water Feature Kit",
+    image: "/assets/generated/kit-pool.png",
     tagline: "Fully submersible runs",
     description:
       "Our most demanding application. IP68 submersion-rated for permanent water contact. For pool edges, water features, and submerged elements. Sealed to 1.5m/30min per EN60529.",
@@ -30,6 +35,7 @@ const kits = [
   },
   {
     name: "Custom Zone Kit",
+    image: "/assets/generated/kit-custom.png",
     tagline: "Larger or multi-zone properties",
     description:
       "Multiple zones, extended runs, or architectural applications that need a spec conversation before quoting. Tell us about your space and we'll come back with a detailed breakdown.",
@@ -101,6 +107,34 @@ export default function ProductKits() {
               }}
               data-testid={`kit-card-${i}`}
             >
+              {/* Kit image */}
+              <div
+                style={{
+                  position: "relative",
+                  margin: "-32px -32px 24px",
+                  aspectRatio: "16 / 10",
+                  overflow: "hidden",
+                  borderTopLeftRadius: "8px",
+                  borderTopRightRadius: "8px",
+                }}
+              >
+                <Image
+                  src={kit.image}
+                  alt={kit.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ objectFit: "cover" }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(180deg, transparent 50%, rgba(31,34,43,0.9) 100%)",
+                  }}
+                />
+              </div>
+
               {/* Kit header */}
               <div className="mb-5">
                 <h3

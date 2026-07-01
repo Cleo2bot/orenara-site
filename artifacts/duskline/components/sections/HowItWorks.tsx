@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { MessageSquare, FileCheck, Package } from "lucide-react";
 
 const steps = [
@@ -50,6 +51,25 @@ export default function HowItWorks() {
           >
             Simple process. Honest lead times.
           </h2>
+        </div>
+
+        {/* Process visual */}
+        <div
+          className="rounded-lg overflow-hidden mb-16"
+          style={{
+            position: "relative",
+            aspectRatio: "16 / 9",
+            maxHeight: "420px",
+            border: "1px solid rgba(91,100,120,0.2)",
+          }}
+        >
+          <Image
+            src="/assets/generated/how-it-works.png"
+            alt="Outdoor alfresco entertaining area at dusk lit with warm amber LED strip lighting"
+            fill
+            sizes="(max-width: 768px) 100vw, 1200px"
+            style={{ objectFit: "cover" }}
+          />
         </div>
 
         {/* Steps */}

@@ -101,6 +101,39 @@ export default function SpecSection() {
           </p>
         </div>
 
+        {/* IP68 proof image */}
+        <div
+          className="rounded-lg overflow-hidden mb-16"
+          style={{
+            position: "relative",
+            aspectRatio: "16 / 9",
+            maxHeight: "460px",
+            border: "1px solid rgba(91,100,120,0.2)",
+          }}
+        >
+          <Image
+            src="/assets/generated/spec-ip68.png"
+            alt="IP68 LED strip connector joint submerged in water with the seal intact"
+            fill
+            sizes="(max-width: 768px) 100vw, 1200px"
+            style={{ objectFit: "cover" }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              padding: "16px 20px",
+              background: "linear-gradient(transparent, rgba(21,23,28,0.92))",
+              fontSize: "0.8125rem",
+              color: "#9A9DA8",
+            }}
+          >
+            IP68 — sealed connector joint under water. Rated for 1.5&nbsp;m submersion, 30&nbsp;minutes.
+          </div>
+        </div>
+
         {/* Spec cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-20">
           {specs.map((spec, i) => {
