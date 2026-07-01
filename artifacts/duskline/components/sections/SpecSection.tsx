@@ -79,8 +79,8 @@ export default function SpecSection() {
           }}
         >
           <Image
-            src="/assets/generated/rain-proof.png"
-            alt="Duskline outdoor LED strip glowing warm amber while being rained on, water beading on the sealed silicone sleeve"
+            src="/assets/generated/spec-rain-green.png"
+            alt="Duskline outdoor LED strip lighting a curved garden path in rich emerald-green while rain falls, water beading on the sealed silicone sleeve and reflecting off the wet path"
             fill
             sizes="(max-width: 768px) 100vw, 1200px"
             style={{ objectFit: "cover" }}

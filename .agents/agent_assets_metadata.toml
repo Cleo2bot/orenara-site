@@ -72,3 +72,9 @@ id = "9h08L6xvWcXLBJg0pQWoe"
 uri = "file://artifacts/duskline/public/assets/generated/kit-pool-blue.png"
 type = "image"
 title = "blue lit pool water"
+
+[[generated]]
+id = "Eea0QJyU_46kKpH9t0cDB"
+uri = "file://artifacts/duskline/public/assets/generated/spec-rain-green.png"
+type = "image"
+title = "green garden path in rain"

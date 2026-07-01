@@ -1,0 +1,15 @@
+# Duskline — Replacement Image: "Getting the Fundamentals Right" Section
+
+## Where it goes
+Same slot as the current image in the "Getting the fundamentals right" section — the large photo directly under the intro copy, above the three spec cards (IP68 / 0–10V / RCM). Keep the existing caption style: "IP68 — running live in the rain. Rated for 1.5m submersion, 30 minutes." (adjust wording slightly if the new scene needs it, e.g. swap "submersion" reference if the new shot is rain-only rather than submerged).
+
+## Prompt
+
+> Night photo of an organic, curving garden path lit from below by an RGB LED strip embedded along the path's edge, glowing in a rich emerald-green with a subtle transition into deep blue-violet further along the curve. Rain is falling, with visible droplets beading on the strip's clear silicone housing and light rain streaks caught in the beam. Lush, dense garden foliage — ferns, native grasses, layered greenery — lines both sides of the path, slightly out of focus. The path curves away into darkness, giving a sense of depth and mystery rather than a flat lifestyle shot. Deep near-black night sky, no moonlight, the LED strip is the only light source. Photorealistic, shallow depth of field, water droplets sharp in the foreground, colour glow rendered accurately (true emerald green, not yellow-green). No people, no text, no logos, no watermarks.
+
+Aspect ratio: matches the current image (wide, roughly 4:3 or 16:10 as shown on-site).
+
+## Notes
+- Keep the rain/water droplets in frame — this preserves the IP68 "running live in the rain" claim the caption makes, just in a more visually interesting colour-forward setting than the previous pool-ledge shot
+- Emerald-green was chosen over red or blue as the primary tone because it reads as premium/architectural rather than "Christmas lights" or "nightclub" — if you'd rather lead with a different colour, swap "emerald-green" and "blue-violet" for your preferred pairing and keep the rest of the prompt as-is
+- If Duskline doesn't yet have a confirmed RGB SKU, consider whether this image belongs in a new "Colour Options" section rather than the core IP68/spec section — mixing the flagship durability claim with a product capability that isn't locked in yet could create a mismatch between what's shown and what's sellable on day one
