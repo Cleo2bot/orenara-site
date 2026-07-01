@@ -87,7 +87,9 @@ export default function ProductKits() {
             }}
           >
             Each kit is configured for its application — strip, driver, and dimmer
-            matched and pre-specced. No separate component selection required.
+            matched and pre-specced. No separate component selection required. A
+            range of colour options is available — just tell us what you&apos;re
+            after when you enquire.
           </p>
         </div>
 
