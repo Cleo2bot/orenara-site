@@ -154,7 +154,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
   console.log("[Duskline] New TRADE enquiry:", { id: enquiry.id, name: enquiry.name, business: enquiry.business });
 
-  await saveToFile(enquiry);
+  try {
+    await saveToFile(enquiry);
+  } catch (err) {
+    console.error("[Duskline] Could not persist trade enquiry to disk (non-fatal, expected on read-only hosts like Vercel):", err);
+  }
 
   try {
     await sendEmailNotification(enquiry);

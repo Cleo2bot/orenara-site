@@ -123,7 +123,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
   console.log("[Duskline] New enquiry:", { id: enquiry.id, name: enquiry.name, kit: enquiry.kit });
 
-  await saveToFile(enquiry);
+  try {
+    await saveToFile(enquiry);
+  } catch (err) {
+    console.error("[Duskline] Could not persist enquiry to disk (non-fatal, expected on read-only hosts like Vercel):", err);
+  }
 
   try {
     await sendEmailNotification(enquiry);
