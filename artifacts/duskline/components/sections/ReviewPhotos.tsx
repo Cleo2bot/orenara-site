@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Camera, X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 
@@ -30,8 +30,12 @@ const reviewPhotos = [
 export default function ReviewPhotos() {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const openerRef = useRef<HTMLElement | null>(null);
 
-  const show = useCallback((i: number) => {
+  const show = useCallback((i: number, opener: HTMLElement) => {
+    openerRef.current = opener;
     setIndex(i);
     setOpen(true);
   }, []);
@@ -48,12 +52,36 @@ export default function ReviewPhotos() {
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-      else if (e.key === "ArrowLeft") prev();
-      else if (e.key === "ArrowRight") next();
+      if (e.key === "Escape") {
+        close();
+      } else if (e.key === "ArrowLeft") {
+        prev();
+      } else if (e.key === "ArrowRight") {
+        next();
+      } else if (e.key === "Tab") {
+        const nodes = dialogRef.current?.querySelectorAll<HTMLElement>("button");
+        if (!nodes || nodes.length === 0) return;
+        const first = nodes[0];
+        const last = nodes[nodes.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const opener = openerRef.current;
+    closeBtnRef.current?.focus();
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+      opener?.focus();
+    };
   }, [open, close, prev, next]);
 
   const active = reviewPhotos[index];
@@ -102,7 +130,7 @@ export default function ReviewPhotos() {
           <button
             key={photo.src}
             type="button"
-            onClick={() => show(i)}
+            onClick={(e) => show(i, e.currentTarget)}
             aria-label={`Open photo: ${photo.label}`}
             data-testid={`review-photo-${i}`}
             className="group"
@@ -149,6 +177,7 @@ export default function ReviewPhotos() {
 
       {open && (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label={active.label}
@@ -166,6 +195,7 @@ export default function ReviewPhotos() {
           }}
         >
           <button
+            ref={closeBtnRef}
             type="button"
             onClick={close}
             aria-label="Close"
