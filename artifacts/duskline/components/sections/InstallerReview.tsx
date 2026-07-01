@@ -132,17 +132,20 @@ export default function InstallerReview() {
                 maxWidth: "820px",
               }}
             >
-              &ldquo;I install a lot of outdoor strip and most of it I end up
-              going back to within a couple of wet seasons. This is the first lot
-              I&apos;ve put in that I&apos;m genuinely not worried about. IP68 the
-              whole way — strip, joints, end caps — so in the Brisbane humidity
-              and out near the bay with the salt air, I&apos;m not chasing
-              corroded connectors or water in the channel six months later. The
-              0&ndash;10V dimming is smooth with no flicker on camera, and the
-              RCM compliance means it&apos;s clean to sign off on. Last job I ran
-              a curved path edge and a pool surround — the segmented track holds
-              the radius properly instead of the strip fighting me the whole way.
-              Gear turns up sorted and wires up quick.&rdquo;
+              <p>
+                &ldquo;I install a lot of &lsquo;outdoor strip&rsquo; and most of
+                it I end up replacing after it gets wet. This is the first lot
+                I&apos;ve put in that I&apos;m genuinely not worried about.
+                Definietly, IP68 submersible, strip and end caps, tested it in a
+                bucket! Doesn&apos;t flicker or drop over the run. RCM, CE gear.
+                Flexible and straight conduit, easy install. Curves where easy
+                and clean.
+              </p>
+              <p style={{ marginTop: "1rem" }}>
+                Did take 3 weeks for onsite delivery, for a run of 6 strips, 2
+                drivers, 2 dimmers, and 240V plugs, but was told and expecting 4
+                weeks, so that works for me.&rdquo;
+              </p>
             </blockquote>
 
             {/* Attribution — no name */}
