@@ -5,7 +5,7 @@ import Image from "next/image";
 const kits = [
   {
     name: "Pathway Kit",
-    image: "/assets/generated/kit-pathway.png",
+    image: "/assets/generated/kit-pathway-coastal.png",
     tagline: "Garden edges, walkways, water features",
     description:
       "Designed for ground-level and near-ground applications. Fully flexible strip with horizontal-bend capability. Pairs with an RCM-compliant 24V driver and 0–10V dimmer.",
@@ -15,7 +15,7 @@ const kits = [
   },
   {
     name: "Pergola Kit",
-    image: "/assets/generated/kit-pergola.png",
+    image: "/assets/generated/kit-pergola-coastal.png",
     tagline: "Overhead structural runs, BBQ and alfresco zones",
     description:
       "Built for overhead installation in structural channels. High-output 24V strip with consistent colour temperature. Suitable for spans up to 10m per run from a single driver.",

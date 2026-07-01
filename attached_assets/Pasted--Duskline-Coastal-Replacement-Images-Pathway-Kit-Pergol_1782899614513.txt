@@ -1,0 +1,26 @@
+# Duskline — Coastal Replacement Images: Pathway Kit & Pergola Kit
+
+Both prompts keep the same composition style as the current images (curved path in frame for Pathway, overhead beam line for Pergola) — only the setting changes, to a harsher coastal environment that makes the IP68 claim feel earned rather than stated.
+
+---
+
+## 1. Pathway Kit — Replacement
+
+> Twilight photo of a curved stone or timber path along a coastal cliff-edge or dune garden, lit from below by a continuous warm amber LED strip line following the curve of the path. Ocean visible just beyond the path, with visible surf spray drifting across the frame in the sea breeze — fine salt mist catching the warm light. Coastal native planting (spinifex, coastal banksia, low windswept shrubs) lines the path edge. Deep orange-to-navy dusk sky, waves breaking on rocks or a beach visible in the background, slightly out of focus. The LED line curves cleanly through the scene despite the exposed, weather-beaten setting. Photorealistic, cinematic, shallow depth of field. No people, no text, no logos.
+
+Aspect ratio: matches current image (roughly 4:3, wide card format).
+
+---
+
+## 2. Pergola Kit — Replacement
+
+> Twilight photo looking up and along the underside of a timber or concrete pergola beam positioned right at a coastal clifftop or beachfront deck, with a warm amber LED strip line running along the structural beam. Beyond the pergola, open ocean is visible with visible whitecap waves and drifting salt spray caught in the fading light — the structure is clearly exposed to weather, not a sheltered inland courtyard. Dusk sky transitioning from grey-blue overhead to warm amber at the horizon line, similar composition to the current shot but with the ocean and spray replacing the inland garden background. Photorealistic, cinematic, architectural framing. No people, no text, no logos.
+
+Aspect ratio: matches current image (roughly 4:3, wide card format, horizon line visible partway up frame as in the current shot).
+
+---
+
+## Notes
+- Kept the exact same strip colour, framing style, and "no people/no text" rules as the originals — the only variable changed is the environment, which is the point: same product, harsher conditions
+- The surf spray/mist detail is doing the real work here — it visually implies "this thing gets wet regularly" without needing a caption to say so
+- If you want the IP68 claim to land even harder, a version where the strip has visible water droplets or wet sheen on the housing (like the rain-test shot used elsewhere on the site) would reinforce it further — happy to add that detail to either prompt if you want the connection more explicit

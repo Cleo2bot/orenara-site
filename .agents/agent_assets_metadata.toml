@@ -84,3 +84,15 @@ id = "s5ala4UpT_vTnMqmql23y"
 uri = "file://artifacts/duskline/public/assets/generated/spec-cove-green.png"
 type = "image"
 title = "hidden cove green glow, sandstone, terrazzo"
+
+[[generated]]
+id = "rWrF2-H89Df4g0Z_hqOuB"
+uri = "file://artifacts/duskline/public/assets/generated/kit-pathway-coastal.png"
+type = "image"
+title = "coastal cliff path warm amber"
+
+[[generated]]
+id = "NPEq1be6Y88yXph0uAHqc"
+uri = "file://artifacts/duskline/public/assets/generated/kit-pergola-coastal.png"
+type = "image"
+title = "coastal pergola beam warm amber"
