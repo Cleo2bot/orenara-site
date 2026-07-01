@@ -1,0 +1,274 @@
+import { Check } from "lucide-react";
+
+function StraightDiagram() {
+  return (
+    <svg width="76" height="26" viewBox="0 0 76 26" fill="none" aria-hidden="true">
+      <line
+        x1="5"
+        y1="13"
+        x2="71"
+        y2="13"
+        stroke="#F5B25C"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function CurveDiagram() {
+  return (
+    <svg width="76" height="26" viewBox="0 0 76 26" fill="none" aria-hidden="true">
+      <path
+        d="M5 18 C 19 18, 19 8, 38 8 S 57 18, 71 8"
+        stroke="#F5B25C"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+const rigidPoints = [
+  "Aluminium channel with click-in strip mounting.",
+  "For pergola beams, benchtops and straight garden edges — anywhere the line doesn't need to bend.",
+  "Zero flex, zero risk of the strip sagging or pulling loose over time.",
+];
+
+const trackPoints = [
+  "Segmented specifically to bend into a clean, consistent radius — garden paths, pool edges, curved pergola lines.",
+  "The strip clicks directly into the track. Mechanically secured, not resting in a channel and hoping.",
+  "Same strip, same connectors, same IP68 rating end to end as the rigid channel.",
+];
+
+export default function MountingSystem() {
+  return (
+    <section
+      id="mounting"
+      style={{
+        background: "#15171C",
+        borderBottom: "1px solid rgba(91,100,120,0.2)",
+      }}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-24">
+        {/* Header */}
+        <div className="mb-16" style={{ maxWidth: "760px" }}>
+          <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
+            The mounting system
+          </p>
+          <h2
+            className="font-bold"
+            style={{
+              fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+              color: "#F4F1EA",
+              letterSpacing: "-0.03em",
+              lineHeight: 1.15,
+            }}
+          >
+            Straight lines are easy. Curves are the hard part.
+          </h2>
+          <p
+            style={{
+              marginTop: "16px",
+              color: "#9A9DA8",
+              fontSize: "1rem",
+              lineHeight: 1.7,
+              maxWidth: "620px",
+            }}
+          >
+            Any strip lights up fine in a straight run. The hard part — the part
+            most products get wrong — is a curve that still looks intentional
+            five years in.
+          </p>
+        </div>
+
+        {/* Two-column comparison */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* Rigid Channel */}
+          <div
+            className="rounded-lg p-8 flex flex-col"
+            style={{
+              background: "#1F222B",
+              border: "1px solid rgba(91,100,120,0.25)",
+            }}
+            data-testid="mounting-rigid"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div
+                style={{
+                  padding: "12px 16px",
+                  borderRadius: "8px",
+                  background: "rgba(245,178,92,0.08)",
+                  border: "1px solid rgba(245,178,92,0.2)",
+                  display: "inline-flex",
+                }}
+              >
+                <StraightDiagram />
+              </div>
+              <span
+                style={{
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "#5B6478",
+                }}
+              >
+                For straight lines
+              </span>
+            </div>
+            <h3
+              className="font-bold mb-4"
+              style={{
+                fontSize: "1.375rem",
+                color: "#F4F1EA",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              Rigid Channel
+            </h3>
+            <ul className="flex flex-col gap-4">
+              {rigidPoints.map((point, i) => (
+                <li key={i} className="flex gap-3" style={{ alignItems: "flex-start" }}>
+                  <Check
+                    size={18}
+                    style={{ color: "#F5B25C", flexShrink: 0, marginTop: "3px" }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "0.9375rem",
+                      color: "#9A9DA8",
+                      lineHeight: 1.65,
+                    }}
+                  >
+                    {point}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Flexible Segmented Track */}
+          <div
+            className="rounded-lg p-8 flex flex-col"
+            style={{
+              background: "#1F222B",
+              border: "1px solid rgba(245,178,92,0.3)",
+              boxShadow: "0 0 40px rgba(245,178,92,0.06)",
+            }}
+            data-testid="mounting-track"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div
+                style={{
+                  padding: "12px 16px",
+                  borderRadius: "8px",
+                  background: "rgba(245,178,92,0.08)",
+                  border: "1px solid rgba(245,178,92,0.2)",
+                  display: "inline-flex",
+                }}
+              >
+                <CurveDiagram />
+              </div>
+              <span
+                style={{
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "#F5B25C",
+                }}
+              >
+                For curves
+              </span>
+            </div>
+            <h3
+              className="font-bold mb-3"
+              style={{
+                fontSize: "1.375rem",
+                color: "#F4F1EA",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              Flexible Segmented Track
+            </h3>
+            <p
+              style={{
+                fontSize: "0.9375rem",
+                color: "#9A9DA8",
+                lineHeight: 1.7,
+                marginBottom: "20px",
+              }}
+            >
+              This is the part that actually matters. Most &ldquo;flexible&rdquo;
+              strip lighting just relies on the silicone sleeve bending — no
+              structure, no consistent radius. It shows: uneven light spacing at
+              the bend, visible strain points, and a strip that slowly works
+              itself loose from whatever clip was holding it.
+            </p>
+            <ul className="flex flex-col gap-4">
+              {trackPoints.map((point, i) => (
+                <li key={i} className="flex gap-3" style={{ alignItems: "flex-start" }}>
+                  <Check
+                    size={18}
+                    style={{ color: "#F5B25C", flexShrink: 0, marginTop: "3px" }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "0.9375rem",
+                      color: "#F4F1EA",
+                      lineHeight: 1.65,
+                    }}
+                  >
+                    {point}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Honesty caveat — kept visible, not fine print */}
+            <div
+              className="mt-6 rounded-lg"
+              style={{
+                padding: "14px 16px",
+                background: "rgba(245,178,92,0.06)",
+                border: "1px solid rgba(245,178,92,0.2)",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "0.875rem",
+                  color: "#F4F1EA",
+                  lineHeight: 1.6,
+                }}
+              >
+                <span style={{ fontWeight: 700, color: "#F5B25C" }}>
+                  Horizontal bend only.
+                </span>{" "}
+                This isn&apos;t a garden hose — it won&apos;t loop vertically,
+                and we won&apos;t tell you it does.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Closing line */}
+        <p
+          style={{
+            marginTop: "40px",
+            fontSize: "1rem",
+            color: "#9A9DA8",
+            lineHeight: 1.75,
+            maxWidth: "760px",
+          }}
+        >
+          Pick your mounting system based on the geometry of your space, not the
+          limitations of the product. Straight run: rigid channel. Curve:
+          segmented track. Both take the same strip, same connectors, same IP68
+          rating end to end.
+        </p>
+      </div>
+    </section>
+  );
+}

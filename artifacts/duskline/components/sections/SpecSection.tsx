@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Shield, Waves, Award, Camera } from "lucide-react";
+import { Shield, Waves, Award } from "lucide-react";
 
 const specs = [
   {
@@ -22,39 +22,6 @@ const specs = [
     headline: "Australian regulatory compliance.",
     body: "RCM (Regulatory Compliance Mark) is the current Australian and New Zealand mark for electrical equipment compliance. It replaced the old 'SAA' mark. Products entering the Australian market are required to bear the RCM mark if they're electrical goods. Some importers still reference SAA certification — that designation was retired in 2016. Duskline components carry current RCM compliance.",
     badge: "Regulatory Compliance Mark",
-  },
-];
-
-const productImages = [
-  {
-    src: "/assets/20260529_141958_1782893962742.jpg",
-    alt: "IP68 certification label on LED strip — PD 2026-03-07",
-    caption: "IP68 certification",
-  },
-  {
-    src: "/assets/20260529_141954_1782893962744.jpg",
-    alt: "IP68 rated LED neon flex connector detail",
-    caption: "Sealed connector detail",
-  },
-  {
-    src: "/assets/20260529_142442_1782893962740.jpg",
-    alt: "LED neon flex coiled — flexible radius capability",
-    caption: "Flexible radius — neon flex",
-  },
-  {
-    src: "/assets/20260529_142637_1782893962733.jpg",
-    alt: "IP68 LED strip with neon flex — installation ready",
-    caption: "Strip + neon flex combination",
-  },
-  {
-    src: "/assets/20260701_180300_1782893962722.jpg",
-    alt: "LTSYS LED driver — flicker-free, 24V output",
-    caption: "LTSYS 24V LED driver",
-  },
-  {
-    src: "/assets/20260609_131451_1782893962724.jpg",
-    alt: "LTECH 0-10V wall dimmer controller",
-    caption: "LTECH 0–10V wall dimmer",
   },
 ];
 
@@ -135,7 +102,7 @@ export default function SpecSection() {
         </div>
 
         {/* Spec cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {specs.map((spec, i) => {
             const Icon = spec.icon;
             return (
@@ -191,65 +158,6 @@ export default function SpecSection() {
               </div>
             );
           })}
-        </div>
-
-        {/* Image gallery */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-8">
-            <Camera size={18} style={{ color: "#5B6478" }} />
-            <p style={{ fontSize: "0.875rem", color: "#5B6478", fontWeight: 500 }}>
-              Product photography — actual components
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {productImages.map((img, i) => (
-              <div
-                key={i}
-                className="rounded-lg overflow-hidden"
-                style={{
-                  aspectRatio: "4/3",
-                  position: "relative",
-                  background: "#1F222B",
-                  border: "1px solid rgba(91,100,120,0.2)",
-                }}
-                data-testid={`product-image-${i}`}
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    padding: "8px 12px",
-                    background:
-                      "linear-gradient(transparent, rgba(21,23,28,0.9))",
-                    fontSize: "0.75rem",
-                    color: "#9A9DA8",
-                  }}
-                >
-                  {img.caption}
-                </div>
-              </div>
-            ))}
-          </div>
-          <p
-            style={{
-              marginTop: "12px",
-              fontSize: "0.8rem",
-              color: "#5B6478",
-              textAlign: "center",
-            }}
-          >
-            Installation photography to follow — these are component photos of the actual
-            products in each kit.
-          </p>
         </div>
       </div>
     </section>
