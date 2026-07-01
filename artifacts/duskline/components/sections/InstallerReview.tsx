@@ -1,37 +1,5 @@
 import { Star, BadgeCheck, Quote } from "lucide-react";
 import TradeReviews from "@/components/sections/TradeReviews";
-import PhotoCarousel from "@/components/sections/PhotoCarousel";
-
-const photos = [
-  {
-    src: "/assets/20260529_141958_1782893962742.jpg",
-    alt: "IP68 certification label on the LED strip",
-    title: "Certified, not claimed",
-    caption:
-      "The actual IP68 rating printed on the reel — dust-tight and submersible, not a marketing sticker.",
-  },
-  {
-    src: "/assets/20260529_141954_1782893962744.jpg",
-    alt: "Sealed IP68 connector detail on the LED strip",
-    title: "Sealed at every join",
-    caption:
-      "Where cheap strip fails first. Connectors are sealed end to end, so water has nowhere to get in.",
-  },
-  {
-    src: "/assets/20260529_142442_1782893962740.jpg",
-    alt: "LED neon flex coiled to show the bend radius",
-    title: "Bends without breaking",
-    caption:
-      "Tight, clean curves with no stress on the diodes — corners stay lit and even.",
-  },
-  {
-    src: "/assets/20260529_142637_1782893962733.jpg",
-    alt: "IP68 LED strip and neon flex ready for install",
-    title: "Ready off the reel",
-    caption:
-      "Strip and neon flex specced together, so there's less to sort out on install day.",
-  },
-];
 
 export default function InstallerReview() {
   return (
@@ -210,27 +178,6 @@ export default function InstallerReview() {
             </div>
           </div>
 
-        </div>
-
-        {/* Separated photos — each with its own explanation */}
-        <div className="mt-14">
-          <div className="mb-6">
-            <h3
-              className="font-bold"
-              style={{
-                fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)",
-                color: "#F4F1EA",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Straight off the job.
-            </h3>
-            <p style={{ fontSize: "0.8125rem", color: "#9A9DA8", marginTop: "2px" }}>
-              Real photos supplied by installers — here&apos;s what you&apos;re looking at.
-            </p>
-          </div>
-
-          <PhotoCarousel photos={photos} />
         </div>
 
         {/* More reviews — aggregate summary + expandable feed */}

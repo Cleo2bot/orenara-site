@@ -4,6 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import { Star, ChevronDown } from "lucide-react";
 
+type GalleryPhoto = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
 type Review = {
   rating: number;
   quote: string;
@@ -13,6 +19,7 @@ type Review = {
   photo?: string;
   photoAlt?: string;
   photoCaption?: string;
+  photos?: GalleryPhoto[];
 };
 
 const AGGREGATE = 4.7;
@@ -93,10 +100,32 @@ const reviews: Review[] = [
   {
     rating: 5,
     quote:
-      "Tested a length in a bucket before I put it in. Genuinely IP68. Flicker-free on the dimmer too.",
+      "Tested a length in a bucket before I put it in. Genuinely IP68. Flicker-free on the dimmer too. Took a few shots on the job — sealed joins, the cert on the reel, and how tight it curves.",
     role: "Electrician",
     state: "NSW",
     verified: "Verified trade order",
+    photos: [
+      {
+        src: "/assets/20260529_141958_1782893962742.jpg",
+        alt: "IP68 certification label on the LED strip",
+        caption: "IP68 rating printed on the reel — not a marketing sticker.",
+      },
+      {
+        src: "/assets/20260529_141954_1782893962744.jpg",
+        alt: "Sealed IP68 connector detail on the LED strip",
+        caption: "Connectors sealed end to end — no way in for water.",
+      },
+      {
+        src: "/assets/20260529_142442_1782893962740.jpg",
+        alt: "LED neon flex coiled to show the bend radius",
+        caption: "Tight, clean curves with no stress on the diodes.",
+      },
+      {
+        src: "/assets/20260529_142637_1782893962733.jpg",
+        alt: "IP68 LED strip and neon flex ready for install",
+        caption: "Strip and neon flex specced together off the reel.",
+      },
+    ],
   },
 ];
 
@@ -392,6 +421,48 @@ export default function TradeReviews() {
                     </figcaption>
                   )}
                 </figure>
+              )}
+
+              {review.photos && review.photos.length > 0 && (
+                <div
+                  className="mt-3 flex flex-wrap gap-3"
+                  data-testid={`review-gallery-${i}`}
+                >
+                  {review.photos.map((p) => (
+                    <figure key={p.src} style={{ width: "150px", margin: 0 }}>
+                      <div
+                        style={{
+                          position: "relative",
+                          width: "150px",
+                          aspectRatio: "4 / 3",
+                          borderRadius: "8px",
+                          overflow: "hidden",
+                          background: "#15171C",
+                          border: "1px solid rgba(91,100,120,0.25)",
+                        }}
+                      >
+                        <Image
+                          src={p.src}
+                          alt={p.alt}
+                          fill
+                          sizes="150px"
+                          style={{ objectFit: "cover" }}
+                        />
+                      </div>
+                      <figcaption
+                        style={{
+                          marginTop: "6px",
+                          fontSize: "0.72rem",
+                          color: "#9A9DA8",
+                          lineHeight: 1.45,
+                          fontStyle: "italic",
+                        }}
+                      >
+                        {p.caption}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
               )}
 
               <div className="mt-3">
