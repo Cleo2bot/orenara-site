@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import Wordmark from "./Wordmark";
 
 export default function Navbar() {
@@ -16,14 +17,29 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
         <Wordmark size="sm" />
-        <button
-          onClick={scrollToForm}
-          className="btn-primary hidden sm:inline-flex"
-          style={{ padding: "10px 20px", fontSize: "0.875rem" }}
-          data-testid="nav-enquire-btn"
-        >
-          Enquire for Pricing
-        </button>
+        <div className="flex items-center gap-5">
+          <Link
+            href="/trade"
+            className="hidden sm:inline-flex"
+            style={{
+              color: "#9A9DA8",
+              fontSize: "0.875rem",
+              fontWeight: 500,
+              textDecoration: "none",
+            }}
+            data-testid="nav-trade-link"
+          >
+            Trade?
+          </Link>
+          <button
+            onClick={scrollToForm}
+            className="btn-primary hidden sm:inline-flex"
+            style={{ padding: "10px 20px", fontSize: "0.875rem" }}
+            data-testid="nav-enquire-btn"
+          >
+            Enquire for Pricing
+          </button>
+        </div>
       </nav>
     </header>
   );

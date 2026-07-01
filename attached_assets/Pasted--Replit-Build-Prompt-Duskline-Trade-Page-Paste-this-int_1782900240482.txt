@@ -1,0 +1,65 @@
+# Replit Build Prompt — Duskline Trade Page
+
+Paste this into Replit's AI agent to build a new page: `/trade`. This is a separate landing page from the main consumer site — same brand system (colours, typography, dark theme) but different voice and a different offer structure, built for electricians, builders, and landscapers ordering for a client's site rather than homeowners buying for themselves.
+
+---
+
+## PAGE PURPOSE
+
+Trade customers don't need to be sold on why IP68 matters — they already know. What they need is: a straight answer on lead time, a price without a runaround, and delivery that actually happens when promised. This page should read like it was written by someone who's been on the other end of a supplier that said "2 weeks" and meant 6.
+
+**Voice shift from the consumer site:** Same brand (Duskline), same dark/amber visual system, but drop the explanatory tone. No need to re-explain what IP68 means or why 0–10V matters — assume the reader already knows. Shorter sentences. More direct. Talk like you're talking to someone on a job site, not someone browsing Pinterest.
+
+---
+
+## PAGE STRUCTURE
+
+### 1. Hero
+- Headline: **"Built for tradies. Priced fast, delivered when we say."**
+- Subhead: "Tell us what the job needs. We'll spec it, price it, and get it to site — 20 business days as standard, faster when the deadline demands it."
+- CTA button: "Get a Trade Quote" (scrolls to form)
+- Small line under CTA: "20 business day standard lead time. Expedite available for hard deadlines."
+
+### 2. How Trade Orders Work
+Three-step, direct, no fluff:
+
+1. **Tell us the job** — colour/glow, lengths, site location. Use the form below.
+2. **We spec and price it** — back to you within 24 hours with a firm price and confirmed delivery date, not a range.
+3. **Made to order, delivered to site** — 20 business days standard. Need it faster for a deadline? Say so in the form — we can often expedite.
+
+### 3. Why Trades Order From Duskline
+Short, punchy, no re-explaining the fundamentals (that's the consumer page's job):
+- IP68 end to end — you're not going back to this job in a wet season
+- RCM compliant — clean to sign off, no compliance headache
+- Firm lead times, not vague estimates — 20 business days standard, confirmed at quote stage
+- Kits are pre-specced (strip, driver, dimmer matched) — less to get wrong on install
+
+### 4. Trade Enquiry Form
+
+Fields:
+- Name
+- Business / Trade (e.g. "Electrician," "Landscaper," "Builder" — free text or dropdown)
+- Email
+- Phone
+- Site delivery suburb/postcode
+- Colour / glow required — dropdown: **Standard warm glow** / **Custom colour (RGB/CCT) — specify below** / **Not sure yet**
+- Approximate lengths / quantity needed
+- Deadline — is this urgent? (dropdown: Standard 20 business days is fine / I have a hard deadline — specify below)
+- Additional details (free text — job specifics, site access notes, anything relevant)
+
+**Submit button:** "Send Trade Enquiry"
+**Confirmation copy:** "Got it. We'll come back to you within 24 hours with pricing and a confirmed delivery date."
+
+On submit: same backend pattern as the main enquiry form — email notification via Resend (or configured provider) to the admin address, plus a backup record stored. Consider tagging these submissions distinctly from consumer enquiries (e.g. a `source: trade` field) so they're easy to filter in the inbox/records.
+
+### 5. Footer
+- Same footer as the main site — no need to duplicate content, just make sure `/trade` links back to the main site and vice versa (a small "Trade?" link in the main nav pointing to `/trade` is worth adding if it doesn't already exist)
+
+---
+
+## THINGS TO GET RIGHT
+
+- **20 business days, not "4–8 weeks."** The consumer site uses a looser range because it's a first-time, lower-volume relationship. Trade customers ordering for a job need a harder number — 20 business days is the commitment here. Don't blend the two lead-time messages between pages.
+- **24-hour response commitment** — faster than the consumer site's 1–2 business days. This is a deliberate signal that trade enquiries get priority handling.
+- **No pricing displayed on-site** — same rule as the consumer page. This is quote-on-enquiry, not a price list.
+- **No installation offering** — same rule as the consumer page. Duskline supplies; the trade customer is the one installing.

@@ -1,3 +1,5 @@
 {
+  "/trade/enquire/route": "app/trade/enquire/route.js",
+  "/trade/page": "app/trade/page.js",
   "/page": "app/page.js"
 }

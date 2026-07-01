@@ -1,1 +1,2 @@
 - [Next.js 14 quirks](nextjs14-quirks.md) — config must be .mjs not .ts; allowedDevOrigins needs explicit globs (no `"*"`); stale `_next` chunk 404s after Fast Refresh full reload = restart workflow, not a real bug.
+- [Proxy shadows Next /api/*](proxy-api-routing.md) — all /api/* routes to the Express api-server; put duskline form-submit endpoints on a `/`-owned path (e.g. /trade/enquire), not app/api/**.
