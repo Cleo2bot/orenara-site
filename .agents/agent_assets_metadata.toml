@@ -96,3 +96,9 @@ id = "NPEq1be6Y88yXph0uAHqc"
 uri = "file://artifacts/duskline/public/assets/generated/kit-pergola-coastal.png"
 type = "image"
 title = "coastal pergola beam warm amber"
+
+[[generated]]
+id = "Fs1H_YautgQo5CK_7rNTu"
+uri = "file://artifacts/duskline/public/assets/generated/kit-pathway-coastal2.png"
+type = "image"
+title = "coastal path with more sea mist, no spotlight"

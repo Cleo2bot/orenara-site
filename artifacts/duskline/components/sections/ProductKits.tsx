@@ -5,7 +5,7 @@ import Image from "next/image";
 const kits = [
   {
     name: "Pathway Kit",
-    image: "/assets/generated/kit-pathway-coastal.png",
+    image: "/assets/generated/kit-pathway-coastal2.png",
     tagline: "Garden edges, walkways, water features",
     description:
       "Designed for ground-level and near-ground applications. Fully flexible strip with horizontal-bend capability. Pairs with an RCM-compliant 24V driver and 0–10V dimmer.",
