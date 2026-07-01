@@ -1,0 +1,27 @@
+# Duskline — Mid-Page Emotive Section (bridges Hero → Footer)
+
+## Where it goes
+Roughly halfway down the homepage — a good spot is right after the "Getting the fundamentals right" spec section and before the kits ("Choose your application") section, as a full-bleed breather between two content-dense blocks. It should interrupt the reading rhythm the same way the footer image does.
+
+## The narrative thread
+- **Hero:** early dusk, product/brand statement, scene still has some daylight in it
+- **Middle (this one):** deeper dusk, the strip is now the dominant light source, but the scene is still empty — no one's out there yet
+- **Footer:** near-full dark, people actually living in the space
+
+Scrolling the page reads like time passing. Same architectural family (modern home, deck, pool, pergola) across all three keeps the thread visible without spelling it out.
+
+## Headline
+**"Right about now."**
+
+## Subhead
+"The point in the evening this was built for."
+
+## Image Prompt
+
+> Twilight photo of an empty outdoor deck and pool area at a modern Australian home, noticeably darker than a typical "golden hour" shot — the sun has just dropped below the horizon, sky a deep blue-grey with only a thin band of fading amber at the skyline. Warm amber LED strip lighting along the deck edge and pool surround is now the dominant light source in the frame, glowing steadily. The space is empty — no people — an open sliding door and a single lit lamp inside the house hint that someone is about to come outside, but hasn't yet. A stillness to the composition, a "held breath before the evening starts" feeling. Photorealistic, cinematic, same architectural style as a modern Australian home (rendered walls, timber decking, glass balustrade). No people, no text, no logos.
+
+Aspect ratio: full-bleed 16:9, matching the hero and footer treatment.
+
+## Layout notes
+- Same treatment as the footer shot — full-bleed image, headline + subhead overlaid on the left third, no CTA button needed here (this section's job is a pause, not a conversion push — save the ask for the footer)
+- Keep type treatment consistent with the footer's white headline / muted grey subhead, same font weights
