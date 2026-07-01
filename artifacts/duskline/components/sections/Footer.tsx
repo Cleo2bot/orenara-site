@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import Wordmark from "@/components/Wordmark";
 import { Mail, Instagram } from "lucide-react";
 
@@ -94,9 +95,18 @@ export default function Footer() {
 
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <p style={{ fontSize: "0.8rem", color: "#5B6478" }}>
-            © {year} Duskline. All rights reserved.
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5">
+            <p style={{ fontSize: "0.8rem", color: "#5B6478" }}>
+              © {year} Duskline. All rights reserved.
+            </p>
+            <Link
+              href="/terms"
+              style={{ fontSize: "0.8rem", color: "#9A9DA8", textDecoration: "none" }}
+              data-testid="footer-terms-link"
+            >
+              Terms &amp; Conditions
+            </Link>
+          </div>
           <p style={{ fontSize: "0.8rem", color: "#5B6478" }}>
             IP68. No excuses.
           </p>
