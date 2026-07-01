@@ -114,8 +114,8 @@ export default function WhyTrades() {
           }}
         >
           <img
-            src="/assets/generated/trade-mansion-coast.png"
-            alt="Modern coastal mansion at dusk with Duskline warm strip lighting integrated into sandstone entry steps, ocean spray beyond."
+            src="/assets/generated/trade-hero-tailgate.png"
+            alt="Two tradies relaxing on a ute tailgate at dusk beside a driveway lit with warm Duskline strip lighting, coastal mansion behind."
             style={{ display: "block", width: "100%", height: "auto" }}
           />
           <div
