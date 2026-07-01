@@ -1,0 +1,30 @@
+# Replit Follow-Up Prompt — Redistribute Review Photos
+
+Paste this into Replit's AI agent to restructure the photo attribution on the Trade page reviews section.
+
+---
+
+## WHAT TO CHANGE
+
+Currently, the "Real photos supplied by installers" carousel at the top of the reviews section contains 6 photos, all grouped together as one general gallery. Two of those photos are:
+- The LTSYS driver unit (photographed on a wood table/bench)
+- The LTECH wall-mounted dimmer control panel
+
+**Move these two photos out of the general carousel and attach them directly to two specific reviews in the "More from the trade" grid below** — the ones that specifically reference the component shown in each photo. This makes the review section read as real installer-submitted proof tied to specific feedback, rather than a generic stock-style gallery.
+
+### Photo 1 — LTSYS driver unit
+**Move to:** the **Electrician · SA** review ("Consistent brightness the whole run, even on the long lengths. Drivers don't buzz. Little things, but it's why I stopped shopping around.")
+**Caption for the attached photo:** "The driver in question — SA electrician's submission."
+
+### Photo 2 — LTECH dimmer control panel
+**Move to:** the **Builder · QLD** review ("Pre-specced kits meant a lot less mucking around on site. Strip, driver and dimmer all matched out of the box, sparky signed it off no questions.")
+**Caption for the attached photo:** "Dimmer panel from the same job — QLD builder's submission."
+
+---
+
+## LAYOUT NOTES
+
+- Each review card in "More from the trade" currently appears to be text-only (star rating, quote, name-hidden tag, trade, state). Add a small thumbnail image to these two specific cards only — doesn't need to be large, a compact thumbnail in the corner or below the quote is enough to signal "this reviewer actually attached proof" without making every card the same size.
+- Leave the other cards (Landscaper VIC, Homeowner WA) as text-only — not every review needs a photo, and forcing one onto reviews where no relevant photo exists would look padded.
+- The main carousel at the top drops from 6 photos to 4. Update the pagination dots/counter accordingly (currently shows "3/6" — needs to become "3/4" or whatever the new count is once removed).
+- Keep the remaining 4 photos and their existing captions in the top carousel unchanged (e.g. "Bends without breaking" stays as-is).

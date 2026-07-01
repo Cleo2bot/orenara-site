@@ -1,9 +1,19 @@
 "use client";
 
 import { type KeyboardEvent, useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { Star, EyeOff, ChevronLeft, ChevronRight } from "lucide-react";
 
-const anonReviews = [
+type AnonReview = {
+  trade: string;
+  location: string;
+  quote: string;
+} & (
+  | { photo?: undefined; photoAlt?: undefined; photoCaption?: undefined }
+  | { photo: string; photoAlt: string; photoCaption: string }
+);
+
+const anonReviews: AnonReview[] = [
   {
     trade: "Electrician",
     location: "QLD",
@@ -27,6 +37,9 @@ const anonReviews = [
     location: "QLD",
     quote:
       "Pre-specced kits meant a lot less mucking around on site. Strip, driver and dimmer all matched out of the box, sparky signed it off no questions.",
+    photo: "/assets/20260609_131451_1782893962724.jpg",
+    photoAlt: "LTECH 0-10V wall dimmer controller",
+    photoCaption: "Dimmer panel from the same job — QLD builder's submission.",
   },
   {
     trade: "Homeowner",
@@ -39,6 +52,9 @@ const anonReviews = [
     location: "SA",
     quote:
       "Consistent brightness the whole run, even on the long lengths. Drivers don't buzz. Little things, but it's why I stopped shopping around.",
+    photo: "/assets/20260701_180300_1782893962722.jpg",
+    photoAlt: "LTSYS 24V flicker-free LED driver",
+    photoCaption: "The driver in question — SA electrician's submission.",
   },
 ];
 
@@ -199,6 +215,43 @@ export default function AnonReviewsCarousel() {
             >
               &ldquo;{review.quote}&rdquo;
             </blockquote>
+
+            {review.photo && (
+              <figure className="mt-3.5">
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    aspectRatio: "16 / 10",
+                    borderRadius: "8px",
+                    overflow: "hidden",
+                    background: "#15171C",
+                    border: "1px solid rgba(91,100,120,0.25)",
+                  }}
+                >
+                  <Image
+                    src={review.photo}
+                    alt={review.photoAlt}
+                    fill
+                    sizes="300px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                {review.photoCaption && (
+                  <figcaption
+                    style={{
+                      marginTop: "7px",
+                      fontSize: "0.72rem",
+                      color: "#9A9DA8",
+                      lineHeight: 1.5,
+                      fontStyle: "italic",
+                    }}
+                  >
+                    {review.photoCaption}
+                  </figcaption>
+                )}
+              </figure>
+            )}
 
             <div
               className="mt-4 flex items-center gap-2.5"

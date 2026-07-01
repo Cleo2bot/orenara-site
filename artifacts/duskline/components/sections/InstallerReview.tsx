@@ -31,20 +31,6 @@ const photos = [
     caption:
       "Strip and neon flex specced together, so there's less to sort out on install day.",
   },
-  {
-    src: "/assets/20260701_180300_1782893962722.jpg",
-    alt: "LTSYS 24V flicker-free LED driver",
-    title: "Flicker-free power",
-    caption:
-      "A 24V driver that holds steady — no strobing on camera, no buzz on the wall.",
-  },
-  {
-    src: "/assets/20260609_131451_1782893962724.jpg",
-    alt: "LTECH 0-10V wall dimmer controller",
-    title: "Dim it right down",
-    caption:
-      "0–10V wall control for smooth low-end dimming without the colour shifting on you.",
-  },
 ];
 
 export default function InstallerReview() {
