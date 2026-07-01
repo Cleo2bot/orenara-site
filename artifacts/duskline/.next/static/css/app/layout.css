@@ -344,6 +344,9 @@
   .gap-0 {
     gap: 0;
   }
+  .gap-0\.5 {
+    gap: calc(var(--spacing) * 0.5);
+  }
   .gap-1 {
     gap: var(--spacing);
   }
@@ -352,6 +355,9 @@
   }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
+  }
+  .gap-2\.5 {
+    gap: calc(var(--spacing) * 2.5);
   }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
@@ -479,6 +485,23 @@
   .ease-in-out {
     --tw-ease: var(--ease-in-out);
     transition-timing-function: var(--ease-in-out);
+  }
+  .focus-visible\:outline {
+    &:focus-visible {
+      outline-style: var(--tw-outline-style);
+      outline-width: 1px;
+    }
+  }
+  .focus-visible\:outline-2 {
+    &:focus-visible {
+      outline-style: var(--tw-outline-style);
+      outline-width: 2px;
+    }
+  }
+  .focus-visible\:outline-\[\#F5B25C\] {
+    &:focus-visible {
+      outline-color: #F5B25C;
+    }
   }
   .sm\:inline-flex {
     @media (width >= 40rem) {
@@ -760,6 +783,35 @@ body {
   background: rgba(245, 178, 92, 0.08);
   border-color: rgba(245, 178, 92, 0.6);
 }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.carousel-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #1F222B;
+  border: 1px solid rgba(91, 100, 120, 0.3);
+  color: #C9CCD4;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.carousel-arrow:hover {
+  background: rgba(245, 178, 92, 0.08);
+  border-color: rgba(245, 178, 92, 0.45);
+  color: #F5B25C;
+}
+.carousel-arrow:focus-visible {
+  outline: 2px solid #F5B25C;
+  outline-offset: 2px;
+}
 @property --tw-rotate-x {
   syntax: "*";
   inherits: false;
@@ -870,6 +922,11 @@ body {
   syntax: "*";
   inherits: false;
 }
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -900,6 +957,7 @@ body {
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
       --tw-ease: initial;
+      --tw-outline-style: solid;
     }
   }
 }

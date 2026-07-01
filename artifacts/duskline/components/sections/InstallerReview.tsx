@@ -1,63 +1,49 @@
 import Image from "next/image";
-import { Star, BadgeCheck, Quote, EyeOff } from "lucide-react";
-
-const anonReviews = [
-  {
-    trade: "Electrician",
-    location: "QLD",
-    quote:
-      "Sealed connectors that actually seal. Ran it under pool coping, no dramas six months on. Doesn't drop out mid-run like the cheap stuff I keep getting called back to replace.",
-  },
-  {
-    trade: "Electrician",
-    location: "NSW",
-    quote:
-      "Tested a length in a bucket before I put it in — genuinely IP68, strip and end caps. Flicker-free on the dimmer too. This is what I run now, full stop.",
-  },
-  {
-    trade: "Landscaper",
-    location: "VIC",
-    quote:
-      "Went along a retaining wall and through a garden bed. Curves clean, no hotspots, client couldn't be happier. Lead time landed exactly when they said it would.",
-  },
-  {
-    trade: "Builder",
-    location: "QLD",
-    quote:
-      "Pre-specced kits meant a lot less mucking around on site. Strip, driver and dimmer all matched out of the box, sparky signed it off no questions.",
-  },
-  {
-    trade: "Homeowner",
-    location: "WA",
-    quote:
-      "Not a tradie, just fussy. Got my electrician to put it in. Two summers outside now and it looks the same as day one. No dead sections, no colour drift.",
-  },
-];
+import { Star, BadgeCheck, Quote } from "lucide-react";
+import AnonReviewsCarousel from "@/components/sections/AnonReviewsCarousel";
 
 const photos = [
   {
     src: "/assets/20260529_141958_1782893962742.jpg",
     alt: "IP68 certification label on the LED strip",
+    title: "Certified, not claimed",
+    caption:
+      "The actual IP68 rating printed on the reel — dust-tight and submersible, not a marketing sticker.",
   },
   {
     src: "/assets/20260529_141954_1782893962744.jpg",
     alt: "Sealed IP68 connector detail on the LED strip",
+    title: "Sealed at every join",
+    caption:
+      "Where cheap strip fails first. Connectors are sealed end to end, so water has nowhere to get in.",
   },
   {
     src: "/assets/20260529_142442_1782893962740.jpg",
     alt: "LED neon flex coiled to show the bend radius",
+    title: "Bends without breaking",
+    caption:
+      "Tight, clean curves with no stress on the diodes — corners stay lit and even.",
   },
   {
     src: "/assets/20260529_142637_1782893962733.jpg",
     alt: "IP68 LED strip and neon flex ready for install",
+    title: "Ready off the reel",
+    caption:
+      "Strip and neon flex specced together, so there's less to sort out on install day.",
   },
   {
     src: "/assets/20260701_180300_1782893962722.jpg",
     alt: "LTSYS 24V flicker-free LED driver",
+    title: "Flicker-free power",
+    caption:
+      "A 24V driver that holds steady — no strobing on camera, no buzz on the wall.",
   },
   {
     src: "/assets/20260609_131451_1782893962724.jpg",
     alt: "LTECH 0-10V wall dimmer controller",
+    title: "Dim it right down",
+    caption:
+      "0–10V wall control for smooth low-end dimming without the colour shifting on you.",
   },
 ];
 
@@ -238,185 +224,82 @@ export default function InstallerReview() {
             </div>
           </div>
 
-          {/* Installer's photos — horizontal scroll */}
-          <div
-            style={{
-              borderTop: "1px solid rgba(91,100,120,0.2)",
-              padding: "24px 0 28px",
-              background: "#15171C",
-            }}
-          >
-            <div className="flex items-center justify-between px-6 md:px-8 mb-4">
-              <p
-                style={{
-                  fontSize: "0.8125rem",
-                  color: "#9A9DA8",
-                  fontWeight: 500,
-                }}
-              >
-                Photos supplied by the installer
-              </p>
-              <p
-                style={{
-                  fontSize: "0.75rem",
-                  color: "#5B6478",
-                }}
-              >
-                Scroll for more →
-              </p>
-            </div>
-            <div
-              className="flex gap-3 overflow-x-auto px-6 md:px-8 pb-2"
-              role="region"
-              aria-label="Scrollable gallery of photos supplied by the installer"
-              tabIndex={0}
+        </div>
+
+        {/* Separated photos — each with its own explanation */}
+        <div className="mt-14">
+          <div className="mb-6">
+            <h3
+              className="font-bold"
               style={{
-                scrollSnapType: "x mandatory",
-                WebkitOverflowScrolling: "touch",
+                fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)",
+                color: "#F4F1EA",
+                letterSpacing: "-0.02em",
               }}
             >
-              {photos.map((photo, i) => (
+              Straight off the job.
+            </h3>
+            <p style={{ fontSize: "0.8125rem", color: "#9A9DA8", marginTop: "2px" }}>
+              Real photos supplied by installers — here&apos;s what you&apos;re looking at.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {photos.map((photo, i) => (
+              <figure
+                key={i}
+                className="rounded-xl overflow-hidden"
+                style={{
+                  background: "#1F222B",
+                  border: "1px solid rgba(91,100,120,0.25)",
+                }}
+                data-testid={`review-photo-${i}`}
+              >
                 <div
-                  key={i}
-                  className="rounded-lg overflow-hidden"
                   style={{
                     position: "relative",
-                    flexShrink: 0,
-                    width: "clamp(180px, 44vw, 232px)",
-                    aspectRatio: "1 / 1",
-                    background: "#1F222B",
-                    border: "1px solid rgba(91,100,120,0.2)",
-                    scrollSnapAlign: "start",
+                    width: "100%",
+                    aspectRatio: "4 / 3",
+                    background: "#15171C",
                   }}
-                  data-testid={`review-photo-${i}`}
                 >
                   <Image
                     src={photo.src}
                     alt={photo.alt}
                     fill
-                    sizes="232px"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     style={{ objectFit: "cover" }}
                   />
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* More reviews — anonymous */}
-        <div className="mt-14">
-          <div className="flex flex-wrap items-baseline justify-between gap-2 mb-6">
-            <h3
-              className="font-bold"
-              style={{
-                fontSize: "clamp(1.125rem, 2vw, 1.375rem)",
-                color: "#F4F1EA",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              More from the trade.
-            </h3>
-            <p style={{ fontSize: "0.8125rem", color: "#9A9DA8" }}>
-              Names hidden by request — no forms, just the verdict.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {anonReviews.map((review, i) => (
-              <div
-                key={i}
-                className="rounded-xl"
-                style={{
-                  background: "#1F222B",
-                  border: "1px solid rgba(91,100,120,0.25)",
-                  padding: "24px",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-                data-testid={`anon-review-${i}`}
-              >
-                {/* Rating */}
-                <div
-                  className="flex items-center gap-1 mb-4"
-                  role="img"
-                  aria-label="Rated 5 out of 5 stars"
-                >
-                  {Array.from({ length: 5 }).map((_, s) => (
-                    <Star key={s} size={15} style={{ color: "#F5B25C" }} fill="#F5B25C" />
-                  ))}
-                </div>
-
-                {/* Quote */}
-                <blockquote
-                  style={{
-                    fontSize: "0.9375rem",
-                    color: "#E8E6DF",
-                    lineHeight: 1.65,
-                    flexGrow: 1,
-                  }}
-                >
-                  &ldquo;{review.quote}&rdquo;
-                </blockquote>
-
-                {/* Attribution — anonymous */}
-                <div
-                  className="mt-5 flex items-center gap-3"
-                  style={{
-                    paddingTop: "16px",
-                    borderTop: "1px solid rgba(91,100,120,0.2)",
-                  }}
-                >
-                  <div
+                <figcaption style={{ padding: "16px 18px 18px" }}>
+                  <p
+                    className="font-bold"
                     style={{
-                      width: "38px",
-                      height: "38px",
-                      borderRadius: "50%",
-                      background: "rgba(91,100,120,0.15)",
-                      border: "1px solid rgba(91,100,120,0.3)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
+                      fontSize: "0.9375rem",
+                      color: "#F4F1EA",
+                      letterSpacing: "-0.01em",
                     }}
                   >
-                    <EyeOff size={16} aria-hidden="true" style={{ color: "#9A9DA8" }} />
-                  </div>
-                  <div style={{ minWidth: 0 }}>
-                    <p
-                      style={{
-                        fontSize: "0.875rem",
-                        fontWeight: 600,
-                        color: "#F4F1EA",
-                      }}
-                    >
-                      Anonymous
-                    </p>
-                    <p
-                      className="inline-flex items-center gap-1.5"
-                      style={{ fontSize: "0.8rem", color: "#9A9DA8" }}
-                    >
-                      <span
-                        style={{
-                          fontSize: "0.72rem",
-                          fontWeight: 600,
-                          color: "#F5B25C",
-                          background: "rgba(245,178,92,0.08)",
-                          border: "1px solid rgba(245,178,92,0.22)",
-                          padding: "2px 8px",
-                          borderRadius: "999px",
-                          letterSpacing: "0.02em",
-                        }}
-                      >
-                        {review.trade}
-                      </span>
-                      <span>· {review.location}</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
+                    {photo.title}
+                  </p>
+                  <p
+                    style={{
+                      marginTop: "6px",
+                      fontSize: "0.85rem",
+                      color: "#9A9DA8",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {photo.caption}
+                  </p>
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>
+
+        {/* More reviews — anonymous, auto-sliding carousel */}
+        <AnonReviewsCarousel />
       </div>
     </section>
   );

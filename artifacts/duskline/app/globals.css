@@ -249,3 +249,37 @@ body {
   background: rgba(245, 178, 92, 0.08);
   border-color: rgba(245, 178, 92, 0.6);
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carousel-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #1F222B;
+  border: 1px solid rgba(91, 100, 120, 0.3);
+  color: #C9CCD4;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.carousel-arrow:hover {
+  background: rgba(245, 178, 92, 0.08);
+  border-color: rgba(245, 178, 92, 0.45);
+  color: #F5B25C;
+}
+
+.carousel-arrow:focus-visible {
+  outline: 2px solid #F5B25C;
+  outline-offset: 2px;
+}
