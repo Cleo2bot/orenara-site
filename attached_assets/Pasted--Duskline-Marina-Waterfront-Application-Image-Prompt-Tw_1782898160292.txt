@@ -1,0 +1,19 @@
+# Duskline — Marina/Waterfront Application Image
+
+## Prompt
+
+> Twilight photo of a private marina berth at a Gold Coast waterfront home, showing a curved run of LED strip lighting along the timber jetty and pontoon edge that transitions smoothly through a range of warm-to-neutral tones — soft warm amber (2700K) near the house end blending into a cleaner warm-white (3500K) further along the pontoon, demonstrating the adjustable colour range in one continuous run. Reflecting softly on calm dark water. A moored motor yacht partially visible at the berth. Lights of other Gold Coast waterfront homes glow softly in the background across the canal. Deep dusk sky fading from navy to warm amber at the horizon. Cinematic, photorealistic, shallow depth of field, shot on a full-frame camera. No people in focus. No text, no logos, no watermarks.
+
+Aspect ratio: 4:5 (to match the other kit card images).
+
+**Note on realism:** most 0–10V dimmable strips control brightness, not colour temperature, within a single run — a true warm-to-neutral gradient along one continuous strip usually needs a tunable-white (CCT) product, not a standard dimmable one. If Duskline's actual product is single-CCT with brightness dimming only, consider generating this instead as **two adjacent strips side by side** (one set warm, one set neutral) so the image doesn't overstate a capability the product doesn't have — worth confirming which is true before this goes live.
+
+---
+
+## Where to insert it
+
+**Custom Zone Kit card** — this is the right slot. The existing copy for that kit already reads "Multiple zones, extended runs, or architectural applications that need a spec conversation before quoting" — a marina berth is exactly that kind of application: not a simple pathway, pergola, or pool edge, but a larger architectural/waterfront job that needs a real conversation.
+
+**Action:** Replace or add this as the card image for **Custom Zone Kit** in the "Choose your application" section (the one currently showing text-only, no image, per the last screenshots). This gives that card the same visual weight as Pathway, Pergola, and Pool & Water Feature, and signals the breadth of what Duskline can spec for — without needing a fifth kit card.
+
+If you'd rather keep Custom Zone Kit text-only and build toward a proper gallery/proof section later (real installs, more variety), this image also works as the lead shot in a future "Recent Installations" or "Beyond the Standard Kits" section — just flag that as a v2 addition rather than building it now.

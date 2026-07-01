@@ -60,3 +60,15 @@ id = "0FKKIhVDwA6_7OCxzaIJy"
 uri = "file://artifacts/duskline/public/assets/generated/rain-proof.png"
 type = "image"
 title = "led strip in rain"
+
+[[generated]]
+id = "1tloY9hSURh7A64bNLOqV"
+uri = "file://artifacts/duskline/public/assets/generated/kit-marina.png"
+type = "image"
+title = "warm marina waterfront"
+
+[[generated]]
+id = "9h08L6xvWcXLBJg0pQWoe"
+uri = "file://artifacts/duskline/public/assets/generated/kit-pool-blue.png"
+type = "image"
+title = "blue lit pool water"

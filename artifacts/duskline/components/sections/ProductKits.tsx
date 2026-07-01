@@ -25,7 +25,7 @@ const kits = [
   },
   {
     name: "Pool & Water Feature Kit",
-    image: "/assets/generated/kit-pool.png",
+    image: "/assets/generated/kit-pool-blue.png",
     tagline: "Fully submersible runs",
     description:
       "Our most demanding application. IP68 submersion-rated for permanent water contact. For pool edges, water features, and submerged elements. Sealed to 1.5m/30min per EN60529.",
@@ -35,7 +35,7 @@ const kits = [
   },
   {
     name: "Custom Zone Kit",
-    image: "/assets/generated/kit-custom.png",
+    image: "/assets/generated/kit-marina.png",
     tagline: "Larger or multi-zone properties",
     description:
       "Multiple zones, extended runs, or architectural applications that need a spec conversation before quoting. Tell us about your space and we'll come back with a detailed breakdown.",
