@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "fG_c1l_WJMEjk2XsgOz0k"
@@ -132,3 +131,9 @@ id = "HKsV4urYogdZPz1kzy-XU"
 uri = "file://artifacts/duskline/public/assets/generated/home-dusk-empty-deck.png"
 type = "image"
 title = "generated_image"
+
+[[outputs]]
+id = "FW-ziBPTVWtIg-kxPWOd1"
+uri = "file://.canvas/assets/duskline-favicon.png"
+type = "image"
+title = "Duskline favicon"
