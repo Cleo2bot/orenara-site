@@ -1,5 +1,5 @@
 import { Star, BadgeCheck, Quote } from "lucide-react";
-import AnonReviewsCarousel from "@/components/sections/AnonReviewsCarousel";
+import TradeReviews from "@/components/sections/TradeReviews";
 import PhotoCarousel from "@/components/sections/PhotoCarousel";
 
 const photos = [
@@ -233,8 +233,8 @@ export default function InstallerReview() {
           <PhotoCarousel photos={photos} />
         </div>
 
-        {/* More reviews — anonymous, auto-sliding carousel */}
-        <AnonReviewsCarousel />
+        {/* More reviews — aggregate summary + expandable feed */}
+        <TradeReviews />
       </div>
     </section>
   );

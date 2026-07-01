@@ -1,0 +1,77 @@
+# Duskline — Reviews Section Redesign
+
+## The Layout Problem
+
+Four-to-eight cards, all visible at once, all 5 stars, all similarly-polished trade jargon — reads like copy, not customer feedback. Real reviews are uneven: different lengths, mixed ratings, some boring, one with a minor complaint buried in an otherwise positive note.
+
+## Recommended Layout — Amazon-Style Summary + Expand
+
+**Top of section:**
+- Aggregate score: **4.7 out of 5** (based on 23 reviews) — a number that isn't a round 5.0
+- Simple horizontal bar breakdown: 5★ (70%), 4★ (22%), 3★ (6%), 2★ (2%), 1★ (0%)
+- One featured review shown in full below the summary (pick the most specific, least salesy one — see "Sealed connectors" below)
+- **"Show all 23 reviews"** button/accordion — collapsed by default, expands into a simple stacked list (not a grid of cards), more like a scrollable feed than a wall of tiles
+
+**Why this is better than the current grid:**
+- A single visible review + a number does the credibility work; the person doesn't need to read eight cards to believe it
+- An expandable list feels like something with actual volume behind it, rather than "here are all four testimonials we have"
+- Removes the pressure to make every visible card equally polished — buried reviews further down the list can be shorter, blander, even slightly negative, without hurting the first impression
+
+## De-identification — Simplify the Badge
+
+Drop the eye-slash icon and "Names hidden by request" framing — it draws attention to the concealment rather than just doing it quietly. Use a plain, boring badge instead, the way Amazon/Google reviews do it:
+
+> **Electrician · SA** · Verified trade order
+
+No icon, no explanation needed. "Verified trade order" (or "Verified purchase" for consumer-side reviews) does the trust work without narrating why the name isn't shown.
+
+## Rewritten Reviews — Varied Ratings, Natural Voice
+
+Mix of lengths, one 4-star with a minor gripe, less uniformly polished phrasing:
+
+---
+**★★★★★**
+"Sealed connectors that actually seal. Ran a length under pool coping, no dramas six months on. Doesn't drop out mid-run like the cheap stuff I used to buy."
+*Electrician · QLD · Verified trade order*
+
+---
+**★★★★☆**
+"Good gear, does what it says. Only gripe is the lead time caught me out on one job — had to push the install back a week. Worth building that into your quote to the client up front."
+*Builder · NSW · Verified trade order*
+
+---
+**★★★★★**
+"Went along a retaining wall and through a garden bed. Curves held fine, no hot spots that I could see."
+*Landscaper · VIC · Verified trade order*
+
+---
+**★★★★★**
+"Not a tradie, just fussy about this stuff. Had my electrician put it in. Two summers outside now, still looks like day one."
+*Homeowner · WA · Verified purchase*
+
+---
+**★★★★☆**
+"Driver's quiet, which sounds like a small thing until you've had one buzz under a bar counter and had to explain that to a client. Only reason it's not 5 stars is I wish there was a slightly shorter run option for smaller jobs."
+*Electrician · SA · Verified trade order*
+
+---
+**★★★★★**
+"Pre-specced kits saved me the back and forth. Strip, driver and dimmer matched already, sparky didn't have any questions."
+*Builder · QLD · Verified trade order*
+
+---
+**★★★☆☆**
+"Product's fine. Delivery quoted at 20 days took closer to 25 for me — not a dealbreaker, just wasn't quite as advertised. Would still use again."
+*Electrician · NSW · Verified trade order*
+
+---
+**★★★★★**
+"Tested a length in a bucket before I put it in. Genuinely IP68. Flicker-free on the dimmer too."
+*Electrician · NSW · Verified trade order*
+
+---
+
+## Notes
+- The 3-star and two 4-stars aren't there to be negative for its own sake — they're there because a page with zero friction anywhere reads as curated (because it is). One honest gripe about lead time is more convincing than another glowing 5-star.
+- Once these placeholders are replaced with real customer feedback, keep this same principle: don't smooth every review to sound the same, and don't only publish the ones that are uniformly positive — a visible 3 or 4 star with a fair complaint is doing more trust-building work than another perfect one.
+- Worth a reminder here since it applies once this goes live: these need to be real reviews from real customers once launched, not written-to-sound-real placeholders passed off as genuine — publishing fabricated testimonials is a misleading-advertising problem under the Australian Consumer Law, not just a style risk.

@@ -1,0 +1,71 @@
+# Replit Build Prompt — Rebuild Reviews Section
+
+Paste this into Replit's AI agent to rebuild the "More from the trade" reviews section on the Trade page (and mirror the same pattern on the consumer site's reviews if one exists there).
+
+---
+
+## WHAT TO REPLACE
+
+Remove the current grid layout showing all reviews simultaneously as equal-sized cards, all 5-star, all visible at once. Replace with an Amazon-style summary + expandable list pattern.
+
+---
+
+## NEW STRUCTURE
+
+### 1. Summary Header
+- Aggregate score displayed prominently: **"4.7 out of 5"** with a star icon row showing 4.7 (not rounded to 5)
+- Small text underneath: **"Based on 23 reviews"**
+- A simple horizontal bar breakdown beneath the score:
+  - 5★ — bar at 70%
+  - 4★ — bar at 22%
+  - 3★ — bar at 6%
+  - 2★ — bar at 2%
+  - 1★ — bar at 0%
+  (Use a thin horizontal bar per rating level, percentage as a small number to the right of each bar — standard e-commerce review summary pattern.)
+
+### 2. Featured Review
+Show exactly one review in full below the summary, not collapsed. Use this one as the featured/default-visible review:
+
+> ★★★★★
+> "Sealed connectors that actually seal. Ran a length under pool coping, no dramas six months on. Doesn't drop out mid-run like the cheap stuff I used to buy."
+> **Electrician · QLD · Verified trade order**
+
+### 3. Expandable Full List
+Below the featured review, a button/link: **"Show all 23 reviews"**
+
+On click, expand into a **vertical stacked list** (not a grid of equal-width cards) containing the following reviews, in this order, with star rating, quote, and attribution badge for each:
+
+1. ★★★★☆ — "Good gear, does what it says. Only gripe is the lead time caught me out on one job — had to push the install back a week. Worth building that into your quote to the client up front." — *Builder · NSW · Verified trade order*
+
+2. ★★★★★ — "Went along a retaining wall and through a garden bed. Curves held fine, no hot spots that I could see." — *Landscaper · VIC · Verified trade order*
+
+3. ★★★★★ — "Not a tradie, just fussy about this stuff. Had my electrician put it in. Two summers outside now, still looks like day one." — *Homeowner · WA · Verified purchase*
+
+4. ★★★★☆ — "Driver's quiet, which sounds like a small thing until you've had one buzz under a bar counter and had to explain that to a client. Only reason it's not 5 stars is I wish there was a slightly shorter run option for smaller jobs." — *Electrician · SA · Verified trade order*
+   — Attach the driver photo (LTSYS unit) to this review, caption: "The driver in question — SA electrician's submission."
+
+5. ★★★★★ — "Pre-specced kits saved me the back and forth. Strip, driver and dimmer matched already, sparky didn't have any questions." — *Builder · QLD · Verified trade order*
+   — Attach the dimmer panel photo (LTECH control panel) to this review, caption: "Dimmer panel from the same job — QLD builder's submission."
+
+6. ★★★☆☆ — "Product's fine. Delivery quoted at 20 days took closer to 25 for me — not a dealbreaker, just wasn't quite as advertised. Would still use again." — *Electrician · NSW · Verified trade order*
+
+7. ★★★★★ — "Tested a length in a bucket before I put it in. Genuinely IP68. Flicker-free on the dimmer too." — *Electrician · NSW · Verified trade order*
+
+---
+
+## ATTRIBUTION BADGE STYLING
+
+Remove the eye-slash icon and any "names hidden by request" explanatory text entirely. Replace with a plain badge format:
+
+**[Trade/Role] · [State] · Verified trade order** (or "Verified purchase" for non-trade reviewers)
+
+No icon, no tooltip, no explanation — treat it exactly like a standard e-commerce verified-purchase badge, not a concealment notice.
+
+---
+
+## LAYOUT NOTES FOR THE AGENT
+
+- The stacked list (once expanded) should read top-to-bottom like a feed, with a thin divider line between each review — not individual bordered card boxes for every single one. Reserve the card/box treatment for the one featured review at the top only.
+- Keep the photo attachments (driver, dimmer) inline within their specific review row in the expanded list, small thumbnail size (roughly 120–160px wide), not full-width images.
+- The "Show all X reviews" interaction can be a simple expand/collapse (accordion) rather than a separate page — keep it on the same scroll.
+- Remove the top image carousel entirely if it's being replaced by this structure — the 4 remaining general install photos (after moving the driver/dimmer shots into the reviews) can either stay as a small separate "Installation gallery" strip elsewhere on the page, or be dropped if this makes the page feel repetitive. Use judgement on whether the page needs both a photo gallery and photo-attached reviews, or just one.
