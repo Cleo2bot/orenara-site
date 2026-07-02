@@ -1,0 +1,43 @@
+Yes. A thousand times, yes.
+
+In the B2B and trade space, **SKU/Part Number SEO is one of the highest-converting, lowest-cost strategies that exists.**
+
+When an electrician is on a job site holding a burnt-out driver, or looking at an architectural plan that specifies a product, they don’t Google "150W outdoor driver." They type the exact part number printed on the box or the plan: `DL-DRV-150W`.
+
+Because your part numbers are unique to Duskline, you have **zero competition** for these keywords. If someone searches that code, they are at the bottom of the funnel, wallet in hand, and you will rank #1 organically for free.
+
+By the way, your naming convention is excellent. `DL-STRIP-24V-WW` is logical, human-readable, and immediately tells the trade what it is.
+
+Here is exactly where and how you should inject these into your site to maximize that free trade traffic:
+
+### 1. The Spec Tables (On-Page)
+
+Don't just bury the part number in a paragraph. Trades scan pages, they don't read them. On your product or kit pages, have a clear, HTML-based "Specifications" table.
+
+* **Item:** Flexible Segmented Track
+* **Part Code:** `DL-TRK-FLEX`
+* **Dimensions:** ...
+Google loves HTML tables and will often pull them directly into search results as a "Featured Snippet."
+
+### 2. The Quote Builder Output (Crucial)
+
+Tying this back to the Quote Builder tool we just discussed: when the BOM summarizes on the screen, and when it sends that email to the contractor, it should **always** use the part numbers.
+
+* Instead of: *14m Warm White Strip, 2x 150W Drivers*
+* Output: *14x DL-STRIP-24V-WW, 2x DL-DRV-150W*
+
+This trains the contractor to use your specific language. When they forward that email to their boss or client, your part numbers become the official spec. When they need to reorder in 6 months, they will search that exact code.
+
+### 3. PDF Spec Sheets & Wiring Diagrams
+
+When you create those wiring diagrams for Image Search (that we talked about earlier), write the part numbers right next to the components in the image.
+Also, offer a simple 1-page PDF "Spec Sheet" for download. Trades download PDFs and leave them in folders on their iPads for months. When they finally open it to order, they will copy-paste that part number straight into Google.
+
+### 4. The Invisible SEO (Schema Markup)
+
+Since your site is built on Next.js, you can easily add "Structured Data" (JSON-LD) to the background of your pages.
+You wrap your products in `Product` schema and use the `sku` property for your part numbers. This is what allows Google to show the price, stock status, and part number right there on the search results page before they even click your link.
+
+### A future-proofing tip:
+
+As you grow, if you ever start selling through wholesale distributors or other lighting stores, these part numbers are what will force them to buy from *you*. Architects will write `DL-KIT-POOL` on their landscape blueprints, and the builder will have no choice but to track down Duskline to fulfill it.
