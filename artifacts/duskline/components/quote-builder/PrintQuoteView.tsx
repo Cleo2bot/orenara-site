@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { PART_NUMBERS, type QuoteZoneCalculated, type QuoteTotals } from "@/lib/quoteCalc";
 
 interface PrintContact {
@@ -19,11 +22,17 @@ const rule = { border: "none", borderTop: "1px solid #ccc", margin: "16px 0" };
 
 export default function PrintQuoteView({ zones, totals, contact, partLabels }: PrintQuoteViewProps) {
   const validZones = zones.filter((z) => z.totalLengthMetres > 0);
-  const generatedDate = new Date().toLocaleDateString("en-AU", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const [generatedDate, setGeneratedDate] = useState("");
+
+  useEffect(() => {
+    setGeneratedDate(
+      new Date().toLocaleDateString("en-AU", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    );
+  }, []);
 
   return (
     <div className="print-only" style={{ color: "#15171C", fontFamily: "Inter, system-ui, sans-serif", padding: "24px" }}>

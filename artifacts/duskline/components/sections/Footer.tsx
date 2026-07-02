@@ -1,10 +1,17 @@
 "use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Wordmark from "@/components/Wordmark";
 import { Mail, Instagram } from "lucide-react";
 
+const BUILD_YEAR = new Date().getFullYear();
+
 export default function Footer() {
-  const year = new Date().getFullYear();
+  const [year, setYear] = useState(BUILD_YEAR);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
 
   return (
     <footer

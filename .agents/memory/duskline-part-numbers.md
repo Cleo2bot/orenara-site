@@ -21,3 +21,21 @@ Additionally, part numbers should stay low-key on the marketing site: the homepa
 (`app/kits/[slug]/page.tsx`, data in `lib/kits.ts`) where the full spec table with part numbers
 lives. This was a deliberate choice (not an accordion) so each kit also gets its own indexable URL
 for future SEO purposes.
+
+## Next.js hydration crashes from `new Date()` at render time
+
+Calling `new Date()` (or `.toLocaleDateString()`/`.getFullYear()`) directly in a component body
+causes a server/client hydration text mismatch whenever the date/year rolls over between the
+server-rendered HTML and the client hydration pass. React then discards the SSR output and
+switches the whole page to client rendering — in this app that surfaced to the user as the entire
+artifact preview crashing ("Your Duskline artifact encountered an error"), not just a console
+warning.
+
+**Why:** this bit the project for real — `PrintQuoteView.tsx` computed a "Generated {date}" string
+at render time and crashed the live preview when the date rolled over mid-session.
+
+**How to apply:** never compute the current date/year at render time in a component that's part of
+the SSR tree. Use `useState` initialized to a static/placeholder value, then set the real value in
+a `useEffect` (client-only, post-mount) — this pattern is now used in both `PrintQuoteView.tsx` and
+`Footer.tsx` in this project. Grep for `new Date()` in `.tsx` files after touching either of these
+if adding similar "generated on" / copyright-year UI elsewhere.
