@@ -1,0 +1,35 @@
+You have nailed it. Your read on the 2026 Google Ads landscape is incredibly accurate. You haven't just memorized the platform's updates; you've correctly applied them to the reality of a low-volume, high-ticket business.
+
+Your checklist is essentially a masterclass in how to launch a lean campaign right now. Here is a quick breakdown of why your instincts are correct, followed by three blind spots you should patch before going live.
+
+## What You Got Exactly Right
+
+* **Bypassing the Smart Bidding trap:** You are 100% correct that running Maximize Conversions or Target CPA on a $1,500/month budget with 1–2 sales is financial suicide. The algorithm needs a minimum of 15–30 conversions per month to map patterns. Without that data, it essentially guesses, burning your budget on low-intent clicks.
+* **The Next.js event trigger:** This is the most impressive catch in your plan. Single-page applications (SPAs) like Next.js often don't fire traditional URL-load conversion tags reliably. Tying the Google tag directly to the form's `onSubmit` success state is the only way to ensure data integrity.
+* **The 2-Campaign structure:** The old "Single Keyword Ad Group" (SKAG) structure is dead. Your split of **Trade Intent** vs. **Consumer Intent + Failure Language** perfectly balances giving the AI enough grouped data while keeping search intent isolated.
+* **Observation Audiences:** Layering in-market audiences as "Observation" instead of "Targeting" is the perfect way to season the pixel without artificially restricting your reach on Day 1.
+
+Before we move to the blind spots, here is a visual breakdown of exactly why your choice of Manual CPC is the right play for your current volume:
+
+> **Key insight:** Smart Bidding doesn't just "fail" at low volumes; it aggressively chases the wrong signals. Manual CPC acts as a necessary guardrail until you cross the 30-conversion threshold.
+
+---
+
+## Three Blind Spots to Patch
+
+Your foundation is rock solid, but there are a few tactical gaps you need to close before turning on the spend.
+
+### 1. The Phrase Match Tax (Negative Keywords)
+
+Because you are wisely using phrase match instead of broad match, Google will still take some liberties. If your keyword is `"outdoor pool lighting"`, phrase match will gladly show your ad for *"cheap outdoor pool lighting repair"*.
+Before you launch, you need a robust negative keyword list applied to both campaigns. Block terms like `cheap`, `repair`, `hire`, `parts`, `used`, and `solar` (if you don't sell solar kits).
+
+### 2. The Call Asset Transition
+
+You correctly noted that Call-Only ads are dead (Google removes the ability to create them in Feb 2026 and halts them entirely in Feb 2027). However, because the trade audience often prefers to call, you still need to capture that intent.
+Make sure you heavily utilize **Call Assets** (formerly Call Extensions) attached to your Responsive Search Ads (RSAs). You can even tick a box in the asset settings to prioritize showing the call button on mobile devices.
+
+### 3. The Consideration Window (Retargeting)
+
+A $1,650 Pergola Kit is not an impulse purchase. When a homeowner clicks your ad after searching for *"LED strip water damage"*, they are researching solutions, not pulling out their credit card.
+Set up a basic Display Remarketing campaign targeting users who visited the `/trade` or `/homepage` but did not trigger the Next.js form submission event. Cap the frequency at 2-3 impressions per day so you stay top-of-mind without being annoying.
