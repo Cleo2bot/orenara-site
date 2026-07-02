@@ -1,0 +1,89 @@
+# Replit Strategic Prompt — Hero Rewrite, Environments Section, Review Fix
+
+Paste this into Replit's AI agent. Three changes to the homepage, in priority order.
+
+---
+
+## CHANGE 1: Fix the typo in the featured trade review (quick, do this first)
+
+Current text has "Definietly" — replace with "Definitely". That is the only change needed to this review; the lead-time detail ("3 weeks... told 4 weeks") is actually consistent with the site's 20-business-day commitment (20 business days = 4 work-weeks) and should stay exactly as is.
+
+---
+
+## CHANGE 2: Hero copy rewrite
+
+Replace the current hero tagline and subhead. Current copy repeats "built for Australian conditions" twice across the tagline and subhead — tighten it so each line does distinct work.
+
+**Replace:**
+- Tagline: "Outdoor lighting, built for Australian conditions."
+- Subhead: "IP68-rated outdoor strip lighting, properly dimmable, built for Australian conditions."
+
+**With:**
+- Eyebrow tag (update from "AUSTRALIAN OUTDOOR LIGHTING"): "IP68 OUTDOOR LIGHTING · AUSTRALIAN CONDITIONS"
+- Tagline (large): "Built for salt air, pool chemicals, and Queensland summers."
+- Subhead (smaller): "IP68 end-to-end. Properly dimmable. Made for conditions that break everything else."
+
+Leave the CTA button, "Enquire for Pricing," and the "Made to order. Ships in 20 business days." micro-copy unchanged — all already correct.
+
+---
+
+## CHANGE 3: New "Environments" section
+
+**Placement:** insert as a new section directly after "Why most outdoor strip lighting fails in Australia" (the 01/02/03 problem breakdown) and before "The Mounting System" section. This is the bridge between "here's the problem" and "here's how we solve it."
+
+**Section eyebrow:** ENVIRONMENTS
+**Headline:** Built for where lighting actually fails.
+**Subhead:** Five conditions that kill cheap outdoor strip lighting. One spec that doesn't change for any of them.
+
+Present as five cards in a grid (adapt to a 2-3-2 or similar responsive layout consistent with how the existing Kits section grid is built). Each card: title, short eyebrow line, body copy, and an image.
+
+### Card 1 — Coastal
+**Eyebrow:** Salt air doesn't announce itself. It just corrodes.
+**Body:** Properties within a few kilometres of the coast carry salt air year-round, not just on windy days. It gets into connector joints that look sealed but aren't, corroding contact points from the inside. Voltage drops. Sections go dark months before anyone notices why. Duskline's connectors are sealed end-to-end — driver to terminal — to the same IP68 standard as the strip itself, not treated as an afterthought.
+**Image:** reuse existing asset `kit-pathway-coastal2.png` if visually consistent with the new card format, otherwise use new prompt below.
+
+### Card 2 — Pool & Aquatic
+**Eyebrow:** Permanent water contact, not occasional splash.
+**Body:** Pool edges, water features, and submerged garden elements don't get wet occasionally — they're wet constantly, and often chemically treated. This is the application most outdoor lighting was never actually built for, IP65/66 ratings included. IP68 means submersion-rated to 1.5m for 30 minutes — dust-tight and built for permanent water contact, not just splash resistance dressed up as waterproofing.
+**Image:** new prompt below (a warm-toned pool image, distinct from the existing blue-RGB pool kit photo used elsewhere).
+
+### Card 3 — Tropical & Humid
+**Eyebrow:** Queensland summer doesn't wait for a warranty claim.
+**Body:** Australian UV intensity is among the highest in the world, and monsoon-season humidity compounds it. Standard silicone sleeves yellow, crack, and let moisture in within 18–24 months — well before most warranty periods even matter. The failure isn't the LEDs themselves; it's housing that was rated for a milder climate than the one it's actually installed in.
+**Image:** reuse existing asset `spec-cove-green.png` if the green tone fits, otherwise use new prompt below for a warm-toned alternative.
+
+### Card 4 — Marina & Private Berths
+**Eyebrow:** Timber decking, constant moisture, zero forgiveness for corrosion.
+**Body:** Private berths and marina walkways combine every hard condition at once — salt air, direct water exposure, and timber decking that expands and contracts with the weather. It's an unforgiving install for standard connectors. Duskline's sealed IP68 system and segmented track hold a clean line along a pontoon edge the same way they hold a garden path — same spec, same rating, harder setting.
+**Image:** reuse existing asset `kit-marina.png` — already a strong match, no need to regenerate.
+
+### Card 5 — Commercial & Hospitality
+**Eyebrow:** Higher use, same standard — not a lesser one.
+**Body:** Resorts, hospitality venues, strata common areas, and public/council pathways get more daily use and less forgiving maintenance schedules than a private home. The spec doesn't change for commercial application — it's the same IP68, the same 0–10V dimming, the same RCM-compliant components, just specified at scale for a larger site.
+**Image:** new prompt below.
+
+**Below the five cards, add this honesty callout** (dark charcoal box, same treatment as other callouts on the site like "Duskline is IP68 — end to end"):
+
+> "Built for the conditions Australian coastal, tropical, and commercial properties actually face — salt air, permanent water contact, and monsoon humidity. Not oil rigs, not naval vessels, not mining sites. If your project needs marine-vessel or defense-grade certification beyond IP68, tell us upfront — we'll be straight with you about whether we're the right fit."
+
+Do not cut or soften this line — it's a deliberate credibility signal, not a legal afterthought.
+
+---
+
+## Image Generation Prompts (for cards needing new images)
+
+Shared style anchor — apply to all: *Cinematic dusk/twilight photography. Deep charcoal-navy sky transitioning to warm amber at the horizon. Warm amber-gold LED light (2700K–3000K) as the primary light source. Photorealistic, shallow depth of field, no visible text, no logos, no watermarks, no people's faces in focus.*
+
+**Pool & Aquatic (new):**
+> Twilight photo of a residential pool edge with warm amber LED strip lighting embedded flush along the coping, glowing steadily beneath the waterline and reflecting on the pool's surface. Pool chemicals visible as a faint blue-green water tone rather than true blue. Stone or tiled pool surround, native landscaping softly out of focus in the background. Deep dusk sky. No people, no text.
+
+**Tropical & Humid (new, warm alternative to the existing green cove shot):**
+> Twilight photo during light rain in a lush tropical Queensland garden — dense palms and broad-leafed foliage framing a paved path lit by warm amber LED strip lighting embedded along the path edge. Visible humidity in the air, water droplets on nearby leaves catching the light. Deep warm dusk sky. No people, no text.
+
+**Commercial & Hospitality (new):**
+> Twilight photo of a resort or boutique hotel pool deck and alfresco dining area, warm amber LED strip lighting along the deck edge, steps, and a low garden wall, with outdoor dining furniture and a small bar area visible but unoccupied. Slightly larger and more architectural in scale than a private residential shot — suggesting a commercial property, not a private home. Deep dusk sky. No people in focus, no text, no visible branding on any furniture or structures.
+
+---
+
+## Summary of what NOT to change
+- Kits section, Mounting System section, Technical Specification section, How It Works section, Reviews section (aside from the one typo), enquiry form, and footer are all correct as-is — do not restructure these.

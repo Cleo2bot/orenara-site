@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
 import ProblemSection from "@/components/sections/ProblemSection";
+import Environments from "@/components/sections/Environments";
 import MountingSystem from "@/components/sections/MountingSystem";
 import ProductKits from "@/components/sections/ProductKits";
 import DuskBreather from "@/components/sections/DuskBreather";
@@ -18,6 +19,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <ProblemSection />
+        <Environments />
         <MountingSystem />
         <DuskBreather />
         <ProductKits />

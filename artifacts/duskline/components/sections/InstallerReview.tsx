@@ -110,7 +110,7 @@ export default function InstallerReview() {
                 &ldquo;I install a lot of &lsquo;outdoor strip&rsquo; and most of
                 it I end up replacing after it gets wet. This is the first lot
                 I&apos;ve put in that I&apos;m genuinely not worried about.
-                Definietly, IP68 submersible, strip and end caps, tested it in a
+                Definitely, IP68 submersible, strip and end caps, tested it in a
                 bucket! Doesn&apos;t flicker or drop over the run. RCM, CE gear.
                 Flexible and straight conduit, easy install. Curves where easy
                 and clean.

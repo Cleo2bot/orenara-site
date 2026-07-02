@@ -132,6 +132,24 @@ uri = "file://artifacts/duskline/public/assets/generated/home-dusk-empty-deck.pn
 type = "image"
 title = "generated_image"
 
+[[generated]]
+id = "PQK2ngN8ymYNw-ozHJybl"
+uri = "file://artifacts/duskline/public/assets/generated/env-pool-aquatic.png"
+type = "image"
+title = "pool aquatic dusk"
+
+[[generated]]
+id = "IXaIy8poRjWrkZ680R9I1"
+uri = "file://artifacts/duskline/public/assets/generated/env-tropical-humid.png"
+type = "image"
+title = "tropical humid dusk"
+
+[[generated]]
+id = "yazj6Y3EpnlUCrIrygkba"
+uri = "file://artifacts/duskline/public/assets/generated/env-commercial-hospitality.png"
+type = "image"
+title = "commercial hospitality dusk"
+
 [[outputs]]
 id = "FW-ziBPTVWtIg-kxPWOd1"
 uri = "file://.canvas/assets/duskline-favicon.png"

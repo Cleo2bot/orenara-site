@@ -113,7 +113,7 @@ export default function Hero() {
                 background: "#F5B25C",
               }}
             />
-            Australian Outdoor Lighting
+            IP68 Outdoor Lighting · Australian Conditions
           </span>
         </div>
 
@@ -154,7 +154,7 @@ export default function Hero() {
             marginBottom: "16px",
           }}
         >
-          Outdoor lighting, built for Australian conditions.
+          Built for salt air, pool chemicals, and Queensland summers.
         </p>
 
         {/* Positioning statement */}
@@ -168,8 +168,8 @@ export default function Hero() {
             lineHeight: 1.7,
           }}
         >
-          IP68-rated outdoor strip lighting, properly dimmable, built for
-          Australian conditions.
+          IP68 end-to-end. Properly dimmable. Made for conditions that break
+          everything else.
         </p>
 
         {/* CTA group */}
