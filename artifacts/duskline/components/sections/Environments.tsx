@@ -167,7 +167,7 @@ export default function Environments() {
                 <div className="flex-1 flex flex-col">
                   <p
                     id={`environment-body-${i}`}
-                    className={`${isOpen ? "" : "line-clamp-3"} sm:line-clamp-none`}
+                    className={isOpen ? "" : "line-clamp-2"}
                     style={{
                       fontSize: "0.9375rem",
                       color: "#9A9DA8",
@@ -183,7 +183,7 @@ export default function Environments() {
                     onClick={() => toggle(i)}
                     aria-expanded={isOpen}
                     aria-controls={`environment-body-${i}`}
-                    className="sm:hidden inline-flex items-center gap-1.5"
+                    className="inline-flex items-center gap-1.5"
                     data-testid={`environment-toggle-${i}`}
                     style={{
                       marginTop: "12px",
