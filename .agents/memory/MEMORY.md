@@ -3,3 +3,4 @@
 - [Screenshot quirks (Next.js dev)](screenshot-nextjs-quirks.md) — blank app_preview on first capture after edits & on ~3000px viewports; re-take and keep height ≤~2200px
 - [GitHub integration quirks](github-integration-quirks.md) — bind "could not be assigned" is often a false negative (verify via listConnections); async-exec git pushes; notebook wipes globalThis.
 - [Vercel deploy of Next.js monorepo artifact](vercel-deploy-nextjs-monorepo.md) — blocker chain: Root Directory → vercel.json framework=nextjs → commit-author noreply email; wrap route disk writes (read-only FS).
+- [Duskline supplier vs. own part numbers](duskline-part-numbers.md) — never surface supplier SKUs on-site; only Duskline's own renamed codes, and only on dedicated per-kit pages, not homepage cards.

@@ -1,49 +1,8 @@
 "use client";
 
 import Image from "next/image";
-
-const kits = [
-  {
-    name: "Pathway Kit",
-    image: "/assets/generated/kit-pathway-coastal2.png",
-    tagline: "Garden edges, walkways, water features",
-    description:
-      "Designed for ground-level and near-ground applications. Fully flexible strip with horizontal-bend capability. Pairs with an RCM-compliant 24V driver and 0–10V dimmer.",
-    specs: ["IP68 rated", "0–10V dimming", "RCM compliant", "Driver & dimmer included"],
-    note: null,
-    accent: false,
-  },
-  {
-    name: "Pergola Kit",
-    image: "/assets/generated/kit-pergola-coastal.png",
-    tagline: "Overhead structural runs, BBQ and alfresco zones",
-    description:
-      "Built for overhead installation in structural channels. High-output 24V strip with consistent colour temperature. Suitable for spans up to 10m per run from a single driver.",
-    specs: ["IP68 rated", "0–10V dimming", "RCM compliant", "Driver & dimmer included"],
-    note: null,
-    accent: false,
-  },
-  {
-    name: "Pool & Water Feature Kit",
-    image: "/assets/generated/kit-pool-blue.png",
-    tagline: "Fully submersible runs",
-    description:
-      "Our most demanding application. IP68 submersion-rated for permanent water contact. For pool edges, water features, and submerged elements. Sealed to 1.5m/30min per EN60529.",
-    specs: ["IP68 rated (submersible)", "0–10V dimming", "RCM compliant", "Driver & dimmer included"],
-    note: "For electrical work near water, all installation must be performed by a licensed electrician per AS/NZS 3000.",
-    accent: true,
-  },
-  {
-    name: "Custom Zone Kit",
-    image: "/assets/generated/kit-marina.png",
-    tagline: "Larger or multi-zone properties",
-    description:
-      "Multiple zones, extended runs, or architectural applications that need a spec conversation before quoting. Tell us about your space and we'll come back with a detailed breakdown.",
-    specs: ["Multi-zone capable", "0–10V dimming", "RCM compliant", "Spec on enquiry"],
-    note: null,
-    accent: false,
-  },
-];
+import Link from "next/link";
+import { kits } from "@/lib/kits";
 
 export default function ProductKits() {
   const scrollToForm = (kitName: string) => {
@@ -218,6 +177,22 @@ export default function ProductKits() {
               >
                 Enquire for Pricing
               </button>
+
+              <Link
+                href={`/kits/${kit.slug}`}
+                data-testid={`kit-specs-link-${i}`}
+                style={{
+                  display: "block",
+                  textAlign: "center",
+                  marginTop: "12px",
+                  fontSize: "0.8125rem",
+                  color: "#9A9DA8",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "3px",
+                }}
+              >
+                See full specifications
+              </Link>
             </div>
           ))}
         </div>
