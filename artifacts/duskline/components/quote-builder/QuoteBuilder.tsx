@@ -350,6 +350,16 @@ export default function QuoteBuilder() {
                   <p className="mt-4" style={{ fontSize: "0.75rem", color: "#5B6478", lineHeight: 1.5 }}>
                     Driver count assumes all runs within a zone are wired together on a shared power feed.
                   </p>
+
+                  <button
+                    type="button"
+                    onClick={handlePrint}
+                    className="btn-outline mt-5"
+                    data-testid="quote-bom-download-pdf"
+                  >
+                    <FileDown size={16} />
+                    Download PDF
+                  </button>
                 </>
               )}
             </div>
