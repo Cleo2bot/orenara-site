@@ -150,6 +150,12 @@ uri = "file://artifacts/duskline/public/assets/generated/env-commercial-hospital
 type = "image"
 title = "commercial hospitality dusk"
 
+[[generated]]
+id = "_CkXV8_ZeDLzltr0jJKuT"
+uri = "file://artifacts/duskline/public/assets/generated/env-rural-rugged.png"
+type = "image"
+title = "rural acreage dusk"
+
 [[outputs]]
 id = "FW-ziBPTVWtIg-kxPWOd1"
 uri = "file://.canvas/assets/duskline-favicon.png"
