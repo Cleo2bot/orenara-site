@@ -188,5 +188,113 @@
     "suburb": "Sydney, NSW",
     "kit": "Pathway Kit",
     "timeline": "ASAP"
+  },
+  {
+    "id": "enq_1783033811448_16gcyq",
+    "receivedAt": "2026-07-02T23:10:11.448Z",
+    "ip": "127.0.0.1",
+    "name": "Test User",
+    "email": "test@example.com",
+    "suburb": "Bondi, NSW",
+    "kit": "Custom Zone Kit",
+    "timeline": "ASAP",
+    "zones": [
+      {
+        "name": "Garden path",
+        "runs": [
+          {
+            "lengthMetres": 8,
+            "shape": "straight",
+            "mountingType": "Rigid Channel"
+          },
+          {
+            "lengthMetres": 3,
+            "shape": "curved",
+            "mountingType": "Flexible Segmented Track"
+          }
+        ],
+        "totalLengthMetres": 11,
+        "driversNeeded": 1,
+        "dimmersNeeded": 1,
+        "plugsNeeded": 1,
+        "rigidChannelMetres": 8,
+        "flexibleTrackMetres": 3
+      }
+    ],
+    "totals": {
+      "stripMetres": 11,
+      "drivers": 1,
+      "dimmers": 1,
+      "plugs": 1,
+      "rigidChannelMetres": 8,
+      "flexibleTrackMetres": 3
+    }
+  },
+  {
+    "id": "enq_1783033811697_4pj2ry",
+    "receivedAt": "2026-07-02T23:10:11.697Z",
+    "ip": "127.0.0.1",
+    "name": "<script>alert(1)</script>",
+    "email": "test@example.com",
+    "suburb": "Bondi, NSW",
+    "kit": "Custom Zone Kit",
+    "timeline": "ASAP"
+  },
+  {
+    "id": "enq_1783034603713_lpkqx4",
+    "receivedAt": "2026-07-02T23:23:23.713Z",
+    "ip": "34.135.109.76, 10.81.9.85, 10.28.3.213, 127.0.0.1",
+    "name": "Test User",
+    "email": "test@example.com",
+    "suburb": "Noosa, QLD",
+    "kit": "Custom Zone Kit",
+    "timeline": "ASAP",
+    "zones": [
+      {
+        "name": "Garden path",
+        "runs": [
+          {
+            "lengthMetres": 8,
+            "shape": "straight",
+            "mountingType": "Rigid Channel"
+          },
+          {
+            "lengthMetres": 3,
+            "shape": "curved",
+            "mountingType": "Flexible Segmented Track"
+          }
+        ],
+        "totalLengthMetres": 11,
+        "driversNeeded": 1,
+        "dimmersNeeded": 1,
+        "plugsNeeded": 1,
+        "rigidChannelMetres": 8,
+        "flexibleTrackMetres": 3
+      },
+      {
+        "name": "Patio",
+        "runs": [
+          {
+            "lengthMetres": 5,
+            "shape": "straight",
+            "mountingType": "Rigid Channel"
+          }
+        ],
+        "totalLengthMetres": 5,
+        "driversNeeded": 1,
+        "dimmersNeeded": 1,
+        "plugsNeeded": 1,
+        "rigidChannelMetres": 5,
+        "flexibleTrackMetres": 0
+      }
+    ],
+    "totals": {
+      "stripMetres": 16,
+      "drivers": 2,
+      "dimmers": 2,
+      "plugs": 2,
+      "rigidChannelMetres": 13,
+      "flexibleTrackMetres": 3
+    }
   }
 ]

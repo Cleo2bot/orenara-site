@@ -283,3 +283,35 @@ body {
   outline: 2px solid #F5B25C;
   outline-offset: 2px;
 }
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .print-only,
+  .print-only * {
+    visibility: visible;
+  }
+
+  .print-only {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  @page {
+    margin: 18mm 16mm;
+  }
+}

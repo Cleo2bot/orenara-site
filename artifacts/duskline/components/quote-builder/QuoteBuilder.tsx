@@ -1,28 +1,39 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Plus, CheckCircle, AlertCircle, Send } from "lucide-react";
-import ZoneCard, { type ZoneFormState } from "./ZoneCard";
+import { Plus, CheckCircle, AlertCircle, Send, FileDown } from "lucide-react";
+import ZoneCard, { type ZoneFormState, type RunFormState } from "./ZoneCard";
+import PrintQuoteView from "./PrintQuoteView";
 import {
   calculateZone,
   calculateTotals,
   nextZonePlaceholder,
+  formatZoneSummary,
+  PART_NUMBERS,
+  PART_LABELS,
   type QuoteZoneCalculated,
 } from "@/lib/quoteCalc";
 
 const timelines = ["ASAP", "1–3 months", "3–6 months", "Just researching"];
 
-function makeZoneId(): string {
-  return `zone_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+function makeId(prefix: string): string {
+  return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function makeRun(): RunFormState {
+  return {
+    id: makeId("run"),
+    lengthMetres: "",
+    shape: "straight",
+  };
 }
 
 function makeZone(): ZoneFormState {
   return {
-    id: makeZoneId(),
+    id: makeId("zone"),
     name: "",
-    lengthMetres: "",
-    shape: "straight",
     note: "",
+    runs: [makeRun()],
   };
 }
 
@@ -57,8 +68,10 @@ export default function QuoteBuilder() {
       zones.map((z) =>
         calculateZone({
           name: z.name.trim() || nextZonePlaceholder(zones.indexOf(z)),
-          lengthMetres: parseFloat(z.lengthMetres) || 0,
-          shape: z.shape,
+          runs: z.runs.map((r) => ({
+            lengthMetres: parseFloat(r.lengthMetres) || 0,
+            shape: r.shape,
+          })),
           note: z.note.trim() || undefined,
         })
       ),
@@ -67,7 +80,7 @@ export default function QuoteBuilder() {
 
   const totals = useMemo(() => calculateTotals(calculatedZones), [calculatedZones]);
 
-  const hasValidZones = calculatedZones.some((z) => z.lengthMetres > 0);
+  const hasValidZones = calculatedZones.some((z) => z.totalLengthMetres > 0);
 
   const addZone = () => setZones((prev) => [...prev, makeZone()]);
 
@@ -76,9 +89,28 @@ export default function QuoteBuilder() {
 
   const removeZone = (id: string) => setZones((prev) => prev.filter((z) => z.id !== id));
 
+  const updateRun = (zoneId: string, runId: string, patch: Partial<RunFormState>) =>
+    setZones((prev) =>
+      prev.map((z) =>
+        z.id === zoneId ? { ...z, runs: z.runs.map((r) => (r.id === runId ? { ...r, ...patch } : r)) } : z
+      )
+    );
+
+  const addRun = (zoneId: string) =>
+    setZones((prev) => prev.map((z) => (z.id === zoneId ? { ...z, runs: [...z.runs, makeRun()] } : z)));
+
+  const removeRun = (zoneId: string, runId: string) =>
+    setZones((prev) =>
+      prev.map((z) => (z.id === zoneId ? { ...z, runs: z.runs.filter((r) => r.id !== runId) } : z))
+    );
+
   const setContactField = (field: keyof ContactState) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => setContact((prev) => ({ ...prev, [field]: e.target.value }));
+
+  const handlePrint = () => {
+    if (typeof window !== "undefined") window.print();
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,7 +135,7 @@ export default function QuoteBuilder() {
           suburb: contact.suburb,
           kit: "Custom Zone Kit",
           timeline: contact.timeline,
-          zones: calculatedZones.filter((z) => z.lengthMetres > 0),
+          zones: calculatedZones.filter((z) => z.totalLengthMetres > 0),
           totals,
         }),
       });
@@ -206,11 +238,10 @@ export default function QuoteBuilder() {
             ) : (
               <div className="flex flex-col gap-5">
                 {zones.map((zone, i) => {
-                  const calc = calculatedZones[i];
-                  const summary =
-                    parseFloat(zone.lengthMetres) > 0
-                      ? `${zone.name.trim() || nextZonePlaceholder(i)} — ${calc.lengthMetres}m, ${zone.shape}`
-                      : null;
+                  const summary = formatZoneSummary(
+                    zone.name.trim() || nextZonePlaceholder(i),
+                    zone.runs.map((r) => ({ lengthMetres: parseFloat(r.lengthMetres) || 0, shape: r.shape }))
+                  );
                   return (
                     <ZoneCard
                       key={zone.id}
@@ -219,6 +250,9 @@ export default function QuoteBuilder() {
                       index={i}
                       onChange={updateZone}
                       onRemove={removeZone}
+                      onRunChange={updateRun}
+                      onAddRun={addRun}
+                      onRemoveRun={removeRun}
                       summary={summary}
                     />
                   );
@@ -265,16 +299,23 @@ export default function QuoteBuilder() {
                 <>
                   <div className="flex flex-col gap-3 mb-6">
                     {[
-                      ["Strip metres", `${totals.stripMetres}m`],
-                      ["Drivers", totals.drivers],
-                      ["Dimmers", totals.dimmers],
-                      ["240V plugs", totals.plugs],
-                      ["Rigid channel", `${totals.rigidChannelMetres}m`],
-                      ["Flexible track", `${totals.flexibleTrackMetres}m`],
-                    ].map(([label, value]) => (
-                      <div key={label as string} className="flex items-center justify-between">
-                        <span style={{ color: "#9A9DA8", fontSize: "0.875rem" }}>{label}</span>
-                        <span style={{ color: "#F4F1EA", fontSize: "0.9375rem", fontWeight: 600 }}>{value}</span>
+                      ["Strip metres", `${totals.stripMetres}m`, PART_NUMBERS.strip],
+                      ["Drivers", totals.drivers, PART_NUMBERS.driver],
+                      ["Dimmers", totals.dimmers, PART_NUMBERS.dimmer],
+                      ["240V plugs", totals.plugs, PART_NUMBERS.plug],
+                      ["Rigid channel", `${totals.rigidChannelMetres}m`, PART_NUMBERS.rigidChannel],
+                      ["Flexible track", `${totals.flexibleTrackMetres}m`, PART_NUMBERS.flexibleTrack],
+                    ].map(([label, value, partNumber]) => (
+                      <div key={label as string} className="flex items-center justify-between gap-3">
+                        <span style={{ color: "#9A9DA8", fontSize: "0.875rem" }}>
+                          {label}
+                          <span style={{ color: "#5B6478", fontSize: "0.6875rem", marginLeft: "6px" }}>
+                            ({partNumber})
+                          </span>
+                        </span>
+                        <span style={{ color: "#F4F1EA", fontSize: "0.9375rem", fontWeight: 600, flexShrink: 0 }}>
+                          {value}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -294,15 +335,21 @@ export default function QuoteBuilder() {
                     </p>
                     <div className="flex flex-col gap-3">
                       {calculatedZones
-                        .filter((z) => z.lengthMetres > 0)
+                        .filter((z) => z.totalLengthMetres > 0)
                         .map((z, i) => (
                           <div key={i} style={{ fontSize: "0.8125rem", color: "#9A9DA8", lineHeight: 1.6 }}>
-                            <span style={{ color: "#F4F1EA", fontWeight: 600 }}>{z.name}</span> — {z.lengthMetres}m{" "}
-                            {z.shape}, {z.driversNeeded} driver{z.driversNeeded === 1 ? "" : "s"}
+                            <span style={{ color: "#F4F1EA", fontWeight: 600 }}>{z.name}</span> —{" "}
+                            {z.runs.map((r) => `${r.lengthMetres}m ${r.shape}`).join(" + ")} ({z.totalLengthMetres}m
+                            total), {z.driversNeeded} driver{z.driversNeeded === 1 ? "" : "s"} (
+                            {PART_NUMBERS.driver})
                           </div>
                         ))}
                     </div>
                   </div>
+
+                  <p className="mt-4" style={{ fontSize: "0.75rem", color: "#5B6478", lineHeight: 1.5 }}>
+                    Driver count assumes all runs within a zone are wired together on a shared power feed.
+                  </p>
                 </>
               )}
             </div>
@@ -436,6 +483,17 @@ export default function QuoteBuilder() {
                 <Send size={16} />
                 {status === "submitting" ? "Sending…" : "Email This for Pricing"}
               </button>
+              <button
+                type="button"
+                onClick={handlePrint}
+                className="btn-outline"
+                disabled={!hasValidZones}
+                style={{ opacity: hasValidZones ? 1 : 0.5, cursor: hasValidZones ? "pointer" : "not-allowed" }}
+                data-testid="quote-builder-download-pdf"
+              >
+                <FileDown size={16} />
+                Download PDF
+              </button>
               <p style={{ fontSize: "0.8125rem", color: "#5B6478", lineHeight: 1.5 }}>
                 We respond within 1–2 business days.
                 <br />
@@ -445,6 +503,8 @@ export default function QuoteBuilder() {
           </form>
         </div>
       </div>
+
+      <PrintQuoteView zones={calculatedZones} totals={totals} contact={contact} partLabels={PART_LABELS} />
     </section>
   );
 }

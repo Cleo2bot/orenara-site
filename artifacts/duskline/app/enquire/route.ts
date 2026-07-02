@@ -1,17 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { writeFile, readFile, mkdir } from "fs/promises";
 import path from "path";
+import { PART_NUMBERS, PART_LABELS, getKitPartNumber } from "@/lib/quoteCalc";
+
+interface QuoteRunPayload {
+  lengthMetres: number;
+  shape: "straight" | "curved";
+  mountingType: string;
+}
 
 interface QuoteZonePayload {
   name: string;
-  lengthMetres: number;
-  shape: "straight" | "curved";
   note?: string;
+  runs: QuoteRunPayload[];
+  totalLengthMetres: number;
   driversNeeded: number;
   dimmersNeeded: number;
   plugsNeeded: number;
-  mountingType: string;
-  channelMetres: number;
+  rigidChannelMetres: number;
+  flexibleTrackMetres: number;
 }
 
 interface QuoteTotalsPayload {
@@ -50,6 +57,24 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
+function validateRuns(runs: unknown): string | null {
+  if (!Array.isArray(runs) || runs.length === 0) return "Each zone needs at least one run.";
+
+  for (const r of runs) {
+    if (typeof r !== "object" || r === null) return "Invalid run data.";
+    const run = r as Partial<QuoteRunPayload>;
+    if (typeof run.lengthMetres !== "number" || !Number.isFinite(run.lengthMetres) || run.lengthMetres <= 0) {
+      return "Each run needs a length greater than 0.";
+    }
+    if (run.shape !== "straight" && run.shape !== "curved") return "Each run needs a valid shape.";
+    if (typeof run.mountingType !== "string" || run.mountingType.trim().length === 0) {
+      return "Invalid run mounting type.";
+    }
+  }
+
+  return null;
+}
+
 function validateZones(zones: unknown): string | null {
   if (!Array.isArray(zones)) return "Zones must be a list.";
   if (zones.length === 0) return "Add at least one zone before sending.";
@@ -58,15 +83,26 @@ function validateZones(zones: unknown): string | null {
     if (typeof z !== "object" || z === null) return "Invalid zone data.";
     const zone = z as Partial<QuoteZonePayload>;
     if (typeof zone.name !== "string" || zone.name.trim().length === 0) return "Each zone needs a name.";
-    if (typeof zone.lengthMetres !== "number" || !Number.isFinite(zone.lengthMetres) || zone.lengthMetres <= 0) {
-      return "Each zone needs a run length greater than 0.";
+
+    const runsError = validateRuns(zone.runs);
+    if (runsError) return runsError;
+
+    if (
+      typeof zone.totalLengthMetres !== "number" ||
+      !Number.isFinite(zone.totalLengthMetres) ||
+      zone.totalLengthMetres <= 0
+    ) {
+      return "Each zone needs a total run length greater than 0.";
     }
-    if (zone.shape !== "straight" && zone.shape !== "curved") return "Each zone needs a valid shape.";
     if (typeof zone.driversNeeded !== "number" || zone.driversNeeded < 0) return "Invalid zone driver count.";
     if (typeof zone.dimmersNeeded !== "number" || zone.dimmersNeeded < 0) return "Invalid zone dimmer count.";
     if (typeof zone.plugsNeeded !== "number" || zone.plugsNeeded < 0) return "Invalid zone plug count.";
-    if (typeof zone.mountingType !== "string" || zone.mountingType.trim().length === 0) return "Invalid zone mounting type.";
-    if (typeof zone.channelMetres !== "number" || zone.channelMetres < 0) return "Invalid zone channel metres.";
+    if (typeof zone.rigidChannelMetres !== "number" || zone.rigidChannelMetres < 0) {
+      return "Invalid zone rigid channel metres.";
+    }
+    if (typeof zone.flexibleTrackMetres !== "number" || zone.flexibleTrackMetres < 0) {
+      return "Invalid zone flexible track metres.";
+    }
     if (zone.note !== undefined && typeof zone.note !== "string") return "Invalid zone note.";
   }
 
@@ -131,6 +167,10 @@ async function saveToFile(enquiry: StoredEnquiry): Promise<void> {
   await writeFile(filePath, JSON.stringify(existing, null, 2), "utf-8");
 }
 
+function mountingPartNumber(shape: "straight" | "curved"): string {
+  return shape === "curved" ? PART_NUMBERS.flexibleTrack : PART_NUMBERS.rigidChannel;
+}
+
 async function sendEmailNotification(enquiry: StoredEnquiry): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL;
@@ -146,15 +186,20 @@ async function sendEmailNotification(enquiry: StoredEnquiry): Promise<void> {
   const zoneRowsHtml = hasZones
     ? enquiry.zones!
         .map((z) => {
+          const runsHtml = z.runs
+            .map(
+              (r) =>
+                `${r.lengthMetres}m ${escapeHtml(r.shape)} — ${escapeHtml(r.mountingType)} (${mountingPartNumber(r.shape)})`
+            )
+            .join("<br>");
           const noteRow = z.note
             ? `<tr><td colspan="4" style="padding: 2px 0 10px; color: #999; font-size: 12px; font-style: italic;">Note: ${escapeHtml(z.note)}</td></tr>`
             : "";
           return `
             <tr>
-              <td style="padding: 8px 0; border-top: 1px solid #eee; font-weight: 600;">${escapeHtml(z.name)}</td>
-              <td style="padding: 8px 0; border-top: 1px solid #eee;">${z.lengthMetres}m, ${escapeHtml(z.shape)}</td>
-              <td style="padding: 8px 0; border-top: 1px solid #eee;">${escapeHtml(z.mountingType)}</td>
-              <td style="padding: 8px 0; border-top: 1px solid #eee;">${z.driversNeeded} driver${z.driversNeeded === 1 ? "" : "s"}, ${z.dimmersNeeded} dimmer${z.dimmersNeeded === 1 ? "" : "s"}, ${z.plugsNeeded} plug${z.plugsNeeded === 1 ? "" : "s"}</td>
+              <td style="padding: 8px 0; border-top: 1px solid #eee; font-weight: 600; vertical-align: top;">${escapeHtml(z.name)}</td>
+              <td style="padding: 8px 0; border-top: 1px solid #eee; vertical-align: top;">${runsHtml} (${z.totalLengthMetres}m total)</td>
+              <td style="padding: 8px 0; border-top: 1px solid #eee; vertical-align: top;">${z.driversNeeded}x ${PART_LABELS.driver} (${PART_NUMBERS.driver})<br>${z.dimmersNeeded}x ${PART_LABELS.dimmer} (${PART_NUMBERS.dimmer})<br>${z.plugsNeeded}x ${PART_LABELS.plug} (${PART_NUMBERS.plug})</td>
             </tr>
             ${noteRow}
           `;
@@ -168,12 +213,12 @@ async function sendEmailNotification(enquiry: StoredEnquiry): Promise<void> {
         <div style="margin-top: 24px; padding: 16px; background: #f7f5f0; border-radius: 6px;">
           <p style="margin: 0 0 10px; font-weight: 700; color: #15171C;">Totals</p>
           <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-            <tr><td style="padding: 3px 0; color: #666;">Strip metres</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.stripMetres}m</td></tr>
-            <tr><td style="padding: 3px 0; color: #666;">Drivers</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.drivers}</td></tr>
-            <tr><td style="padding: 3px 0; color: #666;">Dimmers</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.dimmers}</td></tr>
-            <tr><td style="padding: 3px 0; color: #666;">240V plugs</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.plugs}</td></tr>
-            <tr><td style="padding: 3px 0; color: #666;">Rigid channel</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.rigidChannelMetres}m</td></tr>
-            <tr><td style="padding: 3px 0; color: #666;">Flexible track</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.flexibleTrackMetres}m</td></tr>
+            <tr><td style="padding: 3px 0; color: #666;">${PART_LABELS.strip} (${PART_NUMBERS.strip})</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.stripMetres}m</td></tr>
+            <tr><td style="padding: 3px 0; color: #666;">${PART_LABELS.driver} (${PART_NUMBERS.driver})</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.drivers}</td></tr>
+            <tr><td style="padding: 3px 0; color: #666;">${PART_LABELS.dimmer} (${PART_NUMBERS.dimmer})</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.dimmers}</td></tr>
+            <tr><td style="padding: 3px 0; color: #666;">${PART_LABELS.plug} (${PART_NUMBERS.plug})</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.plugs}</td></tr>
+            <tr><td style="padding: 3px 0; color: #666;">${PART_LABELS.rigidChannel} (${PART_NUMBERS.rigidChannel})</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.rigidChannelMetres}m</td></tr>
+            <tr><td style="padding: 3px 0; color: #666;">${PART_LABELS.flexibleTrack} (${PART_NUMBERS.flexibleTrack})</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.flexibleTrackMetres}m</td></tr>
           </table>
         </div>
       `
@@ -191,6 +236,9 @@ async function sendEmailNotification(enquiry: StoredEnquiry): Promise<void> {
     `
     : "";
 
+  const kitPartNumber = getKitPartNumber(enquiry.kit);
+  const kitLabel = kitPartNumber ? `${escapeHtml(enquiry.kit)} (${kitPartNumber})` : escapeHtml(enquiry.kit);
+
   const html = `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
       <h2 style="color: #15171C; border-bottom: 2px solid #F5B25C; padding-bottom: 12px;">${hasZones ? "New Duskline Quote Builder Enquiry" : "New Duskline Enquiry"}</h2>
@@ -199,7 +247,7 @@ async function sendEmailNotification(enquiry: StoredEnquiry): Promise<void> {
         <tr><td style="padding: 8px 0; color: #666;">Email</td><td style="padding: 8px 0;"><a href="mailto:${encodeURIComponent(enquiry.email)}">${escapeHtml(enquiry.email)}</a></td></tr>
         <tr><td style="padding: 8px 0; color: #666;">Phone</td><td style="padding: 8px 0;">${enquiry.phone ? escapeHtml(enquiry.phone) : "—"}</td></tr>
         <tr><td style="padding: 8px 0; color: #666;">Suburb / State</td><td style="padding: 8px 0;">${escapeHtml(enquiry.suburb)}</td></tr>
-        <tr><td style="padding: 8px 0; color: #666;">Kit interest</td><td style="padding: 8px 0; font-weight: 600; color: #D4913A;">${escapeHtml(enquiry.kit)}</td></tr>
+        <tr><td style="padding: 8px 0; color: #666;">Kit interest</td><td style="padding: 8px 0; font-weight: 600; color: #D4913A;">${kitLabel}</td></tr>
         <tr><td style="padding: 8px 0; color: #666;">Timeline</td><td style="padding: 8px 0;">${escapeHtml(enquiry.timeline)}</td></tr>
         ${enquiry.message ? `<tr><td style="padding: 8px 0; color: #666; vertical-align: top;">Message</td><td style="padding: 8px 0;">${escapeHtml(enquiry.message).replace(/\n/g, "<br>")}</td></tr>` : ""}
       </table>

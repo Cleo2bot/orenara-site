@@ -231,6 +231,9 @@
   .mx-auto {
     margin-inline: auto;
   }
+  .mt-2 {
+    margin-top: calc(var(--spacing) * 2);
+  }
   .mt-3 {
     margin-top: calc(var(--spacing) * 3);
   }
@@ -344,6 +347,9 @@
   }
   .items-center {
     align-items: center;
+  }
+  .items-end {
+    align-items: flex-end;
   }
   .items-start {
     align-items: flex-start;
@@ -883,6 +889,32 @@ body {
 .carousel-arrow:focus-visible {
   outline: 2px solid #F5B25C;
   outline-offset: 2px;
+}
+.print-only {
+  display: none;
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-only,
+  .print-only * {
+    visibility: visible;
+  }
+  .print-only {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+  }
+  .no-print {
+    display: none !important;
+  }
+  @page {
+    margin: 18mm 16mm;
+  }
 }
 @property --tw-rotate-x {
   syntax: "*";

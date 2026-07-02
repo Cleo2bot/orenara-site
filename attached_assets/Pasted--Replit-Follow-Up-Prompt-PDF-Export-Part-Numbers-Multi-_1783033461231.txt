@@ -1,0 +1,55 @@
+# Replit Follow-Up Prompt — PDF Export, Part Numbers, Multi-Run Zones
+
+Paste into Replit's AI agent. Three changes to the Quote Builder tool.
+
+---
+
+## 1. Part Numbers — add to every component
+
+Introduce these as the canonical part numbers across the BOM calculation, the summary display, the emailed enquiry, and the new PDF export (below). Use them everywhere a component is listed, not just internally:
+
+| Item | Part Number |
+|---|---|
+| Strip, 24V, warm white | DL-STRIP-24V-WW |
+| Flexible Segmented Track (per metre) | DL-TRK-FLEX |
+| Rigid Channel (per metre) | DL-TRK-RIGID |
+| Driver, 150W, 0-10V | DL-DRV-150W |
+| Dimmer, 0-10V wall control | DL-DIM-010V |
+| 240V Plug & Power Cable | DL-PLG-240V |
+| Pathway Kit (bundle reference) | DL-KIT-PATH |
+| Pergola Kit (bundle reference) | DL-KIT-PERG |
+| Pool & Water Feature Kit (bundle reference) | DL-KIT-POOL |
+| Custom Zone Kit (bundle reference) | DL-KIT-CUST |
+
+Every line in the BOM summary, zone breakdown, and email should show both the plain-English name and the part number, e.g. "2x Driver, 150W (DL-DRV-150W)" — not just one or the other.
+
+---
+
+## 2. Multiple runs per zone
+
+Change zone structure from a single run to a list of runs within each zone.
+
+**Current structure:** Zone = {name, length, shape, note}
+**New structure:** Zone = {name, runs: [{length, shape}, {length, shape}, ...], note}
+
+**UI change:** inside each zone card, add an "Add another run to this zone" button. Each run within the zone gets its own length + shape inputs (straight/curved), stacked within the same card. The zone's summary line updates to reflect all runs, e.g.: *"Pool surround — 8m straight + 3m curved (11m total)."*
+
+**Calculation change:** for driver/dimmer/plug requirements, **sum all run lengths within the zone first**, then calculate drivers needed off that combined total using the existing 12m-max-per-driver logic — do not calculate drivers separately per individual run within a zone. Channel/track metres still split correctly by shape (straight runs total toward Rigid Channel metres, curved runs toward Flexible Track metres) even though driver count is based on the combined zone total.
+
+Flag clearly in the UI or a tooltip: *"Driver count assumes all runs in a zone are wired together. If your runs need separate power feeds, let us know in the notes."* — this manages the real ambiguity here rather than presenting a guess as certain.
+
+---
+
+## 3. PDF Export
+
+Add a "Download PDF" button next to (not replacing) "Email This for Pricing."
+
+**Approach:** build a dedicated print-optimised view of the completed BOM (a print stylesheet / `@media print` CSS, or a separate `/quote-builder/print` route rendering the same data) and trigger the browser's native print-to-PDF via `window.print()`. Don't add a PDF-generation library or server-side rendering for this — unnecessary complexity for what's fundamentally a formatted export of data already computed client-side.
+
+**Content and style:** mirror the catalogue's visual language — numbered sections, thin rules, charcoal/amber accents, "duskline" wordmark at the top. Structure:
+- Header: duskline wordmark, "Job Specification" or "Quote Request Summary," date generated
+- Zone-by-zone breakdown, each zone showing its runs, shape, length, and required parts with part numbers
+- Consolidated totals section at the bottom (total strip metres, total drivers, dimmers, plugs, channel vs. track metres)
+- Footer: "Pricing is enquiry-only. Contact hello@duskline.com.au to confirm pricing and lead time." plus the website URL
+
+This should look like a real internal specification document, not a screenshot of the web page — clean print layout, no navigation bars, buttons, or UI chrome in the printed output.
