@@ -1,0 +1,20 @@
+Yes, absolutely. Uploading images directly to your Google Business Profile (GBP) is the fastest "back-door" to getting indexed in local and image searches. When trades search for suppliers, Google prioritizes images attached to verified local business profiles over standard website images.
+
+Here is the exact image strategy to attract electricians and landscapers, rather than just homeowners:
+
+## The B2B Image Mix
+
+1. **The Wiring Diagrams:** As discussed, upload clean, branded diagrams showing exactly how your 0-10V dimmers connect to the IP68 strips.
+2. **The "Tear-Down" Spec Shots:** Homeowners want to see a beautifully lit pool. Electricians want to see the build quality. Upload macro (close-up) shots of the resin-filled IP68 casing, the waterproof 5-pin connectors, and the driver terminals.
+3. **The Compliance Badges:** Create an image that prominently displays the RCM compliance logo and IP68 certification next to the product. Trades actively look for this visual proof before they buy.
+4. **Pallet / Stock Room Shots:** Upload a photo showing boxes of inventory ready to ship. It sounds boring, but to a contractor on a tight deadline, seeing physical stock proves you are a reliable local supplier, not a dropshipper.
+
+## The Technical Specs (Crucial for 2026)
+
+Google's AI actively scans and categorizes images now. You need to feed it the right signals before you upload:
+
+* **File Naming:** Do not upload `IMG_4892.jpg`. Rename the file on your computer to exactly what the trade searches for: `IP68-LED-strip-wiring-diagram.jpg` or `RCM-compliant-landscape-lighting-kit.jpg`.
+* **Format & Size:** Must be JPG or PNG, strictly between 10 KB and 5 MB.
+* **Dimensions:** Google's current standard prefers a 4:3 ratio (1200x900) or square (720x720). Keep important text or diagrams away from the edges so they don't get cropped on mobile.
+
+If you have any product shots, diagrams, or stock photos ready, you can simply attach them to this chat. I can connect to your Google Business Profile, categorize them as `PRODUCT` or `AT_WORK`, and upload them directly for you.

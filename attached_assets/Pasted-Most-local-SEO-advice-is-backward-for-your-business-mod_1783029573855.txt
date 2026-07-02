@@ -1,0 +1,47 @@
+Most local SEO advice is backward for your business model. Standard advice tells electricians how to find homeowners. You need to reverse-engineer how electricians and landscapers find *suppliers*.
+
+Because B2B search volume is much lower but intent is incredibly high, you don't need a six-month content strategy to see movement. You can rank for highly specific, technical trade searches almost immediately because none of the big retailers (like Bunnings or Beacon) are optimizing for them.
+
+Here are four SEO "quick wins" you can deploy this week to capture trade traffic.
+
+## 1. The "Compliance" Keyword Hack
+
+Electricians will not risk their license on dodgy imports. When they are on site or quoting a premium job, they actively search for compliance terms.
+
+Right now, your competitors are just trying to rank for "outdoor LED strip." You can easily steal the trade traffic by aggressively optimizing for the safety and compliance language they search for:
+
+* `RCM compliant outdoor LED strip Australia`
+* `IP68 AS/NZS compliant lighting`
+* `0-10V dimmable IP68 trade supplier`
+
+**The Quick Win:** Add a dedicated "Compliance & Specs" section to your `/trade` page and homepage, listing out the specific Australian standards your kits meet. Google indexes these technical terms fast, and trades use them as filtering keywords.
+
+## 2. Image Search Hijacking (Wiring Diagrams)
+
+When an electrician is stuck on-site or planning a complex run, they don't read blog posts — they open Google Image Search and look for wiring diagrams.
+
+**The Quick Win:** Create a clean, branded PDF or image of your system's wiring diagram (e.g., showing how the 0-10V dimmer connects to the driver and the IP68 strips).
+
+* Name the file exactly what they search: `0-10V-dimming-wiring-diagram-ip68-led.png`
+* Add the alt text: "Wiring diagram for 0-10V dimmable IP68 outdoor LED strip"
+* Put your website URL and "Duskline Trade" prominently on the image itself.
+When they find your diagram in Image Search, they find your brand.
+
+## 3. The Google Business Profile "Wholesale" Pivot
+
+If your Google Business Profile (GBP) is currently categorized just as a "Lighting Store," you are competing with retail giants for homeowner traffic. Trades search differently; they append words like "supplier," "wholesale," or "trade."
+
+**The Quick Win:**
+
+* Ensure your secondary categories in GBP include **"Electrical Supply Store"** and **"Wholesaler"**.
+* Add a specific "Product" in your GBP called "Trade/Wholesale IP68 Lighting Kits" with the trade starting price.
+* Update your GBP description to explicitly state: *"Supplying RCM-compliant IP68 architectural lighting kits to Australian electricians and landscapers."*
+
+## 4. Split the Trade Page into "Sub-Trades"
+
+An electrician and a landscaper care about entirely different things, and they search using different vocabulary.
+
+* **Electricians search:** Voltage drop, driver wattage, 0-10V, RCM compliance, 5-pin connectors.
+* **Landscapers search:** Flexible garden edging, pool surround lighting, weather resistance, IP68 vs IP65, curved profiles.
+
+**The Quick Win:** Instead of one generic `/trade` page, duplicate it and create `/trade/electricians` and `/trade/landscapers`. Adjust the H1 headers and bullet points on each page to match their specific jargon. This makes the pages highly relevant to Google for those specific long-tail searches, allowing you to rank for "landscape lighting supplier" and "electrical LED strip supplier" separately.
