@@ -1,0 +1,450 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import { Plus, CheckCircle, AlertCircle, Send } from "lucide-react";
+import ZoneCard, { type ZoneFormState } from "./ZoneCard";
+import {
+  calculateZone,
+  calculateTotals,
+  nextZonePlaceholder,
+  type QuoteZoneCalculated,
+} from "@/lib/quoteCalc";
+
+const timelines = ["ASAP", "1–3 months", "3–6 months", "Just researching"];
+
+function makeZoneId(): string {
+  return `zone_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function makeZone(): ZoneFormState {
+  return {
+    id: makeZoneId(),
+    name: "",
+    lengthMetres: "",
+    shape: "straight",
+    note: "",
+  };
+}
+
+interface ContactState {
+  name: string;
+  email: string;
+  phone: string;
+  suburb: string;
+  timeline: string;
+}
+
+const INITIAL_CONTACT: ContactState = { name: "", email: "", phone: "", suburb: "", timeline: "" };
+
+const labelStyle: React.CSSProperties = {
+  display: "block",
+  fontSize: "0.8125rem",
+  fontWeight: 600,
+  color: "#9A9DA8",
+  marginBottom: "8px",
+  letterSpacing: "0.04em",
+  textTransform: "uppercase",
+};
+
+export default function QuoteBuilder() {
+  const [zones, setZones] = useState<ZoneFormState[]>([]);
+  const [contact, setContact] = useState<ContactState>(INITIAL_CONTACT);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const calculatedZones: QuoteZoneCalculated[] = useMemo(
+    () =>
+      zones.map((z) =>
+        calculateZone({
+          name: z.name.trim() || nextZonePlaceholder(zones.indexOf(z)),
+          lengthMetres: parseFloat(z.lengthMetres) || 0,
+          shape: z.shape,
+          note: z.note.trim() || undefined,
+        })
+      ),
+    [zones]
+  );
+
+  const totals = useMemo(() => calculateTotals(calculatedZones), [calculatedZones]);
+
+  const hasValidZones = calculatedZones.some((z) => z.lengthMetres > 0);
+
+  const addZone = () => setZones((prev) => [...prev, makeZone()]);
+
+  const updateZone = (id: string, patch: Partial<ZoneFormState>) =>
+    setZones((prev) => prev.map((z) => (z.id === id ? { ...z, ...patch } : z)));
+
+  const removeZone = (id: string) => setZones((prev) => prev.filter((z) => z.id !== id));
+
+  const setContactField = (field: keyof ContactState) => (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => setContact((prev) => ({ ...prev, [field]: e.target.value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!hasValidZones) {
+      setStatus("error");
+      setErrorMsg("Add at least one zone with a run length before sending.");
+      return;
+    }
+
+    setStatus("submitting");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/enquire", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: contact.name,
+          email: contact.email,
+          phone: contact.phone || undefined,
+          suburb: contact.suburb,
+          kit: "Custom Zone Kit",
+          timeline: contact.timeline,
+          zones: calculatedZones.filter((z) => z.lengthMetres > 0),
+          totals,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Submission failed. Please try again.");
+      }
+
+      setStatus("success");
+      setZones([]);
+      setContact(INITIAL_CONTACT);
+    } catch (err: unknown) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    }
+  };
+
+  if (status === "success") {
+    return (
+      <section style={{ background: "#15171C", paddingTop: "160px", paddingBottom: "120px" }}>
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <div
+            style={{
+              width: "64px",
+              height: "64px",
+              borderRadius: "50%",
+              background: "rgba(245,178,92,0.1)",
+              border: "1px solid rgba(245,178,92,0.3)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "0 auto 24px",
+            }}
+          >
+            <CheckCircle size={28} style={{ color: "#F5B25C" }} />
+          </div>
+          <h2 className="font-bold mb-4" style={{ fontSize: "1.75rem", color: "#F4F1EA", letterSpacing: "-0.03em" }}>
+            Got it — we'll come back to you within 1–2 business days with pricing and a confirmed lead time.
+          </h2>
+          <p style={{ fontSize: "1rem", color: "#9A9DA8", lineHeight: 1.7, maxWidth: "480px", margin: "0 auto" }}>
+            Your full zone breakdown and bill of materials came through with your enquiry — no need to repeat
+            anything on the phone.
+          </p>
+          <button
+            onClick={() => setStatus("idle")}
+            className="btn-outline"
+            style={{ marginTop: "32px", width: "auto", display: "inline-flex" }}
+            data-testid="quote-builder-reset-btn"
+          >
+            Build another kit
+          </button>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section style={{ background: "#15171C", paddingTop: "160px", paddingBottom: "120px" }}>
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="mb-12 max-w-2xl">
+          <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
+            Build Your Kit
+          </p>
+          <h1
+            className="font-bold mb-4"
+            style={{
+              fontSize: "clamp(2rem, 4.5vw, 3rem)",
+              color: "#F4F1EA",
+              letterSpacing: "-0.03em",
+              lineHeight: 1.15,
+            }}
+          >
+            Piece your job together and get a straight quote.
+          </h1>
+          <p style={{ color: "#9A9DA8", fontSize: "1.0625rem", lineHeight: 1.7 }}>
+            Add each zone of your project — a garden path, a patio, a pool surround — with its run length and
+            shape. We'll work out the drivers, dimmers, and mounting track for you. No pricing shown here, no
+            account needed — just email it straight through and we'll come back with real numbers.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Zones column */}
+          <div className="lg:col-span-2">
+            {zones.length === 0 ? (
+              <div
+                className="rounded-lg p-10 text-center"
+                style={{ background: "#1F222B", border: "1px dashed rgba(91,100,120,0.35)" }}
+              >
+                <p style={{ color: "#9A9DA8", fontSize: "0.9375rem", marginBottom: "20px" }}>
+                  No zones yet. Start with the first area of your project.
+                </p>
+                <button type="button" onClick={addZone} className="btn-primary" data-testid="add-zone-btn-empty">
+                  <Plus size={16} />
+                  Add a zone
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-5">
+                {zones.map((zone, i) => {
+                  const calc = calculatedZones[i];
+                  const summary =
+                    parseFloat(zone.lengthMetres) > 0
+                      ? `${zone.name.trim() || nextZonePlaceholder(i)} — ${calc.lengthMetres}m, ${zone.shape}`
+                      : null;
+                  return (
+                    <ZoneCard
+                      key={zone.id}
+                      zone={zone}
+                      placeholder={nextZonePlaceholder(i)}
+                      index={i}
+                      onChange={updateZone}
+                      onRemove={removeZone}
+                      summary={summary}
+                    />
+                  );
+                })}
+                <button
+                  type="button"
+                  onClick={addZone}
+                  className="btn-outline"
+                  style={{ width: "auto", alignSelf: "flex-start" }}
+                  data-testid="add-zone-btn"
+                >
+                  <Plus size={16} />
+                  Add another zone
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Summary column */}
+          <div className="lg:col-span-1">
+            <div
+              className="lg:sticky rounded-lg p-6"
+              style={{ background: "#1A1D24", border: "1px solid rgba(91,100,120,0.25)", top: "104px" }}
+              data-testid="quote-summary-panel"
+            >
+              <p
+                style={{
+                  fontSize: "0.75rem",
+                  fontWeight: 700,
+                  color: "#5B6478",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  marginBottom: "16px",
+                }}
+              >
+                Your bill of materials
+              </p>
+
+              {!hasValidZones ? (
+                <p style={{ color: "#5B6478", fontSize: "0.875rem", lineHeight: 1.6 }}>
+                  Add a zone with a run length to see what it needs.
+                </p>
+              ) : (
+                <>
+                  <div className="flex flex-col gap-3 mb-6">
+                    {[
+                      ["Strip metres", `${totals.stripMetres}m`],
+                      ["Drivers", totals.drivers],
+                      ["Dimmers", totals.dimmers],
+                      ["240V plugs", totals.plugs],
+                      ["Rigid channel", `${totals.rigidChannelMetres}m`],
+                      ["Flexible track", `${totals.flexibleTrackMetres}m`],
+                    ].map(([label, value]) => (
+                      <div key={label as string} className="flex items-center justify-between">
+                        <span style={{ color: "#9A9DA8", fontSize: "0.875rem" }}>{label}</span>
+                        <span style={{ color: "#F4F1EA", fontSize: "0.9375rem", fontWeight: 600 }}>{value}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div style={{ borderTop: "1px solid rgba(91,100,120,0.2)", paddingTop: "16px" }}>
+                    <p
+                      style={{
+                        fontSize: "0.75rem",
+                        fontWeight: 700,
+                        color: "#5B6478",
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        marginBottom: "12px",
+                      }}
+                    >
+                      Zone breakdown
+                    </p>
+                    <div className="flex flex-col gap-3">
+                      {calculatedZones
+                        .filter((z) => z.lengthMetres > 0)
+                        .map((z, i) => (
+                          <div key={i} style={{ fontSize: "0.8125rem", color: "#9A9DA8", lineHeight: 1.6 }}>
+                            <span style={{ color: "#F4F1EA", fontWeight: 600 }}>{z.name}</span> — {z.lengthMetres}m{" "}
+                            {z.shape}, {z.driversNeeded} driver{z.driversNeeded === 1 ? "" : "s"}
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Handoff */}
+        <div
+          className="mt-12 rounded-lg p-8"
+          style={{ background: "#1F222B", border: "1px solid rgba(91,100,120,0.25)" }}
+        >
+          <h2 className="font-bold mb-2" style={{ fontSize: "1.375rem", color: "#F4F1EA", letterSpacing: "-0.02em" }}>
+            Email this for pricing.
+          </h2>
+          <p style={{ color: "#9A9DA8", fontSize: "0.9375rem", lineHeight: 1.7, marginBottom: "28px" }}>
+            We'll come back within 1–2 business days with pricing and a confirmed lead time. No obligation, no
+            automated quote.
+          </p>
+
+          <form onSubmit={handleSubmit} noValidate data-testid="quote-builder-form">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label htmlFor="qb-name" style={labelStyle}>
+                  Name <span style={{ color: "#F5B25C" }}>*</span>
+                </label>
+                <input
+                  id="qb-name"
+                  className="enquiry-input"
+                  type="text"
+                  placeholder="Your name"
+                  value={contact.name}
+                  onChange={setContactField("name")}
+                  required
+                  data-testid="qb-input-name"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="qb-email" style={labelStyle}>
+                  Email <span style={{ color: "#F5B25C" }}>*</span>
+                </label>
+                <input
+                  id="qb-email"
+                  className="enquiry-input"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={contact.email}
+                  onChange={setContactField("email")}
+                  required
+                  data-testid="qb-input-email"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="qb-phone" style={labelStyle}>
+                  Phone{" "}
+                  <span style={{ color: "#5B6478", fontWeight: 400, textTransform: "none", letterSpacing: "normal" }}>
+                    (optional)
+                  </span>
+                </label>
+                <input
+                  id="qb-phone"
+                  className="enquiry-input"
+                  type="tel"
+                  placeholder="04xx xxx xxx"
+                  value={contact.phone}
+                  onChange={setContactField("phone")}
+                  data-testid="qb-input-phone"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="qb-suburb" style={labelStyle}>
+                  Suburb / State <span style={{ color: "#F5B25C" }}>*</span>
+                </label>
+                <input
+                  id="qb-suburb"
+                  className="enquiry-input"
+                  type="text"
+                  placeholder="e.g. Noosa, QLD"
+                  value={contact.suburb}
+                  onChange={setContactField("suburb")}
+                  required
+                  data-testid="qb-input-suburb"
+                />
+              </div>
+
+              <div style={{ gridColumn: "1 / -1" }}>
+                <label htmlFor="qb-timeline" style={labelStyle}>
+                  Project timeline <span style={{ color: "#F5B25C" }}>*</span>
+                </label>
+                <select
+                  id="qb-timeline"
+                  className="enquiry-input"
+                  value={contact.timeline}
+                  onChange={setContactField("timeline")}
+                  required
+                  data-testid="qb-select-timeline"
+                >
+                  <option value="" disabled>
+                    When are you looking to proceed?
+                  </option>
+                  {timelines.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {status === "error" && (
+              <div
+                className="flex items-start gap-3 mt-5 p-4 rounded-lg"
+                style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.25)" }}
+                data-testid="quote-builder-error"
+              >
+                <AlertCircle size={18} style={{ color: "#EF4444", flexShrink: 0, marginTop: "1px" }} />
+                <p style={{ color: "#EF4444", fontSize: "0.9rem" }}>{errorMsg}</p>
+              </div>
+            )}
+
+            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <button
+                type="submit"
+                className="btn-primary"
+                disabled={status === "submitting"}
+                style={{ opacity: status === "submitting" ? 0.7 : 1 }}
+                data-testid="quote-builder-submit"
+              >
+                <Send size={16} />
+                {status === "submitting" ? "Sending…" : "Email This for Pricing"}
+              </button>
+              <p style={{ fontSize: "0.8125rem", color: "#5B6478", lineHeight: 1.5 }}>
+                We respond within 1–2 business days.
+                <br />
+                No spam. No automated quotes.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}

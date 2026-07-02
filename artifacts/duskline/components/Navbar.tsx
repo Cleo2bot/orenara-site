@@ -19,6 +19,14 @@ export default function Navbar() {
         <Wordmark size="sm" />
         <div className="flex items-center gap-5">
           <Link
+            href="/quote-builder"
+            className="hidden sm:inline-flex"
+            style={{ color: "#9A9DA8", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none" }}
+            data-testid="nav-quote-builder-link"
+          >
+            Build Your Kit
+          </Link>
+          <Link
             href="/trade"
             className="btn-trade hidden sm:inline-flex"
             data-testid="nav-trade-link"

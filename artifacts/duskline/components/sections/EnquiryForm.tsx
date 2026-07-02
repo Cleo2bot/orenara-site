@@ -51,7 +51,7 @@ export default function EnquiryForm() {
     setStatus("submitting");
     setErrorMsg("");
     try {
-      const res = await fetch("/api/enquire", {
+      const res = await fetch("/enquire", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

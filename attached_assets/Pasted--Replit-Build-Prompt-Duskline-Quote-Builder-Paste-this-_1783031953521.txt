@@ -1,0 +1,88 @@
+# Replit Build Prompt — Duskline Quote Builder
+
+Paste this into Replit's AI agent. Builds a new page/tool at `/quote-builder` (or embed it on `/trade/electricians` and `/trade/landscapers` if those exist — link to it from there either way with copy like "Piece your job together and get a straight quote.").
+
+---
+
+## WHAT THIS IS
+
+A zone-based job configurator for trade users. No login, no account, no cart, no payment, no pricing shown. It calculates a real bill of materials from what the user builds, then emails it straight into the existing enquiry inbox instead of showing a price. This stays inside the enquiry-only model — it's a smarter front door to the same form you already have, not a new transactional system.
+
+---
+
+## THE FLOW
+
+### Landing on the tool
+Single page, clean, minimal. One button: **"Add a zone."**
+
+### Building a zone
+Clicking "Add a zone" creates a card with a placeholder name already filled in — cycle through a preset list so it feels alive rather than blank: "Garden path," then "Patio," then "Pool surround," then "Pergola beam," then "Driveway edge," looping if more zones are added than the list length. The user can accept the placeholder or overwrite it.
+
+Each zone card contains:
+- **Zone name** (text, pre-filled with placeholder, editable)
+- **Run length** (number input, metres)
+- **Shape:** two options — **Straight** or **Curved** (toggle or button pair)
+- **Note** (optional free text — "anything odd about this run")
+
+As soon as length and shape are filled in, show a compact summary line under the card: *"Garden path — 14m, curved."*
+
+### Adding more zones
+Repeat — each new zone gets the next placeholder in the cycle. Zones stack in a list, each independently editable and removable.
+
+### Live BOM calculation (client-side, recalculates as zones change)
+
+Use these constants, matching the internal pricing model — **do not use a flat "every 10m" rule**:
+
+```
+DRIVER_RATED_WATTS = 150       // LTSYS LM-150-24-G1A2F
+STRIP_WATTS_PER_METRE = 10     // Comi SF17 spec
+SAFETY_DERATE = 0.80           // don't run drivers at 100% continuously
+MAX_RUN_PER_DRIVER = (DRIVER_RATED_WATTS * SAFETY_DERATE) / STRIP_WATTS_PER_METRE  // = 12 metres
+```
+
+For each zone:
+- `stripMetres` = the entered run length
+- `driversNeeded` = `ROUNDUP(runLength / MAX_RUN_PER_DRIVER)`
+- `dimmersNeeded` = same as driversNeeded (1:1 default — see note below)
+- `plugsNeeded` = same as driversNeeded (one plug per driver)
+- `mountingType` = "Rigid Channel" if shape is Straight, "Flexible Segmented Track" if shape is Curved
+- `channelMetres` = same as runLength (1m channel pieces per metre of run, matching how it's costed internally)
+
+**Do not add a separate "corner connector" line item** — a curved zone's cost/parts list is: strip + flexible segmented track + drivers/dimmers/plugs as above. Nothing extra. (If you actually want to support hard 90° corners using straight channel joined at an angle, that's a genuinely different feature needing a new part added to the cost sheet first — flag it back to me rather than inventing a placeholder part with no real cost behind it.)
+
+### Running summary panel
+Sticky panel (side or bottom) showing the consolidated totals across all zones:
+- Total strip metres
+- Total drivers
+- Total dimmers
+- Total 240V plugs
+- Rigid channel metres vs. flexible track metres (kept separate, since they're different physical products)
+
+Below the totals, a **zone-by-zone breakdown** — collapsible list showing what each individual zone needs, so a tradie can still see "this is what the patio needs" vs. "this is what the pool surround needs" separately, useful for their own client-facing breakdown.
+
+### The handoff
+Replace a checkout button with: **"Email This for Pricing."**
+
+On click:
+- Package all zones (name, length, shape, note) and the computed BOM (per-zone and totals) into a structured payload
+- Feed it into the **existing enquiry API route and Resend notification** — same backend already handling the standard enquiry form, just with a richer payload than the standard form fields
+- Show the same confirmation message pattern already used elsewhere on the site: *"Got it — we'll come back to you within 1–2 business days with pricing and a confirmed lead time."*
+- The email that lands in the inbox should show the full zone breakdown and BOM clearly, not just a wall of raw data — format it so it reads like an actual quote request, not a JSON dump
+
+---
+
+## TECHNICAL NOTES
+
+- Client-side state only (React state/useReducer) — no backend persistence needed for v1. If the user refreshes mid-build, they lose their zones; that's an acceptable tradeoff for a first version, not worth building a database for.
+- Reuse the existing Next.js API route pattern and Resend integration already wired up for the standard enquiry form — extend the payload shape, don't build a parallel email system.
+- Style it consistently with the rest of the site — dark background, amber accents, same typography. It should feel like part of Duskline, not a bolted-on generic calculator widget.
+- Mobile-friendly — assume a decent chunk of trade users will open this on a phone on-site, not at a desk.
+
+---
+
+## WHAT NOT TO BUILD
+
+- No login or account system
+- No cart, no checkout, no payment, no pricing displayed anywhere in the tool
+- No database/persistence layer for saved quotes — session-only for v1
+- No "corner connector" line item unless/until that's a real, costed product decision
