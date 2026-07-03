@@ -32,7 +32,7 @@ export function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 80% 60% at 50% 120%, rgba(94,169,224,0.08) 0%, transparent 70%)",
+              "radial-gradient(ellipse 80% 60% at 50% 120%, rgba(245,178,92,0.06) 0%, transparent 70%)",
           }}
         />
         <div
@@ -46,7 +46,7 @@ export function Hero() {
           style={{
             height: "45%",
             background:
-              "radial-gradient(ellipse 120% 80% at 50% 100%, rgba(94,169,224,0.16) 0%, rgba(58,130,196,0.06) 40%, transparent 70%)",
+              "radial-gradient(ellipse 120% 80% at 50% 100%, rgba(245,178,92,0.14) 0%, rgba(212,145,58,0.05) 40%, transparent 70%)",
           }}
         />
         <div
@@ -58,7 +58,7 @@ export function Hero() {
             width: "60%",
             height: "1px",
             background:
-              "linear-gradient(90deg, transparent, rgba(94,169,224,0.5), rgba(94,169,224,0.85), rgba(94,169,224,0.5), transparent)",
+              "linear-gradient(90deg, transparent, rgba(245,178,92,0.5), rgba(245,178,92,0.8), rgba(245,178,92,0.5), transparent)",
             filter: "blur(1px)",
           }}
         />
@@ -71,7 +71,7 @@ export function Hero() {
             width: "60%",
             height: "20px",
             background:
-              "linear-gradient(90deg, transparent, rgba(94,169,224,0.08), rgba(94,169,224,0.16), rgba(94,169,224,0.08), transparent)",
+              "linear-gradient(90deg, transparent, rgba(245,178,92,0.08), rgba(245,178,92,0.15), rgba(245,178,92,0.08), transparent)",
             filter: "blur(8px)",
           }}
         />
@@ -82,9 +82,9 @@ export function Hero() {
           <span
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase"
             style={{
-              border: "1px solid rgba(94,169,224,0.35)",
-              color: "#CFE3F5",
-              background: "rgba(94,169,224,0.06)",
+              border: "1px solid rgba(245,178,92,0.35)",
+              color: "#F6DDB8",
+              background: "rgba(245,178,92,0.06)",
             }}
           >
             <span
@@ -93,7 +93,7 @@ export function Hero() {
                 width: "6px",
                 height: "6px",
                 borderRadius: "50%",
-                background: "#5EA9E0",
+                background: "#F5B25C",
               }}
             />
             IP68 Outdoor Lighting · Australian Conditions
@@ -104,10 +104,10 @@ export function Hero() {
           <div
             style={{
               display: "inline-block",
-              border: "3px solid #5EA9E0",
+              border: "3px solid #F5B25C",
               borderRadius: "6px",
               padding: "0.4em 0.9em",
-              background: "rgba(94,169,224,0.05)",
+              background: "rgba(245,178,92,0.05)",
             }}
           >
             <h1
@@ -169,7 +169,7 @@ export function Hero() {
             style={{
               fontSize: "1.0625rem",
               padding: "16px 36px",
-              background: "linear-gradient(135deg, #5EA9E0, #3A82C4)",
+              background: "linear-gradient(135deg, #F5B25C, #D4913A)",
               color: "#0D1117",
               border: "none",
             }}
