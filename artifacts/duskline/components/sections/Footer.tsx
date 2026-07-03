@@ -113,6 +113,13 @@ export default function Footer() {
             >
               Terms &amp; Conditions
             </Link>
+            <Link
+              href="/trade-resources"
+              style={{ fontSize: "0.8rem", color: "#9A9DA8", textDecoration: "none" }}
+              data-testid="footer-trade-resources-link"
+            >
+              Trade Resources
+            </Link>
           </div>
           <p style={{ fontSize: "0.8rem", color: "#5B6478" }}>
             IP68. No excuses.

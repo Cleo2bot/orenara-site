@@ -1,0 +1,99 @@
+# Replit Build Prompt — Trade Resources Hub
+
+Paste into Replit's AI agent. Builds a proper hub-and-spoke resource section, not a single orphaned page.
+
+---
+
+## STRUCTURE
+
+**Hub page:** `/trade-resources`
+**Spoke pages:** `/trade-resources/driver-sizing`, `/trade-resources/12v-vs-24v`, `/trade-resources/ip-ratings-explained`
+
+**Footer change:** add a single link labelled **"Trade Resources"** in the footer, pointing to `/trade-resources`. Don't add these to the main nav — footer only, per the brief.
+
+**Internal linking (this is the part that matters for indexing):**
+- The hub page must contain a real, crawlable `<a href>` link to each spoke page — not a JS-only click handler, an actual link tag.
+- Each spoke page must link back to `/trade-resources` in its own body content (not just a "back" button — a contextual link, e.g. "See more in Trade Resources").
+- Every spoke page needs its own `<title>` and meta description — don't let them inherit generic site-wide metadata.
+
+---
+
+## HUB PAGE CONTENT — `/trade-resources`
+
+**Eyebrow:** TRADE RESOURCES
+**Headline:** Technical resources for electricians, landscapers, and builders.
+**Subhead:** Specification detail, sizing logic, and the standards that actually matter — not marketing copy.
+
+Three cards, each linking to its spoke page:
+
+1. **Driver & Dimmer Sizing Guide** — "Work out how many drivers, dimmers, and plugs a run actually needs." → `/trade-resources/driver-sizing`
+2. **12V vs 24V — Why It Matters Past 5 Metres** — "The voltage-drop problem most outdoor strip lighting doesn't tell you about." → `/trade-resources/12v-vs-24v`
+3. **IP54, IP65, IP68 — What the Second Digit Means** — "The ingress protection scale, explained properly." → `/trade-resources/ip-ratings-explained`
+
+---
+
+## SPOKE 1 — `/trade-resources/driver-sizing`
+
+**Title tag:** Driver & Dimmer Sizing Guide | Duskline Trade Resources
+**Meta description:** Work out driver, dimmer, and plug requirements for any run length — based on real driver capacity and safety derating, not guesswork.
+
+**Headline:** Driver & Dimmer Sizing Guide
+
+**Body:**
+"A driver's rated output doesn't equal its safe continuous output. Running a driver at 100% of its rating continuously shortens its life and raises thermal risk — proper practice is to derate.
+
+Our drivers are rated at 150W. Our strip draws 10W per metre. At an 80% safety derate, that gives a maximum safe run of 12 metres per driver — not the 15 metres the raw numbers might suggest.
+
+**The formula:**
+Max safe run (metres) = (Driver rated watts × safety derate) ÷ strip watts per metre
+150W × 0.80 ÷ 10W/m = 12m
+
+For runs longer than 12m, add another driver — don't push a single driver past its safe derated capacity to avoid buying a second one. Dimmers are matched 1:1 with drivers by default in our kits.
+
+Use our [Quote Builder tool] to calculate this automatically for a multi-zone job, or enquire directly with your run length and we'll confirm exact requirements."
+
+(Link "[Quote Builder tool]" to wherever that tool actually lives on the site.)
+
+---
+
+## SPOKE 2 — `/trade-resources/12v-vs-24v`
+
+**Title tag:** 12V vs 24V Outdoor LED Strip — Why It Matters | Duskline Trade Resources
+**Meta description:** Voltage drop, injection points, and why 24V systems handle longer outdoor runs better than 12V.
+
+**Headline:** 12V vs 24V — Why It Matters Past 5 Metres
+
+**Body:**
+"Lower-voltage systems suffer worse voltage drop over distance than higher-voltage systems carrying the same power. In practice, that means a 12V strip needs more frequent power injection points to maintain even brightness across a long run — miss that, and you get visible dimming toward the far end of the strip, even though nothing is faulty.
+
+24V systems handle meaningfully longer continuous runs before voltage drop becomes visible, which is why architectural and commercial-grade lighting is built around 24V, not 12V, wherever runs exceed a few metres.
+
+Duskline's strip runs on 24V for exactly this reason — fewer injection points, more consistent brightness across the full run length, less complexity on install."
+
+---
+
+## SPOKE 3 — `/trade-resources/ip-ratings-explained`
+
+**Title tag:** IP54 vs IP65 vs IP68 Explained | Duskline Trade Resources
+**Meta description:** What the ingress protection scale actually means, and why the second digit is the one that matters for outdoor lighting.
+
+**Headline:** IP54, IP65, IP68 — What the Second Digit Means
+
+**Body:**
+"IP ratings have two digits: the first covers dust/solid ingress, the second covers water ingress. For outdoor lighting, the second digit is the one that actually determines whether a product survives.
+
+**IP54** — protected against dust ingress (not dust-tight) and splashing water from any direction. Adequate for a covered, sheltered spot. Not adequate for a garden bed, a pool edge, or anywhere it sits in standing water.
+
+**IP65** — dust-tight, protected against low-pressure water jets. Better, but still not rated for submersion.
+
+**IP68** — dust-tight and rated for continuous submersion at a specified depth and duration (Duskline's components: 1.5m for 30 minutes). This is the rating that actually matters for pool edges, garden irrigation zones, and anywhere water contact is constant rather than occasional.
+
+The gap between IP65 and IP68 isn't marginal — it's the difference between 'resists rain' and 'survives being underwater.' Check the second digit before assuming a product will hold up outdoors."
+
+---
+
+## TECHNICAL NOTES
+
+- These are real content pages, not thin placeholder stubs — each has enough substance to stand on its own if someone lands directly from a search result, not just from the hub.
+- Keep the same visual system as the rest of the site (dark background, amber accents, consistent typography) — these should feel like part of Duskline, not a bolted-on blog template.
+- If a proper spec sheet/PDF gets built later (per earlier discussion — only once trade enquiries justify it), it slots in as a fourth card on this same hub, not a separate orphaned page elsewhere.

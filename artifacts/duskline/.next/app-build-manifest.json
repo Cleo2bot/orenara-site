@@ -15,6 +15,31 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/quote-builder/page.js"
+    ],
+    "/trade-resources/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/trade-resources/page.js"
+    ],
+    "/trade-resources/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/trade-resources/layout.js"
+    ],
+    "/trade-resources/driver-sizing/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/trade-resources/driver-sizing/page.js"
+    ],
+    "/trade-resources/12v-vs-24v/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/trade-resources/12v-vs-24v/page.js"
+    ],
+    "/trade-resources/ip-ratings-explained/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/trade-resources/ip-ratings-explained/page.js"
     ]
   }
 }
