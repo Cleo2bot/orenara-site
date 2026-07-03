@@ -102,10 +102,11 @@ export function Hero() {
 
         <div className="mb-6">
           <h1
-            className="font-black"
             style={{
-              fontSize: "clamp(3.5rem, 10vw, 8rem)",
-              letterSpacing: "-0.05em",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 800,
+              fontSize: "clamp(3.25rem, 9vw, 7.25rem)",
+              letterSpacing: "-0.03em",
               lineHeight: "0.9",
               color: "#F4F1EA",
             }}
