@@ -120,6 +120,13 @@ export default function Footer() {
             >
               Trade Resources
             </Link>
+            <Link
+              href="/privacy"
+              style={{ fontSize: "0.8rem", color: "#9A9DA8", textDecoration: "none" }}
+              data-testid="footer-privacy-link"
+            >
+              Privacy Policy
+            </Link>
           </div>
           <p style={{ fontSize: "0.8rem", color: "#5B6478" }}>
             IP68. No excuses.

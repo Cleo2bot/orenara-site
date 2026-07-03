@@ -1,6 +1,6 @@
 {
   "/page": "app/page.js",
-  "/quote-builder/page": "app/quote-builder/page.js",
   "/icon.svg/route": "app/icon.svg/route.js",
-  "/trade-resources/page": "app/trade-resources/page.js"
+  "/privacy/page": "app/privacy/page.js",
+  "/terms/page": "app/terms/page.js"
 }
