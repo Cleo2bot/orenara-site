@@ -106,9 +106,10 @@ export function Hero() {
               fontFamily: "'Inter', sans-serif",
               fontWeight: 800,
               fontSize: "clamp(3.25rem, 9vw, 7.25rem)",
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.01em",
               lineHeight: "0.9",
               color: "#F4F1EA",
+              textTransform: "uppercase",
             }}
           >
             raycor
