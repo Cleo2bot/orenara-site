@@ -33,7 +33,7 @@ export default function Navbar() {
             className="btn-trade hidden sm:inline-flex"
             data-testid="nav-trade-link"
           >
-            Trade Order?
+            Trade Order
           </Link>
           <button
             onClick={scrollToForm}

@@ -1,9 +1,6 @@
 {
-  "/icon.svg/route": "app/icon.svg/route.js",
   "/page": "app/page.js",
   "/quote-builder/page": "app/quote-builder/page.js",
-  "/trade-resources/page": "app/trade-resources/page.js",
-  "/trade-resources/driver-sizing/page": "app/trade-resources/driver-sizing/page.js",
-  "/trade-resources/ip-ratings-explained/page": "app/trade-resources/ip-ratings-explained/page.js",
-  "/trade-resources/12v-vs-24v/page": "app/trade-resources/12v-vs-24v/page.js"
+  "/icon.svg/route": "app/icon.svg/route.js",
+  "/trade-resources/page": "app/trade-resources/page.js"
 }
