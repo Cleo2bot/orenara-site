@@ -16,7 +16,9 @@ export default function Navbar() {
       }}
     >
       <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-        <Wordmark size="sm" />
+        <Link href="/" data-testid="nav-home-link">
+          <Wordmark size="sm" />
+        </Link>
         <div className="flex items-center gap-5">
           <Link
             href="/quote-builder"
