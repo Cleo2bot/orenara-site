@@ -100,30 +100,42 @@ export function Hero() {
           </span>
         </div>
 
-        <div className="mb-6">
-          <h1
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 800,
-              fontSize: "clamp(3.25rem, 9vw, 7.25rem)",
-              letterSpacing: "-0.01em",
-              lineHeight: "0.9",
-              color: "#F4F1EA",
-              textTransform: "uppercase",
-            }}
-          >
-            raycor
-          </h1>
+        <div className="mb-6 flex flex-col items-center">
           <div
             style={{
-              height: "3px",
-              margin: "12px auto 0",
-              width: "min(320px, 60%)",
-              background:
-                "linear-gradient(90deg, rgba(94,169,224,0) 0%, #5EA9E0 30%, #5EA9E0 70%, rgba(94,169,224,0) 100%)",
-              borderRadius: "2px",
+              display: "inline-block",
+              border: "3px solid #5EA9E0",
+              borderRadius: "6px",
+              padding: "0.4em 0.9em",
+              background: "rgba(94,169,224,0.05)",
             }}
-          />
+          >
+            <h1
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 800,
+                fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
+                letterSpacing: "-0.01em",
+                lineHeight: "0.9",
+                color: "#F4F1EA",
+                textTransform: "uppercase",
+              }}
+            >
+              raycor
+            </h1>
+          </div>
+          <p
+            style={{
+              marginTop: "14px",
+              fontSize: "0.8125rem",
+              fontWeight: 500,
+              letterSpacing: "0.28em",
+              textTransform: "uppercase",
+              color: "#9A9DA8",
+            }}
+          >
+            Engineered for the Elements
+          </p>
         </div>
 
         <p
