@@ -1,3 +1,6 @@
 {
-  "/page": "app/page.js"
+  "/trade/page": "app/trade/page.js",
+  "/quote-builder/page": "app/quote-builder/page.js",
+  "/page": "app/page.js",
+  "/icon.svg/route": "app/icon.svg/route.js"
 }

@@ -253,12 +253,6 @@ em, i {
   pointer-events: none;
 }
 
-/* Strong warm bias — pulls off-temperature imagery toward 2700K amber. */
-.img-warm-bias img {
-  filter: saturate(0) sepia(1) hue-rotate(-6deg) saturate(1.6)
-    contrast(1.06) brightness(0.9);
-}
-
 /* ---- Buttons ---------------------------------------------- */
 .btn-primary {
   display: inline-flex;

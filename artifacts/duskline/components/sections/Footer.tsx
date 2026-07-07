@@ -142,9 +142,7 @@ export default function Footer() {
               Privacy Policy
             </Link>
           </div>
-          <p style={{ fontSize: "0.8rem", color: "var(--bone-dim)" }}>
-            IP68. No excuses.
-          </p>
+          <p className="spec-mono">IP68. No excuses.</p>
         </div>
       </div>
     </footer>

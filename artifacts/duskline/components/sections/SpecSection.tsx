@@ -41,15 +41,15 @@ export default function SpecSection() {
           }}
         >
           <div
-            className="img-treated img-warm-bias"
+            className="img-treated"
             style={{
               width: "100%",
               height: "clamp(380px, 60vw, 460px)",
             }}
           >
             <Image
-              src="/assets/generated/spec-cove-green.png"
-              alt="Orenara continuous dot-free LED lighting concealed beneath a sandstone coping, casting an even warm glow over a wet terrazzo path with lush tropical foliage leaning in as rain falls"
+              src="/assets/generated/trade-sandstone-wall.png"
+              alt="Orenara continuous dot-free LED strip concealed beneath a sandstone wall coping, casting an even warm amber glow across the stone face at deep dusk by the coast"
               fill
               sizes="(max-width: 768px) 100vw, 1200px"
               style={{ objectFit: "cover" }}

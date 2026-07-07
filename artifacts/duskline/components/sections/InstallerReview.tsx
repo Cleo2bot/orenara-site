@@ -110,7 +110,7 @@ export default function InstallerReview() {
                 I&apos;ve put in that I&apos;m genuinely not worried about.
                 Definitely, IP68 submersible, strip and end caps, tested it in a
                 bucket! Doesn&apos;t flicker or drop over the run. RCM, CE gear.
-                Flexible and straight conduit, easy install. Curves where easy
+                Flexible and straight conduit, easy install. Curves were easy
                 and clean.
               </p>
               <p style={{ marginTop: "1rem" }}>

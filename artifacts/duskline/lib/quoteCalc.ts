@@ -6,17 +6,17 @@ export const MAX_RUN_PER_DRIVER = (DRIVER_RATED_WATTS * SAFETY_DERATE) / STRIP_W
 export type ZoneShape = "straight" | "curved";
 
 export const PART_NUMBERS = {
-  strip: "DL-STRIP-24V-WW",
-  flexibleTrack: "DL-TRK-FLEX",
-  rigidChannel: "DL-TRK-RIGID",
-  driver: "DL-DRV-150W",
-  dimmer: "DL-DIM-010V",
-  plug: "DL-PLG-240V",
+  strip: "OR-STRIP-24V-WW",
+  flexibleTrack: "OR-TRK-FLEX",
+  rigidChannel: "OR-TRK-RIGID",
+  driver: "OR-DRV-150W",
+  dimmer: "OR-DIM-010V",
+  plug: "OR-PLG-240V",
   kits: {
-    "Pathway Kit": "DL-KIT-PATH",
-    "Pergola Kit": "DL-KIT-PERG",
-    "Pool & Water Feature Kit": "DL-KIT-POOL",
-    "Custom Zone Kit": "DL-KIT-CUST",
+    "Pathway Kit": "OR-KIT-PATH",
+    "Pergola Kit": "OR-KIT-PERG",
+    "Pool & Water Feature Kit": "OR-KIT-POOL",
+    "Custom Zone Kit": "OR-KIT-CUST",
   },
 } as const;
 
