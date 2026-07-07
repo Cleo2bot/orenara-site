@@ -55,15 +55,7 @@ export default function SpecSection() {
               style={{ objectFit: "cover" }}
             />
           </div>
-          <div
-            aria-hidden="true"
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "color-mix(in srgb, var(--ink) 55%, transparent)",
-              pointerEvents: "none",
-            }}
-          />
+          <div aria-hidden="true" className="scrim" />
           <div
             style={{
               position: "absolute",

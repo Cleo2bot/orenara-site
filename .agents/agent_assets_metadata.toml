@@ -161,3 +161,27 @@ id = "FW-ziBPTVWtIg-kxPWOd1"
 uri = "file://.canvas/assets/duskline-favicon.png"
 type = "image"
 title = "Duskline favicon"
+
+[[outputs]]
+id = "DbYz7LUNRgaBszUKczk1x"
+uri = "file://screenshots/scrim-before-hero.jpg"
+type = "image"
+title = "Hero — BEFORE (inline scrim)"
+
+[[outputs]]
+id = "RwIrulaSWz4LPf0g0pVYW"
+uri = "file://screenshots/scrim-after-hero.jpg"
+type = "image"
+title = "Hero — AFTER (shared .scrim.scrim-strong)"
+
+[[outputs]]
+id = "68wSMBReYDn6sGykoGIcX"
+uri = "file://screenshots/scrim-before-duskbreather.jpg"
+type = "image"
+title = "Dusk breather — BEFORE (inline scrim)"
+
+[[outputs]]
+id = "9TwR_u2OHeLKQ38vh9SNe"
+uri = "file://screenshots/scrim-after-duskbreather.jpg"
+type = "image"
+title = "Dusk breather — AFTER (shared .scrim)"

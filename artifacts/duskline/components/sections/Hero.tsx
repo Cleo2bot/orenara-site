@@ -26,13 +26,7 @@ export default function Hero() {
           sizes="100vw"
           style={{ objectFit: "cover" }}
         />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(rgba(15, 17, 19, 0.5), rgba(15, 17, 19, 0.55) 66%, rgba(15, 17, 19, 0.82))",
-          }}
-        />
+        <div aria-hidden="true" className="scrim scrim-strong" />
       </div>
 
       {/* Content */}

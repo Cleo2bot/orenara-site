@@ -253,6 +253,26 @@ em, i {
   pointer-events: none;
 }
 
+/* ---- Shared scrim recipe ----------------------------------- */
+/* Text-legibility overlay placed above treated imagery. One recipe,
+   parameterised by strength only:
+   - .scrim         → flat 55% ink (default)
+   - .scrim-strong  → hero variant, strengthened bottom third */
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--ink) 55%, transparent);
+  pointer-events: none;
+}
+
+.scrim-strong {
+  background: linear-gradient(
+    rgba(15, 17, 19, 0.5),
+    rgba(15, 17, 19, 0.55) 66%,
+    rgba(15, 17, 19, 0.82)
+  );
+}
+
 /* ---- Buttons ---------------------------------------------- */
 .btn-primary {
   display: inline-flex;

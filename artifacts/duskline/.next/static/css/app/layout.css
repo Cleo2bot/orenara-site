@@ -803,9 +803,21 @@ em, i {
   );
   pointer-events: none;
 }
-.img-warm-bias img {
-  filter: saturate(0) sepia(1) hue-rotate(-6deg) saturate(1.6)
-    contrast(1.06) brightness(0.9);
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  @supports (color: color-mix(in lab, red, red)) {
+    background: color-mix(in srgb, var(--ink) 55%, transparent);
+  }
+  pointer-events: none;
+}
+.scrim-strong {
+  background: linear-gradient(
+    rgba(15, 17, 19, 0.5),
+    rgba(15, 17, 19, 0.55) 66%,
+    rgba(15, 17, 19, 0.82)
+  );
 }
 .btn-primary {
   display: inline-flex;
