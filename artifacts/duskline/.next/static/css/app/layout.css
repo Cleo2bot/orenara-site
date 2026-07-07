@@ -2,6 +2,7 @@
   !*** css ../../node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!../../node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./app/globals.css ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! tailwindcss v4.3.2 | MIT License | https://tailwindcss.com */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@500&family=IBM+Plex+Mono:wght@400&family=Instrument+Sans:wght@400;500&display=swap");
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -15,23 +16,11 @@
     --container-4xl: 56rem;
     --container-6xl: 72rem;
     --container-7xl: 80rem;
-    --text-sm: 0.875rem;
-    --text-sm--line-height: calc(1.25 / 0.875);
-    --text-base: 1rem;
-    --text-base--line-height: calc(1.5 / 1);
-    --text-xl: 1.25rem;
-    --text-xl--line-height: calc(1.75 / 1.25);
-    --text-3xl: 1.875rem;
-    --text-3xl--line-height: calc(2.25 / 1.875);
     --font-weight-medium: 500;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
-    --color-ink: var(--ink);
-    --color-ink-line: var(--ink-line);
-    --color-bone: var(--bone);
-    --color-bone-dim: var(--bone-dim);
     --color-ember: var(--ember);
     --font-display: 'Archivo', sans-serif;
     --font-body: 'Instrument Sans', sans-serif;
@@ -439,16 +428,6 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
-  .border-b {
-    border-bottom-style: var(--tw-border-style);
-    border-bottom-width: 1px;
-  }
-  .border-ink-line {
-    border-color: var(--color-ink-line);
-  }
-  .bg-ink {
-    background-color: var(--color-ink);
-  }
   .p-4 {
     padding: calc(var(--spacing) * 4);
   }
@@ -488,37 +467,12 @@
   .text-center {
     text-align: center;
   }
-  .font-display {
-    font-family: var(--font-display);
-  }
-  .text-3xl {
-    font-size: var(--text-3xl);
-    line-height: var(--tw-leading, var(--text-3xl--line-height));
-  }
-  .text-base {
-    font-size: var(--text-base);
-    line-height: var(--tw-leading, var(--text-base--line-height));
-  }
-  .text-sm {
-    font-size: var(--text-sm);
-    line-height: var(--tw-leading, var(--text-sm--line-height));
-  }
-  .text-xl {
-    font-size: var(--text-xl);
-    line-height: var(--tw-leading, var(--text-xl--line-height));
-  }
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
   }
   .whitespace-nowrap {
     white-space: nowrap;
-  }
-  .text-bone {
-    color: var(--color-bone);
-  }
-  .text-bone-dim {
-    color: var(--color-bone-dim);
   }
   .capitalize {
     text-transform: capitalize;
@@ -529,9 +483,6 @@
   .tabular-nums {
     --tw-numeric-spacing: tabular-nums;
     font-variant-numeric: var(--tw-ordinal,) var(--tw-slashed-zero,) var(--tw-numeric-figure,) var(--tw-numeric-spacing,) var(--tw-numeric-fraction,);
-  }
-  .no-underline {
-    text-decoration-line: none;
   }
   .underline {
     text-decoration-line: underline;
