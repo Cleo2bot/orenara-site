@@ -50,8 +50,8 @@ const INITIAL_CONTACT: ContactState = { name: "", email: "", phone: "", suburb: 
 const labelStyle: React.CSSProperties = {
   display: "block",
   fontSize: "0.8125rem",
-  fontWeight: 600,
-  color: "#9A9DA8",
+  fontWeight: 500,
+  color: "var(--bone-dim)",
   marginBottom: "8px",
   letterSpacing: "0.04em",
   textTransform: "uppercase",
@@ -156,27 +156,27 @@ export default function QuoteBuilder() {
 
   if (status === "success") {
     return (
-      <section style={{ background: "#15171C", paddingTop: "160px", paddingBottom: "120px" }}>
+      <section style={{ background: "var(--ink)", paddingTop: "160px", paddingBottom: "120px" }}>
         <div className="max-w-3xl mx-auto px-6 text-center">
           <div
             style={{
               width: "64px",
               height: "64px",
               borderRadius: "50%",
-              background: "rgba(245,178,92,0.1)",
-              border: "1px solid rgba(245,178,92,0.3)",
+              background: "var(--ink-raised)",
+              border: "1px solid var(--ink-line)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               margin: "0 auto 24px",
             }}
           >
-            <CheckCircle size={28} style={{ color: "#F5B25C" }} />
+            <CheckCircle size={28} style={{ color: "var(--bone)" }} />
           </div>
-          <h2 className="font-bold mb-4" style={{ fontSize: "1.75rem", color: "#F4F1EA", letterSpacing: "-0.03em" }}>
+          <h2 className="font-medium mb-4" style={{ fontSize: "1.75rem", color: "var(--bone)", letterSpacing: "-0.03em" }}>
             Got it — we'll come back to you within 1–2 business days with pricing and a confirmed lead time.
           </h2>
-          <p style={{ fontSize: "1rem", color: "#9A9DA8", lineHeight: 1.7, maxWidth: "480px", margin: "0 auto" }}>
+          <p style={{ fontSize: "1rem", color: "var(--bone-dim)", lineHeight: 1.7, maxWidth: "480px", margin: "0 auto" }}>
             Your full zone breakdown and bill of materials came through with your enquiry — no need to repeat
             anything on the phone.
           </p>
@@ -194,7 +194,7 @@ export default function QuoteBuilder() {
   }
 
   return (
-    <section style={{ background: "#15171C", paddingTop: "160px", paddingBottom: "120px" }}>
+    <section style={{ background: "var(--ink)", paddingTop: "160px", paddingBottom: "120px" }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="mb-12 max-w-2xl">
@@ -202,17 +202,17 @@ export default function QuoteBuilder() {
             Build Your Kit
           </p>
           <h1
-            className="font-bold mb-4"
+            className="font-medium mb-4"
             style={{
               fontSize: "clamp(2rem, 4.5vw, 3rem)",
-              color: "#F4F1EA",
+              color: "var(--bone)",
               letterSpacing: "-0.03em",
               lineHeight: 1.15,
             }}
           >
             Piece your job together and get a straight quote.
           </h1>
-          <p style={{ color: "#9A9DA8", fontSize: "1.0625rem", lineHeight: 1.7 }}>
+          <p style={{ color: "var(--bone-dim)", fontSize: "1.0625rem", lineHeight: 1.7 }}>
             Add each zone of your project — a garden path, a patio, a pool surround — with its run length and
             shape. We'll work out the drivers, dimmers, and mounting track for you. No pricing shown here, no
             account needed — just email it straight through and we'll come back with real numbers.
@@ -225,12 +225,12 @@ export default function QuoteBuilder() {
             {zones.length === 0 ? (
               <div
                 className="rounded-lg p-10 text-center"
-                style={{ background: "#1F222B", border: "1px dashed rgba(91,100,120,0.35)" }}
+                style={{ background: "var(--ink-raised)", border: "1px dashed var(--ink-line)" }}
               >
-                <p style={{ color: "#9A9DA8", fontSize: "0.9375rem", marginBottom: "20px" }}>
+                <p style={{ color: "var(--bone-dim)", fontSize: "0.9375rem", marginBottom: "20px" }}>
                   No zones yet. Start with the first area of your project.
                 </p>
-                <button type="button" onClick={addZone} className="btn-primary" data-testid="add-zone-btn-empty">
+                <button type="button" onClick={addZone} className="btn-outline" style={{ width: "auto", display: "inline-flex" }} data-testid="add-zone-btn-empty">
                   <Plus size={16} />
                   Add a zone
                 </button>
@@ -275,16 +275,12 @@ export default function QuoteBuilder() {
           <div className="lg:col-span-1">
             <div
               className="lg:sticky rounded-lg p-6"
-              style={{ background: "#1A1D24", border: "1px solid rgba(91,100,120,0.25)", top: "104px" }}
+              style={{ background: "var(--ink-raised)", border: "1px solid var(--ink-line)", top: "104px" }}
               data-testid="quote-summary-panel"
             >
               <p
+                className="eyebrow"
                 style={{
-                  fontSize: "0.75rem",
-                  fontWeight: 700,
-                  color: "#5B6478",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
                   marginBottom: "16px",
                 }}
               >
@@ -292,7 +288,7 @@ export default function QuoteBuilder() {
               </p>
 
               {!hasValidZones ? (
-                <p style={{ color: "#5B6478", fontSize: "0.875rem", lineHeight: 1.6 }}>
+                <p style={{ color: "var(--bone-dim)", fontSize: "0.875rem", lineHeight: 1.6 }}>
                   Add a zone with a run length to see what it needs.
                 </p>
               ) : (
@@ -307,27 +303,23 @@ export default function QuoteBuilder() {
                       ["Flexible track", `${totals.flexibleTrackMetres}m`, PART_NUMBERS.flexibleTrack],
                     ].map(([label, value, partNumber]) => (
                       <div key={label as string} className="flex items-center justify-between gap-3">
-                        <span style={{ color: "#9A9DA8", fontSize: "0.875rem" }}>
+                        <span style={{ color: "var(--bone-dim)", fontSize: "0.875rem" }}>
                           {label}
-                          <span style={{ color: "#5B6478", fontSize: "0.6875rem", marginLeft: "6px" }}>
+                          <span className="spec-mono" style={{ fontSize: "0.6875rem", marginLeft: "6px" }}>
                             ({partNumber})
                           </span>
                         </span>
-                        <span style={{ color: "#F4F1EA", fontSize: "0.9375rem", fontWeight: 600, flexShrink: 0 }}>
+                        <span className="spec-mono" style={{ color: "var(--bone)", fontSize: "0.9375rem", flexShrink: 0 }}>
                           {value}
                         </span>
                       </div>
                     ))}
                   </div>
 
-                  <div style={{ borderTop: "1px solid rgba(91,100,120,0.2)", paddingTop: "16px" }}>
+                  <div style={{ borderTop: "1px solid var(--ink-line)", paddingTop: "16px" }}>
                     <p
+                      className="eyebrow"
                       style={{
-                        fontSize: "0.75rem",
-                        fontWeight: 700,
-                        color: "#5B6478",
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
                         marginBottom: "12px",
                       }}
                     >
@@ -337,8 +329,8 @@ export default function QuoteBuilder() {
                       {calculatedZones
                         .filter((z) => z.totalLengthMetres > 0)
                         .map((z, i) => (
-                          <div key={i} style={{ fontSize: "0.8125rem", color: "#9A9DA8", lineHeight: 1.6 }}>
-                            <span style={{ color: "#F4F1EA", fontWeight: 600 }}>{z.name}</span> —{" "}
+                          <div key={i} style={{ fontSize: "0.8125rem", color: "var(--bone-dim)", lineHeight: 1.6 }}>
+                            <span style={{ color: "var(--bone)" }}>{z.name}</span> —{" "}
                             {z.runs.map((r) => `${r.lengthMetres}m ${r.shape}`).join(" + ")} ({z.totalLengthMetres}m
                             total), {z.driversNeeded} driver{z.driversNeeded === 1 ? "" : "s"} (
                             {PART_NUMBERS.driver})
@@ -347,7 +339,7 @@ export default function QuoteBuilder() {
                     </div>
                   </div>
 
-                  <p className="mt-4" style={{ fontSize: "0.75rem", color: "#5B6478", lineHeight: 1.5 }}>
+                  <p className="mt-4" style={{ fontSize: "0.75rem", color: "var(--bone-dim)", lineHeight: 1.5 }}>
                     Driver count assumes all runs within a zone are wired together on a shared power feed.
                   </p>
 
@@ -369,12 +361,12 @@ export default function QuoteBuilder() {
         {/* Handoff */}
         <div
           className="mt-12 rounded-lg p-8"
-          style={{ background: "#1F222B", border: "1px solid rgba(91,100,120,0.25)" }}
+          style={{ background: "var(--ink-raised)", border: "1px solid var(--ink-line)" }}
         >
-          <h2 className="font-bold mb-2" style={{ fontSize: "1.375rem", color: "#F4F1EA", letterSpacing: "-0.02em" }}>
+          <h2 className="font-medium mb-2" style={{ fontSize: "1.375rem", color: "var(--bone)", letterSpacing: "-0.02em" }}>
             Email this for pricing.
           </h2>
-          <p style={{ color: "#9A9DA8", fontSize: "0.9375rem", lineHeight: 1.7, marginBottom: "28px" }}>
+          <p style={{ color: "var(--bone-dim)", fontSize: "0.9375rem", lineHeight: 1.7, marginBottom: "28px" }}>
             We'll come back within 1–2 business days with pricing and a confirmed lead time. No obligation, no
             automated quote.
           </p>
@@ -383,7 +375,7 @@ export default function QuoteBuilder() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label htmlFor="qb-name" style={labelStyle}>
-                  Name <span style={{ color: "#F5B25C" }}>*</span>
+                  Name <span style={{ color: "var(--bone-dim)" }}>*</span>
                 </label>
                 <input
                   id="qb-name"
@@ -399,7 +391,7 @@ export default function QuoteBuilder() {
 
               <div>
                 <label htmlFor="qb-email" style={labelStyle}>
-                  Email <span style={{ color: "#F5B25C" }}>*</span>
+                  Email <span style={{ color: "var(--bone-dim)" }}>*</span>
                 </label>
                 <input
                   id="qb-email"
@@ -416,7 +408,7 @@ export default function QuoteBuilder() {
               <div>
                 <label htmlFor="qb-phone" style={labelStyle}>
                   Phone{" "}
-                  <span style={{ color: "#5B6478", fontWeight: 400, textTransform: "none", letterSpacing: "normal" }}>
+                  <span style={{ color: "var(--bone-dim)", fontWeight: 400, textTransform: "none", letterSpacing: "normal" }}>
                     (optional)
                   </span>
                 </label>
@@ -433,7 +425,7 @@ export default function QuoteBuilder() {
 
               <div>
                 <label htmlFor="qb-suburb" style={labelStyle}>
-                  Suburb / State <span style={{ color: "#F5B25C" }}>*</span>
+                  Suburb / State <span style={{ color: "var(--bone-dim)" }}>*</span>
                 </label>
                 <input
                   id="qb-suburb"
@@ -449,7 +441,7 @@ export default function QuoteBuilder() {
 
               <div style={{ gridColumn: "1 / -1" }}>
                 <label htmlFor="qb-timeline" style={labelStyle}>
-                  Project timeline <span style={{ color: "#F5B25C" }}>*</span>
+                  Project timeline <span style={{ color: "var(--bone-dim)" }}>*</span>
                 </label>
                 <select
                   id="qb-timeline"
@@ -474,11 +466,11 @@ export default function QuoteBuilder() {
             {status === "error" && (
               <div
                 className="flex items-start gap-3 mt-5 p-4 rounded-lg"
-                style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.25)" }}
+                style={{ background: "var(--ink-raised)", border: "1px solid var(--ink-line)" }}
                 data-testid="quote-builder-error"
               >
-                <AlertCircle size={18} style={{ color: "#EF4444", flexShrink: 0, marginTop: "1px" }} />
-                <p style={{ color: "#EF4444", fontSize: "0.9rem" }}>{errorMsg}</p>
+                <AlertCircle size={18} style={{ color: "var(--bone)", flexShrink: 0, marginTop: "1px" }} />
+                <p style={{ color: "var(--bone)", fontSize: "0.9rem" }}>{errorMsg}</p>
               </div>
             )}
 
@@ -504,7 +496,7 @@ export default function QuoteBuilder() {
                 <FileDown size={16} />
                 Download PDF
               </button>
-              <p style={{ fontSize: "0.8125rem", color: "#5B6478", lineHeight: 1.5 }}>
+              <p style={{ fontSize: "0.8125rem", color: "var(--bone-dim)", lineHeight: 1.5 }}>
                 We respond within 1–2 business days.
                 <br />
                 No spam. No automated quotes.

@@ -8,7 +8,8 @@ export default function TradeResourcesLayout({ children }: { children: React.Rea
       <header
         className="fixed top-0 left-0 right-0 z-50"
         style={{
-          background: "linear-gradient(180deg, rgba(21,23,28,0.97) 0%, rgba(21,23,28,0.0) 100%)",
+          background: "var(--ink)",
+          borderBottom: "1px solid var(--ink-line)",
         }}
       >
         <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
@@ -18,7 +19,7 @@ export default function TradeResourcesLayout({ children }: { children: React.Rea
           <Link
             href="/"
             className="hidden sm:inline-flex"
-            style={{ color: "#9A9DA8", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none" }}
+            style={{ color: "var(--bone-dim)", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none" }}
             data-testid="trade-resources-back-link"
           >
             Back to site
@@ -26,7 +27,7 @@ export default function TradeResourcesLayout({ children }: { children: React.Rea
         </nav>
       </header>
 
-      <main style={{ background: "#15171C", minHeight: "100vh" }}>{children}</main>
+      <main style={{ background: "var(--ink)", minHeight: "100vh" }}>{children}</main>
 
       <Footer />
     </>

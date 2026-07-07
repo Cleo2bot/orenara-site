@@ -26,8 +26,8 @@ export default function TradeSteps() {
     <section
       id="how-trade-works"
       style={{
-        background: "#1F222B",
-        borderTop: "1px solid rgba(91,100,120,0.2)",
+        background: "var(--ink-raised)",
+        borderTop: "1px solid var(--ink-line)",
         paddingTop: "96px",
         paddingBottom: "96px",
       }}
@@ -38,10 +38,9 @@ export default function TradeSteps() {
             How trade orders work
           </p>
           <h2
-            className="font-bold"
             style={{
               fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              color: "#F4F1EA",
+              color: "var(--bone)",
               letterSpacing: "-0.03em",
               lineHeight: 1.15,
               maxWidth: "620px",
@@ -60,7 +59,7 @@ export default function TradeSteps() {
               left: "calc(33.33% + 20px)",
               right: "calc(33.33% + 20px)",
               height: "1px",
-              background: "linear-gradient(90deg, rgba(245,178,92,0.4), rgba(245,178,92,0.2))",
+              background: "var(--ink-line)",
             }}
             aria-hidden="true"
           />
@@ -83,23 +82,23 @@ export default function TradeSteps() {
                       width: "56px",
                       height: "56px",
                       borderRadius: "50%",
-                      border: "1px solid rgba(245,178,92,0.3)",
-                      background: "rgba(245,178,92,0.06)",
+                      border: "1px solid var(--ink-line)",
+                      background: "var(--ink)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       flexShrink: 0,
                     }}
                   >
-                    <Icon size={22} style={{ color: "#F5B25C" }} />
+                    <Icon size={22} style={{ color: "var(--bone-dim)" }} />
                   </div>
                   <span
+                    className="spec-mono-upper"
                     style={{
-                      fontSize: "0.75rem",
-                      fontWeight: 700,
-                      color: "#F5B25C",
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
+                      position: "relative",
+                      zIndex: 1,
+                      background: "var(--ink-raised)",
+                      paddingRight: "12px",
                     }}
                   >
                     Step {step.number}
@@ -107,17 +106,17 @@ export default function TradeSteps() {
                 </div>
 
                 <h3
-                  className="font-bold mb-4"
+                  className="mb-4"
                   style={{
                     fontSize: "1.125rem",
-                    color: "#F4F1EA",
+                    color: "var(--bone)",
                     letterSpacing: "-0.02em",
                     lineHeight: 1.3,
                   }}
                 >
                   {step.title}
                 </h3>
-                <p style={{ fontSize: "0.9375rem", color: "#9A9DA8", lineHeight: 1.75 }}>
+                <p style={{ fontSize: "0.9375rem", color: "var(--bone-dim)", lineHeight: 1.75 }}>
                   {step.body}
                 </p>
               </div>
@@ -127,12 +126,11 @@ export default function TradeSteps() {
 
         {/* Product finish image */}
         <div
-          className="glow-amber-sm"
           style={{
             marginTop: "16px",
-            borderRadius: "16px",
+            borderRadius: "var(--radius)",
             overflow: "hidden",
-            border: "1px solid rgba(91,100,120,0.25)",
+            border: "1px solid var(--ink-line)",
             position: "relative",
           }}
         >
@@ -146,20 +144,18 @@ export default function TradeSteps() {
             style={{
               position: "absolute",
               inset: 0,
-              background:
-                "linear-gradient(180deg, rgba(21,23,28,0) 55%, rgba(21,23,28,0.75) 100%)",
+              background: "color-mix(in srgb, var(--ink) 55%, transparent)",
               pointerEvents: "none",
             }}
           />
           <p
-            className="font-bold"
             style={{
               position: "absolute",
               left: "clamp(20px, 4vw, 32px)",
               right: "clamp(20px, 4vw, 32px)",
               bottom: "22px",
               fontSize: "0.9375rem",
-              color: "#F4F1EA",
+              color: "var(--bone)",
               letterSpacing: "-0.01em",
               lineHeight: 1.4,
             }}

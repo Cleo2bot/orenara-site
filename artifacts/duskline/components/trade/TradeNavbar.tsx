@@ -11,7 +11,8 @@ export default function TradeNavbar() {
     <header
       className="fixed top-0 left-0 right-0 z-50"
       style={{
-        background: "linear-gradient(180deg, rgba(21,23,28,0.95) 0%, rgba(21,23,28,0.0) 100%)",
+        background: "var(--ink)",
+        borderBottom: "1px solid var(--ink-line)",
         backdropFilter: "none",
       }}
     >
@@ -23,12 +24,12 @@ export default function TradeNavbar() {
           <span
             style={{
               fontSize: "0.65rem",
-              fontWeight: 700,
-              color: "#F5B25C",
+              fontWeight: 500,
+              color: "var(--bone-dim)",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
-              border: "1px solid rgba(245,178,92,0.35)",
-              borderRadius: "4px",
+              border: "1px solid var(--ink-line)",
+              borderRadius: "var(--radius)",
               padding: "2px 7px",
             }}
           >
@@ -38,9 +39,9 @@ export default function TradeNavbar() {
         <div className="flex items-center gap-5">
           <Link
             href="/quote-builder"
-            className="hidden sm:inline-flex"
+            className="hidden sm:inline-flex whitespace-nowrap"
             style={{
-              color: "#9A9DA8",
+              color: "var(--bone-dim)",
               fontSize: "0.875rem",
               fontWeight: 500,
               textDecoration: "none",
@@ -53,7 +54,7 @@ export default function TradeNavbar() {
             href="/"
             className="hidden sm:inline-flex"
             style={{
-              color: "#9A9DA8",
+              color: "var(--bone-dim)",
               fontSize: "0.875rem",
               fontWeight: 500,
               textDecoration: "none",
@@ -64,8 +65,8 @@ export default function TradeNavbar() {
           </Link>
           <button
             onClick={scrollToForm}
-            className="btn-primary hidden sm:inline-flex"
-            style={{ padding: "10px 20px", fontSize: "0.875rem" }}
+            className="btn-outline hidden sm:inline-flex w-auto"
+            style={{ padding: "9px 18px", fontSize: "0.8125rem" }}
             data-testid="nav-trade-quote-btn"
           >
             Get a Trade Quote

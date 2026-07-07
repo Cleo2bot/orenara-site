@@ -7,21 +7,19 @@ export default function InstallerReview() {
     <section
       id="review"
       style={{
-        background: "#15171C",
-        borderTop: "1px solid rgba(91,100,120,0.2)",
+        background: "var(--ink)",
+        borderTop: "1px solid var(--ink-line)",
       }}
     >
       <div className="max-w-7xl mx-auto px-6 py-24">
         {/* Header */}
         <div className="mb-12">
-          <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
-            From the trade
-          </p>
+          <p className="eyebrow mb-6">From the trade</p>
           <h2
-            className="font-bold"
+            className="font-medium"
             style={{
               fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              color: "#F4F1EA",
+              color: "var(--bone)",
               letterSpacing: "-0.03em",
               lineHeight: 1.15,
               maxWidth: "640px",
@@ -35,8 +33,8 @@ export default function InstallerReview() {
         <div
           className="rounded-xl"
           style={{
-            background: "#1F222B",
-            border: "1px solid rgba(91,100,120,0.25)",
+            background: "var(--ink-raised)",
+            border: "1px solid var(--ink-line)",
             overflow: "hidden",
           }}
           data-testid="installer-review"
@@ -50,7 +48,7 @@ export default function InstallerReview() {
                 position: "absolute",
                 top: "20px",
                 right: "22px",
-                color: "#F5B25C",
+                color: "var(--bone-dim)",
                 opacity: 0.08,
                 transform: "scaleX(-1)",
                 pointerEvents: "none",
@@ -65,14 +63,14 @@ export default function InstallerReview() {
                 aria-label="Rated 5 out of 5 stars"
               >
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={14} style={{ color: "#F5B25C" }} fill="#F5B25C" />
+                  <Star key={i} size={14} style={{ color: "var(--bone)" }} fill="var(--bone)" />
                 ))}
               </div>
               <span
                 style={{
                   fontSize: "0.8125rem",
-                  fontWeight: 700,
-                  color: "#F4F1EA",
+                  fontWeight: 500,
+                  color: "var(--bone)",
                   letterSpacing: "0.01em",
                 }}
               >
@@ -82,12 +80,12 @@ export default function InstallerReview() {
                 className="inline-flex items-center gap-1.5"
                 style={{
                   fontSize: "0.7rem",
-                  fontWeight: 600,
-                  color: "#F5B25C",
-                  background: "rgba(245,178,92,0.08)",
-                  border: "1px solid rgba(245,178,92,0.22)",
+                  fontWeight: 500,
+                  color: "var(--bone-dim)",
+                  background: "transparent",
+                  border: "1px solid var(--ink-line)",
                   padding: "3px 9px",
-                  borderRadius: "999px",
+                  borderRadius: "var(--radius)",
                   letterSpacing: "0.02em",
                 }}
               >
@@ -100,7 +98,7 @@ export default function InstallerReview() {
             <blockquote
               style={{
                 fontSize: "0.9375rem",
-                color: "#C9CCD4",
+                color: "var(--bone-dim)",
                 lineHeight: 1.65,
                 letterSpacing: "-0.005em",
                 maxWidth: "760px",
@@ -127,23 +125,22 @@ export default function InstallerReview() {
               className="mt-6 flex items-center gap-3"
               style={{
                 paddingTop: "18px",
-                borderTop: "1px solid rgba(91,100,120,0.2)",
+                borderTop: "1px solid var(--ink-line)",
               }}
             >
               <div style={{ position: "relative", flexShrink: 0 }}>
                 <div
+                  className="spec-mono-upper"
                   style={{
                     width: "36px",
                     height: "36px",
                     borderRadius: "50%",
-                    background: "rgba(245,178,92,0.1)",
-                    border: "1px solid rgba(245,178,92,0.25)",
+                    background: "var(--ink-raised)",
+                    border: "1px solid var(--ink-line)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontWeight: 700,
                     fontSize: "0.72rem",
-                    color: "#F5B25C",
                     letterSpacing: "0.03em",
                   }}
                 >
@@ -156,8 +153,8 @@ export default function InstallerReview() {
                     position: "absolute",
                     bottom: "-3px",
                     right: "-3px",
-                    color: "#F5B25C",
-                    background: "#1F222B",
+                    color: "var(--bone-dim)",
+                    background: "var(--ink-raised)",
                     borderRadius: "50%",
                   }}
                 />
@@ -166,13 +163,13 @@ export default function InstallerReview() {
                 <p
                   style={{
                     fontSize: "0.8125rem",
-                    fontWeight: 600,
-                    color: "#F4F1EA",
+                    fontWeight: 500,
+                    color: "var(--bone)",
                   }}
                 >
                   Licensed electrical installer
                 </p>
-                <p style={{ fontSize: "0.78rem", color: "#9A9DA8" }}>
+                <p style={{ fontSize: "0.78rem", color: "var(--bone-dim)" }}>
                   Brisbane, QLD · Verified install
                 </p>
               </div>

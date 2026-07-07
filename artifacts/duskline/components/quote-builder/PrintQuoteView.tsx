@@ -18,7 +18,7 @@ interface PrintQuoteViewProps {
   partLabels: Record<string, string>;
 }
 
-const rule = { border: "none", borderTop: "1px solid #ccc", margin: "16px 0" };
+const rule = { border: "none", borderTop: "1px solid var(--print-line)", margin: "16px 0" };
 
 export default function PrintQuoteView({ zones, totals, contact, partLabels }: PrintQuoteViewProps) {
   const validZones = zones.filter((z) => z.totalLengthMetres > 0);
@@ -35,20 +35,20 @@ export default function PrintQuoteView({ zones, totals, contact, partLabels }: P
   }, []);
 
   return (
-    <div className="print-only" style={{ color: "#15171C", fontFamily: "Inter, system-ui, sans-serif", padding: "24px" }}>
+    <div className="print-only" style={{ color: "var(--print-ink)", fontFamily: "system-ui, sans-serif", padding: "24px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
         <div>
-          <div style={{ fontSize: "1.5rem", fontWeight: 800, letterSpacing: "-0.02em" }}>ORENARA</div>
-          <div style={{ fontSize: "0.75rem", color: "#D4913A", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginTop: "4px" }}>
+          <div style={{ fontSize: "1.5rem", fontWeight: 500, letterSpacing: "-0.02em" }}>ORENARA</div>
+          <div style={{ fontSize: "0.75rem", color: "var(--print-ink)", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", marginTop: "4px" }}>
             Quote Request Summary
           </div>
         </div>
-        <div style={{ textAlign: "right", fontSize: "0.8125rem", color: "#555" }}>
+        <div style={{ textAlign: "right", fontSize: "0.8125rem", color: "var(--print-mid)" }}>
           <div>Generated {generatedDate}</div>
         </div>
       </div>
 
-      <hr style={{ ...rule, borderTopColor: "#D4913A", borderTopWidth: "2px" }} />
+      <hr style={{ ...rule, borderTopColor: "var(--print-ink)", borderTopWidth: "2px" }} />
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px 24px", fontSize: "0.875rem", marginBottom: "8px" }}>
         <div><strong>Name:</strong> {contact.name || "—"}</div>
@@ -61,28 +61,28 @@ export default function PrintQuoteView({ zones, totals, contact, partLabels }: P
 
       <hr style={rule} />
 
-      <div style={{ fontSize: "0.875rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#15171C", marginBottom: "12px" }}>
+      <div style={{ fontSize: "0.875rem", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--print-ink)", marginBottom: "12px" }}>
         1. Zone breakdown
       </div>
 
       {validZones.map((zone, i) => (
         <div key={i} style={{ marginBottom: "18px", pageBreakInside: "avoid" }}>
-          <div style={{ fontSize: "1rem", fontWeight: 700, marginBottom: "4px" }}>
+          <div style={{ fontSize: "1rem", fontWeight: 500, marginBottom: "4px" }}>
             {i + 1}.{"  "}
             {zone.name}
           </div>
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8125rem" }}>
             <thead>
-              <tr style={{ borderBottom: "1px solid #ccc" }}>
-                <th style={{ textAlign: "left", padding: "4px 8px 4px 0", fontWeight: 600, color: "#555" }}>Run</th>
-                <th style={{ textAlign: "left", padding: "4px 8px", fontWeight: 600, color: "#555" }}>Length</th>
-                <th style={{ textAlign: "left", padding: "4px 8px", fontWeight: 600, color: "#555" }}>Shape</th>
-                <th style={{ textAlign: "left", padding: "4px 0 4px 8px", fontWeight: 600, color: "#555" }}>Mounting part</th>
+              <tr style={{ borderBottom: "1px solid var(--print-line)" }}>
+                <th style={{ textAlign: "left", padding: "4px 8px 4px 0", fontWeight: 500, color: "var(--print-mid)" }}>Run</th>
+                <th style={{ textAlign: "left", padding: "4px 8px", fontWeight: 500, color: "var(--print-mid)" }}>Length</th>
+                <th style={{ textAlign: "left", padding: "4px 8px", fontWeight: 500, color: "var(--print-mid)" }}>Shape</th>
+                <th style={{ textAlign: "left", padding: "4px 0 4px 8px", fontWeight: 500, color: "var(--print-mid)" }}>Mounting part</th>
               </tr>
             </thead>
             <tbody>
               {zone.runs.map((run, ri) => (
-                <tr key={ri} style={{ borderBottom: "1px solid #eee" }}>
+                <tr key={ri} style={{ borderBottom: "1px solid var(--print-line-soft)" }}>
                   <td style={{ padding: "4px 8px 4px 0" }}>Run {ri + 1}</td>
                   <td style={{ padding: "4px 8px" }}>{run.lengthMetres}m</td>
                   <td style={{ padding: "4px 8px", textTransform: "capitalize" }}>{run.shape}</td>
@@ -95,26 +95,26 @@ export default function PrintQuoteView({ zones, totals, contact, partLabels }: P
             </tbody>
           </table>
 
-          <div style={{ fontSize: "0.8125rem", marginTop: "8px", color: "#333" }}>
+          <div style={{ fontSize: "0.8125rem", marginTop: "8px", color: "var(--print-ink)" }}>
             <strong>Total run length:</strong> {zone.totalLengthMetres}m &nbsp;|&nbsp;{" "}
             <strong>Required parts:</strong> {zone.driversNeeded}x {partLabels.driver} ({PART_NUMBERS.driver}),{" "}
             {zone.dimmersNeeded}x {partLabels.dimmer} ({PART_NUMBERS.dimmer}), {zone.plugsNeeded}x {partLabels.plug} (
             {PART_NUMBERS.plug})
           </div>
           {zone.runs.length > 1 && (
-            <div style={{ fontSize: "0.75rem", color: "#777", marginTop: "4px", fontStyle: "italic" }}>
+            <div style={{ fontSize: "0.75rem", color: "var(--print-faint)", marginTop: "4px" }}>
               Driver count assumes all runs in this zone are wired together on a shared power feed.
             </div>
           )}
           {zone.note && (
-            <div style={{ fontSize: "0.75rem", color: "#777", marginTop: "4px" }}>Note: {zone.note}</div>
+            <div style={{ fontSize: "0.75rem", color: "var(--print-faint)", marginTop: "4px" }}>Note: {zone.note}</div>
           )}
         </div>
       ))}
 
       <hr style={rule} />
 
-      <div style={{ fontSize: "0.875rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#15171C", marginBottom: "12px" }}>
+      <div style={{ fontSize: "0.875rem", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--print-ink)", marginBottom: "12px" }}>
         2. Consolidated totals
       </div>
 
@@ -128,10 +128,10 @@ export default function PrintQuoteView({ zones, totals, contact, partLabels }: P
             [`${partLabels.rigidChannel}`, PART_NUMBERS.rigidChannel, `${totals.rigidChannelMetres}m`],
             [`${partLabels.flexibleTrack}`, PART_NUMBERS.flexibleTrack, `${totals.flexibleTrackMetres}m`],
           ].map(([label, partNumber, value]) => (
-            <tr key={label as string} style={{ borderBottom: "1px solid #eee" }}>
+            <tr key={label as string} style={{ borderBottom: "1px solid var(--print-line-soft)" }}>
               <td style={{ padding: "6px 8px 6px 0" }}>{label}</td>
-              <td style={{ padding: "6px 8px", color: "#777" }}>{partNumber}</td>
-              <td style={{ padding: "6px 0", textAlign: "right", fontWeight: 700 }}>{value}</td>
+              <td style={{ padding: "6px 8px", color: "var(--print-faint)" }}>{partNumber}</td>
+              <td style={{ padding: "6px 0", textAlign: "right", fontWeight: 500 }}>{value}</td>
             </tr>
           ))}
         </tbody>
@@ -139,7 +139,7 @@ export default function PrintQuoteView({ zones, totals, contact, partLabels }: P
 
       <hr style={rule} />
 
-      <div style={{ fontSize: "0.75rem", color: "#555", lineHeight: 1.6 }}>
+      <div style={{ fontSize: "0.75rem", color: "var(--print-mid)", lineHeight: 1.6 }}>
         Pricing is enquiry-only. Contact hello@orenara.com to confirm pricing and lead time.
         <br />
         orenara.com.au

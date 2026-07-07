@@ -16,19 +16,17 @@ export default function ProductKits() {
   return (
     <section
       id="kits"
-      style={{ background: "#15171C", paddingTop: "96px", paddingBottom: "96px" }}
+      style={{ background: "var(--ink)", paddingTop: "96px", paddingBottom: "96px" }}
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="mb-16">
-          <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
-            Pre-specced kits
-          </p>
+          <p className="eyebrow mb-6">Pre-specced kits</p>
           <h2
-            className="font-bold"
+            className="font-medium"
             style={{
               fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              color: "#F4F1EA",
+              color: "var(--bone)",
               letterSpacing: "-0.03em",
               lineHeight: 1.15,
               maxWidth: "640px",
@@ -39,7 +37,7 @@ export default function ProductKits() {
           <p
             style={{
               marginTop: "16px",
-              color: "#9A9DA8",
+              color: "var(--bone-dim)",
               fontSize: "1rem",
               lineHeight: 1.7,
               maxWidth: "560px",
@@ -59,12 +57,8 @@ export default function ProductKits() {
               key={i}
               className="kit-card rounded-lg p-8 flex flex-col"
               style={{
-                background: kit.accent
-                  ? "rgba(245,178,92,0.04)"
-                  : "#1F222B",
-                border: kit.accent
-                  ? "1px solid rgba(245,178,92,0.25)"
-                  : "1px solid rgba(91,100,120,0.25)",
+                background: "var(--ink-raised)",
+                border: "1px solid var(--ink-line)",
               }}
               data-testid={`kit-card-${i}`}
             >
@@ -90,8 +84,7 @@ export default function ProductKits() {
                   style={{
                     position: "absolute",
                     inset: 0,
-                    background:
-                      "linear-gradient(180deg, transparent 50%, rgba(31,34,43,0.9) 100%)",
+                    background: "color-mix(in srgb, var(--ink) 40%, transparent)",
                   }}
                 />
               </div>
@@ -99,16 +92,16 @@ export default function ProductKits() {
               {/* Kit header */}
               <div className="mb-5">
                 <h3
-                  className="font-bold mb-1"
+                  className="font-medium mb-1"
                   style={{
                     fontSize: "1.1875rem",
-                    color: "#F4F1EA",
+                    color: "var(--bone)",
                     letterSpacing: "-0.02em",
                   }}
                 >
                   {kit.name}
                 </h3>
-                <p style={{ fontSize: "0.875rem", color: "#F5B25C", fontWeight: 500 }}>
+                <p style={{ fontSize: "0.875rem", color: "var(--bone-dim)", fontWeight: 500 }}>
                   {kit.tagline}
                 </p>
               </div>
@@ -117,7 +110,7 @@ export default function ProductKits() {
               <p
                 style={{
                   fontSize: "0.9375rem",
-                  color: "#9A9DA8",
+                  color: "var(--bone-dim)",
                   lineHeight: 1.7,
                   marginBottom: "20px",
                   flex: 1,
@@ -129,23 +122,7 @@ export default function ProductKits() {
               {/* Specs */}
               <div className="flex flex-wrap gap-2 mb-6">
                 {kit.specs.map((spec, j) => (
-                  <span
-                    key={j}
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "5px",
-                      fontSize: "0.75rem",
-                      fontWeight: 600,
-                      letterSpacing: "0.05em",
-                      textTransform: "uppercase",
-                      color: "#9A9DA8",
-                      background: "rgba(91,100,120,0.15)",
-                      border: "1px solid rgba(91,100,120,0.25)",
-                      padding: "4px 10px",
-                      borderRadius: "4px",
-                    }}
-                  >
+                  <span key={j} className="spec-badge">
                     {spec}
                   </span>
                 ))}
@@ -156,13 +133,13 @@ export default function ProductKits() {
                 <p
                   style={{
                     fontSize: "0.8rem",
-                    color: "#5B6478",
+                    color: "var(--bone-dim)",
                     lineHeight: 1.6,
                     marginBottom: "16px",
                     padding: "10px 12px",
-                    background: "rgba(91,100,120,0.1)",
-                    borderRadius: "4px",
-                    borderLeft: "2px solid rgba(91,100,120,0.4)",
+                    background: "var(--ink)",
+                    borderRadius: "var(--radius)",
+                    borderLeft: "2px solid var(--ink-line)",
                   }}
                 >
                   {kit.note}
@@ -186,7 +163,7 @@ export default function ProductKits() {
                   textAlign: "center",
                   marginTop: "12px",
                   fontSize: "0.8125rem",
-                  color: "#9A9DA8",
+                  color: "var(--bone-dim)",
                   textDecoration: "underline",
                   textUnderlineOffset: "3px",
                 }}
@@ -200,7 +177,7 @@ export default function ProductKits() {
         {/* Bottom note */}
         <p
           className="text-center mt-10"
-          style={{ fontSize: "0.8125rem", color: "#5B6478", lineHeight: 1.6 }}
+          style={{ fontSize: "0.8125rem", color: "var(--bone-dim)", lineHeight: 1.6 }}
         >
           Pricing is enquiry-only — no pricing is displayed on this site.
           All products are made to order; typical lead time is 20 business days from

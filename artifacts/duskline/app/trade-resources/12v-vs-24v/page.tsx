@@ -16,10 +16,9 @@ export default function VoltageComparisonPage() {
           Trade Resources
         </p>
         <h1
-          className="font-bold"
           style={{
             fontSize: "clamp(2rem, 5vw, 3rem)",
-            color: "#F4F1EA",
+            color: "var(--bone)",
             letterSpacing: "-0.03em",
             lineHeight: 1.12,
           }}
@@ -27,7 +26,7 @@ export default function VoltageComparisonPage() {
           12V vs 24V — Why It Matters Past 5 Metres
         </h1>
 
-        <div style={{ marginTop: "36px", fontSize: "1rem", color: "#C9CCD4", lineHeight: 1.85 }}>
+        <div style={{ marginTop: "36px", fontSize: "1rem", color: "var(--bone-dim)", lineHeight: 1.85 }}>
           <p style={{ marginBottom: "20px" }}>
             Lower-voltage systems suffer worse voltage drop over distance than higher-voltage
             systems carrying the same power. In practice, that means a 12V strip needs more
@@ -46,10 +45,10 @@ export default function VoltageComparisonPage() {
           </p>
         </div>
 
-        <div style={{ marginTop: "48px", paddingTop: "32px", borderTop: "1px solid rgba(91,100,120,0.2)" }}>
+        <div style={{ marginTop: "48px", paddingTop: "32px", borderTop: "1px solid var(--ink-line)" }}>
           <Link
             href="/trade-resources"
-            style={{ fontSize: "0.9375rem", color: "#9A9DA8", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            style={{ fontSize: "0.9375rem", color: "var(--bone-dim)", textDecoration: "underline", textUnderlineOffset: "3px" }}
             data-testid="voltage-hub-link"
           >
             See more in Trade Resources

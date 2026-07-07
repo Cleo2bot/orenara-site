@@ -28,8 +28,8 @@ export default function WhyTrades() {
     <section
       id="why-trades"
       style={{
-        background: "#15171C",
-        borderTop: "1px solid rgba(91,100,120,0.2)",
+        background: "var(--ink)",
+        borderTop: "1px solid var(--ink-line)",
         paddingTop: "96px",
         paddingBottom: "96px",
       }}
@@ -40,10 +40,9 @@ export default function WhyTrades() {
             Why trades order from Orenara
           </p>
           <h2
-            className="font-bold"
             style={{
               fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              color: "#F4F1EA",
+              color: "var(--bone)",
               letterSpacing: "-0.03em",
               lineHeight: 1.15,
               maxWidth: "620px",
@@ -61,8 +60,8 @@ export default function WhyTrades() {
                 key={i}
                 className="flex items-start gap-5 p-7 rounded-lg"
                 style={{
-                  background: "#1F222B",
-                  border: "1px solid rgba(91,100,120,0.2)",
+                  background: "var(--ink-raised)",
+                  border: "1px solid var(--ink-line)",
                 }}
                 data-testid={`why-trade-${i}`}
               >
@@ -70,30 +69,30 @@ export default function WhyTrades() {
                   style={{
                     width: "48px",
                     height: "48px",
-                    borderRadius: "10px",
-                    border: "1px solid rgba(245,178,92,0.3)",
-                    background: "rgba(245,178,92,0.06)",
+                    borderRadius: "var(--radius)",
+                    border: "1px solid var(--ink-line)",
+                    background: "var(--ink)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     flexShrink: 0,
                   }}
                 >
-                  <Icon size={22} style={{ color: "#F5B25C" }} />
+                  <Icon size={22} style={{ color: "var(--bone-dim)" }} />
                 </div>
                 <div>
                   <h3
-                    className="font-bold mb-2"
+                    className="mb-2"
                     style={{
                       fontSize: "1.0625rem",
-                      color: "#F4F1EA",
+                      color: "var(--bone)",
                       letterSpacing: "-0.01em",
                       lineHeight: 1.3,
                     }}
                   >
                     {reason.title}
                   </h3>
-                  <p style={{ fontSize: "0.9375rem", color: "#9A9DA8", lineHeight: 1.7 }}>
+                  <p style={{ fontSize: "0.9375rem", color: "var(--bone-dim)", lineHeight: 1.7 }}>
                     {reason.body}
                   </p>
                 </div>
@@ -104,12 +103,11 @@ export default function WhyTrades() {
 
         {/* Awe shot */}
         <div
-          className="glow-amber"
           style={{
             marginTop: "56px",
-            borderRadius: "16px",
+            borderRadius: "var(--radius)",
             overflow: "hidden",
-            border: "1px solid rgba(245,178,92,0.2)",
+            border: "1px solid var(--ink-line)",
             position: "relative",
           }}
         >
@@ -123,8 +121,7 @@ export default function WhyTrades() {
             style={{
               position: "absolute",
               inset: 0,
-              background:
-                "linear-gradient(90deg, rgba(21,23,28,0.8) 0%, rgba(21,23,28,0.2) 55%, rgba(21,23,28,0) 100%)",
+              background: "color-mix(in srgb, var(--ink) 55%, transparent)",
               pointerEvents: "none",
             }}
           />
@@ -138,10 +135,9 @@ export default function WhyTrades() {
             }}
           >
             <p
-              className="font-bold"
               style={{
                 fontSize: "clamp(1.25rem, 3vw, 2rem)",
-                color: "#F4F1EA",
+                color: "var(--bone)",
                 letterSpacing: "-0.02em",
                 lineHeight: 1.2,
               }}
@@ -152,7 +148,7 @@ export default function WhyTrades() {
               style={{
                 marginTop: "12px",
                 fontSize: "0.9375rem",
-                color: "#C9CCD4",
+                color: "var(--bone-dim)",
                 lineHeight: 1.6,
               }}
             >

@@ -58,8 +58,8 @@ export default function Environments() {
     <section
       id="environments"
       style={{
-        background: "#15171C",
-        borderBottom: "1px solid rgba(91,100,120,0.2)",
+        background: "var(--ink)",
+        borderBottom: "1px solid var(--ink-line)",
         paddingTop: "96px",
         paddingBottom: "96px",
       }}
@@ -67,14 +67,12 @@ export default function Environments() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="mb-16">
-          <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
-            Environments
-          </p>
+          <p className="eyebrow mb-6">Environments</p>
           <h2
-            className="font-bold"
+            className="font-medium"
             style={{
               fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              color: "#F4F1EA",
+              color: "var(--bone)",
               letterSpacing: "-0.03em",
               lineHeight: 1.15,
               maxWidth: "640px",
@@ -85,7 +83,7 @@ export default function Environments() {
           <p
             style={{
               marginTop: "16px",
-              color: "#9A9DA8",
+              color: "var(--bone-dim)",
               fontSize: "1rem",
               lineHeight: 1.7,
               maxWidth: "620px",
@@ -105,8 +103,8 @@ export default function Environments() {
                 key={i}
                 className="kit-card rounded-lg p-8 flex flex-col"
                 style={{
-                  background: "#1F222B",
-                  border: "1px solid rgba(91,100,120,0.25)",
+                  background: "var(--ink-raised)",
+                  border: "1px solid var(--ink-line)",
                 }}
                 data-testid={`environment-card-${i}`}
               >
@@ -132,18 +130,17 @@ export default function Environments() {
                     style={{
                       position: "absolute",
                       inset: 0,
-                      background:
-                        "linear-gradient(180deg, transparent 50%, rgba(31,34,43,0.9) 100%)",
+                      background: "color-mix(in srgb, var(--ink) 40%, transparent)",
                     }}
                   />
                 </div>
 
                 {/* Title */}
                 <h3
-                  className="font-bold mb-2"
+                  className="font-medium mb-2"
                   style={{
                     fontSize: "1.1875rem",
-                    color: "#F4F1EA",
+                    color: "var(--bone)",
                     letterSpacing: "-0.02em",
                   }}
                 >
@@ -154,7 +151,7 @@ export default function Environments() {
                 <p
                   style={{
                     fontSize: "0.875rem",
-                    color: "#F5B25C",
+                    color: "var(--bone)",
                     fontWeight: 500,
                     lineHeight: 1.5,
                     marginBottom: "14px",
@@ -170,7 +167,7 @@ export default function Environments() {
                     className={isOpen ? "" : "line-clamp-2"}
                     style={{
                       fontSize: "0.9375rem",
-                      color: "#9A9DA8",
+                      color: "var(--bone-dim)",
                       lineHeight: 1.7,
                     }}
                   >
@@ -188,9 +185,9 @@ export default function Environments() {
                     style={{
                       marginTop: "12px",
                       alignSelf: "flex-start",
-                      color: "#F5B25C",
+                      color: "var(--bone-dim)",
                       fontSize: "0.8125rem",
-                      fontWeight: 600,
+                      fontWeight: 500,
                       background: "transparent",
                       border: "none",
                       padding: 0,
@@ -217,16 +214,16 @@ export default function Environments() {
         <div
           className="mt-8 p-8 rounded-lg"
           style={{
-            background: "#1A1D24",
-            border: "1px solid rgba(91,100,120,0.25)",
+            background: "var(--ink-raised)",
+            border: "1px solid var(--ink-line)",
           }}
         >
           <div className="flex items-start gap-4">
             <ShieldCheck
               size={22}
-              style={{ color: "#F5B25C", flexShrink: 0, marginTop: "2px" }}
+              style={{ color: "var(--bone-dim)", flexShrink: 0, marginTop: "2px" }}
             />
-            <p style={{ color: "#C9CCD4", fontSize: "0.9375rem", lineHeight: 1.75 }}>
+            <p style={{ color: "var(--bone-dim)", fontSize: "0.9375rem", lineHeight: 1.75 }}>
               Built for the conditions Australian coastal, tropical, and
               commercial properties actually face — salt air, permanent water
               contact, and monsoon humidity. Not oil rigs, not naval vessels, not

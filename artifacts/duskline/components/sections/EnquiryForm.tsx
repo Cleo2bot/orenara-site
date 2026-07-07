@@ -70,30 +70,30 @@ export default function EnquiryForm() {
 
   if (status === "success") {
     return (
-      <section id="enquire" style={{ background: "#1F222B", paddingTop: "96px", paddingBottom: "96px" }}>
+      <section id="enquire" style={{ background: "var(--ink)", paddingTop: "96px", paddingBottom: "96px" }}>
         <div className="max-w-3xl mx-auto px-6 text-center">
           <div
             style={{
               width: "64px",
               height: "64px",
               borderRadius: "50%",
-              background: "rgba(245,178,92,0.1)",
-              border: "1px solid rgba(245,178,92,0.3)",
+              background: "var(--ink-raised)",
+              border: "1px solid var(--ink-line)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               margin: "0 auto 24px",
             }}
           >
-            <CheckCircle size={28} style={{ color: "#F5B25C" }} />
+            <CheckCircle size={28} style={{ color: "var(--bone-dim)" }} />
           </div>
           <h2
-            className="font-bold mb-4"
-            style={{ fontSize: "1.75rem", color: "#F4F1EA", letterSpacing: "-0.03em" }}
+            className="font-medium mb-4"
+            style={{ fontSize: "1.75rem", color: "var(--bone)", letterSpacing: "-0.03em" }}
           >
             Enquiry received.
           </h2>
-          <p style={{ fontSize: "1rem", color: "#9A9DA8", lineHeight: 1.7, maxWidth: "480px", margin: "0 auto" }}>
+          <p style={{ fontSize: "1rem", color: "var(--bone-dim)", lineHeight: 1.7, maxWidth: "480px", margin: "0 auto" }}>
             Thanks — we'll be in touch within 1–2 business days with pricing and lead time.
           </p>
           <button
@@ -113,8 +113,8 @@ export default function EnquiryForm() {
     <section
       id="enquire"
       style={{
-        background: "#1F222B",
-        borderTop: "1px solid rgba(91,100,120,0.2)",
+        background: "var(--ink)",
+        borderTop: "1px solid var(--ink-line)",
         paddingTop: "96px",
         paddingBottom: "96px",
       }}
@@ -122,21 +122,19 @@ export default function EnquiryForm() {
       <div className="max-w-3xl mx-auto px-6">
         {/* Header */}
         <div className="mb-12">
-          <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
-            Enquire
-          </p>
+          <p className="eyebrow mb-6">Enquire</p>
           <h2
-            className="font-bold mb-4"
+            className="font-medium mb-4"
             style={{
               fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              color: "#F4F1EA",
+              color: "var(--bone)",
               letterSpacing: "-0.03em",
               lineHeight: 1.15,
             }}
           >
             Tell us about your project.
           </h2>
-          <p style={{ color: "#9A9DA8", fontSize: "1rem", lineHeight: 1.7 }}>
+          <p style={{ color: "var(--bone-dim)", fontSize: "1rem", lineHeight: 1.7 }}>
             We'll come back within 1–2 business days with pricing and a confirmed lead time.
             No obligation, no automated quote — a real conversation about your space.
           </p>
@@ -149,9 +147,9 @@ export default function EnquiryForm() {
             <div>
               <label
                 htmlFor="name"
-                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 600, color: "#9A9DA8", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
+                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 500, color: "var(--bone-dim)", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
               >
-                Name <span style={{ color: "#F5B25C" }}>*</span>
+                Name <span style={{ color: "var(--bone-dim)" }}>*</span>
               </label>
               <input
                 id="name"
@@ -169,9 +167,9 @@ export default function EnquiryForm() {
             <div>
               <label
                 htmlFor="email"
-                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 600, color: "#9A9DA8", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
+                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 500, color: "var(--bone-dim)", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
               >
-                Email <span style={{ color: "#F5B25C" }}>*</span>
+                Email <span style={{ color: "var(--bone-dim)" }}>*</span>
               </label>
               <input
                 id="email"
@@ -189,9 +187,9 @@ export default function EnquiryForm() {
             <div>
               <label
                 htmlFor="phone"
-                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 600, color: "#9A9DA8", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
+                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 500, color: "var(--bone-dim)", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
               >
-                Phone <span style={{ color: "#5B6478", fontWeight: 400, textTransform: "none", letterSpacing: "normal" }}>(optional)</span>
+                Phone <span style={{ color: "var(--bone-dim)", fontWeight: 400, textTransform: "none", letterSpacing: "normal" }}>(optional)</span>
               </label>
               <input
                 id="phone"
@@ -208,9 +206,9 @@ export default function EnquiryForm() {
             <div>
               <label
                 htmlFor="suburb"
-                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 600, color: "#9A9DA8", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
+                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 500, color: "var(--bone-dim)", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
               >
-                Suburb / State <span style={{ color: "#F5B25C" }}>*</span>
+                Suburb / State <span style={{ color: "var(--bone-dim)" }}>*</span>
               </label>
               <input
                 id="suburb"
@@ -228,9 +226,9 @@ export default function EnquiryForm() {
             <div>
               <label
                 htmlFor="kit-select"
-                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 600, color: "#9A9DA8", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
+                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 500, color: "var(--bone-dim)", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
               >
-                Which kit? <span style={{ color: "#F5B25C" }}>*</span>
+                Which kit? <span style={{ color: "var(--bone-dim)" }}>*</span>
               </label>
               <select
                 id="kit-select"
@@ -251,9 +249,9 @@ export default function EnquiryForm() {
             <div>
               <label
                 htmlFor="timeline"
-                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 600, color: "#9A9DA8", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
+                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 500, color: "var(--bone-dim)", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
               >
-                Project timeline <span style={{ color: "#F5B25C" }}>*</span>
+                Project timeline <span style={{ color: "var(--bone-dim)" }}>*</span>
               </label>
               <select
                 id="timeline"
@@ -274,9 +272,9 @@ export default function EnquiryForm() {
             <div style={{ gridColumn: "1 / -1" }}>
               <label
                 htmlFor="message"
-                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 600, color: "#9A9DA8", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
+                style={{ display: "block", fontSize: "0.8125rem", fontWeight: 500, color: "var(--bone-dim)", marginBottom: "8px", letterSpacing: "0.04em", textTransform: "uppercase" }}
               >
-                Tell us about your space <span style={{ color: "#5B6478", fontWeight: 400, textTransform: "none", letterSpacing: "normal" }}>(optional)</span>
+                Tell us about your space <span style={{ color: "var(--bone-dim)", fontWeight: 400, textTransform: "none", letterSpacing: "normal" }}>(optional)</span>
               </label>
               <textarea
                 id="message"
@@ -296,13 +294,13 @@ export default function EnquiryForm() {
             <div
               className="flex items-start gap-3 mt-5 p-4 rounded-lg"
               style={{
-                background: "rgba(239,68,68,0.08)",
-                border: "1px solid rgba(239,68,68,0.25)",
+                background: "var(--ink-raised)",
+                border: "1px solid var(--ink-line)",
               }}
               data-testid="form-error"
             >
-              <AlertCircle size={18} style={{ color: "#EF4444", flexShrink: 0, marginTop: "1px" }} />
-              <p style={{ color: "#EF4444", fontSize: "0.9rem" }}>{errorMsg}</p>
+              <AlertCircle size={18} style={{ color: "var(--bone-dim)", flexShrink: 0, marginTop: "1px" }} />
+              <p style={{ color: "var(--bone)", fontSize: "0.9rem" }}>{errorMsg}</p>
             </div>
           )}
 
@@ -318,7 +316,7 @@ export default function EnquiryForm() {
               <Send size={16} />
               {status === "submitting" ? "Sending…" : "Send Enquiry"}
             </button>
-            <p style={{ fontSize: "0.8125rem", color: "#5B6478", lineHeight: 1.5 }}>
+            <p style={{ fontSize: "0.8125rem", color: "var(--bone-dim)", lineHeight: 1.5 }}>
               We respond within 1–2 business days.<br />
               No spam. No automated quotes.
             </p>

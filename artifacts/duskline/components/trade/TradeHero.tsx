@@ -8,28 +8,13 @@ export default function TradeHero() {
   return (
     <section
       style={{
-        background: "#15171C",
+        background: "var(--ink)",
         paddingTop: "148px",
         paddingBottom: "96px",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Ambient amber glow */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "-10%",
-          right: "-5%",
-          width: "540px",
-          height: "540px",
-          background: "radial-gradient(circle, rgba(245,178,92,0.14) 0%, transparent 70%)",
-          filter: "blur(20px)",
-          pointerEvents: "none",
-        }}
-      />
-
       <div className="max-w-7xl mx-auto px-6" style={{ position: "relative" }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -37,21 +22,20 @@ export default function TradeHero() {
               Orenara Trade
             </p>
             <h1
-              className="font-bold"
               style={{
                 fontSize: "clamp(2.25rem, 5vw, 3.75rem)",
-                color: "#F4F1EA",
+                color: "var(--bone)",
                 letterSpacing: "-0.035em",
                 lineHeight: 1.05,
               }}
             >
               Built for tradies. Priced fast,{" "}
-              <span className="text-gradient-amber">delivered when we say.</span>
+              <span>delivered when we say.</span>
             </h1>
             <p
               style={{
                 marginTop: "24px",
-                color: "#9A9DA8",
+                color: "var(--bone-dim)",
                 fontSize: "clamp(1rem, 2vw, 1.2rem)",
                 lineHeight: 1.6,
                 maxWidth: "560px",
@@ -66,18 +50,17 @@ export default function TradeHero() {
               style={{
                 marginTop: "28px",
                 padding: "16px 20px",
-                borderRadius: "10px",
-                border: "1px solid rgba(245,178,92,0.25)",
-                background: "rgba(245,178,92,0.06)",
+                borderRadius: "var(--radius)",
+                border: "1px solid var(--ink-line)",
+                background: "var(--ink-raised)",
                 maxWidth: "560px",
               }}
             >
               <p
                 style={{
                   fontSize: "0.9375rem",
-                  color: "#F4F1EA",
+                  color: "var(--bone)",
                   lineHeight: 1.6,
-                  fontWeight: 600,
                 }}
               >
                 Trade &amp; wholesale pricing available — project dependent.
@@ -86,7 +69,7 @@ export default function TradeHero() {
                 style={{
                   marginTop: "6px",
                   fontSize: "0.875rem",
-                  color: "#9A9DA8",
+                  color: "var(--bone-dim)",
                   lineHeight: 1.6,
                 }}
               >
@@ -108,7 +91,7 @@ export default function TradeHero() {
                 style={{
                   marginTop: "16px",
                   fontSize: "0.875rem",
-                  color: "#5B6478",
+                  color: "var(--bone-dim)",
                   lineHeight: 1.5,
                 }}
               >
@@ -119,11 +102,10 @@ export default function TradeHero() {
 
           {/* Hero image */}
           <div
-            className="glow-amber"
             style={{
-              borderRadius: "16px",
+              borderRadius: "var(--radius)",
               overflow: "hidden",
-              border: "1px solid rgba(245,178,92,0.2)",
+              border: "1px solid var(--ink-line)",
               position: "relative",
             }}
           >
@@ -137,8 +119,7 @@ export default function TradeHero() {
               style={{
                 position: "absolute",
                 inset: 0,
-                background:
-                  "linear-gradient(180deg, rgba(21,23,28,0) 55%, rgba(21,23,28,0.5) 100%)",
+                background: "color-mix(in srgb, var(--ink) 55%, transparent)",
                 pointerEvents: "none",
               }}
             />

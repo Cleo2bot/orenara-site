@@ -2,4 +2,5 @@
 // links, sitemap, schema) must be derived from this single constant.
 // NOTE: Email addresses intentionally live on orenara.com (Resend-verified),
 // not the canonical orenara.com.au — see .env.example.
-export const SITE_URL = "https://orenara.com.au";
+// Production canonical host is www (matches Vercel canonical) — do not use the apex here.
+export const SITE_URL = "https://www.orenara.com.au";

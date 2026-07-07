@@ -156,7 +156,7 @@ function StarRow({
       aria-label={label ?? `Rated ${rating} out of 5 stars`}
     >
       <span style={{ display: "inline-flex", gap: "2px" }}>
-        {stars("#5B6478")}
+        {stars("var(--bone-dim)")}
       </span>
       <span
         aria-hidden="true"
@@ -170,7 +170,7 @@ function StarRow({
           gap: "2px",
         }}
       >
-        {stars("#F5B25C", "#F5B25C")}
+        {stars("var(--bone)", "var(--bone)")}
       </span>
     </span>
   );
@@ -178,12 +178,12 @@ function StarRow({
 
 function Attribution({ review }: { review: Review }) {
   return (
-    <p style={{ fontSize: "0.8rem", color: "#9A9DA8" }}>
-      <span style={{ color: "#F4F1EA", fontWeight: 600 }}>{review.role}</span>
+    <p style={{ fontSize: "0.8rem", color: "var(--bone-dim)" }}>
+      <span style={{ color: "var(--bone)", fontWeight: 500 }}>{review.role}</span>
       {" · "}
       {review.state}
       {" · "}
-      <span style={{ color: "#F5B25C", fontWeight: 600 }}>{review.verified}</span>
+      <span style={{ color: "var(--bone-dim)", fontWeight: 500 }}>{review.verified}</span>
     </p>
   );
 }
@@ -195,16 +195,16 @@ export default function TradeReviews() {
     <div className="mt-14">
       <div className="mb-6">
         <h3
-          className="font-bold"
+          className="font-medium"
           style={{
             fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)",
-            color: "#F4F1EA",
+            color: "var(--bone)",
             letterSpacing: "-0.02em",
           }}
         >
           More from the trade.
         </h3>
-        <p style={{ fontSize: "0.8125rem", color: "#9A9DA8", marginTop: "2px" }}>
+        <p style={{ fontSize: "0.8125rem", color: "var(--bone-dim)", marginTop: "2px" }}>
           What trade customers say once the job&apos;s signed off.
         </p>
       </div>
@@ -213,8 +213,8 @@ export default function TradeReviews() {
       <div
         className="rounded-xl"
         style={{
-          background: "#1F222B",
-          border: "1px solid rgba(91,100,120,0.25)",
+          background: "var(--ink-raised)",
+          border: "1px solid var(--ink-line)",
           padding: "clamp(20px, 3vw, 28px)",
         }}
         data-testid="reviews-summary"
@@ -226,11 +226,11 @@ export default function TradeReviews() {
             style={{ flexShrink: 0 }}
           >
             <span
-              className="font-bold"
+              className="font-medium"
               style={{
                 fontSize: "2.75rem",
                 lineHeight: 1,
-                color: "#F4F1EA",
+                color: "var(--bone)",
                 letterSpacing: "-0.03em",
               }}
             >
@@ -242,7 +242,7 @@ export default function TradeReviews() {
                 size={16}
                 label={`Rated ${AGGREGATE} out of 5 stars`}
               />
-              <span style={{ fontSize: "0.78rem", color: "#9A9DA8" }}>
+              <span style={{ fontSize: "0.78rem", color: "var(--bone-dim)" }}>
                 Based on {TOTAL_REVIEWS} reviews
               </span>
             </div>
@@ -255,7 +255,7 @@ export default function TradeReviews() {
                 <span
                   style={{
                     fontSize: "0.75rem",
-                    color: "#9A9DA8",
+                    color: "var(--bone-dim)",
                     width: "26px",
                     textAlign: "right",
                     flexShrink: 0,
@@ -267,8 +267,8 @@ export default function TradeReviews() {
                   style={{
                     flex: 1,
                     height: "6px",
-                    borderRadius: "999px",
-                    background: "rgba(91,100,120,0.22)",
+                    borderRadius: "var(--radius)",
+                    background: "var(--ink-line)",
                     overflow: "hidden",
                   }}
                 >
@@ -276,15 +276,15 @@ export default function TradeReviews() {
                     style={{
                       width: `${pct}%`,
                       height: "100%",
-                      background: "#F5B25C",
-                      borderRadius: "999px",
+                      background: "var(--bone-dim)",
+                      borderRadius: "var(--radius)",
                     }}
                   />
                 </div>
                 <span
                   style={{
                     fontSize: "0.72rem",
-                    color: "#9A9DA8",
+                    color: "var(--bone-dim)",
                     width: "34px",
                     textAlign: "right",
                     flexShrink: 0,
@@ -302,8 +302,8 @@ export default function TradeReviews() {
       <figure
         className="rounded-xl mt-5"
         style={{
-          background: "#1A1D24",
-          border: "1px solid rgba(91,100,120,0.2)",
+          background: "var(--ink-raised)",
+          border: "1px solid var(--ink-line)",
           padding: "20px 22px",
         }}
         data-testid="featured-review"
@@ -312,7 +312,7 @@ export default function TradeReviews() {
         <blockquote
           style={{
             fontSize: "0.9375rem",
-            color: "#C9CCD4",
+            color: "var(--bone-dim)",
             lineHeight: 1.65,
             marginTop: "12px",
             maxWidth: "720px",
@@ -332,13 +332,13 @@ export default function TradeReviews() {
         aria-expanded={expanded}
         aria-controls="all-reviews"
         data-testid="toggle-reviews"
-        className="mt-5 inline-flex items-center gap-2 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#F5B25C]"
+        className="mt-5 inline-flex items-center gap-2 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-ember"
         style={{
           fontSize: "0.85rem",
-          fontWeight: 600,
-          color: "#F4F1EA",
+          fontWeight: 500,
+          color: "var(--bone)",
           background: "transparent",
-          border: "1px solid rgba(91,100,120,0.35)",
+          border: "1px solid var(--ink-line)",
           padding: "9px 16px",
           cursor: "pointer",
         }}
@@ -350,7 +350,7 @@ export default function TradeReviews() {
           style={{
             transition: "transform 0.2s ease",
             transform: expanded ? "rotate(180deg)" : "none",
-            color: "#F5B25C",
+            color: "var(--bone-dim)",
           }}
         />
       </button>
@@ -369,14 +369,14 @@ export default function TradeReviews() {
               data-testid={`review-row-${i}`}
               style={{
                 padding: "20px 0",
-                borderTop: "1px solid rgba(91,100,120,0.18)",
+                borderTop: "1px solid var(--ink-line)",
               }}
             >
               <StarRow rating={review.rating} size={13} />
               <blockquote
                 style={{
                   fontSize: "0.875rem",
-                  color: "#C9CCD4",
+                  color: "var(--bone-dim)",
                   lineHeight: 1.6,
                   marginTop: "10px",
                   maxWidth: "720px",
@@ -393,10 +393,10 @@ export default function TradeReviews() {
                       width: "150px",
                       flexShrink: 0,
                       aspectRatio: "4 / 3",
-                      borderRadius: "8px",
+                      borderRadius: "var(--radius)",
                       overflow: "hidden",
-                      background: "#15171C",
-                      border: "1px solid rgba(91,100,120,0.25)",
+                      background: "var(--ink)",
+                      border: "1px solid var(--ink-line)",
                     }}
                   >
                     <Image
@@ -411,9 +411,8 @@ export default function TradeReviews() {
                     <figcaption
                       style={{
                         fontSize: "0.75rem",
-                        color: "#9A9DA8",
+                        color: "var(--bone-dim)",
                         lineHeight: 1.5,
-                        fontStyle: "italic",
                         alignSelf: "center",
                       }}
                     >
@@ -435,10 +434,10 @@ export default function TradeReviews() {
                           position: "relative",
                           width: "150px",
                           aspectRatio: "4 / 3",
-                          borderRadius: "8px",
+                          borderRadius: "var(--radius)",
                           overflow: "hidden",
-                          background: "#15171C",
-                          border: "1px solid rgba(91,100,120,0.25)",
+                          background: "var(--ink)",
+                          border: "1px solid var(--ink-line)",
                         }}
                       >
                         <Image
@@ -453,9 +452,8 @@ export default function TradeReviews() {
                         style={{
                           marginTop: "6px",
                           fontSize: "0.72rem",
-                          color: "#9A9DA8",
+                          color: "var(--bone-dim)",
                           lineHeight: 1.45,
-                          fontStyle: "italic",
                         }}
                       >
                         {p.caption}

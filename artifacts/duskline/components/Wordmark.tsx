@@ -5,16 +5,16 @@ interface WordmarkProps {
 
 export default function Wordmark({ size = "md", className = "" }: WordmarkProps) {
   const sizeClasses = {
-    sm: "text-xl tracking-tight",
-    md: "text-2xl tracking-tight",
-    lg: "text-4xl tracking-tight",
+    sm: "text-base",
+    md: "text-xl",
+    lg: "text-3xl",
   };
 
   return (
-    <div className={`inline-block wordmark-line ${className}`}>
+    <div className={`inline-block ${className}`}>
       <span
-        className={`font-black ${sizeClasses[size]}`}
-        style={{ color: "#F4F1EA", letterSpacing: "-0.04em" }}
+        className={`font-display font-medium uppercase text-bone ${sizeClasses[size]}`}
+        style={{ letterSpacing: "0.14em" }}
       >
         ORENARA
       </span>

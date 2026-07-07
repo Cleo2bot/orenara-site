@@ -8,7 +8,7 @@ function StraightDiagram() {
         y1="13"
         x2="71"
         y2="13"
-        stroke="#F5B25C"
+        stroke="var(--bone)"
         strokeWidth="2.5"
         strokeLinecap="round"
       />
@@ -21,7 +21,7 @@ function CurveDiagram() {
     <svg width="76" height="26" viewBox="0 0 76 26" fill="none" aria-hidden="true">
       <path
         d="M5 18 C 19 18, 19 8, 38 8 S 57 18, 71 8"
-        stroke="#F5B25C"
+        stroke="var(--bone)"
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -47,21 +47,19 @@ export default function MountingSystem() {
     <section
       id="mounting"
       style={{
-        background: "#15171C",
-        borderBottom: "1px solid rgba(91,100,120,0.2)",
+        background: "var(--ink)",
+        borderBottom: "1px solid var(--ink-line)",
       }}
     >
       <div className="max-w-7xl mx-auto px-6 py-24">
         {/* Header */}
         <div className="mb-16" style={{ maxWidth: "760px" }}>
-          <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
-            The mounting system
-          </p>
+          <p className="eyebrow mb-6">The mounting system</p>
           <h2
-            className="font-bold"
+            className="font-medium"
             style={{
               fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              color: "#F4F1EA",
+              color: "var(--bone)",
               letterSpacing: "-0.03em",
               lineHeight: 1.15,
             }}
@@ -71,7 +69,7 @@ export default function MountingSystem() {
           <p
             style={{
               marginTop: "16px",
-              color: "#9A9DA8",
+              color: "var(--bone-dim)",
               fontSize: "1rem",
               lineHeight: 1.7,
               maxWidth: "620px",
@@ -89,8 +87,8 @@ export default function MountingSystem() {
           <div
             className="rounded-lg p-8 flex flex-col"
             style={{
-              background: "#1F222B",
-              border: "1px solid rgba(91,100,120,0.25)",
+              background: "var(--ink-raised)",
+              border: "1px solid var(--ink-line)",
             }}
             data-testid="mounting-rigid"
           >
@@ -98,9 +96,9 @@ export default function MountingSystem() {
               <div
                 style={{
                   padding: "12px 16px",
-                  borderRadius: "8px",
-                  background: "rgba(245,178,92,0.08)",
-                  border: "1px solid rgba(245,178,92,0.2)",
+                  borderRadius: "var(--radius)",
+                  background: "transparent",
+                  border: "1px solid var(--ink-line)",
                   display: "inline-flex",
                 }}
               >
@@ -109,20 +107,20 @@ export default function MountingSystem() {
               <span
                 style={{
                   fontSize: "0.75rem",
-                  fontWeight: 600,
+                  fontWeight: 500,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
-                  color: "#5B6478",
+                  color: "var(--bone-dim)",
                 }}
               >
                 For straight lines
               </span>
             </div>
             <h3
-              className="font-bold mb-4"
+              className="font-medium mb-4"
               style={{
                 fontSize: "1.375rem",
-                color: "#F4F1EA",
+                color: "var(--bone)",
                 letterSpacing: "-0.02em",
               }}
             >
@@ -133,12 +131,12 @@ export default function MountingSystem() {
                 <li key={i} className="flex gap-3" style={{ alignItems: "flex-start" }}>
                   <Check
                     size={18}
-                    style={{ color: "#F5B25C", flexShrink: 0, marginTop: "3px" }}
+                    style={{ color: "var(--bone-dim)", flexShrink: 0, marginTop: "3px" }}
                   />
                   <span
                     style={{
                       fontSize: "0.9375rem",
-                      color: "#9A9DA8",
+                      color: "var(--bone-dim)",
                       lineHeight: 1.65,
                     }}
                   >
@@ -153,9 +151,8 @@ export default function MountingSystem() {
           <div
             className="rounded-lg p-8 flex flex-col"
             style={{
-              background: "#1F222B",
-              border: "1px solid rgba(245,178,92,0.3)",
-              boxShadow: "0 0 40px rgba(245,178,92,0.06)",
+              background: "var(--ink-raised)",
+              border: "1px solid var(--ink-line)",
             }}
             data-testid="mounting-track"
           >
@@ -163,9 +160,9 @@ export default function MountingSystem() {
               <div
                 style={{
                   padding: "12px 16px",
-                  borderRadius: "8px",
-                  background: "rgba(245,178,92,0.08)",
-                  border: "1px solid rgba(245,178,92,0.2)",
+                  borderRadius: "var(--radius)",
+                  background: "transparent",
+                  border: "1px solid var(--ink-line)",
                   display: "inline-flex",
                 }}
               >
@@ -174,20 +171,20 @@ export default function MountingSystem() {
               <span
                 style={{
                   fontSize: "0.75rem",
-                  fontWeight: 600,
+                  fontWeight: 500,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
-                  color: "#F5B25C",
+                  color: "var(--bone-dim)",
                 }}
               >
                 For curves
               </span>
             </div>
             <h3
-              className="font-bold mb-3"
+              className="font-medium mb-3"
               style={{
                 fontSize: "1.375rem",
-                color: "#F4F1EA",
+                color: "var(--bone)",
                 letterSpacing: "-0.02em",
               }}
             >
@@ -196,7 +193,7 @@ export default function MountingSystem() {
             <p
               style={{
                 fontSize: "0.9375rem",
-                color: "#9A9DA8",
+                color: "var(--bone-dim)",
                 lineHeight: 1.7,
                 marginBottom: "20px",
               }}
@@ -212,12 +209,12 @@ export default function MountingSystem() {
                 <li key={i} className="flex gap-3" style={{ alignItems: "flex-start" }}>
                   <Check
                     size={18}
-                    style={{ color: "#F5B25C", flexShrink: 0, marginTop: "3px" }}
+                    style={{ color: "var(--bone-dim)", flexShrink: 0, marginTop: "3px" }}
                   />
                   <span
                     style={{
                       fontSize: "0.9375rem",
-                      color: "#F4F1EA",
+                      color: "var(--bone)",
                       lineHeight: 1.65,
                     }}
                   >
@@ -232,18 +229,18 @@ export default function MountingSystem() {
               className="mt-6 rounded-lg"
               style={{
                 padding: "14px 16px",
-                background: "rgba(245,178,92,0.06)",
-                border: "1px solid rgba(245,178,92,0.2)",
+                background: "var(--ink)",
+                border: "1px solid var(--ink-line)",
               }}
             >
               <p
                 style={{
                   fontSize: "0.875rem",
-                  color: "#F4F1EA",
+                  color: "var(--bone)",
                   lineHeight: 1.6,
                 }}
               >
-                <span style={{ fontWeight: 700, color: "#F5B25C" }}>
+                <span style={{ fontWeight: 500, color: "var(--bone)" }}>
                   Horizontal bend only.
                 </span>{" "}
                 This isn&apos;t a garden hose — it won&apos;t loop vertically,
@@ -258,7 +255,7 @@ export default function MountingSystem() {
           style={{
             marginTop: "40px",
             fontSize: "1rem",
-            color: "#9A9DA8",
+            color: "var(--bone-dim)",
             lineHeight: 1.75,
             maxWidth: "760px",
           }}

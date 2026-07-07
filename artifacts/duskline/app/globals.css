@@ -1,16 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
+/* ============================================================
+   ORENARA DESIGN TOKENS — the single source of truth.
+   Every colour on the site must resolve to one of these.
+
+   Palette justification: the amber (--ember) is not a "brand
+   colour" — it is the 2700K colour temperature of the product's
+   own light. The UI stays monochrome (ink + bone) so the lit
+   photography carries all the warmth. Ember appears at most
+   twice per viewport: one primary CTA and one micro-detail.
+   ============================================================ */
+:root {
+  --ink: #0F1113;            /* page background — deep warm charcoal, near-black */
+  --ink-raised: #17191C;     /* cards, panels, form fields */
+  --ink-line: rgba(243, 238, 228, 0.14); /* hairlines, borders, dividers */
+  --bone: #F3EEE4;           /* primary text — warm off-white, never pure #FFF */
+  --bone-dim: rgba(243, 238, 228, 0.62); /* secondary text, captions */
+  --ember: #D9A05B;          /* THE accent — 2700K amber, the product's own light */
+  --ember-deep: #A9743B;     /* hover/pressed state of ember only */
+  --radius: 2px;             /* global radius — aluminium-extrusion language */
+
+  /* Print-only tokens (PrintQuoteView renders on white paper) */
+  --print-ink: #15171C;
+  --print-mid: #555555;
+  --print-faint: #777777;
+  --print-line: #cccccc;
+  --print-line-soft: #eeeeee;
+  --print-paper: #ffffff;
+}
+
 @theme {
-  --color-dusk-900: #15171C;
-  --color-dusk-800: #1F222B;
-  --color-dusk-700: #252831;
-  --color-amber: #F5B25C;
-  --color-amber-dark: #D4913A;
-  --color-steel: #5B6478;
-  --color-warm-white: #F4F1EA;
-  --color-muted: #9A9DA8;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-*: initial;
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-ink-line: var(--ink-line);
+  --color-bone: var(--bone);
+  --color-bone-dim: var(--bone-dim);
+  --color-ember: var(--ember);
+  --color-ember-deep: var(--ember-deep);
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-display: 'Archivo', sans-serif;        /* headlines, wordmark, eyebrows */
+  --font-body: 'Instrument Sans', sans-serif;   /* body copy, UI, forms */
+  --font-spec: 'IBM Plex Mono', monospace;      /* spec data, ratings, compliance labels, kit metadata */
+  --font-sans: 'Instrument Sans', sans-serif;
+
+  /* Radius normalised globally to 2px. rounded-full kept for tiny dot indicators only. */
+  --radius-*: initial;
+  --radius-xs: 2px;
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 2px;
+  --radius-2xl: 2px;
+  --radius-3xl: 2px;
+  --radius-full: 9999px;
+
+  /* Elevation: no drop shadows anywhere. */
+  --shadow-*: initial;
+  --shadow-none: 0 0 #0000;
 }
 
 *, *::before, *::after {
@@ -22,208 +71,155 @@ html {
 }
 
 body {
-  background-color: #15171C;
-  color: #F4F1EA;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background-color: rgba(245, 178, 92, 0.3);
-  color: #F4F1EA;
+  background-color: var(--ink-raised);
+  color: var(--bone);
 }
 
-@keyframes glow-pulse {
-  0%, 100% { opacity: 0.5; filter: blur(40px); }
-  50% { opacity: 0.8; filter: blur(50px); }
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
 }
 
-@keyframes strip-shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(400%); }
+em, i {
+  font-style: normal; /* no italics anywhere — emphasis via bone vs bone-dim */
 }
 
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ---- Type role helpers ---------------------------------- */
+
+/* Eyebrow labels: Archivo 500 uppercase, wide tracking, bone-dim */
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--bone-dim);
 }
 
-.animate-fade-up {
-  animation: fade-up 0.7s ease forwards;
+/* Spec/mono treatment: every piece of technical data.
+   Mono = verifiable fact — an etched compliance plate. */
+.spec-mono {
+  font-family: var(--font-spec);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  color: var(--bone-dim);
 }
 
-.animate-fade-up-delay-1 {
-  animation: fade-up 0.7s ease 0.1s forwards;
-  opacity: 0;
+.spec-mono-upper {
+  font-family: var(--font-spec);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
 }
 
-.animate-fade-up-delay-2 {
-  animation: fade-up 0.7s ease 0.2s forwards;
-  opacity: 0;
-}
-
-.animate-fade-up-delay-3 {
-  animation: fade-up 0.7s ease 0.35s forwards;
-  opacity: 0;
-}
-
-.glow-amber {
-  box-shadow: 0 0 60px rgba(245, 178, 92, 0.25), 0 0 120px rgba(245, 178, 92, 0.08);
-}
-
-.glow-amber-sm {
-  box-shadow: 0 0 20px rgba(245, 178, 92, 0.2);
-}
-
-.border-amber-glow {
-  border-color: rgba(245, 178, 92, 0.3);
-  box-shadow: inset 0 0 0 1px rgba(245, 178, 92, 0.15);
-}
-
-@keyframes trade-glow-pulse {
-  0%, 100% {
-    box-shadow: 0 0 10px rgba(245, 178, 92, 0.25);
-    border-color: rgba(245, 178, 92, 0.45);
-  }
-  50% {
-    box-shadow: 0 0 22px rgba(245, 178, 92, 0.55);
-    border-color: rgba(245, 178, 92, 0.8);
-  }
-}
-
-.btn-trade {
-  display: inline-flex;
-  align-items: center;
-  color: #F5B25C;
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 9px 18px;
-  border-radius: 8px;
-  border: 1px solid rgba(245, 178, 92, 0.45);
-  background: rgba(245, 178, 92, 0.08);
-  animation: trade-glow-pulse 2.6s ease-in-out infinite;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.btn-trade:hover {
-  background: rgba(245, 178, 92, 0.16);
-  transform: translateY(-1px);
-}
-
-.btn-trade:focus-visible {
-  outline: 2px solid #F5B25C;
-  outline-offset: 2px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .btn-trade {
-    animation: none;
-    box-shadow: 0 0 16px rgba(245, 178, 92, 0.4);
-  }
-}
-
-.text-gradient-amber {
-  background: linear-gradient(135deg, #F5B25C 0%, #E8962E 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.wordmark-line::after {
-  content: '';
-  display: block;
-  height: 2px;
-  margin-top: 3px;
-  background: linear-gradient(90deg, #F5B25C 0%, transparent 100%);
-  border-radius: 1px;
-}
-
-.section-divider {
-  border: none;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(91, 100, 120, 0.4), transparent);
-}
-
-.kit-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.kit-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(245, 178, 92, 0.35);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(245, 178, 92, 0.08);
-}
-
+/* Spec badge: hairline plate, mono, no tint fills */
 .spec-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(245, 178, 92, 0.08);
-  border: 1px solid rgba(245, 178, 92, 0.2);
-  color: #F5B25C;
+  background: transparent;
+  border: 1px solid var(--ink-line);
+  color: var(--bone-dim);
   padding: 4px 12px;
-  border-radius: 4px;
+  border-radius: var(--radius);
+  font-family: var(--font-spec);
+  font-weight: 400;
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.enquiry-input {
-  width: 100%;
-  background: rgba(37, 40, 49, 0.8);
-  border: 1px solid rgba(91, 100, 120, 0.4);
-  color: #F4F1EA;
-  padding: 12px 16px;
-  border-radius: 6px;
-  font-size: 0.9375rem;
-  font-family: inherit;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-  outline: none;
+/* ---- Motion ----------------------------------------------
+   Permitted: fade-up on section entry (once, ≤12px, 400ms)
+   and 150ms hover transitions. Nothing else. */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.enquiry-input::placeholder {
-  color: #9A9DA8;
+.animate-fade-up {
+  animation: fade-up 0.4s ease-out forwards;
 }
 
-.enquiry-input:focus {
-  border-color: rgba(245, 178, 92, 0.5);
-  box-shadow: 0 0 0 3px rgba(245, 178, 92, 0.08);
+.animate-fade-up-delay-1 {
+  animation: fade-up 0.4s ease-out 0.05s forwards;
+  opacity: 0;
 }
 
-.enquiry-input option {
-  background: #1F222B;
-  color: #F4F1EA;
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.4s ease-out 0.1s forwards;
+  opacity: 0;
 }
 
+.animate-fade-up-delay-3 {
+  animation: fade-up 0.4s ease-out 0.15s forwards;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .animate-fade-up,
+  .animate-fade-up-delay-1,
+  .animate-fade-up-delay-2,
+  .animate-fade-up-delay-3 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- Rules & dividers ------------------------------------ */
+.section-divider {
+  border: none;
+  height: 1px;
+  background: var(--ink-line);
+}
+
+/* ---- Buttons ---------------------------------------------- */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: #F5B25C;
-  color: #15171C;
-  font-weight: 700;
-  font-size: 0.9375rem;
-  letter-spacing: 0.02em;
+  background: var(--ember);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   padding: 14px 28px;
-  border-radius: 6px;
+  border-radius: var(--radius);
   border: none;
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  transition: background 150ms ease;
   text-decoration: none;
 }
 
 .btn-primary:hover {
-  background: #E8962E;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(245, 178, 92, 0.3);
-}
-
-.btn-primary:active {
-  transform: translateY(0);
+  background: var(--ember-deep);
 }
 
 .btn-outline {
@@ -232,22 +228,86 @@ body {
   justify-content: center;
   gap: 8px;
   background: transparent;
-  color: #F5B25C;
-  font-weight: 600;
-  font-size: 0.875rem;
-  letter-spacing: 0.02em;
-  padding: 10px 20px;
-  border-radius: 6px;
-  border: 1px solid rgba(245, 178, 92, 0.4);
+  color: var(--bone);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 13px 27px;
+  border-radius: var(--radius);
+  border: 1px solid var(--ink-line);
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition: border-color 150ms ease;
   text-decoration: none;
   width: 100%;
 }
 
 .btn-outline:hover {
-  background: rgba(245, 178, 92, 0.08);
-  border-color: rgba(245, 178, 92, 0.6);
+  border-color: var(--bone-dim);
+}
+
+.btn-trade {
+  display: inline-flex;
+  align-items: center;
+  color: var(--bone);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  padding: 9px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--ink-line);
+  background: transparent;
+  transition: border-color 150ms ease;
+}
+
+.btn-trade:hover {
+  border-color: var(--bone-dim);
+}
+
+.btn-trade:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 2px;
+}
+
+/* ---- Forms ------------------------------------------------ */
+.enquiry-input {
+  width: 100%;
+  background: var(--ink-raised);
+  border: 1px solid var(--ink-line);
+  color: var(--bone);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+  font-family: var(--font-body);
+  transition: border-color 150ms ease;
+  outline: none;
+}
+
+.enquiry-input::placeholder {
+  color: var(--bone-dim);
+}
+
+/* Focus ring is the permitted ember micro-detail on form screens */
+.enquiry-input:focus {
+  border-color: var(--ember);
+}
+
+.enquiry-input option {
+  background: var(--ink-raised);
+  color: var(--bone);
+}
+
+/* ---- Cards & controls ------------------------------------ */
+.kit-card {
+  transition: border-color 150ms ease;
+}
+
+.kit-card:hover {
+  border-color: var(--bone-dim);
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -265,25 +325,25 @@ body {
   justify-content: center;
   width: 34px;
   height: 34px;
-  border-radius: 8px;
-  background: #1F222B;
-  border: 1px solid rgba(91, 100, 120, 0.3);
-  color: #C9CCD4;
+  border-radius: var(--radius);
+  background: var(--ink-raised);
+  border: 1px solid var(--ink-line);
+  color: var(--bone-dim);
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: border-color 150ms ease, color 150ms ease;
 }
 
 .carousel-arrow:hover {
-  background: rgba(245, 178, 92, 0.08);
-  border-color: rgba(245, 178, 92, 0.45);
-  color: #F5B25C;
+  border-color: var(--bone-dim);
+  color: var(--bone);
 }
 
 .carousel-arrow:focus-visible {
-  outline: 2px solid #F5B25C;
+  outline: 2px solid var(--ember);
   outline-offset: 2px;
 }
 
+/* ---- Print ------------------------------------------------ */
 .print-only {
   display: none;
 }
@@ -304,7 +364,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: #ffffff;
+    background: var(--print-paper);
   }
 
   .no-print {

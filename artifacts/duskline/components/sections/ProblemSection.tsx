@@ -23,25 +23,20 @@ export default function ProblemSection() {
     <section
       id="problem"
       style={{
-        background: "#15171C",
-        borderTop: "1px solid rgba(91,100,120,0.2)",
-        borderBottom: "1px solid rgba(91,100,120,0.2)",
+        background: "var(--ink)",
+        borderTop: "1px solid var(--ink-line)",
+        borderBottom: "1px solid var(--ink-line)",
       }}
     >
       <div className="max-w-7xl mx-auto px-6 py-24">
         {/* Section label */}
         <div className="mb-16">
-          <p
-            className="spec-badge mb-6"
-            style={{ display: "inline-flex" }}
-          >
-            The problem
-          </p>
+          <p className="eyebrow mb-6">The problem</p>
           <h2
-            className="font-bold"
+            className="font-medium"
             style={{
               fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              color: "#F4F1EA",
+              color: "var(--bone)",
               letterSpacing: "-0.03em",
               lineHeight: 1.15,
               maxWidth: "640px",
@@ -54,7 +49,7 @@ export default function ProblemSection() {
         {/* Failure points */}
         <div
           className="grid gap-0"
-          style={{ borderTop: "1px solid rgba(91,100,120,0.2)" }}
+          style={{ borderTop: "1px solid var(--ink-line)" }}
         >
           {failures.map((item, i) => {
             const Icon = item.icon;
@@ -63,25 +58,23 @@ export default function ProblemSection() {
                 key={i}
                 className="flex gap-6 py-10"
                 style={{
-                  borderBottom: "1px solid rgba(91,100,120,0.2)",
+                  borderBottom: "1px solid var(--ink-line)",
                   alignItems: "flex-start",
                 }}
                 data-testid={`problem-item-${i}`}
               >
                 {/* Number */}
                 <div
+                  className="spec-mono"
                   style={{
                     flexShrink: 0,
                     width: "40px",
                     height: "40px",
                     borderRadius: "50%",
-                    border: "1px solid rgba(245,178,92,0.25)",
+                    border: "1px solid var(--ink-line)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: "0.8125rem",
-                    fontWeight: 700,
-                    color: "#F5B25C",
                     marginTop: "2px",
                   }}
                 >
@@ -91,13 +84,13 @@ export default function ProblemSection() {
                   <div className="flex items-center gap-3 mb-3">
                     <Icon
                       size={18}
-                      style={{ color: "#F5B25C", flexShrink: 0 }}
+                      style={{ color: "var(--bone-dim)", flexShrink: 0 }}
                     />
                     <h3
-                      className="font-semibold"
+                      className="font-medium"
                       style={{
                         fontSize: "1.0625rem",
-                        color: "#F4F1EA",
+                        color: "var(--bone)",
                         letterSpacing: "-0.01em",
                       }}
                     >
@@ -107,7 +100,7 @@ export default function ProblemSection() {
                   <p
                     style={{
                       fontSize: "0.9375rem",
-                      color: "#9A9DA8",
+                      color: "var(--bone-dim)",
                       lineHeight: 1.75,
                       maxWidth: "680px",
                     }}
@@ -124,20 +117,20 @@ export default function ProblemSection() {
         <div
           className="mt-12 p-8 rounded-lg"
           style={{
-            background: "rgba(245,178,92,0.05)",
-            border: "1px solid rgba(245,178,92,0.2)",
+            background: "var(--ink-raised)",
+            border: "1px solid var(--ink-line)",
           }}
         >
           <div className="flex items-start gap-4">
-            <Zap size={22} style={{ color: "#F5B25C", flexShrink: 0, marginTop: "2px" }} />
+            <Zap size={22} style={{ color: "var(--bone-dim)", flexShrink: 0, marginTop: "2px" }} />
             <div>
               <p
-                className="font-semibold mb-2"
-                style={{ color: "#F4F1EA", fontSize: "1rem" }}
+                className="font-medium mb-2"
+                style={{ color: "var(--bone)", fontSize: "1rem" }}
               >
                 Orenara is IP68 — end to end.
               </p>
-              <p style={{ color: "#9A9DA8", fontSize: "0.9375rem", lineHeight: 1.7 }}>
+              <p style={{ color: "var(--bone-dim)", fontSize: "0.9375rem", lineHeight: 1.7 }}>
                 Dust-tight, submersion-rated to 1.5m for 30 minutes. Every component in the
                 system — strip, connectors, end caps — carries the same rating. Not just the
                 strip itself. That's what proper outdoor-rated means.

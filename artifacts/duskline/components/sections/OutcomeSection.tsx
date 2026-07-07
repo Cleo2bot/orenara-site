@@ -3,19 +3,18 @@ export default function OutcomeSection() {
     <section
       id="outcome"
       style={{
-        background: "#15171C",
-        borderTop: "1px solid rgba(91,100,120,0.2)",
+        background: "var(--ink)",
+        borderTop: "1px solid var(--ink-line)",
         paddingTop: "96px",
         paddingBottom: "96px",
       }}
     >
       <div className="max-w-7xl mx-auto px-6">
         <div
-          className="glow-amber"
           style={{
-            borderRadius: "16px",
+            borderRadius: "var(--radius)",
             overflow: "hidden",
-            border: "1px solid rgba(245,178,92,0.2)",
+            border: "1px solid var(--ink-line)",
             position: "relative",
           }}
         >
@@ -29,8 +28,7 @@ export default function OutcomeSection() {
             style={{
               position: "absolute",
               inset: 0,
-              background:
-                "linear-gradient(90deg, rgba(21,23,28,0.8) 0%, rgba(21,23,28,0.2) 55%, rgba(21,23,28,0) 100%)",
+              background: "color-mix(in srgb, var(--ink) 55%, transparent)",
               pointerEvents: "none",
             }}
           />
@@ -44,10 +42,10 @@ export default function OutcomeSection() {
             }}
           >
             <p
-              className="font-bold"
+              className="font-medium"
               style={{
                 fontSize: "clamp(1.25rem, 3vw, 2rem)",
-                color: "#F4F1EA",
+                color: "var(--bone)",
                 letterSpacing: "-0.02em",
                 lineHeight: 1.2,
               }}
@@ -58,7 +56,7 @@ export default function OutcomeSection() {
               style={{
                 marginTop: "12px",
                 fontSize: "0.9375rem",
-                color: "#C9CCD4",
+                color: "var(--bone-dim)",
                 lineHeight: 1.6,
               }}
             >

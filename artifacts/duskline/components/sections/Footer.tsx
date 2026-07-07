@@ -16,8 +16,8 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: "#15171C",
-        borderTop: "1px solid rgba(91,100,120,0.2)",
+        background: "var(--ink)",
+        borderTop: "1px solid var(--ink-line)",
         paddingTop: "64px",
         paddingBottom: "40px",
       }}
@@ -27,7 +27,7 @@ export default function Footer() {
           {/* Brand col */}
           <div>
             <Wordmark size="md" className="mb-4" />
-            <p style={{ fontSize: "0.9rem", color: "#9A9DA8", lineHeight: 1.7, maxWidth: "280px" }}>
+            <p style={{ fontSize: "0.9rem", color: "var(--bone-dim)", lineHeight: 1.7, maxWidth: "280px" }}>
               The most capable outdoor strip lighting available in Australia. IP68-rated,
               properly dimmable, built to last.
             </p>
@@ -38,8 +38,8 @@ export default function Footer() {
             <p
               style={{
                 fontSize: "0.75rem",
-                fontWeight: 700,
-                color: "#5B6478",
+                fontWeight: 500,
+                color: "var(--bone-dim)",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 marginBottom: "16px",
@@ -51,12 +51,12 @@ export default function Footer() {
               <a
                 href="mailto:hello@orenara.com"
                 className="flex items-center gap-2"
-                style={{ color: "#9A9DA8", fontSize: "0.9rem", textDecoration: "none", transition: "color 0.15s ease" }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#F4F1EA")}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#9A9DA8")}
+                style={{ color: "var(--bone-dim)", fontSize: "0.9rem", textDecoration: "none", transition: "color 0.15s ease" }}
+                onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--bone)")}
+                onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--bone-dim)")}
                 data-testid="footer-email"
               >
-                <Mail size={15} style={{ color: "#5B6478" }} />
+                <Mail size={15} style={{ color: "var(--bone-dim)" }} />
                 hello@orenara.com
               </a>
               {/* ORENARA_INSTAGRAM_PLACEHOLDER — real handle to be provided by owner; do not invent one */}
@@ -65,12 +65,12 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2"
-                style={{ color: "#9A9DA8", fontSize: "0.9rem", textDecoration: "none", transition: "color 0.15s ease" }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#F4F1EA")}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#9A9DA8")}
+                style={{ color: "var(--bone-dim)", fontSize: "0.9rem", textDecoration: "none", transition: "color 0.15s ease" }}
+                onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--bone)")}
+                onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--bone-dim)")}
                 data-testid="footer-instagram"
               >
-                <Instagram size={15} style={{ color: "#5B6478" }} />
+                <Instagram size={15} style={{ color: "var(--bone-dim)" }} />
                 ORENARA_INSTAGRAM_PLACEHOLDER
               </a>
             </div>
@@ -81,8 +81,8 @@ export default function Footer() {
             <p
               style={{
                 fontSize: "0.75rem",
-                fontWeight: 700,
-                color: "#5B6478",
+                fontWeight: 500,
+                color: "var(--bone-dim)",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 marginBottom: "16px",
@@ -90,7 +90,7 @@ export default function Footer() {
             >
               Important
             </p>
-            <p style={{ fontSize: "0.8125rem", color: "#5B6478", lineHeight: 1.7 }}>
+            <p style={{ fontSize: "0.8125rem", color: "var(--bone-dim)", lineHeight: 1.7 }}>
               Orenara is a supply-only business. We supply components only;
               installation is your responsibility and must be carried out by a licensed
               electrician where required by Australian standards.
@@ -99,37 +99,37 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div style={{ height: "1px", background: "rgba(91,100,120,0.2)", marginBottom: "24px" }} />
+        <div style={{ height: "1px", background: "var(--ink-line)", marginBottom: "24px" }} />
 
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5">
-            <p style={{ fontSize: "0.8rem", color: "#5B6478" }}>
+            <p style={{ fontSize: "0.8rem", color: "var(--bone-dim)" }}>
               © {year} Orenara. All rights reserved.
             </p>
             <Link
               href="/terms"
-              style={{ fontSize: "0.8rem", color: "#9A9DA8", textDecoration: "none" }}
+              style={{ fontSize: "0.8rem", color: "var(--bone-dim)", textDecoration: "none" }}
               data-testid="footer-terms-link"
             >
               Terms &amp; Conditions
             </Link>
             <Link
               href="/trade-resources"
-              style={{ fontSize: "0.8rem", color: "#9A9DA8", textDecoration: "none" }}
+              style={{ fontSize: "0.8rem", color: "var(--bone-dim)", textDecoration: "none" }}
               data-testid="footer-trade-resources-link"
             >
               Trade Resources
             </Link>
             <Link
               href="/privacy"
-              style={{ fontSize: "0.8rem", color: "#9A9DA8", textDecoration: "none" }}
+              style={{ fontSize: "0.8rem", color: "var(--bone-dim)", textDecoration: "none" }}
               data-testid="footer-privacy-link"
             >
               Privacy Policy
             </Link>
           </div>
-          <p style={{ fontSize: "0.8rem", color: "#5B6478" }}>
+          <p style={{ fontSize: "0.8rem", color: "var(--bone-dim)" }}>
             IP68. No excuses.
           </p>
         </div>

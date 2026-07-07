@@ -17,10 +17,9 @@ export default function DriverSizingPage() {
           Trade Resources
         </p>
         <h1
-          className="font-bold"
           style={{
             fontSize: "clamp(2rem, 5vw, 3rem)",
-            color: "#F4F1EA",
+            color: "var(--bone)",
             letterSpacing: "-0.03em",
             lineHeight: 1.12,
           }}
@@ -28,7 +27,7 @@ export default function DriverSizingPage() {
           Driver & Dimmer Sizing Guide
         </h1>
 
-        <div style={{ marginTop: "36px", fontSize: "1rem", color: "#C9CCD4", lineHeight: 1.85 }}>
+        <div style={{ marginTop: "36px", fontSize: "1rem", color: "var(--bone-dim)", lineHeight: 1.85 }}>
           <p style={{ marginBottom: "20px" }}>
             A driver&apos;s rated output doesn&apos;t equal its safe continuous output. Running a
             driver at 100% of its rating continuously shortens its life and raises thermal risk —
@@ -45,15 +44,15 @@ export default function DriverSizingPage() {
             style={{
               margin: "32px 0",
               padding: "20px 24px",
-              borderRadius: "12px",
-              border: "1px solid rgba(245,178,92,0.25)",
-              background: "rgba(245,178,92,0.06)",
+              borderRadius: "var(--radius)",
+              border: "1px solid var(--ink-line)",
+              background: "var(--ink-raised)",
             }}
           >
-            <p style={{ fontSize: "0.75rem", fontWeight: 700, color: "#F5B25C", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "10px" }}>
+            <p className="spec-mono-upper" style={{ marginBottom: "10px" }}>
               The formula
             </p>
-            <p style={{ color: "#F4F1EA", fontFamily: "monospace", fontSize: "0.9375rem", lineHeight: 1.8 }}>
+            <p className="spec-mono" style={{ color: "var(--bone)", fontSize: "0.9375rem", lineHeight: 1.8 }}>
               Max safe run (metres) = (Driver rated watts &times; safety derate) &divide; strip watts per metre
               <br />
               {DRIVER_RATED_WATTS}W &times; {SAFETY_DERATE} &divide; {STRIP_WATTS_PER_METRE}W/m = {MAX_RUN_PER_DRIVER}m
@@ -69,7 +68,7 @@ export default function DriverSizingPage() {
             Use our{" "}
             <Link
               href="/quote-builder"
-              style={{ color: "#F5B25C", textDecoration: "underline", textUnderlineOffset: "3px" }}
+              style={{ color: "var(--bone)", textDecoration: "underline", textUnderlineOffset: "3px" }}
               data-testid="driver-sizing-quote-builder-link"
             >
               Quote Builder tool
@@ -79,10 +78,10 @@ export default function DriverSizingPage() {
           </p>
         </div>
 
-        <div style={{ marginTop: "48px", paddingTop: "32px", borderTop: "1px solid rgba(91,100,120,0.2)" }}>
+        <div style={{ marginTop: "48px", paddingTop: "32px", borderTop: "1px solid var(--ink-line)" }}>
           <Link
             href="/trade-resources"
-            style={{ fontSize: "0.9375rem", color: "#9A9DA8", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            style={{ fontSize: "0.9375rem", color: "var(--bone-dim)", textDecoration: "underline", textUnderlineOffset: "3px" }}
             data-testid="driver-sizing-hub-link"
           >
             See more in Trade Resources

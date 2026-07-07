@@ -17,10 +17,9 @@ export default function TradeResourcesHub() {
           Trade Resources
         </p>
         <h1
-          className="font-bold"
           style={{
             fontSize: "clamp(2rem, 5vw, 3.25rem)",
-            color: "#F4F1EA",
+            color: "var(--bone)",
             letterSpacing: "-0.035em",
             lineHeight: 1.1,
             maxWidth: "760px",
@@ -32,7 +31,7 @@ export default function TradeResourcesHub() {
           style={{
             marginTop: "16px",
             fontSize: "1rem",
-            color: "#9A9DA8",
+            color: "var(--bone-dim)",
             lineHeight: 1.7,
             maxWidth: "620px",
           }}
@@ -49,16 +48,15 @@ export default function TradeResourcesHub() {
               className="kit-card rounded-lg p-8 flex flex-col"
               data-testid={`trade-resource-card-${resource.slug}`}
               style={{
-                background: "#1F222B",
-                border: "1px solid rgba(91,100,120,0.25)",
+                background: "var(--ink-raised)",
+                border: "1px solid var(--ink-line)",
                 textDecoration: "none",
               }}
             >
               <h2
-                className="font-bold"
                 style={{
                   fontSize: "1.1875rem",
-                  color: "#F4F1EA",
+                  color: "var(--bone)",
                   letterSpacing: "-0.02em",
                   marginBottom: "12px",
                 }}
@@ -68,7 +66,7 @@ export default function TradeResourcesHub() {
               <p
                 style={{
                   fontSize: "0.9375rem",
-                  color: "#9A9DA8",
+                  color: "var(--bone-dim)",
                   lineHeight: 1.7,
                   flex: 1,
                   marginBottom: "20px",
@@ -76,7 +74,7 @@ export default function TradeResourcesHub() {
               >
                 {resource.blurb}
               </p>
-              <span style={{ fontSize: "0.8125rem", fontWeight: 600, color: "#F5B25C" }}>
+              <span style={{ fontSize: "0.8125rem", fontWeight: 500, color: "var(--bone)" }}>
                 Read the guide &rarr;
               </span>
             </Link>

@@ -95,25 +95,25 @@ export default function ReviewPhotos() {
     justifyContent: "center",
     width: "40px",
     height: "40px",
-    borderRadius: "999px",
-    background: "rgba(31,34,43,0.85)",
-    border: "1px solid rgba(91,100,120,0.35)",
-    color: "#F4F1EA",
+    borderRadius: "var(--radius)",
+    background: "var(--ink-raised)",
+    border: "1px solid var(--ink-line)",
+    color: "var(--bone)",
     cursor: "pointer",
   };
 
   return (
     <div
       className="mt-8"
-      style={{ paddingTop: "22px", borderTop: "1px solid rgba(91,100,120,0.2)" }}
+      style={{ paddingTop: "22px", borderTop: "1px solid var(--ink-line)" }}
     >
       <div className="flex items-center gap-2 mb-4">
-        <Camera size={14} style={{ color: "#F5B25C" }} aria-hidden="true" />
+        <Camera size={14} style={{ color: "var(--bone-dim)" }} aria-hidden="true" />
         <span
           style={{
             fontSize: "0.72rem",
-            fontWeight: 600,
-            color: "#9A9DA8",
+            fontWeight: 500,
+            color: "var(--bone-dim)",
             letterSpacing: "0.05em",
             textTransform: "uppercase",
           }}
@@ -139,10 +139,10 @@ export default function ReviewPhotos() {
               flex: "0 0 auto",
               width: "84px",
               height: "84px",
-              borderRadius: "9px",
+              borderRadius: "var(--radius)",
               overflow: "hidden",
-              border: "1px solid rgba(91,100,120,0.25)",
-              background: "#15171C",
+              border: "1px solid var(--ink-line)",
+              background: "var(--ink)",
               cursor: "pointer",
               scrollSnapAlign: "start",
               padding: 0,
@@ -164,8 +164,8 @@ export default function ReviewPhotos() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                background: "rgba(10,11,14,0.45)",
-                color: "#F4F1EA",
+                background: "color-mix(in srgb, var(--ink) 45%, transparent)",
+                color: "var(--bone)",
                 transition: "opacity 150ms ease",
               }}
             >
@@ -186,8 +186,7 @@ export default function ReviewPhotos() {
             position: "fixed",
             inset: 0,
             zIndex: 100,
-            background: "rgba(10,11,14,0.92)",
-            backdropFilter: "blur(4px)",
+            background: "color-mix(in srgb, var(--ink) 96%, transparent)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -208,10 +207,10 @@ export default function ReviewPhotos() {
               justifyContent: "center",
               width: "40px",
               height: "40px",
-              borderRadius: "999px",
-              background: "rgba(31,34,43,0.85)",
-              border: "1px solid rgba(91,100,120,0.35)",
-              color: "#F4F1EA",
+              borderRadius: "var(--radius)",
+              background: "var(--ink-raised)",
+              border: "1px solid var(--ink-line)",
+              color: "var(--bone)",
               cursor: "pointer",
             }}
           >
@@ -239,10 +238,10 @@ export default function ReviewPhotos() {
                 position: "relative",
                 width: "100%",
                 aspectRatio: "4 / 3",
-                borderRadius: "12px",
+                borderRadius: "var(--radius)",
                 overflow: "hidden",
-                border: "1px solid rgba(91,100,120,0.3)",
-                background: "#15171C",
+                border: "1px solid var(--ink-line)",
+                background: "var(--ink)",
               }}
             >
               <Image
@@ -258,11 +257,11 @@ export default function ReviewPhotos() {
                 marginTop: "12px",
                 textAlign: "center",
                 fontSize: "0.8rem",
-                color: "#C9CCD4",
+                color: "var(--bone-dim)",
               }}
             >
               {active.label}
-              <span style={{ color: "#9A9DA8" }}>
+              <span style={{ color: "var(--bone-dim)" }}>
                 {" "}
                 · {index + 1} / {reviewPhotos.length}
               </span>

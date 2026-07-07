@@ -4,6 +4,9 @@ import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: "/",
+  },
   manifest: "/manifest.json",
   title: "Orenara — Outdoor LED Strip Lighting, Built for Australian Conditions",
   description:
@@ -56,6 +59,11 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Latin subsets only (served via unicode-range). No other weights. */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@500&family=IBM+Plex+Mono:wght@400&family=Instrument+Sans:wght@400;500&display=swap"
+        />
       </head>
       <body className="antialiased">{children}</body>
     </html>

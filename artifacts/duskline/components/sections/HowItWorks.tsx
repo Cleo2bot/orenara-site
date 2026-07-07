@@ -27,8 +27,8 @@ export default function HowItWorks() {
     <section
       id="how-it-works"
       style={{
-        background: "#1F222B",
-        borderTop: "1px solid rgba(91,100,120,0.2)",
+        background: "var(--ink)",
+        borderTop: "1px solid var(--ink-line)",
         paddingTop: "96px",
         paddingBottom: "96px",
       }}
@@ -36,11 +36,11 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Catalogue-style hero — heading overlaid on the image */}
         <div
-          className="glow-amber mb-16"
+          className="mb-16"
           style={{
-            borderRadius: "16px",
+            borderRadius: "var(--radius)",
             overflow: "hidden",
-            border: "1px solid rgba(245,178,92,0.2)",
+            border: "1px solid var(--ink-line)",
             position: "relative",
           }}
         >
@@ -65,8 +65,7 @@ export default function HowItWorks() {
             style={{
               position: "absolute",
               inset: 0,
-              background:
-                "linear-gradient(90deg, rgba(21,23,28,0.9) 0%, rgba(21,23,28,0.4) 55%, rgba(21,23,28,0.05) 100%)",
+              background: "color-mix(in srgb, var(--ink) 55%, transparent)",
               pointerEvents: "none",
             }}
           />
@@ -79,14 +78,12 @@ export default function HowItWorks() {
               maxWidth: "540px",
             }}
           >
-            <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
-              How it works
-            </p>
+            <p className="eyebrow mb-6">How it works</p>
             <h2
-              className="font-bold"
+              className="font-medium"
               style={{
                 fontSize: "clamp(1.5rem, 3.5vw, 2.5rem)",
-                color: "#F4F1EA",
+                color: "var(--bone)",
                 letterSpacing: "-0.03em",
                 lineHeight: 1.15,
               }}
@@ -106,8 +103,7 @@ export default function HowItWorks() {
               left: "calc(33.33% + 20px)",
               right: "calc(33.33% + 20px)",
               height: "1px",
-              background:
-                "linear-gradient(90deg, rgba(245,178,92,0.4), rgba(245,178,92,0.2))",
+              background: "var(--ink-line)",
             }}
             aria-hidden="true"
           />
@@ -131,34 +127,26 @@ export default function HowItWorks() {
                       width: "56px",
                       height: "56px",
                       borderRadius: "50%",
-                      border: "1px solid rgba(245,178,92,0.3)",
-                      background: "rgba(245,178,92,0.06)",
+                      border: "1px solid var(--ink-line)",
+                      background: "var(--ink-raised)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       flexShrink: 0,
                     }}
                   >
-                    <Icon size={22} style={{ color: "#F5B25C" }} />
+                    <Icon size={22} style={{ color: "var(--bone-dim)" }} />
                   </div>
-                  <span
-                    style={{
-                      fontSize: "0.75rem",
-                      fontWeight: 700,
-                      color: "#F5B25C",
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                    }}
-                  >
+                  <span className="spec-mono-upper">
                     Step {step.number}
                   </span>
                 </div>
 
                 <h3
-                  className="font-bold mb-4"
+                  className="font-medium mb-4"
                   style={{
                     fontSize: "1.125rem",
-                    color: "#F4F1EA",
+                    color: "var(--bone)",
                     letterSpacing: "-0.02em",
                     lineHeight: 1.3,
                   }}
@@ -168,7 +156,7 @@ export default function HowItWorks() {
                 <p
                   style={{
                     fontSize: "0.9375rem",
-                    color: "#9A9DA8",
+                    color: "var(--bone-dim)",
                     lineHeight: 1.75,
                   }}
                 >
@@ -183,19 +171,19 @@ export default function HowItWorks() {
         <div
           className="mt-4 p-6 rounded-lg flex items-start gap-4"
           style={{
-            background: "rgba(21,23,28,0.6)",
-            border: "1px solid rgba(91,100,120,0.25)",
+            background: "var(--ink-raised)",
+            border: "1px solid var(--ink-line)",
           }}
         >
-          <Package size={20} style={{ color: "#5B6478", flexShrink: 0, marginTop: "2px" }} />
+          <Package size={20} style={{ color: "var(--bone-dim)", flexShrink: 0, marginTop: "2px" }} />
           <div>
             <p
-              className="font-semibold mb-1"
-              style={{ color: "#F4F1EA", fontSize: "0.9375rem" }}
+              className="font-medium mb-1"
+              style={{ color: "var(--bone)", fontSize: "0.9375rem" }}
             >
               20 business day lead time — set the right expectation from the start.
             </p>
-            <p style={{ color: "#9A9DA8", fontSize: "0.875rem", lineHeight: 1.7 }}>
+            <p style={{ color: "var(--bone-dim)", fontSize: "0.875rem", lineHeight: 1.7 }}>
               This is a made-to-order product. We don't hold stock. The lead time runs from
               confirmed order — not from first enquiry. If your project has a hard deadline,
               tell us in your enquiry and we'll factor it into the conversation.

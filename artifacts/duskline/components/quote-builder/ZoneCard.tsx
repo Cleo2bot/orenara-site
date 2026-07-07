@@ -31,8 +31,8 @@ interface ZoneCardProps {
 const labelStyle: React.CSSProperties = {
   display: "block",
   fontSize: "0.8125rem",
-  fontWeight: 600,
-  color: "#9A9DA8",
+  fontWeight: 500,
+  color: "var(--bone-dim)",
   marginBottom: "8px",
   letterSpacing: "0.04em",
   textTransform: "uppercase",
@@ -52,7 +52,7 @@ export default function ZoneCard({
   return (
     <div
       className="rounded-lg p-6"
-      style={{ background: "#1F222B", border: "1px solid rgba(91,100,120,0.25)" }}
+      style={{ background: "var(--ink-raised)", border: "1px solid var(--ink-line)" }}
       data-testid={`zone-card-${index}`}
     >
       <div className="flex items-start justify-between gap-4 mb-5">
@@ -79,20 +79,20 @@ export default function ZoneCard({
             marginTop: "32px",
             flexShrink: 0,
             background: "transparent",
-            border: "1px solid rgba(91,100,120,0.35)",
-            borderRadius: "6px",
+            border: "1px solid var(--ink-line)",
+            borderRadius: "2px",
             padding: "10px",
             cursor: "pointer",
-            color: "#9A9DA8",
+            color: "var(--bone-dim)",
             transition: "color 0.15s ease, border-color 0.15s ease",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = "#EF4444";
-            e.currentTarget.style.borderColor = "rgba(239,68,68,0.4)";
+            e.currentTarget.style.color = "var(--bone)";
+            e.currentTarget.style.borderColor = "var(--bone-dim)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = "#9A9DA8";
-            e.currentTarget.style.borderColor = "rgba(91,100,120,0.35)";
+            e.currentTarget.style.color = "var(--bone-dim)";
+            e.currentTarget.style.borderColor = "var(--ink-line)";
           }}
         >
           <Trash2 size={16} />
@@ -106,7 +106,7 @@ export default function ZoneCard({
             className="grid grid-cols-1 sm:grid-cols-2 gap-5"
             style={
               zone.runs.length > 1
-                ? { paddingBottom: "16px", borderBottom: "1px dashed rgba(91,100,120,0.2)" }
+                ? { paddingBottom: "16px", borderBottom: "1px dashed var(--ink-line)" }
                 : undefined
             }
           >
@@ -143,15 +143,15 @@ export default function ZoneCard({
                         style={{
                           flex: 1,
                           padding: "12px 16px",
-                          borderRadius: "6px",
-                          border: active ? "1px solid rgba(245,178,92,0.5)" : "1px solid rgba(91,100,120,0.4)",
-                          background: active ? "rgba(245,178,92,0.1)" : "rgba(37,40,49,0.8)",
-                          color: active ? "#F5B25C" : "#9A9DA8",
+                          borderRadius: "2px",
+                          border: active ? "1px solid var(--bone-dim)" : "1px solid var(--ink-line)",
+                          background: active ? "var(--ink-raised)" : "var(--ink-raised)",
+                          color: active ? "var(--bone)" : "var(--bone-dim)",
                           fontSize: "0.9375rem",
-                          fontWeight: 600,
+                          fontWeight: 500,
                           cursor: "pointer",
                           textTransform: "capitalize",
-                          transition: "all 0.15s ease",
+                          transition: "border-color 0.15s ease, color 0.15s ease",
                         }}
                       >
                         {shape}
@@ -169,11 +169,11 @@ export default function ZoneCard({
                   style={{
                     flexShrink: 0,
                     background: "transparent",
-                    border: "1px solid rgba(91,100,120,0.35)",
-                    borderRadius: "6px",
+                    border: "1px solid var(--ink-line)",
+                    borderRadius: "2px",
                     padding: "12px",
                     cursor: "pointer",
-                    color: "#9A9DA8",
+                    color: "var(--bone-dim)",
                   }}
                 >
                   <Trash2 size={14} />
@@ -197,7 +197,7 @@ export default function ZoneCard({
 
       <div>
         <label htmlFor={`zone-note-${zone.id}`} style={labelStyle}>
-          Note <span style={{ color: "#5B6478", fontWeight: 400, textTransform: "none", letterSpacing: "normal" }}>(optional)</span>
+          Note <span style={{ color: "var(--bone-dim)", fontWeight: 400, textTransform: "none", letterSpacing: "normal" }}>(optional)</span>
         </label>
         <textarea
           id={`zone-note-${zone.id}`}
@@ -213,8 +213,8 @@ export default function ZoneCard({
 
       {summary && (
         <p
-          className="mt-4"
-          style={{ fontSize: "0.875rem", color: "#F5B25C", fontWeight: 500 }}
+          className="spec-mono mt-4"
+          style={{ fontSize: "0.875rem", color: "var(--bone)" }}
           data-testid={`zone-summary-${index}`}
         >
           {summary}
@@ -222,7 +222,7 @@ export default function ZoneCard({
       )}
 
       {zone.runs.length > 1 && (
-        <p className="mt-2" style={{ fontSize: "0.75rem", color: "#5B6478", lineHeight: 1.5 }}>
+        <p className="mt-2" style={{ fontSize: "0.75rem", color: "var(--bone-dim)", lineHeight: 1.5 }}>
           Driver count assumes all runs in this zone are wired together. If your runs need separate power feeds, let
           us know in the notes.
         </p>

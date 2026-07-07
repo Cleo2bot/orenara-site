@@ -263,7 +263,8 @@ export default function TermsPage() {
       <header
         className="fixed top-0 left-0 right-0 z-50"
         style={{
-          background: "linear-gradient(180deg, rgba(21,23,28,0.97) 0%, rgba(21,23,28,0.0) 100%)",
+          background: "var(--ink)",
+          borderBottom: "1px solid var(--ink-line)",
         }}
       >
         <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
@@ -273,7 +274,7 @@ export default function TermsPage() {
           <Link
             href="/"
             className="hidden sm:inline-flex"
-            style={{ color: "#9A9DA8", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none" }}
+            style={{ color: "var(--bone-dim)", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none" }}
             data-testid="terms-back-link"
           >
             Back to site
@@ -281,24 +282,23 @@ export default function TermsPage() {
         </nav>
       </header>
 
-      <main style={{ background: "#15171C" }}>
+      <main style={{ background: "var(--ink)" }}>
         <section style={{ paddingTop: "148px", paddingBottom: "80px" }}>
           <div className="mx-auto px-6" style={{ maxWidth: "820px" }}>
             <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
               Legal
             </p>
             <h1
-              className="font-bold"
               style={{
                 fontSize: "clamp(2rem, 5vw, 3.25rem)",
-                color: "#F4F1EA",
+                color: "var(--bone)",
                 letterSpacing: "-0.035em",
                 lineHeight: 1.08,
               }}
             >
-              Terms &amp; <span className="text-gradient-amber">Conditions</span>
+              Terms &amp; <span>Conditions</span>
             </h1>
-            <p style={{ marginTop: "16px", fontSize: "0.875rem", color: "#5B6478" }}>
+            <p style={{ marginTop: "16px", fontSize: "0.875rem", color: "var(--bone-dim)" }}>
               Last updated: {LAST_UPDATED}
             </p>
 
@@ -307,15 +307,15 @@ export default function TermsPage() {
               style={{
                 marginTop: "32px",
                 padding: "20px 24px",
-                borderRadius: "12px",
-                border: "1px solid rgba(245,178,92,0.25)",
-                background: "rgba(245,178,92,0.06)",
+                borderRadius: "var(--radius)",
+                border: "1px solid var(--ink-line)",
+                background: "var(--ink-raised)",
               }}
             >
-              <p style={{ fontSize: "0.9375rem", color: "#F4F1EA", lineHeight: 1.7, fontWeight: 600 }}>
+              <p style={{ fontSize: "0.9375rem", color: "var(--bone)", lineHeight: 1.7 }}>
                 Orenara supplies components only.
               </p>
-              <p style={{ marginTop: "6px", fontSize: "0.9375rem", color: "#9A9DA8", lineHeight: 1.7 }}>
+              <p style={{ marginTop: "6px", fontSize: "0.9375rem", color: "var(--bone-dim)", lineHeight: 1.7 }}>
                 We do not provide installation or electrical work. All wiring and installation must be
                 carried out by a licensed electrician in accordance with Australian standards.
               </p>
@@ -326,28 +326,27 @@ export default function TermsPage() {
               {sections.map((section) => (
                 <section key={section.n} style={{ marginBottom: "44px" }}>
                   <h2
-                    className="font-bold"
                     style={{
                       fontSize: "clamp(1.25rem, 3vw, 1.6rem)",
-                      color: "#F4F1EA",
+                      color: "var(--bone)",
                       letterSpacing: "-0.02em",
                       lineHeight: 1.25,
                       marginBottom: "20px",
                       paddingBottom: "12px",
-                      borderBottom: "1px solid rgba(91,100,120,0.2)",
+                      borderBottom: "1px solid var(--ink-line)",
                     }}
                   >
-                    <span style={{ color: "#F5B25C", marginRight: "12px" }}>{section.n}.</span>
+                    <span style={{ color: "var(--bone-dim)", marginRight: "12px" }}>{section.n}.</span>
                     {section.title}
                   </h2>
 
                   {section.clauses.map((clause) => (
                     <div key={clause.id} style={{ marginBottom: "18px" }}>
-                      <p style={{ fontSize: "0.9375rem", color: "#C9CCD4", lineHeight: 1.75 }}>
+                      <p style={{ fontSize: "0.9375rem", color: "var(--bone-dim)", lineHeight: 1.75 }}>
                         <span
                           style={{
-                            color: "#5B6478",
-                            fontWeight: 700,
+                            color: "var(--bone-dim)",
+                            fontWeight: 500,
                             fontVariantNumeric: "tabular-nums",
                             marginRight: "10px",
                           }}
@@ -355,7 +354,7 @@ export default function TermsPage() {
                           {clause.id}
                         </span>
                         {clause.strong ? (
-                          <strong style={{ color: "#F4F1EA", fontWeight: 700 }}>{clause.strong}</strong>
+                          <strong style={{ color: "var(--bone)", fontWeight: 500 }}>{clause.strong}</strong>
                         ) : null}
                         {clause.text}
                       </p>
@@ -366,7 +365,7 @@ export default function TermsPage() {
                               key={i}
                               style={{
                                 fontSize: "0.9375rem",
-                                color: "#9A9DA8",
+                                color: "var(--bone-dim)",
                                 lineHeight: 1.75,
                                 marginBottom: "8px",
                               }}

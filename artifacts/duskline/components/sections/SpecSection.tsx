@@ -30,8 +30,8 @@ export default function SpecSection() {
     <section
       id="specs"
       style={{
-        background: "#15171C",
-        borderTop: "1px solid rgba(91,100,120,0.2)",
+        background: "var(--ink)",
+        borderTop: "1px solid var(--ink-line)",
         paddingTop: "96px",
         paddingBottom: "96px",
       }}
@@ -39,11 +39,11 @@ export default function SpecSection() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Catalogue-style hero — heading overlaid on the proof image */}
         <div
-          className="glow-amber mb-16"
+          className="mb-16"
           style={{
-            borderRadius: "16px",
+            borderRadius: "var(--radius)",
             overflow: "hidden",
-            border: "1px solid rgba(245,178,92,0.2)",
+            border: "1px solid var(--ink-line)",
             position: "relative",
           }}
         >
@@ -68,8 +68,7 @@ export default function SpecSection() {
             style={{
               position: "absolute",
               inset: 0,
-              background:
-                "linear-gradient(90deg, rgba(21,23,28,0.9) 0%, rgba(21,23,28,0.4) 55%, rgba(21,23,28,0.05) 100%)",
+              background: "color-mix(in srgb, var(--ink) 55%, transparent)",
               pointerEvents: "none",
             }}
           />
@@ -82,14 +81,12 @@ export default function SpecSection() {
               maxWidth: "540px",
             }}
           >
-            <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
-              Technical specification
-            </p>
+            <p className="eyebrow mb-6">Technical specification</p>
             <h2
-              className="font-bold"
+              className="font-medium"
               style={{
                 fontSize: "clamp(1.5rem, 3.5vw, 2.5rem)",
-                color: "#F4F1EA",
+                color: "var(--bone)",
                 letterSpacing: "-0.03em",
                 lineHeight: 1.15,
               }}
@@ -99,7 +96,7 @@ export default function SpecSection() {
             <p
               style={{
                 marginTop: "16px",
-                color: "#C9CCD4",
+                color: "var(--bone-dim)",
                 fontSize: "0.9375rem",
                 lineHeight: 1.6,
                 maxWidth: "440px",
@@ -120,8 +117,8 @@ export default function SpecSection() {
                 key={i}
                 className="rounded-lg p-8"
                 style={{
-                  background: "#1F222B",
-                  border: "1px solid rgba(91,100,120,0.25)",
+                  background: "var(--ink-raised)",
+                  border: "1px solid var(--ink-line)",
                 }}
                 data-testid={`spec-card-${i}`}
               >
@@ -129,16 +126,16 @@ export default function SpecSection() {
                   style={{
                     width: "44px",
                     height: "44px",
-                    borderRadius: "8px",
-                    background: "rgba(245,178,92,0.08)",
-                    border: "1px solid rgba(245,178,92,0.2)",
+                    borderRadius: "var(--radius)",
+                    background: "transparent",
+                    border: "1px solid var(--ink-line)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     marginBottom: "20px",
                   }}
                 >
-                  <Icon size={20} style={{ color: "#F5B25C" }} />
+                  <Icon size={20} style={{ color: "var(--bone-dim)" }} />
                 </div>
 
                 <span className="spec-badge mb-4" style={{ display: "inline-flex" }}>
@@ -146,10 +143,10 @@ export default function SpecSection() {
                 </span>
 
                 <h3
-                  className="font-bold mb-4 mt-4"
+                  className="font-medium mb-4 mt-4"
                   style={{
                     fontSize: "1.125rem",
-                    color: "#F4F1EA",
+                    color: "var(--bone)",
                     letterSpacing: "-0.02em",
                     lineHeight: 1.3,
                   }}
@@ -159,7 +156,7 @@ export default function SpecSection() {
                 <p
                   style={{
                     fontSize: "0.9rem",
-                    color: "#9A9DA8",
+                    color: "var(--bone-dim)",
                     lineHeight: 1.75,
                   }}
                 >
