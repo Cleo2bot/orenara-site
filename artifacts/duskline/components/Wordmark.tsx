@@ -3,21 +3,14 @@ interface WordmarkProps {
   className?: string;
 }
 
-export default function Wordmark({ size = "md", className = "" }: WordmarkProps) {
-  const sizeClasses = {
-    sm: "text-base",
-    md: "text-xl",
-    lg: "text-3xl",
-  };
+const sizeClasses = {
+  sm: "wordmark-nav",
+  md: "wordmark-md",
+  lg: "wordmark-lg",
+};
 
+export default function Wordmark({ size = "md", className = "" }: WordmarkProps) {
   return (
-    <div className={`inline-block ${className}`}>
-      <span
-        className={`font-display font-medium uppercase text-bone ${sizeClasses[size]}`}
-        style={{ letterSpacing: "0.14em" }}
-      >
-        ORENARA
-      </span>
-    </div>
+    <span className={`wordmark ${sizeClasses[size]} ${className}`}>ORENARA</span>
   );
 }

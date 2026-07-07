@@ -5,11 +5,7 @@ import Link from "next/link";
 import { kits } from "@/lib/kits";
 
 export default function ProductKits() {
-  const scrollToForm = (kitName: string) => {
-    const select = document.getElementById("kit-select") as HTMLSelectElement;
-    if (select) {
-      select.value = kitName;
-    }
+  const scrollToForm = () => {
     document.getElementById("enquire")?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -147,31 +143,26 @@ export default function ProductKits() {
               )}
 
               {/* CTA */}
-              <button
-                className="btn-outline"
-                onClick={() => scrollToForm(kit.name)}
-                data-testid={`kit-enquire-btn-${i}`}
-              >
-                Enquire for Pricing
-              </button>
-
               <Link
                 href={`/kits/${kit.slug}`}
+                className="btn-outline"
                 data-testid={`kit-specs-link-${i}`}
-                style={{
-                  display: "block",
-                  textAlign: "center",
-                  marginTop: "12px",
-                  fontSize: "0.8125rem",
-                  color: "var(--bone-dim)",
-                  textDecoration: "underline",
-                  textUnderlineOffset: "3px",
-                }}
               >
                 See full specifications
               </Link>
             </div>
           ))}
+        </div>
+
+        {/* Shared kit enquiry CTA */}
+        <div className="flex justify-center mt-12">
+          <button
+            className="btn-primary"
+            onClick={scrollToForm}
+            data-testid="kits-enquire-btn"
+          >
+            Enquire about a kit
+          </button>
         </div>
 
         {/* Bottom note */}

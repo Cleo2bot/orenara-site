@@ -26,7 +26,20 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Brand col */}
           <div>
-            <Wordmark size="md" className="mb-4" />
+            <Wordmark size="md" />
+            <p
+              className="spec-mono-upper"
+              style={{
+                fontSize: "10.5px",
+                color: "var(--bone-dim)",
+                letterSpacing: "0.16em",
+                marginTop: "10px",
+                marginBottom: "20px",
+              }}
+              data-testid="footer-wordmark-subline"
+            >
+              IP68 · Made to Order · Australia
+            </p>
             <p style={{ fontSize: "0.9rem", color: "var(--bone-dim)", lineHeight: 1.7, maxWidth: "280px" }}>
               The most capable outdoor strip lighting available in Australia. IP68-rated,
               properly dimmable, built to last.

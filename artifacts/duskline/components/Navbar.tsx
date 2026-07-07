@@ -3,41 +3,48 @@ import Link from "next/link";
 import Wordmark from "./Wordmark";
 
 export default function Navbar() {
-  const scrollToForm = () => {
-    document.getElementById("enquire")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 bg-ink border-b border-ink-line"
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        background: "color-mix(in srgb, var(--ink) 94%, transparent)",
+        borderBottom: "1px solid var(--ink-line)",
+      }}
     >
-      <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-        <Link href="/" data-testid="nav-home-link">
+      <nav
+        className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-4"
+        style={{ height: "68px" }}
+      >
+        <Link
+          href="/"
+          aria-label="Orenara home"
+          style={{ textDecoration: "none", display: "inline-flex" }}
+          data-testid="nav-home-link"
+        >
           <Wordmark size="sm" />
         </Link>
-        <div className="flex items-center gap-5">
-          <Link
-            href="/quote-builder"
-            className="hidden sm:inline-flex text-bone-dim text-sm font-medium no-underline whitespace-nowrap"
-            data-testid="nav-quote-builder-link"
-          >
-            Build Your Kit
-          </Link>
+        <div className="flex items-center gap-6">
           <Link
             href="/trade"
-            className="btn-trade hidden sm:inline-flex"
+            className="hidden md:inline-flex whitespace-nowrap"
+            style={{
+              color: "var(--bone-dim)",
+              fontSize: "0.875rem",
+              fontWeight: 500,
+              textDecoration: "none",
+            }}
             data-testid="nav-trade-link"
           >
             Trade Order
           </Link>
-          <button
-            onClick={scrollToForm}
-            className="btn-outline hidden sm:inline-flex w-auto"
-            style={{ padding: "9px 18px", fontSize: "0.8125rem" }}
-            data-testid="nav-enquire-btn"
+          <Link
+            href="/quote-builder"
+            className="btn-outline w-auto whitespace-nowrap"
+            style={{ padding: "10px 18px", fontSize: "0.8125rem" }}
+            data-testid="nav-quote-builder-link"
           >
-            Enquire for Pricing
-          </button>
+            Build Your Kit
+          </Link>
         </div>
       </nav>
     </header>

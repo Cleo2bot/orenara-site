@@ -577,6 +577,16 @@
       margin-top: calc(var(--spacing) * 2);
     }
   }
+  .sm\:hidden {
+    @media (width >= 40rem) {
+      display: none;
+    }
+  }
+  .sm\:inline {
+    @media (width >= 40rem) {
+      display: inline;
+    }
+  }
   .sm\:inline-flex {
     @media (width >= 40rem) {
       display: inline-flex;
@@ -610,6 +620,11 @@
   .sm\:gap-5 {
     @media (width >= 40rem) {
       gap: calc(var(--spacing) * 5);
+    }
+  }
+  .md\:inline-flex {
+    @media (width >= 48rem) {
+      display: inline-flex;
     }
   }
   .md\:grid-cols-2 {
@@ -787,6 +802,30 @@ em, i {
   border: none;
   height: 1px;
   background: var(--ink-line);
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--bone);
+  letter-spacing: 0.22em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.wordmark-nav {
+  font-size: 15.5px;
+}
+@media (max-width: 420px) {
+  .wordmark-nav {
+    font-size: 13.5px;
+    letter-spacing: 0.18em;
+  }
+}
+.wordmark-md {
+  font-size: 1.25rem;
+}
+.wordmark-lg {
+  font-size: 1.75rem;
 }
 .btn-primary {
   display: inline-flex;

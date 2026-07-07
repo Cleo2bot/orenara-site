@@ -1,7 +1,7 @@
 {
+  "/page": "app/page.js",
   "/trade/page": "app/trade/page.js",
   "/icon.svg/route": "app/icon.svg/route.js",
-  "/quote-builder/page": "app/quote-builder/page.js",
-  "/kits/[slug]/page": "app/kits/[slug]/page.js",
-  "/page": "app/page.js"
+  "/privacy/page": "app/privacy/page.js",
+  "/quote-builder/page": "app/quote-builder/page.js"
 }

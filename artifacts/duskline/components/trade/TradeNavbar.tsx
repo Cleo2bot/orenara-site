@@ -11,35 +11,41 @@ export default function TradeNavbar() {
     <header
       className="fixed top-0 left-0 right-0 z-50"
       style={{
-        background: "var(--ink)",
+        background: "color-mix(in srgb, var(--ink) 94%, transparent)",
         borderBottom: "1px solid var(--ink-line)",
-        backdropFilter: "none",
       }}
     >
-      <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Link href="/" style={{ textDecoration: "none", display: "inline-flex" }} aria-label="Orenara home">
-            <Wordmark size="sm" />
-          </Link>
+      <nav
+        className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-4"
+        style={{ height: "68px" }}
+      >
+        <Link
+          href="/"
+          aria-label="Orenara home"
+          style={{
+            textDecoration: "none",
+            display: "inline-flex",
+            alignItems: "baseline",
+            gap: "10px",
+          }}
+          data-testid="nav-home-link"
+        >
+          <Wordmark size="sm" />
           <span
+            className="spec-mono-upper"
             style={{
-              fontSize: "0.65rem",
-              fontWeight: 500,
+              fontSize: "0.6875rem",
               color: "var(--bone-dim)",
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              border: "1px solid var(--ink-line)",
-              borderRadius: "var(--radius)",
-              padding: "2px 7px",
+              letterSpacing: "0.18em",
             }}
           >
             Trade
           </span>
-        </div>
-        <div className="flex items-center gap-5">
+        </Link>
+        <div className="flex items-center gap-6">
           <Link
             href="/quote-builder"
-            className="hidden sm:inline-flex whitespace-nowrap"
+            className="hidden md:inline-flex whitespace-nowrap"
             style={{
               color: "var(--bone-dim)",
               fontSize: "0.875rem",
@@ -52,7 +58,7 @@ export default function TradeNavbar() {
           </Link>
           <Link
             href="/"
-            className="hidden sm:inline-flex"
+            className="hidden md:inline-flex whitespace-nowrap"
             style={{
               color: "var(--bone-dim)",
               fontSize: "0.875rem",
@@ -65,11 +71,12 @@ export default function TradeNavbar() {
           </Link>
           <button
             onClick={scrollToForm}
-            className="btn-outline hidden sm:inline-flex w-auto"
-            style={{ padding: "9px 18px", fontSize: "0.8125rem" }}
+            className="btn-outline w-auto whitespace-nowrap"
+            style={{ padding: "10px 18px", fontSize: "0.8125rem" }}
             data-testid="nav-trade-quote-btn"
           >
-            Get a Trade Quote
+            <span className="hidden sm:inline">Get a Trade Quote</span>
+            <span className="sm:hidden">Trade Quote</span>
           </button>
         </div>
       </nav>

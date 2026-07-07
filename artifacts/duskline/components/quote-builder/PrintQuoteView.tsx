@@ -38,7 +38,18 @@ export default function PrintQuoteView({ zones, totals, contact, partLabels }: P
     <div className="print-only" style={{ color: "var(--print-ink)", fontFamily: "system-ui, sans-serif", padding: "24px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
         <div>
-          <div style={{ fontSize: "1.5rem", fontWeight: 500, letterSpacing: "-0.02em" }}>ORENARA</div>
+          <div
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "1.25rem",
+              fontWeight: 500,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: "var(--print-ink)",
+            }}
+          >
+            ORENARA
+          </div>
           <div style={{ fontSize: "0.75rem", color: "var(--print-ink)", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", marginTop: "4px" }}>
             Quote Request Summary
           </div>
