@@ -1,0 +1,206 @@
+# REBRAND: DUSKLINE → ORENARA
+## Full identity migration + visual elevation. Execute in phases, in order.
+
+You are acting as a senior brand and web designer executing a controlled rebrand of a live production site. This is not a redesign. The information architecture, page structure, copy, quote builder logic, forms, routes, and SEO structure are proven and stay. You are changing the name everywhere, replacing the design token layer, and elevating the visual execution to match a premium architectural supply brand.
+
+Work through the phases below **in order**. After each phase: take a screenshot of the homepage (desktop and mobile widths), confirm the phase checklist, and stop for review before continuing. Do not merge phases. Do not freelance.
+
+---
+
+## THE BRAND YOU ARE BUILDING
+
+Orenara supplies IP68 outdoor LED strip lighting systems, made to order, for Australian conditions. The brand voice is **earned authority** — quiet superiority built on years of doing the basics right. Think: the best tradesman in the region, whose van is plain, whose name is set in clean type, who states facts and lets the work speak. Never salesy. Never decorative. Never loud.
+
+Design translation:
+- **Restraint is the flex.** Only established brands can afford to be this quiet.
+- **The photography is the colour.** The UI is monochrome; warm light in imagery provides all warmth.
+- **Spec data is treated like a compliance plate** — etched, precise, monospaced.
+- If a design decision feels "premium" because it adds something (a glow, a gradient, an animation), it is wrong. Premium here is achieved by removing things and perfecting spacing.
+
+---
+
+## HARD RULES — READ TWICE
+
+**DO NOT under any circumstances:**
+1. Rewrite, "improve", shorten, or re-tone ANY body copy, headline, or section text unless it appears in the explicit whitelist in Phase 5. The copy is final. Your job is the container, not the words.
+2. Change the page structure, section order, routes (except renames specified below), form fields, or quote builder logic/flow.
+3. Add gradients, glows, drop shadows on text, coloured shadows, glassmorphism, animated backgrounds, parallax, particle effects, or any scroll-jacking.
+4. Add new sections, new pages, testimonial carousels, trust-badge strips, or stats counters.
+5. Use any colour outside the token palette defined in Phase 2.
+6. Use italic type anywhere.
+7. Remove or weaken any legal/compliance copy (AS/NZS 3000 notes, supply-only disclaimers, RCM references).
+8. Break the enquiry form, the quote builder, or any email submission handler. If a handler references the old brand in env vars or payloads, update the string but preserve the mechanism.
+
+**ALWAYS:**
+- Preserve all functionality. Test the enquiry form and quote builder end-to-end after Phases 1, 2, and 6.
+- Keep the site fully responsive down to 360px and keyboard-accessible with visible focus states.
+- Respect `prefers-reduced-motion`.
+
+---
+
+## PHASE 0 — AUDIT & SAFETY
+
+1. Create a git branch `rebrand/orenara` (or use Replit checkpoints) before touching anything.
+2. Run a full case-insensitive search across the entire codebase for: `duskline`, `Duskline`, `DUSKLINE`, `duskline.com.au`, `hello@duskline`, `duskline.studio`.
+3. Output a complete inventory of every match — file path and line — grouped by type: (a) visible UI text, (b) meta/SEO/OG/schema, (c) config/env/email handlers, (d) asset filenames and alt text, (e) comments/internal.
+4. Do not change anything yet. Present the inventory.
+
+**Checklist:** branch created; inventory produced; zero changes made.
+
+---
+
+## PHASE 1 — IDENTITY MIGRATION (mechanical, exhaustive)
+
+Replace the brand identity everywhere using this exact mapping:
+
+| Old | New |
+|---|---|
+| Duskline / duskline / DUSKLINE (brand name in any text) | Orenara / ORENARA (match casing context; wordmark is always ORENARA, see Phase 3) |
+| duskline.com.au | orenara.com |
+| hello@duskline.com.au | hello@orenara.com |
+| @duskline.studio (Instagram) | `ORENARA_INSTAGRAM_PLACEHOLDER` — flag this, do not invent a handle |
+| Site title: "Duskline — Outdoor LED Strip Lighting, Built for Australian Conditions" | "Orenara — Outdoor LED Strip Lighting, Built for Australian Conditions" |
+
+Rules for this phase:
+1. **Canonical domain via config:** define the canonical base URL (`https://orenara.com`) in ONE env/config value and reference it everywhere absolute URLs are built (OG tags, canonical links, sitemap, schema). The site may still be served from the old domain temporarily; the canonical must point to the new one.
+2. Update: `<title>`, meta description, OG title/description/site_name/url, Twitter card fields, JSON-LD/schema `name` and `url` fields, `robots.txt` sitemap reference, `sitemap.xml` URLs, `manifest.json` name/short_name, favicon page title, package.json name, README.
+3. **OG image:** the current OG image is branded Duskline. Replace `og-image.png` with a regenerated version: charcoal `#101214` background, the ORENARA wordmark per Phase 3 rendered as text/SVG, sub-line "IP68 Outdoor Strip Lighting · Australian Conditions" in the utility face. 1200×630. Same treatment for favicon/app icons: a simple "O" in the display face, warm off-white on charcoal.
+4. Update image `alt` text containing the brand name.
+5. Rename brand-named asset files only if references are updated atomically; otherwise leave filenames and update alt/meta only (filenames are not user-visible; broken images are).
+6. Email/enquiry handlers: update the from/to display names and any hardcoded email strings to the new address, but **do not** change the sending mechanism. If the Resend (or equivalent) domain is configured via env var, update the value and add a code comment: `// DNS + Resend domain verification for orenara.com must be completed manually before go-live`.
+7. Re-run the Phase 0 search. The only permitted remaining matches are code comments explicitly documenting the migration. Show me the empty search result.
+
+**Checklist:** zero live references to old brand; canonical URL centralised; OG image regenerated; forms still submit; search proof shown.
+
+---
+
+## PHASE 2 — DESIGN TOKEN SYSTEM (replace wholesale)
+
+Strip the existing colour/typography theme and implement exactly this. Every colour and type decision on the site must resolve to these tokens. No inline one-off values.
+
+### Colour tokens
+
+```
+--ink:            #0F1113;   /* page background — deep warm charcoal, near-black */
+--ink-raised:     #17191C;   /* cards, panels, form fields */
+--ink-line:       rgba(243, 238, 228, 0.14);  /* hairlines, borders, dividers */
+--bone:           #F3EEE4;   /* primary text — warm off-white, never pure #FFF */
+--bone-dim:       rgba(243, 238, 228, 0.62);  /* secondary text, captions */
+--ember:          #D9A05B;   /* THE accent. 2700K amber — the colour temperature of the product itself */
+--ember-deep:     #A9743B;   /* hover/pressed state of ember only */
+```
+
+Accent discipline — this is non-negotiable:
+- `--ember` may appear in at most **two places per viewport**: one primary CTA, and at most one micro-detail (an active state, a single rule, a focus ring). Nothing else. If a screen has ember in three places, remove one.
+- Ember is never used as a background fill for large areas, never as a text colour for paragraphs, never in borders around images.
+- The justification for this palette (state it in a code comment at the token definition): the amber is not a "brand colour" — it is the 2700K colour temperature of the product's own light. The UI stays monochrome so the lit photography carries all warmth.
+
+### Typography tokens
+
+Load from Google Fonts, `display=swap`, preconnect properly:
+
+```
+--font-display:  'Archivo', sans-serif;        /* headlines, wordmark, eyebrows */
+--font-body:     'Instrument Sans', sans-serif; /* body copy, UI, forms */
+--font-spec:     'IBM Plex Mono', monospace;    /* spec data, ratings, compliance labels, kit metadata */
+```
+
+Type rules:
+- **Wordmark/eyebrows:** Archivo, weight 500, UPPERCASE, `letter-spacing: 0.14em`. Eyebrow labels ("The problem", "Environments", "Technical specification", "From the trade", "Enquire") get this treatment at ~12–13px, in `--bone-dim`.
+- **H1/H2:** Archivo, weight 500 (never 700 — bold is trying to be heard; medium assumes it already has been), normal sentence case as currently written, `letter-spacing: -0.01em`, line-height 1.1–1.15. H1 clamps ~ `clamp(2.4rem, 5.5vw, 4.2rem)`; H2 ~ `clamp(1.8rem, 3.5vw, 2.6rem)`.
+- **H3/card titles:** Archivo 500, ~1.25–1.4rem.
+- **Body:** Instrument Sans 400, 16–17px, line-height 1.65, `--bone` for lead paragraphs, `--bone-dim` for supporting text. Max measure 68ch.
+- **Spec/mono treatment:** every piece of technical data — "IP68", "0–10V", "RCM", "1.5m / 30 min", "EN60529", "24V", "20 business days", kit feature tags, the numbered markers 01/02/03 — is set in IBM Plex Mono, 12–13px, uppercase where short, `letter-spacing: 0.06em`, `--bone-dim`. This is the site's signature: spec data reads like an etched compliance plate. Apply it consistently — a reader should learn that mono = verifiable fact.
+- No italics anywhere. Emphasis is achieved with `--bone` vs `--bone-dim` contrast or weight 500, never style.
+
+### Space, radius, elevation
+
+- Spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 / 140px. Section vertical padding: 96–140px desktop, 64–80px mobile. The current site is competent; the rebrand should feel like the margins doubled. When in doubt, add space.
+- `--radius: 2px` globally. Cards, buttons, inputs, images: 2px. Nothing pill-shaped, nothing above 4px. Sharp edges are part of the aluminium-extrusion language.
+- Elevation: **no drop shadows.** Separation is achieved with `--ink` vs `--ink-raised` and 1px `--ink-line` borders only.
+- Hairline rules (`1px solid var(--ink-line)`) may be used as section dividers and inside spec plates. They are the only decorative device permitted.
+
+### Motion
+
+- Permitted: opacity/transform fade-up on section entry (once, 300–450ms, ease-out, ≤12px travel), and background-colour/border transitions on hover (150ms). 
+- Everything else: forbidden. All motion disabled under `prefers-reduced-motion`.
+
+**Checklist:** all colours resolve to tokens; fonts loaded and applied per role; mono spec treatment applied site-wide; radius normalised to 2px; shadows removed; screenshot desktop + 360px.
+
+---
+
+## PHASE 3 — WORDMARK & NAVIGATION
+
+The current lowercase `duskline` logotype reads startup. Replace it with a type-only wordmark. Do not generate a logo image, do not add an icon, do not draw a lightbulb, wave, or abstract mark. The wordmark is:
+
+```
+O R E N A R A
+```
+
+- Rendered as live text or inline SVG text: Archivo 500, uppercase, `letter-spacing: 0.22em` at nav size (~15–16px), colour `--bone`.
+- In the footer, the wordmark may carry a single sub-line beneath it in the spec mono face, 10–11px, `--bone-dim`: `IP68 · MADE TO ORDER · AUSTRALIA`.
+- Nav bar: `--ink` background at 92–95% opacity with backdrop blur OFF (no glassmorphism) — solid is fine; 1px bottom hairline `--ink-line`; wordmark left; "Build Your Kit" as the single nav CTA right, styled per button spec below. Nav height ~64–72px, generous.
+
+### Buttons
+
+- **Primary ("Build Your Kit", "Send Enquiry"):** `--ember` background, `--ink` text, Archivo 500 uppercase 13px `letter-spacing: 0.1em`, padding 14px 28px, radius 2px. Hover: `--ember-deep`. No shadow, no glow, no scale transform.
+- **Secondary ("See full specifications", "Read more"):** transparent, 1px `--ink-line` border, `--bone` text, same type treatment. Hover: border-colour `--bone-dim`.
+- **CTA de-repetition:** "Enquire for Pricing" currently appears on the hero AND every kit card AND elsewhere. Keep it in the hero and the enquiry section. On kit cards, the primary action becomes the secondary-styled "See full specifications" link, with ONE shared primary CTA beneath the kit grid: "Enquire about a kit". (This is a layout/CTA change, not a copy rewrite — permitted.)
+
+**Checklist:** wordmark implemented as specified; nav rebuilt; button system applied globally; CTA repetition reduced; screenshots.
+
+---
+
+## PHASE 4 — IMAGERY TREATMENT & SECTION EXECUTION
+
+You cannot replace the photography (that happens outside this rebrand), but you can make the existing imagery read consistently:
+
+1. **Unified image treatment:** apply a consistent CSS treatment to all content imagery: slight desaturation (`saturate(0.85)`), gentle contrast lift, and a subtle darkening overlay (`linear-gradient(rgba(15,17,19,0.15), rgba(15,17,19,0.35))`) so warm highlights read against a controlled base. Goal: every image looks like the same photographer at the same hour — deep dusk, warm 2700K light against dark structure.
+2. **The green image problem:** the emerald-green cove image (`spec-cove-green`) breaks the single-colour-temperature rule. Swap its placement with the warmest existing dusk image in the asset set, or apply a stronger warm-bias treatment to it. Warm amber light is the brand; green is not.
+3. **Environments grid:** keep the six cards. Card structure: image (2px radius, treated), H3 in Archivo 500, one-line bold claim, body in `--bone-dim`, "Read more" as secondary link. 1px `--ink-line` card borders on `--ink-raised`. Equal heights, generous internal padding (32px).
+4. **Spec section ("Getting the fundamentals right"):** render each of the three specs as a "compliance plate": `--ink-raised` panel, 1px hairline border, the standard reference ("IEC 60529 · IP68", "0–10V Analogue Protocol", "Regulatory Compliance Mark") in the mono face top-left like an etched stamp, then title and body. This section should be the most visually distinctive on the page — it is the brand's proof, treated with the most care.
+5. **Trade review section:** keep content and rating data. Fix presentation: the featured quote gets a large hairline-bordered panel, quote in Archivo 400/500 at ~1.3rem, attribution in mono. The four verified-delivery photos become a tight 4-up grid with the unified image treatment.
+6. **Hero:** keep the current image and copy. Composition: full-bleed image with the darkening overlay strengthened at the bottom third, eyebrow in mono ("IP68 OUTDOOR LIGHTING · AUSTRALIAN CONDITIONS"), then the H1 wordmark treatment is NOT repeated in the hero — the H1 becomes the existing subhead line "Built for salt air, pool chemicals, and Queensland summers." elevated to H1 scale, with "IP68 end-to-end. Properly dimmable. Made for conditions that break everything else." beneath it. (The old hero repeated the brand name as the H1 under a nav that already says it — redundant. This restructure is permitted.)
+7. **Dusk interstitials** ("Right about now." / "This is what it's for."): keep exactly as they are. These are the best moments on the site. Full-bleed, text bottom-left, mono eyebrow optional. Do not add anything to them.
+
+**Checklist:** unified image treatment live; green image resolved; compliance plates built; hero restructured; screenshots desktop + mobile.
+
+---
+
+## PHASE 5 — COPY WHITELIST (the ONLY text you may change)
+
+You may make these edits and **no other copy changes anywhere**:
+
+1. Every instance of the brand name per Phase 1 mapping.
+2. Hero H1 restructure exactly as specified in Phase 4.6.
+3. Featured trade review: correct mechanical errors only, preserving voice verbatim otherwise — "Curves where easy and clean" → "Curves were easy and clean". Fix punctuation/spelling only; do not rephrase a single word.
+4. Footer descriptor: "The most capable outdoor strip lighting available in Australia. IP68-rated, properly dimmable, built to last." — unchanged except brand context. Keep.
+5. The sign-off "IP68. No excuses." — keep, verbatim, rendered in the mono spec face.
+6. Kit-card CTA consolidation per Phase 3.
+
+If you believe any other copy needs changing, list the proposed change and STOP for approval. Do not apply it.
+
+---
+
+## PHASE 6 — QA & HANDOVER
+
+1. Re-run the brand search: zero old-brand references outside migration comments.
+2. Lighthouse (mobile): performance ≥ 85, accessibility ≥ 95. Fix contrast failures by adjusting toward `--bone`, never by adding new colours.
+3. Test end-to-end: enquiry form submission, quote builder full flow, kit spec pages, terms/privacy/trade-resources routes, 404 page (rebrand it too).
+4. Verify all pages inherit the token system — check kit detail pages, quote builder UI, form states, and legal pages, not just the homepage. The quote builder must feel like the same brand: same tokens, same buttons, same mono spec treatment on part numbers and quantities.
+5. Verify OG image, favicon, manifest, sitemap, robots, canonical, schema all reference Orenara/orenara.com.
+6. Confirm reduced-motion behaviour and keyboard focus visibility.
+7. Produce a final handover note listing: (a) every file changed, (b) all placeholders awaiting human input (Instagram handle, Resend/DNS verification), (c) anything you were unsure about.
+
+**Checklist:** all green, handover note produced, final screenshots desktop + 360px of homepage, one kit page, and the quote builder.
+
+---
+
+## OUT OF SCOPE — DO NOT ATTEMPT
+- DNS changes, domain pointing, or deployment config for orenara.com
+- Resend/ESP domain verification
+- New photography or AI image generation beyond the OG image/favicon
+- Google Search Console, Ads, or analytics property changes
+- New pages, new features, new copy
+
+These are handled by the owner. Flag them in the handover note; do not attempt them.
