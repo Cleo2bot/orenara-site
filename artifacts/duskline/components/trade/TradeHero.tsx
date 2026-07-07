@@ -34,7 +34,7 @@ export default function TradeHero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
-              Duskline Trade
+              Orenara Trade
             </p>
             <h1
               className="font-bold"
@@ -129,7 +129,7 @@ export default function TradeHero() {
           >
             <img
               src="/assets/generated/trade-mansion-coast.png"
-              alt="Modern coastal mansion at dusk with Duskline warm strip lighting integrated into sandstone entry steps, ocean spray beyond."
+              alt="Modern coastal mansion at dusk with Orenara warm strip lighting integrated into sandstone entry steps, ocean spray beyond."
               style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }}
             />
             <div

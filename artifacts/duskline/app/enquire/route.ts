@@ -174,10 +174,12 @@ function mountingPartNumber(shape: "straight" | "curved"): string {
 async function sendEmailNotification(enquiry: StoredEnquiry): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL;
-  const fromEmail = process.env.RESEND_FROM_EMAIL || "enquiries@duskline.com.au";
+  // Email domain intentionally orenara.com (Resend-verified); site canonical is orenara.com.au.
+  // DNS + Resend domain verification for orenara.com must be completed manually before go-live.
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "enquiries@orenara.com";
 
   if (!apiKey || !adminEmail) {
-    console.log("[Duskline] No RESEND_API_KEY or ADMIN_NOTIFICATION_EMAIL set — skipping email notification.");
+    console.log("[Orenara] No RESEND_API_KEY or ADMIN_NOTIFICATION_EMAIL set — skipping email notification.");
     return;
   }
 
@@ -241,7 +243,7 @@ async function sendEmailNotification(enquiry: StoredEnquiry): Promise<void> {
 
   const html = `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
-      <h2 style="color: #15171C; border-bottom: 2px solid #F5B25C; padding-bottom: 12px;">${hasZones ? "New Duskline Quote Builder Enquiry" : "New Duskline Enquiry"}</h2>
+      <h2 style="color: #15171C; border-bottom: 2px solid #F5B25C; padding-bottom: 12px;">${hasZones ? "New Orenara Quote Builder Enquiry" : "New Orenara Enquiry"}</h2>
       <table style="width: 100%; border-collapse: collapse;">
         <tr><td style="padding: 8px 0; color: #666; width: 140px;">Name</td><td style="padding: 8px 0; font-weight: 600;">${escapeHtml(enquiry.name)}</td></tr>
         <tr><td style="padding: 8px 0; color: #666;">Email</td><td style="padding: 8px 0;"><a href="mailto:${encodeURIComponent(enquiry.email)}">${escapeHtml(enquiry.email)}</a></td></tr>
@@ -263,7 +265,7 @@ async function sendEmailNotification(enquiry: StoredEnquiry): Promise<void> {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: `Duskline Enquiries <${fromEmail}>`,
+      from: `Orenara Enquiries <${fromEmail}>`,
       to: [adminEmail],
       reply_to: enquiry.email,
       subject: hasZones
@@ -275,9 +277,9 @@ async function sendEmailNotification(enquiry: StoredEnquiry): Promise<void> {
 
   if (!res.ok) {
     const err = await res.text();
-    console.error("[Duskline] Resend API error:", err);
+    console.error("[Orenara] Resend API error:", err);
   } else {
-    console.log("[Duskline] Notification email sent to", adminEmail);
+    console.log("[Orenara] Notification email sent to", adminEmail);
   }
 }
 
@@ -314,18 +316,18 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     totals: body.totals,
   };
 
-  console.log("[Duskline] New enquiry:", { id: enquiry.id, name: enquiry.name, kit: enquiry.kit });
+  console.log("[Orenara] New enquiry:", { id: enquiry.id, name: enquiry.name, kit: enquiry.kit });
 
   try {
     await saveToFile(enquiry);
   } catch (err) {
-    console.error("[Duskline] Could not persist enquiry to disk (non-fatal, expected on read-only hosts like Vercel):", err);
+    console.error("[Orenara] Could not persist enquiry to disk (non-fatal, expected on read-only hosts like Vercel):", err);
   }
 
   try {
     await sendEmailNotification(enquiry);
   } catch (err) {
-    console.error("[Duskline] Email notification failed (non-fatal):", err);
+    console.error("[Orenara] Email notification failed (non-fatal):", err);
   }
 
   return NextResponse.json(

@@ -49,7 +49,7 @@ export default function Footer() {
             </p>
             <div className="flex flex-col gap-3">
               <a
-                href="mailto:hello@duskline.com.au"
+                href="mailto:hello@orenara.com"
                 className="flex items-center gap-2"
                 style={{ color: "#9A9DA8", fontSize: "0.9rem", textDecoration: "none", transition: "color 0.15s ease" }}
                 onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#F4F1EA")}
@@ -57,10 +57,11 @@ export default function Footer() {
                 data-testid="footer-email"
               >
                 <Mail size={15} style={{ color: "#5B6478" }} />
-                hello@duskline.com.au
+                hello@orenara.com
               </a>
+              {/* ORENARA_INSTAGRAM_PLACEHOLDER — real handle to be provided by owner; do not invent one */}
               <a
-                href="https://instagram.com/duskline.studio"
+                href="https://instagram.com/ORENARA_INSTAGRAM_PLACEHOLDER"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2"
@@ -70,7 +71,7 @@ export default function Footer() {
                 data-testid="footer-instagram"
               >
                 <Instagram size={15} style={{ color: "#5B6478" }} />
-                @duskline.studio
+                ORENARA_INSTAGRAM_PLACEHOLDER
               </a>
             </div>
           </div>
@@ -90,7 +91,7 @@ export default function Footer() {
               Important
             </p>
             <p style={{ fontSize: "0.8125rem", color: "#5B6478", lineHeight: 1.7 }}>
-              Duskline is a supply-only business. We supply components only;
+              Orenara is a supply-only business. We supply components only;
               installation is your responsibility and must be carried out by a licensed
               electrician where required by Australian standards.
             </p>
@@ -104,7 +105,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5">
             <p style={{ fontSize: "0.8rem", color: "#5B6478" }}>
-              © {year} Duskline. All rights reserved.
+              © {year} Orenara. All rights reserved.
             </p>
             <Link
               href="/terms"

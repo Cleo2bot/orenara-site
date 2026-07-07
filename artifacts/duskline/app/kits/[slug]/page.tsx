@@ -13,10 +13,10 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const kit = getKitBySlug(params.slug);
   if (!kit) {
-    return { title: "Kit not found — Duskline" };
+    return { title: "Kit not found — Orenara" };
   }
   return {
-    title: `${kit.name} — Full Specifications | Duskline`,
+    title: `${kit.name} — Full Specifications | Orenara`,
     description: kit.description,
     robots: { index: true, follow: true },
   };
@@ -122,7 +122,7 @@ export default function KitDetailPage({ params }: { params: { slug: string } }) 
                   Component
                 </th>
                 <th style={{ textAlign: "left", padding: "10px 12px", color: "#F4F1EA", fontWeight: 600 }}>
-                  Duskline Part No.
+                  Orenara Part No.
                 </th>
                 <th style={{ textAlign: "left", padding: "10px 12px", color: "#F4F1EA", fontWeight: 600 }}>
                   Details

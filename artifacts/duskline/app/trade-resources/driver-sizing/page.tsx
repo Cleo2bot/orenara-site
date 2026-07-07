@@ -3,7 +3,7 @@ import Link from "next/link";
 import { DRIVER_RATED_WATTS, STRIP_WATTS_PER_METRE, SAFETY_DERATE, MAX_RUN_PER_DRIVER } from "@/lib/quoteCalc";
 
 export const metadata: Metadata = {
-  title: "Driver & Dimmer Sizing Guide | Duskline Trade Resources",
+  title: "Driver & Dimmer Sizing Guide | Orenara Trade Resources",
   description:
     "Work out driver, dimmer, and plug requirements for any run length — based on real driver capacity and safety derating, not guesswork.",
   robots: { index: true, follow: true },

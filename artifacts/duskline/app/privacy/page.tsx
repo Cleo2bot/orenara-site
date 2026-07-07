@@ -4,9 +4,9 @@ import Wordmark from "@/components/Wordmark";
 import Footer from "@/components/sections/Footer";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Duskline",
+  title: "Privacy Policy — Orenara",
   description:
-    "How Duskline collects, uses, stores, and protects the personal information you provide through our enquiry form, trade enquiry form, and quote builder, in line with the Australian Privacy Principles.",
+    "How Orenara collects, uses, stores, and protects the personal information you provide through our enquiry form, trade enquiry form, and quote builder, in line with the Australian Privacy Principles.",
   robots: { index: true, follow: true },
 };
 
@@ -32,11 +32,11 @@ const sections: Section[] = [
     clauses: [
       {
         id: "1.1",
-        text: 'Duskline ("we," "us," "our") supplies outdoor LED strip lighting products to customers and trade professionals across Australia. This policy explains how we handle personal information collected through duskline.com.au, including our general enquiry form, our trade enquiry form, and our quote builder tool.',
+        text: 'Orenara ("we," "us," "our") supplies outdoor LED strip lighting products to customers and trade professionals across Australia. This policy explains how we handle personal information collected through orenara.com.au, including our general enquiry form, our trade enquiry form, and our quote builder tool.',
       },
       {
         id: "1.2",
-        text: "We handle personal information in line with the Australian Privacy Principles (APPs) under the Privacy Act 1988 (Cth). If you have any questions about this policy or how we handle your information, contact us at hello@duskline.com.au.",
+        text: "We handle personal information in line with the Australian Privacy Principles (APPs) under the Privacy Act 1988 (Cth). If you have any questions about this policy or how we handle your information, contact us at hello@orenara.com.",
       },
     ],
   },
@@ -155,7 +155,7 @@ const sections: Section[] = [
       },
       {
         id: "8.2",
-        text: "To exercise any of these rights, contact us at hello@duskline.com.au. If you are not satisfied with our response, you may lodge a complaint with the Office of the Australian Information Commissioner (OAIC) at oaic.gov.au.",
+        text: "To exercise any of these rights, contact us at hello@orenara.com. If you are not satisfied with our response, you may lodge a complaint with the Office of the Australian Information Commissioner (OAIC) at oaic.gov.au.",
       },
     ],
   },
@@ -185,7 +185,7 @@ const sections: Section[] = [
     clauses: [
       {
         id: "11.1",
-        text: "If you have any questions about this Privacy Policy or how we handle your personal information, email us at hello@duskline.com.au.",
+        text: "If you have any questions about this Privacy Policy or how we handle your personal information, email us at hello@orenara.com.",
       },
     ],
   },
@@ -202,7 +202,7 @@ export default function PrivacyPage() {
         }}
       >
         <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-          <Link href="/" style={{ textDecoration: "none", display: "inline-flex" }} aria-label="Duskline home">
+          <Link href="/" style={{ textDecoration: "none", display: "inline-flex" }} aria-label="Orenara home">
             <Wordmark size="sm" />
           </Link>
           <Link

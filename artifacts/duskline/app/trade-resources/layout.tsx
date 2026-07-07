@@ -12,7 +12,7 @@ export default function TradeResourcesLayout({ children }: { children: React.Rea
         }}
       >
         <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-          <Link href="/" style={{ textDecoration: "none", display: "inline-flex" }} aria-label="Duskline home">
+          <Link href="/" style={{ textDecoration: "none", display: "inline-flex" }} aria-label="Orenara home">
             <Wordmark size="sm" />
           </Link>
           <Link

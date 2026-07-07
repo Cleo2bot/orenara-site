@@ -1,26 +1,5 @@
 <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="dl-bg" x1="90" y1="0" x2="90" y2="180" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#20232D"/>
-      <stop offset="0.55" stop-color="#15171C"/>
-      <stop offset="1" stop-color="#0E0F13"/>
-    </linearGradient>
-    <radialGradient id="dl-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(90 98) rotate(90) scale(56 86)">
-      <stop stop-color="#F5B25C" stop-opacity="0.6"/>
-      <stop offset="1" stop-color="#F5B25C" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="dl-line" x1="28" y1="98" x2="152" y2="98" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E8933A"/>
-      <stop offset="0.5" stop-color="#FFE3B0"/>
-      <stop offset="1" stop-color="#E8933A"/>
-    </linearGradient>
-    <filter id="dl-blur" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur stdDeviation="7"/>
-    </filter>
-  </defs>
-  <rect width="180" height="180" rx="40" fill="url(#dl-bg)"/>
-  <rect width="180" height="180" rx="40" fill="url(#dl-glow)"/>
-  <rect x="30" y="91" width="120" height="14" rx="7" fill="url(#dl-line)" filter="url(#dl-blur)" opacity="0.9"/>
-  <rect x="30" y="93" width="120" height="9" rx="4.5" fill="url(#dl-line)"/>
-  <rect x="30" y="96" width="120" height="3" rx="1.5" fill="#FFF6EA" opacity="0.92"/>
+  <!-- Orenara mark: simple "O" (Archivo 500 style ring), warm off-white on charcoal. No glow, no gradient. -->
+  <rect width="180" height="180" rx="40" fill="#0F1113"/>
+  <ellipse cx="90" cy="90" rx="38" ry="42" stroke="#F3EEE4" stroke-width="13" fill="none"/>
 </svg>

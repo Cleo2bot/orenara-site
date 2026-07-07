@@ -21,7 +21,7 @@ export default function DuskBreather() {
         >
           <img
             src="/assets/generated/home-dusk-empty-deck.png"
-            alt="Empty outdoor deck and pool at deep dusk, warm Duskline strip lighting glowing along the deck edge and pool surround as the dominant light source, house lit softly behind."
+            alt="Empty outdoor deck and pool at deep dusk, warm Orenara strip lighting glowing along the deck edge and pool surround as the dominant light source, house lit softly behind."
             style={{ display: "block", width: "100%", height: "auto" }}
           />
           <div

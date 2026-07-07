@@ -138,7 +138,7 @@ export default function TradeSteps() {
         >
           <img
             src="/assets/generated/trade-sandstone-wall.png"
-            alt="Continuous warm Duskline strip glow washing across a coastal sandstone retaining wall at dusk."
+            alt="Continuous warm Orenara strip glow washing across a coastal sandstone retaining wall at dusk."
             style={{ display: "block", width: "100%", height: "auto" }}
           />
           <div

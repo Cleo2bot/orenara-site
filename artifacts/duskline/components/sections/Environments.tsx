@@ -21,13 +21,13 @@ const environments = [
     title: "Marina & Private Berths",
     image: "/assets/generated/kit-marina.png",
     eyebrow: "Timber decking, constant moisture, zero forgiveness for corrosion.",
-    body: "Private berths and marina walkways combine every hard condition at once — salt air, direct water exposure, and timber decking that expands and contracts with the weather. It's an unforgiving install for standard connectors. Duskline's sealed IP68 system and segmented track hold a clean line along a pontoon edge the same way they hold a garden path — same spec, same rating, harder setting.",
+    body: "Private berths and marina walkways combine every hard condition at once — salt air, direct water exposure, and timber decking that expands and contracts with the weather. It's an unforgiving install for standard connectors. Orenara's sealed IP68 system and segmented track hold a clean line along a pontoon edge the same way they hold a garden path — same spec, same rating, harder setting.",
   },
   {
     title: "Coastal",
     image: "/assets/generated/kit-pathway-coastal2.png",
     eyebrow: "Salt air doesn't announce itself. It just corrodes.",
-    body: "Properties within a few kilometres of the coast carry salt air year-round, not just on windy days. It gets into connector joints that look sealed but aren't, corroding contact points from the inside. Voltage drops. Sections go dark months before anyone notices why. Duskline's connectors are sealed end-to-end — driver to terminal — to the same IP68 standard as the strip itself, not treated as an afterthought.",
+    body: "Properties within a few kilometres of the coast carry salt air year-round, not just on windy days. It gets into connector joints that look sealed but aren't, corroding contact points from the inside. Voltage drops. Sections go dark months before anyone notices why. Orenara's connectors are sealed end-to-end — driver to terminal — to the same IP68 standard as the strip itself, not treated as an afterthought.",
   },
   {
     title: "Tropical & Humid",

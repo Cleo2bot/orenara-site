@@ -204,7 +204,7 @@ export default function ProductKits() {
         >
           Pricing is enquiry-only — no pricing is displayed on this site.
           All products are made to order; typical lead time is 20 business days from
-          order confirmation. Duskline supplies the system only; installation is arranged
+          order confirmation. Orenara supplies the system only; installation is arranged
           separately by you or your electrician.
         </p>
       </div>

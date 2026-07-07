@@ -18,7 +18,7 @@ const steps = [
     icon: Package,
     number: "03",
     title: "Made to order. Shipped to you.",
-    body: "Your order is manufactured to spec and dispatched direct to you. Current lead time is 20 business days from order confirmation — not from enquiry. We'll keep you updated through the process. Duskline supplies the system; your electrician handles installation.",
+    body: "Your order is manufactured to spec and dispatched direct to you. Current lead time is 20 business days from order confirmation — not from enquiry. We'll keep you updated through the process. Orenara supplies the system; your electrician handles installation.",
   },
 ];
 
@@ -199,7 +199,7 @@ export default function HowItWorks() {
               This is a made-to-order product. We don't hold stock. The lead time runs from
               confirmed order — not from first enquiry. If your project has a hard deadline,
               tell us in your enquiry and we'll factor it into the conversation.
-              Duskline is supply-only; we don&apos;t offer installation services.
+              Orenara is supply-only; we don&apos;t offer installation services.
             </p>
           </div>
         </div>

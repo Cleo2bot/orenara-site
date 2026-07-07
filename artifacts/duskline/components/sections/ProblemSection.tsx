@@ -135,7 +135,7 @@ export default function ProblemSection() {
                 className="font-semibold mb-2"
                 style={{ color: "#F4F1EA", fontSize: "1rem" }}
               >
-                Duskline is IP68 — end to end.
+                Orenara is IP68 — end to end.
               </p>
               <p style={{ color: "#9A9DA8", fontSize: "0.9375rem", lineHeight: 1.7 }}>
                 Dust-tight, submersion-rated to 1.5m for 30 minutes. Every component in the

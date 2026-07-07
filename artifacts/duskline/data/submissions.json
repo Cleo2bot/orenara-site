@@ -296,5 +296,32 @@
       "rigidChannelMetres": 13,
       "flexibleTrackMetres": 3
     }
+  },
+  {
+    "id": "enq_1783459811189_0rthy7",
+    "receivedAt": "2026-07-07T21:30:11.189Z",
+    "ip": "127.0.0.1",
+    "name": "Phase1 Test",
+    "email": "test@example.com",
+    "phone": "0400000000",
+    "suburb": "Brisbane QLD",
+    "kit": "Pathway Kit",
+    "timeline": "Ready to order now",
+    "message": "Phase 1 rebrand end-to-end form test"
+  },
+  {
+    "id": "trade_1783459811430_b7t207",
+    "receivedAt": "2026-07-07T21:30:11.430Z",
+    "ip": "127.0.0.1",
+    "source": "trade",
+    "name": "Phase1 Trade Test",
+    "business": "Test Electrical",
+    "email": "trade@example.com",
+    "phone": "0400000001",
+    "suburb": "4000",
+    "colourGlow": "Standard warm glow",
+    "lengths": "10m",
+    "deadline": "Standard 20 business days is fine",
+    "details": "Phase 1 rebrand trade form test"
   }
 ]

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { tradeResources } from "@/lib/tradeResources";
 
 export const metadata: Metadata = {
-  title: "Trade Resources | Duskline",
+  title: "Trade Resources | Orenara",
   description:
     "Technical resources for electricians, landscapers, and builders — driver sizing, voltage selection, and IP rating standards for outdoor LED strip lighting.",
   robots: { index: true, follow: true },

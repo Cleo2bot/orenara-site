@@ -16,7 +16,7 @@ export default function Wordmark({ size = "md", className = "" }: WordmarkProps)
         className={`font-black ${sizeClasses[size]}`}
         style={{ color: "#F4F1EA", letterSpacing: "-0.04em" }}
       >
-        duskline
+        ORENARA
       </span>
     </div>
   );

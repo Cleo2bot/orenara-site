@@ -38,7 +38,7 @@ export default function PrintQuoteView({ zones, totals, contact, partLabels }: P
     <div className="print-only" style={{ color: "#15171C", fontFamily: "Inter, system-ui, sans-serif", padding: "24px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
         <div>
-          <div style={{ fontSize: "1.5rem", fontWeight: 800, letterSpacing: "-0.02em" }}>duskline</div>
+          <div style={{ fontSize: "1.5rem", fontWeight: 800, letterSpacing: "-0.02em" }}>ORENARA</div>
           <div style={{ fontSize: "0.75rem", color: "#D4913A", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginTop: "4px" }}>
             Quote Request Summary
           </div>
@@ -140,9 +140,9 @@ export default function PrintQuoteView({ zones, totals, contact, partLabels }: P
       <hr style={rule} />
 
       <div style={{ fontSize: "0.75rem", color: "#555", lineHeight: 1.6 }}>
-        Pricing is enquiry-only. Contact hello@duskline.com.au to confirm pricing and lead time.
+        Pricing is enquiry-only. Contact hello@orenara.com to confirm pricing and lead time.
         <br />
-        duskline.com.au
+        orenara.com.au
       </div>
     </div>
   );

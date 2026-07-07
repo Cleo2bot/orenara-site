@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "IP54 vs IP65 vs IP68 Explained | Duskline Trade Resources",
+  title: "IP54 vs IP65 vs IP68 Explained | Orenara Trade Resources",
   description:
     "What the ingress protection scale actually means, and why the second digit is the one that matters for outdoor lighting.",
   robots: { index: true, follow: true },
@@ -54,7 +54,7 @@ export default function IpRatingsPage() {
               <p style={{ fontWeight: 700, color: "#F5B25C", marginBottom: "6px" }}>IP68</p>
               <p style={{ color: "#C9CCD4", lineHeight: 1.7, fontSize: "0.9375rem" }}>
                 Dust-tight and rated for continuous submersion at a specified depth and duration
-                (Duskline&apos;s components: 1.5m for 30 minutes). This is the rating that actually
+                (Orenara&apos;s components: 1.5m for 30 minutes). This is the rating that actually
                 matters for pool edges, garden irrigation zones, and anywhere water contact is
                 constant rather than occasional.
               </p>

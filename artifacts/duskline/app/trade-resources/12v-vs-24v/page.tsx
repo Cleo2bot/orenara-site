@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "12V vs 24V Outdoor LED Strip — Why It Matters | Duskline Trade Resources",
+  title: "12V vs 24V Outdoor LED Strip — Why It Matters | Orenara Trade Resources",
   description:
     "Voltage drop, injection points, and why 24V systems handle longer outdoor runs better than 12V.",
   robots: { index: true, follow: true },
@@ -41,7 +41,7 @@ export default function VoltageComparisonPage() {
             not 12V, wherever runs exceed a few metres.
           </p>
           <p style={{ marginBottom: "20px" }}>
-            Duskline&apos;s strip runs on 24V for exactly this reason — fewer injection points, more
+            Orenara&apos;s strip runs on 24V for exactly this reason — fewer injection points, more
             consistent brightness across the full run length, less complexity on install.
           </p>
         </div>

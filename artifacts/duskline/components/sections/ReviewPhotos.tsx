@@ -8,7 +8,7 @@ const reviewPhotos = [
   {
     src: "/assets/review-kit-box.jpg",
     label: "The full kit as delivered",
-    alt: "Duskline outdoor LED kit as delivered — coiled white IP68 neon-flex strip, LTECH LED driver, 0–10V wall dimmer and 240V plug lead packed in the box",
+    alt: "Orenara outdoor LED kit as delivered — coiled white IP68 neon-flex strip, LTECH LED driver, 0–10V wall dimmer and 240V plug lead packed in the box",
   },
   {
     src: "/assets/review-ip68-label.jpg",

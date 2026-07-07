@@ -37,7 +37,7 @@ export default function WhyTrades() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16">
           <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
-            Why trades order from Duskline
+            Why trades order from Orenara
           </p>
           <h2
             className="font-bold"
@@ -115,7 +115,7 @@ export default function WhyTrades() {
         >
           <img
             src="/assets/generated/trade-hero-tailgate.png"
-            alt="Two tradies relaxing on a ute tailgate at dusk beside a driveway lit with warm Duskline strip lighting, coastal mansion behind."
+            alt="Two tradies relaxing on a ute tailgate at dusk beside a driveway lit with warm Orenara strip lighting, coastal mansion behind."
             style={{ display: "block", width: "100%", height: "auto" }}
           />
           <div

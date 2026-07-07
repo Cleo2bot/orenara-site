@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
-const siteUrl = "https://duskline.com.au";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "Duskline — Outdoor LED Strip Lighting, Built for Australian Conditions",
+  metadataBase: new URL(SITE_URL),
+  manifest: "/manifest.json",
+  title: "Orenara — Outdoor LED Strip Lighting, Built for Australian Conditions",
   description:
     "IP68-rated outdoor LED strip lighting, properly dimmable, built to survive Queensland humidity and coastal salt air. Made-to-order kits for Australian homes. Enquire for pricing.",
   keywords: [
@@ -20,23 +20,23 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    url: siteUrl,
-    title: "Duskline — Outdoor LED Strip Lighting, Built for Australian Conditions",
+    url: SITE_URL,
+    title: "Orenara — Outdoor LED Strip Lighting, Built for Australian Conditions",
     description:
       "IP68-rated outdoor LED strip lighting, properly dimmable, built to survive Queensland humidity and coastal salt air. Enquire for pricing.",
-    siteName: "Duskline",
+    siteName: "Orenara",
     images: [
       {
         url: "/assets/generated/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Duskline IP68 Outdoor LED Strip Lighting",
+        alt: "Orenara IP68 Outdoor LED Strip Lighting",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Duskline — Outdoor LED Strip Lighting",
+    title: "Orenara — Outdoor LED Strip Lighting",
     description:
       "IP68-rated. Properly dimmable. Built for Australian conditions.",
   },

@@ -20,7 +20,7 @@ const specs = [
     icon: Award,
     label: "RCM Compliant",
     headline: "Australian regulatory compliance.",
-    body: "RCM (Regulatory Compliance Mark) is the current Australian and New Zealand mark for electrical equipment compliance. It replaced the old 'SAA' mark. Products entering the Australian market are required to bear the RCM mark if they're electrical goods. Some importers still reference SAA certification — that designation was retired in 2016. Duskline components carry current RCM compliance.",
+    body: "RCM (Regulatory Compliance Mark) is the current Australian and New Zealand mark for electrical equipment compliance. It replaced the old 'SAA' mark. Products entering the Australian market are required to bear the RCM mark if they're electrical goods. Some importers still reference SAA certification — that designation was retired in 2016. Orenara components carry current RCM compliance.",
     badge: "Regulatory Compliance Mark",
   },
 ];
@@ -57,7 +57,7 @@ export default function SpecSection() {
           >
             <Image
               src="/assets/generated/spec-cove-green.png"
-              alt="Duskline continuous dot-free LED lighting concealed beneath a sandstone coping, casting an even emerald-green glow over a wet terrazzo path with lush tropical foliage leaning in as rain falls"
+              alt="Orenara continuous dot-free LED lighting concealed beneath a sandstone coping, casting an even emerald-green glow over a wet terrazzo path with lush tropical foliage leaning in as rain falls"
               fill
               sizes="(max-width: 768px) 100vw, 1200px"
               style={{ objectFit: "cover" }}

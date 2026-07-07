@@ -128,7 +128,7 @@ export default function Hero() {
               color: "#F4F1EA",
             }}
           >
-            duskline
+            ORENARA
           </h1>
           {/* Amber underline strip */}
           <div

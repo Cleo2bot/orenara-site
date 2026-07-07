@@ -21,7 +21,7 @@ export default function OutcomeSection() {
         >
           <img
             src="/assets/generated/home-outcome-deck.png"
-            alt="Family and friends relaxing on an outdoor deck by a pool at dusk, warm Duskline strip lighting glowing along the deck edge and pergola, house lit warm behind."
+            alt="Family and friends relaxing on an outdoor deck by a pool at dusk, warm Orenara strip lighting glowing along the deck edge and pergola, house lit warm behind."
             style={{ display: "block", width: "100%", height: "auto" }}
           />
           <div
