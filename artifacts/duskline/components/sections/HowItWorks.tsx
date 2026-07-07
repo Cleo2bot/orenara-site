@@ -45,8 +45,8 @@ export default function HowItWorks() {
           }}
         >
           <div
+            className="img-treated"
             style={{
-              position: "relative",
               aspectRatio: "16 / 9",
               maxHeight: "420px",
               minHeight: "clamp(320px, 56vw, 420px)",

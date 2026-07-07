@@ -1,27 +1,20 @@
 import Image from "next/image";
-import { Shield, Waves, Award } from "lucide-react";
 
 const specs = [
   {
-    icon: Shield,
-    label: "IP68 Rated",
+    stamp: "IEC 60529 · IP68",
     headline: "Dust-tight. Submersion-rated.",
     body: "IP68 is the highest standard ingress protection rating defined under IEC 60529. It means completely dust-tight and rated for continuous submersion — in our case, 1.5m depth for 30 minutes. Not splash-resistant. Submersion-rated. The difference matters when a garden irrigation system floods the installation zone or a pool edge takes splash loading daily.",
-    badge: "IEC 60529 · IP68",
   },
   {
-    icon: Waves,
-    label: "0–10V Dimming",
+    stamp: "0–10V ANALOGUE PROTOCOL",
     headline: "Smooth, flicker-free. Professional-grade.",
     body: "0–10V is an analogue dimming protocol used in commercial and architectural lighting. It delivers smooth, linear dimming from 0% to 100% without PWM flicker — the high-frequency on/off switching that causes eye strain and shows up on camera. Cheap PWM dimmers flicker at 1,000–20,000Hz. You may not see it directly. Your camera will. And some people can feel it. 0–10V eliminates the problem entirely.",
-    badge: "0–10V Analogue Protocol",
   },
   {
-    icon: Award,
-    label: "RCM Compliant",
+    stamp: "REGULATORY COMPLIANCE MARK",
     headline: "Australian regulatory compliance.",
     body: "RCM (Regulatory Compliance Mark) is the current Australian and New Zealand mark for electrical equipment compliance. It replaced the old 'SAA' mark. Products entering the Australian market are required to bear the RCM mark if they're electrical goods. Some importers still reference SAA certification — that designation was retired in 2016. Orenara components carry current RCM compliance.",
-    badge: "Regulatory Compliance Mark",
   },
 ];
 
@@ -48,16 +41,15 @@ export default function SpecSection() {
           }}
         >
           <div
+            className="img-treated img-warm-bias"
             style={{
-              position: "relative",
-              aspectRatio: "16 / 9",
-              maxHeight: "460px",
-              minHeight: "clamp(380px, 60vw, 460px)",
+              width: "100%",
+              height: "clamp(380px, 60vw, 460px)",
             }}
           >
             <Image
               src="/assets/generated/spec-cove-green.png"
-              alt="Orenara continuous dot-free LED lighting concealed beneath a sandstone coping, casting an even emerald-green glow over a wet terrazzo path with lush tropical foliage leaning in as rain falls"
+              alt="Orenara continuous dot-free LED lighting concealed beneath a sandstone coping, casting an even warm glow over a wet terrazzo path with lush tropical foliage leaning in as rain falls"
               fill
               sizes="(max-width: 768px) 100vw, 1200px"
               style={{ objectFit: "cover" }}
@@ -108,42 +100,41 @@ export default function SpecSection() {
           </div>
         </div>
 
-        {/* Spec cards */}
+        {/* Compliance plates — the brand's proof, etched like equipment plates */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {specs.map((spec, i) => {
-            const Icon = spec.icon;
-            return (
+          {specs.map((spec, i) => (
+            <div
+              key={i}
+              style={{
+                background: "var(--ink-raised)",
+                border: "1px solid var(--ink-line)",
+                borderRadius: "var(--radius)",
+              }}
+              data-testid={`spec-card-${i}`}
+            >
+              {/* Etched stamp — mono, top-left, sealed off by a hairline */}
               <div
-                key={i}
-                className="rounded-lg p-8"
                 style={{
-                  background: "var(--ink-raised)",
-                  border: "1px solid var(--ink-line)",
+                  padding: "16px 32px",
+                  borderBottom: "1px solid var(--ink-line)",
                 }}
-                data-testid={`spec-card-${i}`}
               >
-                <div
+                <span
+                  className="spec-mono"
                   style={{
-                    width: "44px",
-                    height: "44px",
-                    borderRadius: "var(--radius)",
-                    background: "transparent",
-                    border: "1px solid var(--ink-line)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: "20px",
+                    fontSize: "0.75rem",
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color: "var(--bone-dim)",
                   }}
                 >
-                  <Icon size={20} style={{ color: "var(--bone-dim)" }} />
-                </div>
-
-                <span className="spec-badge mb-4" style={{ display: "inline-flex" }}>
-                  {spec.badge}
+                  {spec.stamp}
                 </span>
+              </div>
 
+              <div style={{ padding: "28px 32px 32px" }}>
                 <h3
-                  className="font-medium mb-4 mt-4"
+                  className="font-medium mb-4"
                   style={{
                     fontSize: "1.125rem",
                     color: "var(--bone)",
@@ -163,8 +154,8 @@ export default function SpecSection() {
                   {spec.body}
                 </p>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>

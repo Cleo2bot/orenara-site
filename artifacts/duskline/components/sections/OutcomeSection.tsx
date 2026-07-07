@@ -18,11 +18,13 @@ export default function OutcomeSection() {
             position: "relative",
           }}
         >
-          <img
-            src="/assets/generated/home-outcome-deck.png"
-            alt="Family and friends relaxing on an outdoor deck by a pool at dusk, warm Orenara strip lighting glowing along the deck edge and pergola, house lit warm behind."
-            style={{ display: "block", width: "100%", height: "auto" }}
-          />
+          <div className="img-treated">
+            <img
+              src="/assets/generated/home-outcome-deck.png"
+              alt="Family and friends relaxing on an outdoor deck by a pool at dusk, warm Orenara strip lighting glowing along the deck edge and pergola, house lit warm behind."
+              style={{ display: "block", width: "100%", height: "auto" }}
+            />
+          </div>
           <div
             aria-hidden="true"
             style={{

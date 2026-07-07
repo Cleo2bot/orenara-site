@@ -46,8 +46,8 @@ export default function KitDetailPage({ params }: { params: { slug: string } }) 
 
         {/* Hero image */}
         <div
+          className="img-treated"
           style={{
-            position: "relative",
             width: "100%",
             aspectRatio: "16 / 9",
             overflow: "hidden",

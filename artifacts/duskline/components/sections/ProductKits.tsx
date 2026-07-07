@@ -58,15 +58,14 @@ export default function ProductKits() {
               }}
               data-testid={`kit-card-${i}`}
             >
-              {/* Kit image */}
+              {/* Kit image — unified treatment, 2px radius */}
               <div
+                className="img-treated"
                 style={{
-                  position: "relative",
-                  margin: "-32px -32px 24px",
+                  marginBottom: "24px",
                   aspectRatio: "16 / 10",
                   overflow: "hidden",
-                  borderTopLeftRadius: "8px",
-                  borderTopRightRadius: "8px",
+                  borderRadius: "var(--radius)",
                 }}
               >
                 <Image

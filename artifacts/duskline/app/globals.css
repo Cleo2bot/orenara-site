@@ -228,6 +228,37 @@ em, i {
   font-size: 1.75rem;
 }
 
+/* ---- Unified image treatment ------------------------------- */
+/* Every content image reads like the same photographer at the same
+   hour: slight desaturation, gentle contrast lift, and a darkening
+   overlay (the ONE spec-mandated gradient exception). Apply to the
+   element that directly wraps the image. */
+.img-treated {
+  position: relative;
+  isolation: isolate;
+}
+
+.img-treated img {
+  filter: saturate(0.85) contrast(1.06);
+}
+
+.img-treated::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(15, 17, 19, 0.15),
+    rgba(15, 17, 19, 0.35)
+  );
+  pointer-events: none;
+}
+
+/* Strong warm bias — pulls off-temperature imagery toward 2700K amber. */
+.img-warm-bias img {
+  filter: saturate(0) sepia(1) hue-rotate(-6deg) saturate(1.6)
+    contrast(1.06) brightness(0.9);
+}
+
 /* ---- Buttons ---------------------------------------------- */
 .btn-primary {
   display: inline-flex;

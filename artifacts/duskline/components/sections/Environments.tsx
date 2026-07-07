@@ -108,15 +108,14 @@ export default function Environments() {
                 }}
                 data-testid={`environment-card-${i}`}
               >
-                {/* Image */}
+                {/* Image — unified treatment, 2px radius */}
                 <div
+                  className="img-treated"
                   style={{
-                    position: "relative",
-                    margin: "-32px -32px 24px",
+                    marginBottom: "24px",
                     aspectRatio: "16 / 10",
                     overflow: "hidden",
-                    borderTopLeftRadius: "8px",
-                    borderTopRightRadius: "8px",
+                    borderRadius: "var(--radius)",
                   }}
                 >
                   <Image
@@ -125,13 +124,6 @@ export default function Environments() {
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     style={{ objectFit: "cover" }}
-                  />
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "color-mix(in srgb, var(--ink) 40%, transparent)",
-                    }}
                   />
                 </div>
 

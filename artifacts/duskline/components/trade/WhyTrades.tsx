@@ -111,11 +111,13 @@ export default function WhyTrades() {
             position: "relative",
           }}
         >
-          <img
-            src="/assets/generated/trade-hero-tailgate.png"
-            alt="Two tradies relaxing on a ute tailgate at dusk beside a driveway lit with warm Orenara strip lighting, coastal mansion behind."
-            style={{ display: "block", width: "100%", height: "auto" }}
-          />
+          <div className="img-treated">
+            <img
+              src="/assets/generated/trade-hero-tailgate.png"
+              alt="Two tradies relaxing on a ute tailgate at dusk beside a driveway lit with warm Orenara strip lighting, coastal mansion behind."
+              style={{ display: "block", width: "100%", height: "auto" }}
+            />
+          </div>
           <div
             aria-hidden="true"
             style={{

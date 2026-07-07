@@ -12,8 +12,12 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{ background: "var(--ink)" }}
     >
-      {/* Hero background photo */}
-      <div className="absolute inset-0" aria-hidden="true">
+      {/* Hero background photo — unified treatment, overlay strengthened at the bottom third */}
+      <div
+        className="img-treated"
+        style={{ position: "absolute", inset: 0 }}
+        aria-hidden="true"
+      >
         <Image
           src="/assets/generated/hero.png"
           alt=""
@@ -22,11 +26,11 @@ export default function Hero() {
           sizes="100vw"
           style={{ objectFit: "cover" }}
         />
-        {/* Flat scrim to protect text over the photo */}
         <div
           className="absolute inset-0"
           style={{
-            background: "color-mix(in srgb, var(--ink) 72%, transparent)",
+            background:
+              "linear-gradient(rgba(15, 17, 19, 0.5), rgba(15, 17, 19, 0.55) 66%, rgba(15, 17, 19, 0.82))",
           }}
         />
       </div>
@@ -40,42 +44,30 @@ export default function Hero() {
           </span>
         </div>
 
-        {/* Wordmark */}
-        <div className="animate-fade-up-delay-1 mb-6">
+        {/* H1 — the promise, not the brand name (nav already says it) */}
+        <div className="animate-fade-up-delay-1">
           <h1
             style={{
-              fontSize: "clamp(3.5rem, 10vw, 8rem)",
-              letterSpacing: "-0.05em",
-              lineHeight: "0.9",
+              fontSize: "clamp(2rem, 5.5vw, 3.75rem)",
+              letterSpacing: "-0.03em",
+              lineHeight: 1.08,
               color: "var(--bone)",
+              maxWidth: "820px",
+              margin: "0 auto",
             }}
           >
-            ORENARA
+            Built for salt air, pool chemicals, and Queensland summers.
           </h1>
         </div>
 
-        {/* Tagline */}
+        {/* Support line */}
         <p
           className="animate-fade-up-delay-2"
           style={{
-            fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)",
-            color: "var(--bone-dim)",
-            letterSpacing: "0.01em",
-            marginTop: "24px",
-            marginBottom: "16px",
-          }}
-        >
-          Built for salt air, pool chemicals, and Queensland summers.
-        </p>
-
-        {/* Positioning statement */}
-        <p
-          className="animate-fade-up-delay-2"
-          style={{
-            fontSize: "clamp(0.9rem, 1.8vw, 1.1rem)",
+            fontSize: "clamp(1rem, 2vw, 1.1875rem)",
             color: "var(--bone-dim)",
             maxWidth: "600px",
-            margin: "0 auto 40px",
+            margin: "24px auto 40px",
             lineHeight: 1.7,
           }}
         >

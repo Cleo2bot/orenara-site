@@ -176,7 +176,22 @@ function StarRow({
   );
 }
 
-function Attribution({ review }: { review: Review }) {
+function Attribution({ review, mono }: { review: Review; mono?: boolean }) {
+  if (mono) {
+    return (
+      <p
+        className="spec-mono"
+        style={{
+          fontSize: "0.75rem",
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          color: "var(--bone-dim)",
+        }}
+      >
+        {review.role} · {review.state} · {review.verified}
+      </p>
+    );
+  }
   return (
     <p style={{ fontSize: "0.8rem", color: "var(--bone-dim)" }}>
       <span style={{ color: "var(--bone)", fontWeight: 500 }}>{review.role}</span>
@@ -192,7 +207,7 @@ export default function TradeReviews() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="mt-14">
+    <div id="trade-reviews" className="mt-14">
       <div className="mb-6">
         <h3
           className="font-medium"
@@ -298,30 +313,34 @@ export default function TradeReviews() {
         </div>
       </div>
 
-      {/* Featured review — the only one in a card box */}
+      {/* Featured review — large hairline-bordered panel */}
       <figure
-        className="rounded-xl mt-5"
+        className="mt-5"
         style={{
           background: "var(--ink-raised)",
           border: "1px solid var(--ink-line)",
-          padding: "20px 22px",
+          borderRadius: "var(--radius)",
+          padding: "clamp(28px, 4vw, 44px)",
         }}
         data-testid="featured-review"
       >
         <StarRow rating={featured.rating} size={14} />
         <blockquote
           style={{
-            fontSize: "0.9375rem",
-            color: "var(--bone-dim)",
-            lineHeight: 1.65,
-            marginTop: "12px",
-            maxWidth: "720px",
+            fontFamily: "var(--font-display)",
+            fontWeight: 400,
+            fontSize: "clamp(1.15rem, 2vw, 1.3rem)",
+            color: "var(--bone)",
+            lineHeight: 1.5,
+            letterSpacing: "-0.01em",
+            marginTop: "16px",
+            maxWidth: "780px",
           }}
         >
           &ldquo;{featured.quote}&rdquo;
         </blockquote>
-        <figcaption className="mt-4">
-          <Attribution review={featured} />
+        <figcaption className="mt-5">
+          <Attribution review={featured} mono />
         </figcaption>
       </figure>
 
@@ -388,8 +407,8 @@ export default function TradeReviews() {
               {review.photo && review.photoAlt && (
                 <figure className="mt-3 flex items-start gap-3">
                   <div
+                    className="img-treated"
                     style={{
-                      position: "relative",
                       width: "150px",
                       flexShrink: 0,
                       aspectRatio: "4 / 3",
@@ -424,15 +443,15 @@ export default function TradeReviews() {
 
               {review.photos && review.photos.length > 0 && (
                 <div
-                  className="mt-3 flex flex-wrap gap-3"
+                  className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2"
+                  style={{ maxWidth: "720px" }}
                   data-testid={`review-gallery-${i}`}
                 >
                   {review.photos.map((p) => (
-                    <figure key={p.src} style={{ width: "150px", margin: 0 }}>
+                    <figure key={p.src} style={{ margin: 0 }}>
                       <div
+                        className="img-treated"
                         style={{
-                          position: "relative",
-                          width: "150px",
                           aspectRatio: "4 / 3",
                           borderRadius: "var(--radius)",
                           overflow: "hidden",
@@ -444,7 +463,7 @@ export default function TradeReviews() {
                           src={p.src}
                           alt={p.alt}
                           fill
-                          sizes="150px"
+                          sizes="(max-width: 640px) 50vw, 180px"
                           style={{ objectFit: "cover" }}
                         />
                       </div>

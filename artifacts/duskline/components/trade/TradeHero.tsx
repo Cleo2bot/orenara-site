@@ -109,20 +109,13 @@ export default function TradeHero() {
               position: "relative",
             }}
           >
-            <img
-              src="/assets/generated/trade-mansion-coast.png"
-              alt="Modern coastal mansion at dusk with Orenara warm strip lighting integrated into sandstone entry steps, ocean spray beyond."
-              style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }}
-            />
-            <div
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "color-mix(in srgb, var(--ink) 55%, transparent)",
-                pointerEvents: "none",
-              }}
-            />
+            <div className="img-treated" style={{ height: "100%" }}>
+              <img
+                src="/assets/generated/trade-mansion-coast.png"
+                alt="Modern coastal mansion at dusk with Orenara warm strip lighting integrated into sandstone entry steps, ocean spray beyond."
+                style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
           </div>
         </div>
       </div>

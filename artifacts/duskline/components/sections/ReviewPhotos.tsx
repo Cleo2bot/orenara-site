@@ -133,9 +133,8 @@ export default function ReviewPhotos() {
             onClick={(e) => show(i, e.currentTarget)}
             aria-label={`Open photo: ${photo.label}`}
             data-testid={`review-photo-${i}`}
-            className="group"
+            className="group img-treated"
             style={{
-              position: "relative",
               flex: "0 0 auto",
               width: "84px",
               height: "84px",
@@ -234,8 +233,8 @@ export default function ReviewPhotos() {
             style={{ margin: 0, maxWidth: "880px", width: "100%" }}
           >
             <div
+              className="img-treated"
               style={{
-                position: "relative",
                 width: "100%",
                 aspectRatio: "4 / 3",
                 borderRadius: "var(--radius)",

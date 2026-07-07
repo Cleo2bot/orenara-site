@@ -134,11 +134,13 @@ export default function TradeSteps() {
             position: "relative",
           }}
         >
-          <img
-            src="/assets/generated/trade-sandstone-wall.png"
-            alt="Continuous warm Orenara strip glow washing across a coastal sandstone retaining wall at dusk."
-            style={{ display: "block", width: "100%", height: "auto" }}
-          />
+          <div className="img-treated">
+            <img
+              src="/assets/generated/trade-sandstone-wall.png"
+              alt="Continuous warm Orenara strip glow washing across a coastal sandstone retaining wall at dusk."
+              style={{ display: "block", width: "100%", height: "auto" }}
+            />
+          </div>
           <div
             aria-hidden="true"
             style={{

@@ -5,3 +5,4 @@
 - [Vercel deploy of Next.js monorepo artifact](vercel-deploy-nextjs-monorepo.md) — blocker chain: Root Directory → vercel.json framework=nextjs → commit-author noreply email; wrap route disk writes (read-only FS).
 - [Duskline supplier vs. own part numbers](duskline-part-numbers.md) — never surface supplier SKUs on-site; only Duskline's own renamed codes, and only on dedicated per-kit pages, not homepage cards.
 - [Orenara rebrand ground rules](orenara-rebrand-rules.md) — never push to GitHub without approval; email domain orenara.com is intentional; phased spec with stop-for-review; .next is git-tracked.
+- [Orenara image treatment](orenara-image-treatment.md) — .img-treated's position:relative overrides Tailwind `absolute` (use inline style for fill wrappers); full-strength sepia stack needed to warm green photos.
