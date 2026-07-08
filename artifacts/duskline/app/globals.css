@@ -372,6 +372,19 @@ em, i {
   border-color: var(--ember);
 }
 
+/* Keyboard-only focus ring — applies site-wide so no interactive
+   element ever receives invisible focus. Uses the existing ember
+   token; :focus-visible keeps it off for mouse/touch interaction. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 2px;
+}
+
 .enquiry-input option {
   background: var(--ink-raised);
   color: var(--bone);

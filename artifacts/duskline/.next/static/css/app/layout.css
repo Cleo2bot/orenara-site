@@ -193,9 +193,6 @@
   .relative {
     position: relative;
   }
-  .inset-0 {
-    inset: 0;
-  }
   .top-0 {
     top: 0;
   }
@@ -904,6 +901,15 @@ em, i {
 }
 .enquiry-input:focus {
   border-color: var(--ember);
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 2px;
 }
 .enquiry-input option {
   background: var(--ink-raised);
