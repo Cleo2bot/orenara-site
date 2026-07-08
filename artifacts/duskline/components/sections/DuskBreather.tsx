@@ -20,7 +20,7 @@ export default function DuskBreather() {
         >
           <div className="img-treated">
             <img
-              src="/assets/generated/home-dusk-empty-deck.png"
+              src="/assets/generated/home-dusk-empty-deck.webp"
               alt="Empty outdoor deck and pool at deep dusk, warm Orenara strip lighting glowing along the deck edge and pool surround as the dominant light source, house lit softly behind."
               loading="lazy"
               decoding="async"

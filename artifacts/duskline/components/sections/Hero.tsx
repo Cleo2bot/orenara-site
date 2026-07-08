@@ -19,7 +19,7 @@ export default function Hero() {
         aria-hidden="true"
       >
         <Image
-          src="/assets/generated/hero.png"
+          src="/assets/generated/hero.webp"
           alt=""
           fill
           priority
