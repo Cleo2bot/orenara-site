@@ -2,5 +2,7 @@
 type ModuleMap = Record<string, () => Promise<Record<string, unknown>>>;
 export const modules: ModuleMap = {
   "./components/mockups/orenara-og/OgImage.tsx": () => import("../components/mockups/orenara-og/OgImage.tsx"),
+  "./components/mockups/orenara-product/FlatLay.tsx": () => import("../components/mockups/orenara-product/FlatLay.tsx"),
+  "./components/mockups/orenara-product/SplitPanel.tsx": () => import("../components/mockups/orenara-product/SplitPanel.tsx"),
   "./components/mockups/raycor-rebrand/Hero.tsx": () => import("../components/mockups/raycor-rebrand/Hero.tsx")
 };
