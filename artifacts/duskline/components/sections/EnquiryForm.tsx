@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { reportConversion } from "@/lib/gtag";
 
 const kits = [
   "Pathway Kit",
@@ -61,6 +62,7 @@ export default function EnquiryForm() {
         throw new Error(data.error || "Submission failed. Please try again.");
       }
       setStatus("success");
+      reportConversion(process.env.NEXT_PUBLIC_CONV_LABEL_ENQUIRY);
       setForm(INITIAL);
     } catch (err: unknown) {
       setStatus("error");

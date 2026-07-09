@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Plus, CheckCircle, AlertCircle, Send, FileDown } from "lucide-react";
+import { reportConversion } from "@/lib/gtag";
 import ZoneCard, { type ZoneFormState, type RunFormState } from "./ZoneCard";
 import PrintQuoteView from "./PrintQuoteView";
 import {
@@ -146,6 +147,7 @@ export default function QuoteBuilder() {
       }
 
       setStatus("success");
+      reportConversion(process.env.NEXT_PUBLIC_CONV_LABEL_QUOTE);
       setZones([]);
       setContact(INITIAL_CONTACT);
     } catch (err: unknown) {

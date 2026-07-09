@@ -1,0 +1,70 @@
+# ORENARA — GOOGLE ADS CONVERSION TRACKING
+## Small, surgical job. The rebrand is complete and live in production — change nothing about it.
+
+You are adding Google Ads conversion tracking to the Orenara site (Next.js App Router, deployed on Vercel). The goal: when a visitor successfully submits the main enquiry form, the trade enquiry form, or the quote builder, a conversion event fires to Google Ads. Nothing else changes.
+
+---
+
+## HARD RULES
+
+1. **Do not modify** any visual component, copy, styling, token, route, or form logic. This is instrumentation only.
+2. **All Google IDs come from environment variables.** The Google Ads account does not exist yet — hardcode NOTHING. The site must build, deploy, and run correctly with the variables unset (tracking silently disabled, zero errors, zero console noise).
+3. Conversion events fire **only on confirmed successful submission** — the success state after the API route returns OK — never on page load, button click, or attempted submit. A failed submission must not fire a conversion.
+4. No additional analytics, no cookies beyond what gtag itself sets, no consent banners, no extra libraries beyond what's specified.
+5. Performance: the tag must not regress the site. Load it with Next.js-appropriate lazy strategy (`afterInteractive` or the @next/third-parties equivalent). Lighthouse performance must not drop.
+
+---
+
+## IMPLEMENTATION
+
+### 1. Environment variables (add to .env.example with comments)
+
+```
+# Google Ads conversion tracking — values from Google Ads > Goals > Conversions
+# Leave unset until the Ads account is created; tracking is disabled when unset.
+NEXT_PUBLIC_GOOGLE_ADS_ID=            # format: AW-XXXXXXXXXX
+NEXT_PUBLIC_CONV_LABEL_ENQUIRY=       # conversion label for main enquiry form
+NEXT_PUBLIC_CONV_LABEL_TRADE=         # conversion label for trade enquiry form
+NEXT_PUBLIC_CONV_LABEL_QUOTE=         # conversion label for quote builder submission
+```
+
+### 2. Global tag
+
+- Install the gtag.js base tag in the root layout, gated: render nothing if `NEXT_PUBLIC_GOOGLE_ADS_ID` is unset.
+- Use `next/script` with `strategy="afterInteractive"` (or `@next/third-parties/google` GoogleTagManager equivalent — your choice, justify it in a comment).
+
+### 3. Conversion helper
+
+Create one small utility, e.g. `lib/gtag.ts`:
+
+```ts
+export function reportConversion(label?: string) {
+  const id = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+  if (!id || !label || typeof window === "undefined" || !(window as any).gtag) return;
+  (window as any).gtag("event", "conversion", {
+    send_to: `${id}/${label}`,
+  });
+}
+```
+
+### 4. Wire the three success states
+
+- **Main enquiry form**: in the existing success handler (where the thank-you state is set after a 200 from /enquire), call `reportConversion(process.env.NEXT_PUBLIC_CONV_LABEL_ENQUIRY)`.
+- **Trade enquiry form**: same pattern with `NEXT_PUBLIC_CONV_LABEL_TRADE` after a 200 from the trade route.
+- **Quote builder**: fire `NEXT_PUBLIC_CONV_LABEL_QUOTE` at the point the quote enquiry is successfully submitted (its API success state). If the quote builder submits through the same /enquire route as the main form, fire the QUOTE label (not both) — distinguish by the existing source/type field if one exists, and tell me what you found.
+- Add nothing to the UI. No visible change on success — the thank-you states stay exactly as they are.
+
+### 5. Debug affordance (dev only)
+
+When `NODE_ENV !== "production"`, `reportConversion` logs one line: `[Orenara] conversion fired: <label>` (or `skipped: tracking disabled`). Silent in production.
+
+---
+
+## QA CHECKLIST
+
+1. With env vars **unset**: site builds and runs, no console errors, no gtag script in the rendered HTML, forms work exactly as before.
+2. With **dummy values set locally** (e.g. AW-0000000000 / testlabel): gtag script present, submit each of the three forms, confirm via the dev log line that each fires exactly once, on success only. Confirm a failed/rejected submission (e.g. missing required field) fires nothing.
+3. Typecheck clean. No changes outside: root layout, the gtag utility, the three success handlers, .env.example.
+4. Output the full diff — it should be small — plus a note listing exactly which env vars I need to set in Vercel and where the values come from in the Google Ads UI (Goals → Conversions → tag setup → "use Google tag" → conversion ID and label).
+
+Do not push. Report with the diff and stop.

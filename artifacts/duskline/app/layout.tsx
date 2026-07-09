@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { SITE_URL } from "@/lib/site";
 
@@ -54,9 +55,27 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        {/* Google Ads global site tag — only rendered when the Ads ID env var is set.
+            strategy="afterInteractive" defers until after hydration so it never blocks
+            the main thread (preferred over @next/third-parties here because we need the
+            raw gtag config call to initialise the dataLayer before any conversion fires). */}
+        {adsId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${adsId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="gtag-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${adsId}');`}
+            </Script>
+          </>
+        )}
+      </body>
     </html>
   );
 }

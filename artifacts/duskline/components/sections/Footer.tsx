@@ -72,9 +72,8 @@ export default function Footer() {
                 <Mail size={15} style={{ color: "var(--bone-dim)" }} />
                 hello@orenara.com
               </a>
-              {/* ORENARA_INSTAGRAM_PLACEHOLDER — real handle to be provided by owner; do not invent one */}
               <a
-                href="https://instagram.com/ORENARA_INSTAGRAM_PLACEHOLDER"
+                href="https://instagram.com/orenara.lighting"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2"
@@ -84,7 +83,7 @@ export default function Footer() {
                 data-testid="footer-instagram"
               >
                 <Instagram size={15} style={{ color: "var(--bone-dim)" }} />
-                ORENARA_INSTAGRAM_PLACEHOLDER
+                @orenara.lighting
               </a>
             </div>
           </div>

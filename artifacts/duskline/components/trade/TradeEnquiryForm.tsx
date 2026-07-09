@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { reportConversion } from "@/lib/gtag";
 
 const colourOptions = [
   "Standard warm glow",
@@ -78,6 +79,7 @@ export default function TradeEnquiryForm() {
         throw new Error(data.error || "Submission failed. Please try again.");
       }
       setStatus("success");
+      reportConversion(process.env.NEXT_PUBLIC_CONV_LABEL_TRADE);
       setForm(INITIAL);
     } catch (err: unknown) {
       setStatus("error");
