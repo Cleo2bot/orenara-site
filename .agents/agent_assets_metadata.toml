@@ -156,6 +156,24 @@ uri = "file://artifacts/duskline/public/assets/generated/env-rural-rugged.png"
 type = "image"
 title = "rural acreage dusk"
 
+[[generated]]
+id = "_mTnVgohZnicpG4wNQH2m"
+uri = "file://attached_assets/generated_images/product-flatlay-dark.png"
+type = "image"
+title = "product flatlay dark background"
+
+[[generated]]
+id = "aFqAcIpWkxzrXooTPXiHI"
+uri = "file://attached_assets/generated_images/product-flatlay-warm.png"
+type = "image"
+title = "product flatlay warm accent"
+
+[[generated]]
+id = "ywo8iE4r_1lhaldHPvX9a"
+uri = "file://attached_assets/generated_images/product-strip-closeup.png"
+type = "image"
+title = "strip and driver closeup"
+
 [[outputs]]
 id = "FW-ziBPTVWtIg-kxPWOd1"
 uri = "file://.canvas/assets/duskline-favicon.png"
