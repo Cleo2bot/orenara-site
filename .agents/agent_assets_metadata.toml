@@ -186,6 +186,12 @@ uri = "file://attached_assets/generated_images/product-flatlay-v3.png"
 type = "image"
 title = "product flatlay v3 corrected"
 
+[[generated]]
+id = "imFWvb5Az0RCGSVHO3piH"
+uri = "file://attached_assets/generated_images/product-flatlay-v4.png"
+type = "image"
+title = "product flatlay v4 new prompt"
+
 [[outputs]]
 id = "FW-ziBPTVWtIg-kxPWOd1"
 uri = "file://.canvas/assets/duskline-favicon.png"
@@ -227,3 +233,9 @@ id = "rfwnnKJUYB6E4QUVtaLo9"
 uri = "file://attached_assets/generated_images/product-flatlay-v3.png"
 type = "image"
 title = "Product flat-lay v3 — corrected"
+
+[[outputs]]
+id = "g_hd8dFGQZpJuhCzf-xbR"
+uri = "file://attached_assets/generated_images/product-flatlay-v4.png"
+type = "image"
+title = "Product flat-lay v4"
