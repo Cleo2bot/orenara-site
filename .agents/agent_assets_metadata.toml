@@ -209,3 +209,9 @@ id = "9TwR_u2OHeLKQ38vh9SNe"
 uri = "file://screenshots/scrim-after-duskbreather.jpg"
 type = "image"
 title = "Dusk breather — AFTER (shared .scrim)"
+
+[[outputs]]
+id = "abe4c2kwqWNukMatei80t"
+uri = "file://attached_assets/generated_images/product-flatlay-v2.png"
+type = "image"
+title = "Product components flat-lay"
