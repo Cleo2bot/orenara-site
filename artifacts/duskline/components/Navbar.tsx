@@ -23,10 +23,10 @@ export default function Navbar() {
         >
           <Wordmark size="sm" />
         </Link>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 md:gap-6">
           <Link
             href="/trade"
-            className="hidden md:inline-flex whitespace-nowrap"
+            className="inline-flex whitespace-nowrap"
             style={{
               color: "var(--bone-dim)",
               fontSize: "0.875rem",
@@ -35,7 +35,8 @@ export default function Navbar() {
             }}
             data-testid="nav-trade-link"
           >
-            Trade Order
+            <span className="md:hidden">Trade</span>
+            <span className="hidden md:inline">Trade Order</span>
           </Link>
           <Link
             href="/quote-builder"
@@ -43,7 +44,8 @@ export default function Navbar() {
             style={{ padding: "10px 18px", fontSize: "0.8125rem" }}
             data-testid="nav-quote-builder-link"
           >
-            Build Your Kit
+            <span className="md:hidden">Build Kit</span>
+            <span className="hidden md:inline">Build Your Kit</span>
           </Link>
         </div>
       </nav>
