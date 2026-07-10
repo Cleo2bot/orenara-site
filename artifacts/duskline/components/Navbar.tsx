@@ -41,7 +41,7 @@ export default function Navbar() {
           <Link
             href="/quote-builder"
             className="btn-outline w-auto whitespace-nowrap"
-            style={{ padding: "10px 18px", fontSize: "0.8125rem" }}
+            style={{ padding: "10px 18px", fontSize: "0.8125rem", width: "auto" }}
             data-testid="nav-quote-builder-link"
           >
             <span className="md:hidden">Build Kit</span>

@@ -1,7 +1,7 @@
 export default function EmberBreather() {
   return (
     <section
-      id="dusk-breather"
+      id="ember-breather"
       style={{
         background: "var(--ink)",
         borderTop: "1px solid var(--ink-line)",
