@@ -1,4 +1,4 @@
-export default function DuskBreather() {
+export default function EmberBreather() {
   return (
     <section
       id="dusk-breather"

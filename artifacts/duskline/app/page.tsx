@@ -7,7 +7,7 @@ import ProductKits from "@/components/sections/ProductKits";
 import DifferenceSection from "@/components/sections/DifferenceSection";
 import KitComponents from "@/components/sections/KitComponents";
 import KitBox from "@/components/sections/KitBox";
-import DuskBreather from "@/components/sections/DuskBreather";
+import EmberBreather from "@/components/sections/EmberBreather";
 import HowItWorks from "@/components/sections/HowItWorks";
 import SpecSection from "@/components/sections/SpecSection";
 import InstallerReview from "@/components/sections/InstallerReview";
@@ -21,18 +21,18 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
-        <DifferenceSection />
         <ProblemSection />
+        <DifferenceSection />
         <Environments />
-        <MountingSystem />
-        <DuskBreather />
-        <ProductKits />
         <KitComponents />
+        <MountingSystem />
+        <EmberBreather />
+        <ProductKits />
         <HowItWorks />
-        <SpecSection />
         <InstallerReview />
-        <EnquiryForm />
         <OutcomeSection />
+        <SpecSection />
+        <EnquiryForm />
       </main>
       <Footer />
     </>
