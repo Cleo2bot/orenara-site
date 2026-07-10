@@ -210,6 +210,120 @@ uri = "file://attached_assets/generated_images/overhaul_01_hero_firepit.png"
 type = "image"
 title = "firepit hero four seated silhouettes"
 
+[[generated]]
+id = "Lb5E0a727jY2-5ibZPlE8"
+uri = "file://attached_assets/generated_images/overhaul_02_firepit_kit.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "ExsVcmYrs-dq2BLOBc0N5"
+uri = "file://attached_assets/generated_images/overhaul_03_breather_deck.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "0WGRphaMmHkBzjek1PiBR"
+uri = "file://attached_assets/generated_images/overhaul_04_outcome_dinner.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "wBW6ruoso8tL9jUuY6woE"
+uri = "file://attached_assets/generated_images/overhaul_05_env_hospitality.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "dOxU7tUcS0gY6NXmL_IF4"
+uri = "file://attached_assets/generated_images/overhaul_07_env_marina.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "iiZglymlDX6rBr8959Nfa"
+uri = "file://attached_assets/generated_images/overhaul_08_env_coastal.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "HJb7ZTXMLVcJRwF0QJ-d6"
+uri = "file://attached_assets/generated_images/overhaul_02_att2.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "8eCWtVIsjtwBePZ_ASjXB"
+uri = "file://attached_assets/generated_images/overhaul_04_att2.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "-TvG8Gum8fNKEzge2D4Zy"
+uri = "file://attached_assets/generated_images/overhaul_05_att2.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "z3pwDuzFQkLJuT27Qx11v"
+uri = "file://attached_assets/generated_images/overhaul_08_att2.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "GB7d1kDp1EpxNm2pZlZQZ"
+uri = "file://attached_assets/generated_images/overhaul_09_att2.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "v4Itv2ZVD1ixSy5x8QdZm"
+uri = "file://attached_assets/generated_images/overhaul_10_att2.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "aEJIFjqkvEQOn38oWONZl"
+uri = "file://attached_assets/generated_images/overhaul_12_att2.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "gysCNE5c-HJ0f7UfUmHFy"
+uri = "file://attached_assets/generated_images/overhaul_04_att3.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "19qofz-pVNx1OKah38PE9"
+uri = "file://attached_assets/generated_images/overhaul_08_att3.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "QL2J68ZQT0-0PbfoGFZi-"
+uri = "file://attached_assets/generated_images/overhaul_09_att3.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "77NNVJRQxsotQHQiKuUK8"
+uri = "file://attached_assets/generated_images/overhaul_10_att3.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "s8Ofp_tnyRNC20O-bB0PV"
+uri = "file://attached_assets/generated_images/overhaul_04_att4.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "TocEXxd4GtBpSAOBz2IUo"
+uri = "file://attached_assets/generated_images/overhaul_10_att4.png"
+type = "image"
+title = "generated_image"
+
 [[outputs]]
 id = "FW-ziBPTVWtIg-kxPWOd1"
 uri = "file://.canvas/assets/duskline-favicon.png"
@@ -281,3 +395,81 @@ id = "7CPwTeQqHaGJ0pPEUZQtE"
 uri = "file://attached_assets/generated_images/overhaul_01_hero_firepit.png"
 type = "image"
 title = "NEW Hero — Fire Pit at Night (attempt 3, for review)"
+
+[[outputs]]
+id = "nomqAZQ97HtduCS49Ors_"
+uri = "file://attached_assets/generated_images/overhaul_02_firepit_kit.png"
+type = "image"
+title = "02 — Fire Pit Kit (Tier P, attempt 2)"
+
+[[outputs]]
+id = "VL47-MaWgeNornPUeqUNs"
+uri = "file://attached_assets/generated_images/overhaul_03_breather_deck.png"
+type = "image"
+title = "03 — Dusk breather deck (Tier E, attempt 1)"
+
+[[outputs]]
+id = "qSKiWQ4RsvEfsdVPYXH8I"
+uri = "file://attached_assets/generated_images/overhaul_04_outcome_dinner.png"
+type = "image"
+title = "04 — Outcome dinner (Tier P, attempt 4)"
+
+[[outputs]]
+id = "goI_pSbd_PxBBIgkyuZ1i"
+uri = "file://attached_assets/generated_images/overhaul_05_env_hospitality.png"
+type = "image"
+title = "05 — Commercial & Hospitality (Tier P, attempt 2)"
+
+[[outputs]]
+id = "HhV560wt4a2AaR2vJXAfT"
+uri = "file://attached_assets/generated_images/overhaul_06_env_pool.png"
+type = "image"
+title = "06 — Pool & Aquatic (banked image, no generation)"
+
+[[outputs]]
+id = "gHDMZ0Sj-6GBDBkMr-tKk"
+uri = "file://attached_assets/generated_images/overhaul_07_env_marina.png"
+type = "image"
+title = "07 — Marina & Private Berths (Tier E, attempt 1)"
+
+[[outputs]]
+id = "7kMrmixxZwsvA0F4KsdgQ"
+uri = "file://attached_assets/generated_images/overhaul_08_env_coastal.png"
+type = "image"
+title = "08 — Coastal (Tier P, attempt 3)"
+
+[[outputs]]
+id = "myxoIa7opcGh0KACKzySm"
+uri = "file://attached_assets/generated_images/overhaul_09_env_tropical.png"
+type = "image"
+title = "09 — Tropical & Humid (Tier E, attempt 3)"
+
+[[outputs]]
+id = "zZZ4cC8a_cEW8I1dveedF"
+uri = "file://attached_assets/generated_images/overhaul_10_env_rural.png"
+type = "image"
+title = "10 — Rural & Acreage (Tier P, attempt 4)"
+
+[[outputs]]
+id = "P5NYMkBZ4KM-W8ISPuLOp"
+uri = "file://attached_assets/generated_images/overhaul_11_kit_pathway.png"
+type = "image"
+title = "11 — Pathway Kit (Tier E, attempt 1)"
+
+[[outputs]]
+id = "dmMLD6zlmTlbxb9sEUSKt"
+uri = "file://attached_assets/generated_images/overhaul_12_kit_pergola.png"
+type = "image"
+title = "12 — Pergola Kit (Tier E, attempt 2)"
+
+[[outputs]]
+id = "genJPs9u0eeZtruUo0S4e"
+uri = "file://attached_assets/generated_images/overhaul_13_kit_pool.png"
+type = "image"
+title = "13 — Pool & Water Feature Kit (Tier S/E, attempt 1)"
+
+[[outputs]]
+id = "LLGUlcNwfyhhynyZRKXsV"
+uri = "file://attached_assets/generated_images/overhaul_14_kit_customzone.png"
+type = "image"
+title = "14 — Custom Zone Kit (Tier E, attempt 1)"
