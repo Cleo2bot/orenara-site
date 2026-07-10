@@ -271,7 +271,7 @@ export default function MountingSystem() {
             z-index: 2;
             font-size: 0.625rem;
             letter-spacing: 0.12em;
-            color: rgba(15, 17, 19, 0.52);
+            color: rgba(15, 17, 19, 0.45);
             font-family: var(--font-mono, monospace);
             text-transform: uppercase;
           }
@@ -286,7 +286,7 @@ export default function MountingSystem() {
           }
           @media (min-width: 768px) {
             .track-img-inner {
-              aspect-ratio: 16 / 7;
+              aspect-ratio: 16 / 9;
             }
             .track-caption-overlay {
               bottom: 20px;
@@ -309,7 +309,7 @@ export default function MountingSystem() {
               alt="Orenara flexible segmented aluminium track curving to a consistent radius"
               fill
               sizes="(max-width: 767px) 100vw, (max-width: 1280px) 100vw, 1280px"
-              style={{ objectFit: "cover", objectPosition: "center 65%" }}
+              style={{ objectFit: "cover", objectPosition: "center 50%" }}
               loading="lazy"
             />
             <p
