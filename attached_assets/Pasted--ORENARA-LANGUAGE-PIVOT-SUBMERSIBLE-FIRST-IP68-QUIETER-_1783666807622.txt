@@ -1,0 +1,111 @@
+# ORENARA — LANGUAGE PIVOT: SUBMERSIBLE FIRST, IP68 QUIETER, LEAD-TIME SILENCE
+## Surgical copy pass across the entire codebase. No layout, design, structural, or functional changes.
+
+Two changes, executed exhaustively:
+
+**A. SUBMERSIBLE LEADS, IP68 SUPPORTS.** Customers search "waterproof" but what they want is *submersible* — and most don't know what IP68 means. From now on, plain-language customer-facing copy leads with "fully submersible" / "submersible"; "IP68" is demoted to the supporting technical credential. IP68 is NOT removed from the site — it moves to second position in prose and remains untouched in spec/badge/technical contexts (defined below).
+
+**B. LEAD-TIME SILENCE UNTIL THE POINT OF ENQUIRY.** The "20 business days" figure is removed from all marketing surfaces (hero, section copy, kit cards, how-it-works). It survives ONLY at the defined disclosure points listed below, using this exact canonical wording everywhere it appears: **"Every system is built to order — allow up to 20 business days from order confirmation."** The phrase "Ships in 20 business days" is retired site-wide. "Made to order" as a positioning phrase (without a number) is allowed to remain where it currently appears.
+
+---
+
+## HARD RULES
+
+1. Copy edits only. Do not touch layout, components' structure, styling, tokens, routes, forms' fields, or any logic.
+2. Never alter text inside customer reviews/testimonials — they are verbatim quotes (including the trade review that mentions "3 weeks" / "4 weeks"; it stays word-for-word).
+3. Do not change part numbers, standards references (IEC 60529, EN60529, AS/NZS 3000, IEEE 1789, RCM), or legal/compliance sentences except where a lead-time clause is explicitly edited below.
+4. No new claims. Specifically FORBIDDEN anywhere: "in stock", "ready to ship", "fast dispatch", "available now", "ships fast", or any wording implying off-the-shelf availability. Silence about lead time is the strategy; implying stock is not.
+5. Voice: definitive, factual, zero exclamation marks. "Fully submersible" is stated as fact, never hyped.
+6. Work from grep, not memory. Run these searches and inventory every hit BEFORE editing:
+   - `rg -i "20 business day"`
+   - `rg -i "ships in"`
+   - `rg -i "lead time"`
+   - `rg -i "made.to.order|made to order"`
+   - `rg "IP68"`
+   - `rg -i "waterproof"`
+   Present the inventory grouped by file, then edit. After editing, re-run and show the results as proof.
+
+---
+
+## PART A — SUBMERSIBLE / IP68 DOCTRINE
+
+### Tier 1 — plain-language customer prose (CHANGE): 
+Body sentences on the homepage, environment cards, kit card descriptions, meta descriptions, and any homeowner-facing paragraph. Rules:
+- First mention in any section: "fully submersible" (or "submersible"). IP68 may follow as the credential: "fully submersible — IP68-rated end to end" or "(IP68)".
+- Subsequent mentions in the same section: "submersible" alone, or the rating alone if the sentence is technical.
+- Where a sentence currently uses "IP68" as the *subject* doing plain-language work, invert it: benefit first, rating second.
+
+### Tier 2 — technical/spec/badge contexts (DO NOT CHANGE):
+- The mono spec stamps and compliance plates: "IEC 60529 · IP68", the entire "Dust-tight. Submersion-rated." spec plate section.
+- The hero eyebrow badge "IP68 OUTDOOR LIGHTING · AUSTRALIAN CONDITIONS".
+- Kit card badge chips ("IP68 rated", "IP68 rated (submersible)").
+- Kit component spec bullets ("Fully submersible IP68", "IP67 rated" driver).
+- The image caption "IP68. SUBMERGED. OPERATING."
+- Footer wordmark sub-line "IP68 · Made to Order · Australia" and footer sign-off "IP68. No excuses."
+- Everything under /trade and /trade-resources (trade audience reads the rating natively). No changes on those routes for Part A.
+- alt text may keep IP68.
+
+### Specific Tier 1 edits (exact before → after):
+
+1. **Hero support line:**
+   - FROM: "IP68 end-to-end. Properly dimmable. Made for conditions that break everything else."
+   - TO: "Fully submersible. Properly dimmable. Made for conditions that break everything else."
+
+2. **Problem section closing block:**
+   - FROM: "Orenara is IP68 — end to end. Dust-tight, submersion-rated to 1.5m for 30 minutes…"
+   - TO: "Orenara is fully submersible — end to end. Dust-tight and submersion-rated (IP68, 1.5m for 30 minutes). Every component in the system — strip, connectors, end caps — carries the same rating. Not just the strip itself. That's what proper outdoor-rated means."
+   - Problem card 01 heading "IP65/66 is not enough." stays (it is the technical argument). Within card 03 body, "IP68 end-to-end means sealed from the driver to the terminal" → "Sealed end-to-end means sealed from the driver to the terminal — the full system is submersible, not just the strip."
+
+3. **"The Difference" section** — already on-message; minimal touch: keep heading "Most strip lighting is waterproof until it rains." verbatim. In the body, "Orenara strip is rated IP68 — fully submersible, permanently." → "Orenara strip is fully submersible, permanently — rated IP68 end to end."
+
+4. **Environment cards (all six):** apply the Tier 1 inversion to each body paragraph — first water/ingress claim in each card becomes submersible-led with IP68 as the trailing credential. Do not shorten or restructure the paragraphs; wording inversion only. Example (Pool & Aquatic): "IP68 means submersion-rated to 1.5m for 30 minutes — dust-tight and built for permanent water contact" → "It's fully submersible — rated for permanent water contact, not splash resistance dressed up as waterproofing (IP68: 1.5m for 30 minutes, dust-tight)."
+
+5. **Pool & Water Feature Kit card:** "IP68 submersion-rated for permanent water contact." → "Fully submersible — rated for permanent water contact (IP68)." Badge chips unchanged.
+
+6. **Metadata (lib/site or layout):**
+   - meta description FROM "IP68-rated outdoor LED strip lighting, properly dimmable, built to survive…" TO: "Fully submersible outdoor LED strip lighting (IP68), properly dimmable, built to survive Queensland humidity and coastal salt air. Enquire for pricing."
+   - Apply the same submersible-first inversion to og:description and twitter:description. Keep "IP68" present once in each for search relevance. Page <title> unchanged.
+   - meta keywords: add "submersible led strip lighting" and "submersible outdoor lighting"; keep existing terms.
+
+7. Anywhere else Tier 1 grep hits appear (kit detail pages' prose, 404, etc.): apply the same inversion. List every instance in the diff.
+
+---
+
+## PART B — LEAD-TIME SILENCE
+
+Canonical disclosure sentence (use EXACTLY this, everywhere it's kept or added):
+**"Every system is built to order — allow up to 20 business days from order confirmation."**
+
+### REMOVE the lead-time number entirely from:
+1. **Hero:** delete the mono sub-line "Made to order. Ships in 20 business days." under the CTA. Remove the element; keep spacing clean; do not replace it with anything.
+2. **Kits section footer paragraph:** FROM "Pricing is enquiry-only — no pricing is displayed on this site. All products are made to order; typical lead time is 20 business days from order confirmation. Orenara supplies the system only; installation is arranged separately by you or your electrician." TO: "Pricing is enquiry-only — no pricing is displayed on this site. All products are made to order. Orenara supplies the system only; installation is arranged separately by you or your electrician."
+3. **How it works section:**
+   - Section heading FROM "Simple process. Honest lead times." TO "Simple process. No surprises."
+   - Step 01 body: FROM "We respond within 1–2 business days with pricing and a confirmed lead time." TO "We respond within 1–2 business days with pricing and a confirmed delivery schedule."
+   - Step 02: heading FROM "We confirm spec, pricing, and lead time" TO "We confirm spec, pricing, and delivery". Body: "quote a price, and lock in lead time" → "quote a price, and lock in your delivery schedule". Keep "No vague estimates. You'll know exactly what you're ordering before you commit."
+   - Step 03 body: FROM "Current lead time is 20 business days from order confirmation — not from enquiry. We'll keep you updated through the process." TO "Built to your spec and dispatched direct — we'll confirm the schedule with your quote and keep you updated through the process."
+   - **Delete the entire callout block** beginning "20 business day lead time — set the right expectation from the start." through "...we don't offer installation services." Replace with a single shorter block: "Made to order, not off the shelf. We don't hold stock — every system is built to your spec. If your project has a hard deadline, tell us in your enquiry and we'll be straight with you about whether we can meet it. Orenara is supply-only; installation is arranged by you or your electrician."
+4. **Kit detail pages:** remove any "20 business days" / "Ships in…" lines from marketing copy areas. "Made to order" phrasing may stay without the number.
+5. Any other grep hits of the number on marketing surfaces (quote-builder UI helper text, trade page marketing copy): remove per the same rule and list them in the diff.
+
+### KEEP / ADD the canonical disclosure at exactly these points:
+1. **Enquiry form (homepage Enquire section):** add one quiet line in the form's footer area, styled like the existing "We respond within 1–2 business days." note (spec-mono or bone-dim small text): "Every system is built to order — allow up to 20 business days from order confirmation." Same treatment on the trade enquiry form.
+2. **Enquiry auto-reply emails (both routes):** the customer-facing confirmation email MUST contain the canonical sentence. If the current templates don't, add it as its own short paragraph after the acknowledgement. Show me the rendered email template text.
+3. **Quote builder output / print quote view:** the canonical sentence must appear on the quote document. Add to the existing terms/notes area of the print view if not present.
+4. **Terms & Conditions:** existing lead-time clause stays; update its wording to match the canonical sentence's substance ("up to 20 business days from order confirmation") if it currently says something different. Minimal edit, flag the diff.
+5. **Footer:** "IP68 · Made to Order · Australia" stays as-is (no number, allowed).
+
+### FORBIDDEN (re-stated because it matters):
+No text anywhere may state or imply stock on hand, immediate availability, or fast shipping. If any existing sentence currently implies it, flag it to me rather than leaving it.
+
+---
+
+## QA & PROOF
+
+1. Re-run all Part A/B greps. Required end-state:
+   - `rg -i "ships in"` → zero hits in app/components.
+   - `rg -i "20 business day"` → hits ONLY in: enquiry form note(s), both email templates, print quote view, terms page. List each.
+   - `rg "IP68"` → hits remain in Tier 2 contexts + trailing-credential positions; no Tier 1 sentence leads with IP68 as the plain-language subject. Spot-list 5 examples of the new pattern.
+2. Typecheck clean. Screenshots: hero (desktop + 360px), How it works section, kits section footer, enquiry form showing the new note, and the print quote area with the disclosure.
+3. Output the complete copy diff — every changed sentence, before/after. This is a wording pass; if the diff contains any structural/JSX changes beyond text and the one deleted hero element + one deleted callout block + added form notes, stop and explain before finalising.
+4. Do not push until I confirm the diff.
