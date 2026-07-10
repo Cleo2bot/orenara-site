@@ -324,6 +324,12 @@ uri = "file://attached_assets/generated_images/overhaul_10_att4.png"
 type = "image"
 title = "generated_image"
 
+[[generated]]
+id = "dKeV5hXZPxx-w3G75uPeg"
+uri = "file://attached_assets/generated_images/breather_v2_att1.png"
+type = "image"
+title = "generated_image"
+
 [[outputs]]
 id = "FW-ziBPTVWtIg-kxPWOd1"
 uri = "file://.canvas/assets/duskline-favicon.png"

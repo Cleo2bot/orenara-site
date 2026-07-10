@@ -137,7 +137,7 @@ export default function EnquiryForm() {
             Tell us about your project.
           </h2>
           <p style={{ color: "var(--bone-dim)", fontSize: "1rem", lineHeight: 1.7 }}>
-            We'll come back within 1–2 business days with pricing and a confirmed lead time.
+            We'll come back within 1–2 business days with pricing and a confirmed delivery schedule.
             No obligation, no automated quote — a real conversation about your space.
           </p>
         </div>

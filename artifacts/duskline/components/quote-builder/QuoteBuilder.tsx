@@ -176,7 +176,7 @@ export default function QuoteBuilder() {
             <CheckCircle size={28} style={{ color: "var(--bone)" }} />
           </div>
           <h2 className="font-medium mb-4" style={{ fontSize: "1.75rem", color: "var(--bone)", letterSpacing: "-0.03em" }}>
-            Got it — we'll come back to you within 1–2 business days with pricing and a confirmed lead time.
+            Got it — we'll come back to you within 1–2 business days with pricing and a confirmed delivery schedule.
           </h2>
           <p style={{ fontSize: "1rem", color: "var(--bone-dim)", lineHeight: 1.7, maxWidth: "480px", margin: "0 auto" }}>
             Your full zone breakdown and bill of materials came through with your enquiry — no need to repeat
@@ -369,7 +369,7 @@ export default function QuoteBuilder() {
             Email this for pricing.
           </h2>
           <p style={{ color: "var(--bone-dim)", fontSize: "0.9375rem", lineHeight: 1.7, marginBottom: "28px" }}>
-            We'll come back within 1–2 business days with pricing and a confirmed lead time. No obligation, no
+            We'll come back within 1–2 business days with pricing and a confirmed delivery schedule. No obligation, no
             automated quote.
           </p>
 
@@ -502,6 +502,9 @@ export default function QuoteBuilder() {
                 We respond within 1–2 business days.
                 <br />
                 No spam. No automated quotes.
+              </p>
+              <p style={{ marginTop: "16px", fontSize: "0.8125rem", color: "var(--bone-dim)", lineHeight: 1.5 }}>
+                Every system is built to order — allow up to 20 business days from order confirmation.
               </p>
             </div>
           </form>
