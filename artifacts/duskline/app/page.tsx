@@ -26,7 +26,6 @@ export default function HomePage() {
         <DuskBreather />
         <ProductKits />
         <KitComponents />
-        <KitBox />
         <HowItWorks />
         <SpecSection />
         <InstallerReview />

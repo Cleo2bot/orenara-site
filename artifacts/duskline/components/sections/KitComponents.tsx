@@ -90,22 +90,29 @@ export default function KitComponents() {
         </div>
 
         {/* Component spec columns */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            border: "1px solid var(--ink-line)",
-            borderRadius: "var(--radius)",
-            overflow: "hidden",
-          }}
-        >
-          {COMPONENTS.map((c, i) => (
+        <style>{`
+          .kit-spec-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: var(--ink-line);
+            border: 1px solid var(--ink-line);
+            border-radius: var(--radius);
+            overflow: hidden;
+            gap: 1px;
+          }
+          @media (max-width: 767px) {
+            .kit-spec-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+        `}</style>
+        <div className="kit-spec-grid">
+          {COMPONENTS.map((c) => (
             <div
               key={c.id}
               style={{
                 background: "var(--ink-raised)",
                 padding: "32px 28px 32px",
-                borderRight: i < 3 ? "1px solid var(--ink-line)" : undefined,
               }}
               data-testid={`kit-component-${c.id}`}
             >
