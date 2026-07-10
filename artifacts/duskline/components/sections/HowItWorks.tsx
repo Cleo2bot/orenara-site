@@ -183,6 +183,23 @@ export default function HowItWorks() {
             </p>
           </div>
         </div>
+
+        {/* Closing CTA */}
+        <div style={{ marginTop: "48px" }}>
+          <p
+            style={{
+              fontSize: "0.9375rem",
+              color: "var(--bone-dim)",
+              lineHeight: 1.7,
+              marginBottom: "24px",
+            }}
+          >
+            Step 01 is an enquiry. It costs nothing and commits you to nothing.
+          </p>
+          <a href="#enquire" className="btn-primary">
+            Start Your Enquiry
+          </a>
+        </div>
       </div>
     </section>
   );

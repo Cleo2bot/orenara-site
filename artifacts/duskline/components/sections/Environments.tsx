@@ -225,6 +225,35 @@ export default function Environments() {
             </p>
           </div>
         </div>
+
+        {/* Environments CTA */}
+        <div
+          className="text-center"
+          style={{ marginTop: "64px" }}
+        >
+          <p
+            style={{
+              fontSize: "1rem",
+              color: "var(--bone-dim)",
+              lineHeight: 1.7,
+              marginBottom: "32px",
+            }}
+          >
+            Whatever the environment, the system is the same — sealed,
+            submersible, built to order.
+          </p>
+          <div
+            className="flex flex-wrap items-center justify-center"
+            style={{ gap: "16px" }}
+          >
+            <a href="#enquire" className="btn-primary">
+              Enquire for Pricing
+            </a>
+            <a href="/quote-builder" className="btn-outline">
+              Build Your Kit
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
