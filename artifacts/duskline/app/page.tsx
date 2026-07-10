@@ -4,6 +4,7 @@ import ProblemSection from "@/components/sections/ProblemSection";
 import Environments from "@/components/sections/Environments";
 import MountingSystem from "@/components/sections/MountingSystem";
 import ProductKits from "@/components/sections/ProductKits";
+import DifferenceSection from "@/components/sections/DifferenceSection";
 import KitComponents from "@/components/sections/KitComponents";
 import KitBox from "@/components/sections/KitBox";
 import DuskBreather from "@/components/sections/DuskBreather";
@@ -20,6 +21,7 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
+        <DifferenceSection />
         <ProblemSection />
         <Environments />
         <MountingSystem />
