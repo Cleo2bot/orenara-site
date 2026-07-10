@@ -1,0 +1,14 @@
+Direction change on the hero before we continue — the generated image is good but the concept has evolved. Do not delete it: rename/keep overhaul_01_hero.png as a banked candidate (banked_pool_terrace.png) for a later slot — it may serve Pool & Aquatic or the outcome section.
+Now generate the NEW hero (this replaces the previous hero brief entirely):
+Scene: Wide ~16:9 shot of an acreage property at night shortly after rain has passed — air clear, surfaces wet, not raining. A gently curving sandstone pathway, glistening wet, edged on both sides with continuous warm 2700K LED strip glow that reflects in long amber streaks off the wet stone, sweeping toward a large circular fire pit area paved in sandstone. Built-in curved stone bench seating arcs around a large round fire pit, with soft warm LED underglow spilling from beneath the curved benches and from the base of the fire pit itself. Fire burning low and warm — the LED glow owns the scene, not the flames. Four people gathered in dark silhouette, seated and standing, relaxed, small in frame, faces never visible. Beads of rainwater on native grasses catching the glow. Far background: warm-lit windows of a modern Australian home, small, for scale. Vast dark night beyond, gum tree silhouettes, stars emerging through clearing sky.
+Style: photorealistic editorial architectural photography, deep dusk, muted cinematic grade, deep charcoal shadows, shot on 35mm full-frame, no oversaturation, no HDR look, no lens flare, no text or watermarks.
+Hard requirements — regenerate rather than compromise on any of these:
+
+All curved LED glow lines must read as CONTINUOUS smooth sweeps — never segmented, faceted, or broken. This is non-negotiable; it is the product's core claim.
+Wet-path reflections must coherently mirror the actual strip lines.
+Wet sheen only — no puddles, no falling rain.
+Underglow spills outward from under the seats, physically plausible.
+Silhouettes clean at full zoom — correct limbs, no faces in focus.
+Sandstone reads golden-warm, not grey concrete. No visible light fixtures, bulbs, or lanterns.
+
+Generate at the highest available resolution, save as overhaul_01_hero_firepit.png, and STOP for my review before placing it anywhere on the site or generating further images.

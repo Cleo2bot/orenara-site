@@ -204,6 +204,12 @@ uri = "file://attached_assets/generated_images/overhaul_01_hero.png"
 type = "image"
 title = "hero dusk distant silhouettes"
 
+[[generated]]
+id = "SpAQzM9J6v2NQKWbjYRB6"
+uri = "file://attached_assets/generated_images/overhaul_01_hero_firepit.png"
+type = "image"
+title = "firepit hero four seated silhouettes"
+
 [[outputs]]
 id = "FW-ziBPTVWtIg-kxPWOd1"
 uri = "file://.canvas/assets/duskline-favicon.png"
@@ -269,3 +275,9 @@ id = "Vdr7Nh7x927XUQAFuDlVt"
 uri = "file://attached_assets/generated_images/overhaul_01_hero.png"
 type = "image"
 title = "Image 1 of 13 — Homepage Hero (Tier P)"
+
+[[outputs]]
+id = "7CPwTeQqHaGJ0pPEUZQtE"
+uri = "file://attached_assets/generated_images/overhaul_01_hero_firepit.png"
+type = "image"
+title = "NEW Hero — Fire Pit at Night (attempt 3, for review)"
