@@ -20,8 +20,8 @@ export default function OutcomeSection() {
         >
           <div className="img-treated">
             <img
-              src="/assets/generated/home-outcome-deck.webp"
-              alt="Family and friends relaxing on an outdoor deck by a pool at dusk, warm Orenara strip lighting glowing along the deck edge and pergola, house lit warm behind."
+              src="/assets/generated/outcome-dinner.webp"
+              alt="Friends sharing dinner at a long alfresco table at night, warm Orenara strip lighting washing the pergola beams and grazing the stone feature wall behind them."
               loading="lazy"
               decoding="async"
               style={{ display: "block", width: "100%", height: "auto" }}

@@ -20,8 +20,8 @@ export default function EmberBreather() {
         >
           <div className="img-treated">
             <img
-              src="/assets/generated/home-dusk-empty-deck.webp"
-              alt="Empty outdoor deck and pool at deep dusk, warm Orenara strip lighting glowing along the deck edge and pool surround as the dominant light source, house lit softly behind."
+              src="/assets/generated/breather-deck.webp"
+              alt="Timber pool deck at deep dusk with a just-left table — open wine, two poured glasses and a grazing platter — warm Orenara strip lighting glowing under the deck edge and along the glass balustrade."
               loading="lazy"
               decoding="async"
               style={{ display: "block", width: "100%", height: "auto" }}

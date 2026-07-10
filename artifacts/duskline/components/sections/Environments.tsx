@@ -7,37 +7,37 @@ import { ShieldCheck, ChevronDown } from "lucide-react";
 const environments = [
   {
     title: "Commercial & Hospitality",
-    image: "/assets/generated/env-commercial-hospitality.png",
+    image: "/assets/generated/env-hospitality.webp",
     eyebrow: "Higher use, same standard — not a lesser one.",
     body: "Resorts, hospitality venues, strata common areas, and public/council pathways get more daily use and less forgiving maintenance schedules than a private home. The spec doesn't change for commercial application — it's the same fully submersible system (IP68), the same 0–10V dimming, the same RCM-compliant components, just specified at scale for a larger site.",
   },
   {
     title: "Pool & Aquatic",
-    image: "/assets/generated/env-pool-aquatic.png",
+    image: "/assets/generated/env-pool.webp",
     eyebrow: "Permanent water contact, not occasional splash.",
     body: "Pool edges, water features, and submerged garden elements don't get wet occasionally — they're wet constantly, and often chemically treated. This is the application most outdoor lighting was never actually built for, IP65/66 ratings included. It's fully submersible — rated for permanent water contact, not splash resistance dressed up as waterproofing (IP68: 1.5m for 30 minutes, dust-tight).",
   },
   {
     title: "Marina & Private Berths",
-    image: "/assets/generated/kit-marina.png",
+    image: "/assets/generated/env-marina.webp",
     eyebrow: "Timber decking, constant moisture, zero forgiveness for corrosion.",
     body: "Private berths and marina walkways combine every hard condition at once — salt air, direct water exposure, and timber decking that expands and contracts with the weather. It's an unforgiving install for standard connectors. Orenara's fully submersible sealed system (IP68) and segmented track hold a clean line along a pontoon edge the same way they hold a garden path — same spec, same rating, harder setting.",
   },
   {
     title: "Coastal",
-    image: "/assets/generated/kit-pathway-coastal2.png",
+    image: "/assets/generated/env-coastal.webp",
     eyebrow: "Salt air doesn't announce itself. It just corrodes.",
     body: "Properties within a few kilometres of the coast carry salt air year-round, not just on windy days. It gets into connector joints that look sealed but aren't, corroding contact points from the inside. Voltage drops. Sections go dark months before anyone notices why. Orenara's connectors are sealed end-to-end — driver to terminal — submersible-rated to the same standard as the strip itself (IP68), not treated as an afterthought.",
   },
   {
     title: "Tropical & Humid",
-    image: "/assets/generated/env-tropical-humid.png",
+    image: "/assets/generated/env-tropical.webp",
     eyebrow: "Queensland summer doesn't wait for a warranty claim.",
     body: "Australian UV intensity is among the highest in the world, and monsoon-season humidity compounds it. Standard silicone sleeves yellow, crack, and let moisture in within 18–24 months — well before most warranty periods even matter. The failure isn't the LEDs themselves; it's housing that was rated for a milder climate than the one it's actually installed in.",
   },
   {
     title: "Rural & Acreage",
-    image: "/assets/generated/env-rural-rugged.png",
+    image: "/assets/generated/env-rural.webp",
     eyebrow: "Dust, heat swings, and runs longer than anyone plans for.",
     body: "Acreage, rural driveways, and fence-line runs face problems the suburbs don't — fine dust that works into any gap, day-to-night temperature swings that expand and contract cheap housing until it cracks, and cable runs long enough that a single weak joint takes out the whole line. The 6 in IP68 means dust-tight, not just water-resistant — sealed against the grit that quietly kills lesser strip long before the LEDs ever wear out.",
   },
