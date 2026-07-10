@@ -239,3 +239,9 @@ id = "g_hd8dFGQZpJuhCzf-xbR"
 uri = "file://attached_assets/generated_images/product-flatlay-v4.png"
 type = "image"
 title = "Product flat-lay v4"
+
+[[outputs]]
+id = "Iit2E3yNYVY3vPThmhVql"
+uri = "file://attached_assets/product-hero-cropped.png"
+type = "image"
+title = "Product hero — watermark removed"
