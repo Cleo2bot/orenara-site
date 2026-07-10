@@ -192,6 +192,12 @@ uri = "file://attached_assets/generated_images/product-flatlay-v4.png"
 type = "image"
 title = "product flatlay v4 new prompt"
 
+[[generated]]
+id = "KivX7YgrOhNwp_Q5Nz4QI"
+uri = "file://attached_assets/generated_images/product-flatlay-v5.png"
+type = "image"
+title = "product flatlay v5 gemini match"
+
 [[outputs]]
 id = "FW-ziBPTVWtIg-kxPWOd1"
 uri = "file://.canvas/assets/duskline-favicon.png"
@@ -245,3 +251,9 @@ id = "Iit2E3yNYVY3vPThmhVql"
 uri = "file://attached_assets/product-hero-cropped.png"
 type = "image"
 title = "Product hero — watermark removed"
+
+[[outputs]]
+id = "tOuqBZcAK7JeVlmej82cH"
+uri = "file://attached_assets/generated_images/product-flatlay-v5.png"
+type = "image"
+title = "Product flat-lay v5 — reproduced"
