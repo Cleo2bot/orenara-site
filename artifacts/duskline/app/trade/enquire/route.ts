@@ -76,7 +76,7 @@ async function sendEmailNotification(enquiry: StoredTradeEnquiry): Promise<void>
   const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL;
   // Email domain intentionally orenara.com (Resend-verified); site canonical is orenara.com.au.
   // DNS + Resend domain verification for orenara.com must be completed manually before go-live.
-  const fromEmail = process.env.RESEND_FROM_EMAIL || "enquiries@orenara.com";
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "hello@orenara.com";
 
   if (!apiKey || !adminEmail) {
     console.log("[Orenara] No RESEND_API_KEY or ADMIN_NOTIFICATION_EMAIL set — skipping trade email notification.");
@@ -127,7 +127,7 @@ async function sendEmailNotification(enquiry: StoredTradeEnquiry): Promise<void>
 async function sendCustomerConfirmation(enquiry: StoredTradeEnquiry): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   // Email domain intentionally orenara.com (Resend-verified); site canonical is orenara.com.au.
-  const fromEmail = process.env.RESEND_FROM_EMAIL || "enquiries@orenara.com";
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "hello@orenara.com";
 
   if (!apiKey) {
     console.log("[Orenara] No RESEND_API_KEY set — skipping trade customer confirmation email.");
