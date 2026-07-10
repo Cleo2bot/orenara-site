@@ -198,6 +198,12 @@ uri = "file://attached_assets/generated_images/product-flatlay-v5.png"
 type = "image"
 title = "product flatlay v5 gemini match"
 
+[[generated]]
+id = "vizWFsOWNcaoFwHB5Z9OF"
+uri = "file://attached_assets/generated_images/overhaul_01_hero.png"
+type = "image"
+title = "hero dusk distant silhouettes"
+
 [[outputs]]
 id = "FW-ziBPTVWtIg-kxPWOd1"
 uri = "file://.canvas/assets/duskline-favicon.png"
@@ -257,3 +263,9 @@ id = "tOuqBZcAK7JeVlmej82cH"
 uri = "file://attached_assets/generated_images/product-flatlay-v5.png"
 type = "image"
 title = "Product flat-lay v5 — reproduced"
+
+[[outputs]]
+id = "Vdr7Nh7x927XUQAFuDlVt"
+uri = "file://attached_assets/generated_images/overhaul_01_hero.png"
+type = "image"
+title = "Image 1 of 13 — Homepage Hero (Tier P)"

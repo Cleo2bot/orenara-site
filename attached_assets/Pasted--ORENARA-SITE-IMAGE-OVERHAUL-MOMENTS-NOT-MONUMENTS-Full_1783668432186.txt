@@ -1,0 +1,106 @@
+# ORENARA — SITE IMAGE OVERHAUL: MOMENTS, NOT MONUMENTS
+## Full audit + generation prompts. Work ONE image at a time, validate against the checklist, then move to the next.
+
+---
+
+## THE DOCTRINE
+
+People buy the evening, not the extrusion. Every marketing image on the site should read as a **moment** — occupied, warm, alive — with the lighting as the quiet reason the moment works. But generated humans are the highest-risk element in AI imagery, so we use a three-tier strategy:
+
+- **Tier P (People, distant):** small figures, backs to camera, silhouettes, mid-to-far distance, never a face in focus, never more than 4 people, people occupy <20% of frame height. Used where the scene IS social.
+- **Tier E (Evidence of life):** no humans; the scene was occupied 30 seconds ago — set table, two wine glasses, cheese platter, chair pushed back, towel on pool edge, book left open, door ajar with interior glow. Zero uncanny risk, full warmth. Used for intimate frames.
+- **Tier S (Spec/product):** no people, no props. Documentary or product photography. The proof layer — credibility depends on these staying clinical.
+
+## GLOBAL STYLE BLOCK — prepend to EVERY prompt below
+
+> Photorealistic editorial architectural photography, Australian contemporary home, deep dusk blue hour, warm 2700K LED strip lighting as the primary light source, glow grazing surfaces, deep charcoal shadows, muted cinematic grade, slight haze of evening warmth, shot on 35mm full-frame, f/4, natural composition, no oversaturation, no HDR look, no lens flare, premium and restrained. No text, no watermarks, no logos.
+
+**People clause (append only to Tier P prompts):**
+> Any people are small in frame, photographed from behind or in silhouette, softly out of focus, faces never visible or in focus, relaxed natural posture, dressed in smart-casual neutral tones.
+
+**Technical note:** the site applies a darkening overlay and slight desaturation to all imagery. Generate ~10% brighter and warmer than you want the final to appear. Match aspect ratio to the slot (noted per image).
+
+## VALIDATION CHECKLIST — run on every generated image before accepting
+
+1. Hands/faces: no visible malformed hands, no in-focus faces, correct limb counts on every figure (zoom in).
+2. The LIGHTING is physically plausible: glow comes from where strip would actually be (toe-kicks, under rails, garden beds, coves) and light falls correctly.
+3. No fixtures visible that contradict the product (no bulbs, no lanterns, no spotlights as hero light).
+4. Colour temperature: warm amber 2700K glow, dusk-blue sky. Reject anything green, magenta, or cool-white.
+5. Architecture reads Australian contemporary (rendered walls, timber, glass balustrade, native-adjacent planting) — not Tuscan villa, not American McMansion.
+6. Props are coherent (wine glasses have stems, platters have real food, furniture sits flat).
+7. Sits comfortably next to already-approved images in the set — same hour, same grade, same photographer energy.
+
+---
+
+## THE IMAGE LIST — priority order. One at a time.
+
+### 1. HERO (homepage) — Tier P — aspect ~16:9, generate wide
+The most important frame on the site. Currently: house + pool + lit pathway, unoccupied.
+**Prompt:** [GLOBAL STYLE BLOCK] Wide establishing shot of a modern Australian home at deep dusk, resort-style backyard, warm LED strip lighting grazing along garden bed edges, pathway borders and under a floating deck edge, swimming pool with still water reflecting the glow. On the far terrace, two people stand in relaxed conversation holding wine glasses, small in frame, seen from a distance, silhouetted against warm interior light spilling from open glass sliders. [PEOPLE CLAUSE]
+**Validate:** figures ≤15% frame height, pool reflections coherent, strip glow lines continuous.
+
+### 2. FIRE PIT — hero-tier, new Fire Pit Kit anchor image — Tier P — generate wide, needs to crop to both ~16:9 and ~4:3
+The most relatable frame on the site: nobody needs a pool or a marina, everybody wants this. Also the definitive CURVES showcase — circular underglow is the "curves are the hard part" claim, photographed.
+**Prompt:** [GLOBAL STYLE BLOCK] Expansive acreage property at night, generous open space fading to darkness, a gently curved sandstone path edged with continuous warm LED strip glow leading the eye to a large circular fire pit area paved in sandstone, built-in curved stone bench seating arranged in a circle around a large round fire pit, soft warm LED underglow washing out from beneath the bench seats and from the base of the fire pit itself, fire burning low and warm, four or five people gathered seated and standing in dark silhouette around the fire, relaxed postures, vast dark rural night beyond with gum tree silhouettes and stars. [PEOPLE CLAUSE]
+**Validate:** the curved strip glow must read as CONTINUOUS smooth curves (this is the product claim — reject any segmented/faceted glow lines), underglow direction physically correct (light spills outward from under seats, not upward), fire warm but not dominating the LED story, silhouettes clean, sandstone reads golden-warm not grey concrete.
+**Downstream (not this task, noted for later):** this image anchors a new "Fire Pit Kit" — kit card + enquiry dropdown option + BOM definition in the quote builder, and "fire pit lighting" keywords in Ads AG2.
+
+### 3. DUSK BREATHER — "Right about now." — Tier E — wide ~21:9 crop tolerance
+Currently: empty deck/pool at dusk (the one that prompted this overhaul).
+**Prompt:** [GLOBAL STYLE BLOCK] Timber pool deck at deep dusk, warm LED strip glow under the deck edge and along a glass balustrade, in the near foreground a small outdoor table with an open bottle of red wine, two poured glasses catching the amber light, a grazing platter with cheese and figs, a linen napkin, one chair angled as if just left, pool water still, horizon fading to indigo. No people in frame — the scene was occupied moments ago.
+**Validate:** glassware and food coherence (this is where generators fumble), table sits flat, glow direction matches deck edge.
+
+### 3. OUTCOME BREATHER — "This is what it's for." — Tier P — wide
+The payoff frame. Currently unoccupied alfresco.
+**Prompt:** [GLOBAL STYLE BLOCK] Covered alfresco dining area of a modern Australian home at night, long outdoor table set with shared food and wine, four people mid-dinner seen from behind and side at a distance, warm laughter posture, LED strip lighting washing the pergola beams overhead and grazing the stone feature wall behind them, garden beds beyond edged with soft amber glow, deep blue night sky. [PEOPLE CLAUSE]
+**Validate:** the group reads natural at a glance and survives a zoom — if any figure fails, regenerate rather than accept.
+
+### 4. ENVIRONMENT — Commercial & Hospitality — Tier P — ~4:3
+The one card where people aren't optional — an empty venue is a failed venue.
+**Prompt:** [GLOBAL STYLE BLOCK] Upscale restaurant courtyard terrace at night, warm LED strip lighting under bench seating, along planter edges and grazing a rendered feature wall, several patrons at tables in the middle distance, blurred and small, candles on tables, staff figure passing with tray in soft blur, established fig tree overhead. [PEOPLE CLAUSE]
+
+### 5. ENVIRONMENT — Pool & Aquatic — Tier P/E hybrid — ~4:3
+**Prompt:** [GLOBAL STYLE BLOCK] Residential pool at night, LED strip glow along the waterline tile and under the coping edge, light rippling through clear water, a folded towel and sandals at the pool edge, in the far background one person seated on the pool step in silhouette with feet in the water, glass of wine beside them on the coping. [PEOPLE CLAUSE]
+
+### 6. ENVIRONMENT — Marina & Private Berths — Tier E — ~4:3
+(Currently shares an image with Custom Zone Kit — this regeneration also fixes the duplicate.)
+**Prompt:** [GLOBAL STYLE BLOCK] Private timber jetty and berth at dusk, moored modern boat, warm LED strip lighting under the jetty handrail and along the deck edge reflecting in dark water, boat shoes and a coiled rope on the boards, cabin light glowing warm, still evening water, moody indigo sky.
+
+### 7. ENVIRONMENT — Coastal — Tier P — ~4:3
+(Currently shares an image with Pathway Kit — regeneration fixes the duplicate.)
+**Prompt:** [GLOBAL STYLE BLOCK] Clifftop coastal home exterior at dusk, salt-hazed air, LED strip lighting grazing a rendered boundary wall and edging a pathway toward a viewing deck, two figures at the far deck rail looking out to sea in silhouette, ocean horizon deep blue, coastal banksia and grasses. [PEOPLE CLAUSE]
+
+### 8. ENVIRONMENT — Tropical & Humid — Tier E — ~4:3
+**Prompt:** [GLOBAL STYLE BLOCK] Lush tropical Queensland backyard at night after rain, wet surfaces catching warm LED strip glow from garden bed edges and under a cantilevered bench, dense foliage with monstera and palms, beads of moisture on leaves, an outdoor daybed with cushions and an abandoned paperback, humid haze in the light.
+
+### 9. ENVIRONMENT — Rural & Acreage — Tier P — ~4:3
+**Prompt:** [GLOBAL STYLE BLOCK] Modern rural Australian homestead at dusk on acreage, long gravel entry drive edged with warm LED strip glow in the garden borders leading to the house, wide veranda with strip underglow along its edge, one figure leaning on the veranda rail in silhouette with a mug, a dog lying on the steps, vast darkening paddock and gum trees beyond, first stars visible. [PEOPLE CLAUSE]
+*(Fire pit deliberately absent — that motif now belongs exclusively to the Fire Pit Kit image, slot 2. Two fire pits on one page dilutes both.)*
+
+### 10. KIT CARD — Pathway Kit — Tier E — ~4:3
+**Prompt:** [GLOBAL STYLE BLOCK] Garden pathway at night, warm LED strip recessed along both path edges creating continuous guiding lines of light, native grasses catching the glow, front door ajar ahead with warm interior light, a pair of shoes by the step.
+
+### 11. KIT CARD — Pergola Kit — Tier E — ~4:3
+**Prompt:** [GLOBAL STYLE BLOCK] Timber pergola over outdoor lounge at night, LED strip mounted in the beam channels washing warm light down, low table with a carafe and two glasses, throw blanket over lounge arm, festoon-free clean architecture, garden dark beyond the glow.
+
+### 12. KIT CARD — Pool & Water Feature Kit — Tier S/E — ~4:3
+Keep closest to product: the buyer here is comparing kits.
+**Prompt:** [GLOBAL STYLE BLOCK] Sheer descent water feature spilling into a plunge pool at night, LED strip glow under the spill line and along the pool waterline, water texture crisp, dark stone wall, single wet footprint trail on the coping.
+
+### 13. KIT CARD — Custom Zone Kit — Tier E — ~4:3
+**Prompt:** [GLOBAL STYLE BLOCK] Multi-zone backyard at night seen from an elevated deck: pathway edges, garden beds, a pool waterline and a bench underglow all traced in continuous warm LED strip light, like a lighting plan come to life, one zone's glow reflecting off glass balustrade, outdoor dining table set for tomorrow in half-shadow.
+
+### DO NOT REPLACE — these stay as-is:
+- **Submerged strip ("IP68. SUBMERGED. OPERATING.")** — the proof shot. Clinical is its power.
+- **Component/product images** (strip close-up, driver, channel, connectors) — spec layer, Tier S by definition.
+- **Mounting system images** (rigid channel vs segmented track) — technical comparison.
+- **Trade review photo grid** — presented as installer job-site photos; documentary style IS their authenticity. Adding lifestyle staging to "verified delivery photos" would undermine the review section.
+- **OG image / favicon** — wordmark assets.
+
+---
+
+## WORKFLOW
+1. Generate image 1 (Hero). Run the validation checklist. Show me. We approve or adjust the prompt and regenerate.
+2. Only after approval, move to image 2. Sequence matters: the hero sets the grade reference every later image must match.
+3. As images are approved, batch them for a single Replit deployment at the end (one prompt: swap files, keep filenames or update references, verify treatment rendering, screenshot each section). Don't deploy one-at-a-time.
+4. After all images land: re-run the site's own image treatment check — every frame same hour, same photographer, now with life in it.
