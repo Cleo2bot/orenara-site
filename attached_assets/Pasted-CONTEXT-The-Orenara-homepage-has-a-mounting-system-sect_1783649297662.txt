@@ -1,0 +1,69 @@
+CONTEXT
+The Orenara homepage has a mounting system section ("Straight lines are 
+easy. Curves are the hard part.") with two options: Rigid Channel and 
+Flexible Segmented Track. This section currently has no imagery. I have 
+uploaded a product macro photo of the segmented track at:
+attached_assets/segmented-track-macro.png
+
+The image shows the aluminium segmented track curving, shot macro on a 
+white background. It needs to be placed in this section following the 
+existing design system exactly. Do not redesign the section — this is 
+an image insertion task only.
+
+PHASE 1 — LOCATE AND REPORT (no changes yet)
+1. Find the homepage component containing the mounting system section 
+   with the "Straight lines are easy" heading and the Rigid Channel / 
+   Flexible Segmented Track content.
+2. Find an existing example on the site of an image with a mono-font 
+   caption overlay or caption bar (the pattern used for captions like 
+   "IP68. SUBMERGED. OPERATING.").
+3. Report back: the file path(s), the exact component structure of the 
+   mounting section, and the caption pattern markup you found.
+
+CHECKPOINT 1: Stop and show me this before making any changes. Do not 
+proceed until I confirm.
+
+PHASE 2 — IMAGE PREPARATION
+1. Convert segmented-track-macro.png to WebP at two sizes: 1600px wide 
+   (desktop) and 800px wide (mobile). Keep the original aspect ratio. 
+   Target under 150KB for the large version.
+2. Place the optimised files in the public assets directory following 
+   the existing image storage convention on this site — match wherever 
+   the current homepage images live.
+3. Do not apply any filters, colour grading, or the site's imagery 
+   treatment to this file — it is a clean product shot and stays as-is.
+
+PHASE 3 — PLACEMENT
+1. Insert the image as a full-width visual within the mounting system 
+   section, positioned with/near the Flexible Segmented Track content 
+   (use the structure agreed at Checkpoint 1).
+2. Use next/image with explicit width/height or fill+sizes to prevent 
+   layout shift. Lazy loading is fine — this is below the fold.
+3. Alt text: "Orenara flexible segmented aluminium track curving to a 
+   consistent radius"
+4. Add a caption in the site's existing mono caption style, matching 
+   the established pattern exactly (same component/classes, same 
+   letter-spacing, same casing):
+   SEGMENTED TRACK. CONSISTENT RADIUS. NO STRAIN POINTS.
+5. Use existing design tokens only. No new colours, no new font sizes, 
+   no new spacing values. If you think the section needs a value that 
+   doesn't exist in the token system, stop and ask me instead.
+
+CHECKPOINT 2: Show me the section on desktop and mobile widths before 
+finalising.
+
+PHASE 4 — QA
+1. Verify no layout shift on load (image dimensions reserved).
+2. Verify the section at 360px, 768px, and 1440px widths. At 360px the 
+   caption must not wrap awkwardly or overflow — if it does, allow the 
+   caption to sit below the image rather than overlaid.
+3. Verify the image is served as WebP and under 150KB.
+4. Verify nothing else on the homepage changed — no unrelated diffs.
+5. Confirm the build passes and list every file you touched.
+
+RULES
+- Do not modify any other section of the homepage.
+- Do not change copy anywhere except adding the new caption.
+- Do not install new packages.
+- Do not touch global styles or the token system.
+- If anything is ambiguous, stop and ask rather than guessing.
