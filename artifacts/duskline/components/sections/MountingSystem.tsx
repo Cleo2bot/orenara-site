@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Check } from "lucide-react";
 
 function StraightDiagram() {
@@ -249,6 +250,82 @@ export default function MountingSystem() {
             </div>
           </div>
         </div>
+
+        {/* Segmented track product photo */}
+        <style>{`
+          .track-img-outer {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius);
+            margin-top: 16px;
+          }
+          .track-img-inner {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+          }
+          .track-caption-overlay {
+            position: absolute;
+            bottom: 14px;
+            right: 16px;
+            z-index: 2;
+            font-size: 0.625rem;
+            letter-spacing: 0.12em;
+            color: rgba(15, 17, 19, 0.52);
+            font-family: var(--font-mono, monospace);
+            text-transform: uppercase;
+          }
+          .track-caption-below {
+            display: block;
+            font-size: 0.625rem;
+            letter-spacing: 0.12em;
+            color: var(--bone-dim);
+            font-family: var(--font-mono, monospace);
+            text-transform: uppercase;
+            margin-top: 8px;
+          }
+          @media (min-width: 768px) {
+            .track-img-inner {
+              aspect-ratio: 16 / 7;
+            }
+            .track-caption-overlay {
+              bottom: 20px;
+              right: 28px;
+            }
+            .track-caption-below {
+              display: none;
+            }
+          }
+          @media (max-width: 767px) {
+            .track-caption-overlay {
+              display: none;
+            }
+          }
+        `}</style>
+        <div className="track-img-outer">
+          <div className="track-img-inner">
+            <Image
+              src="/images/product/segmented-track.webp"
+              alt="Orenara flexible segmented aluminium track curving to a consistent radius"
+              fill
+              sizes="(max-width: 767px) 100vw, (max-width: 1280px) 100vw, 1280px"
+              style={{ objectFit: "cover", objectPosition: "center 65%" }}
+              loading="lazy"
+            />
+            <p
+              className="track-caption-overlay"
+              aria-label="Segmented track — consistent radius — no strain points"
+            >
+              SEGMENTED TRACK. CONSISTENT RADIUS. NO STRAIN POINTS.
+            </p>
+          </div>
+        </div>
+        <p
+          className="track-caption-below"
+          aria-label="Segmented track — consistent radius — no strain points"
+        >
+          SEGMENTED TRACK. CONSISTENT RADIUS. NO STRAIN POINTS.
+        </p>
 
         {/* Closing line */}
         <p

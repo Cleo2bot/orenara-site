@@ -1,0 +1,13 @@
+Good report — structure makes sense and the placement between the grid and closing line is right. Go with the landscape strip crop, with two corrections before you proceed:
+1. Crop direction — don't let cover centre-crop blind.
+The curve in the source image sweeps diagonally with the detailed fins in the lower half and a lot of empty white space up top. A default centre crop at 16/7 will eat the fins and keep the whitespace. Set objectPosition to bias low — around center 65% — and eyeball it at Checkpoint 2. If 16/7 loses too much of the curve's sweep, fall back to 16/9 (about 720px tall at full width, still reads as a strip).
+Also: don't lock 16/7 on mobile. At 360px wide that ratio gives you a ~157px sliver, which kills the image. Use something like aspect-[4/3] lg:aspect-[16/7] so mobile gets a taller, more legible crop.
+2. The caption colour will be invisible — this is the real catch.
+rgba(240, 235, 224, 0.45) is bone at 45% opacity, designed to sit on the dark imagery in DifferenceSection. This image is near-white. Bone-on-white disappears entirely. Two options, my preference first:
+
+Ink variant: same pattern, same size/tracking/position, but swap colour to the ink token at similar opacity — roughly rgba(26, 26, 26, 0.45) or whatever var(--ink) resolves to. Keeps the caption system consistent while inverting for a light ground.
+Fallback if ink looks weak: a subtle gradient scrim in the corner behind the caption — but that's more visual machinery than this clean shot wants, so only if the ink version genuinely doesn't hold.
+
+Don't create a new class for this in isolation — extend the existing pattern (e.g. a light-ground modifier or inline colour override) so if a second light-background caption ever appears, the convention already exists.
+Everything else as proposed: full content width, borderRadius matching whatever radius the cards above use (match, don't invent), marginTop: 24px is fine but check it against the section's existing vertical rhythm — if the grid uses gap-4, consider matching that value instead so the image reads as part of the same stack.
+Confirmed — proceed to Phase 2 with those amendments, and show me desktop and 360px at Checkpoint 2.
