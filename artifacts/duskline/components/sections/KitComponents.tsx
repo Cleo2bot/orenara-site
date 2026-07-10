@@ -11,7 +11,7 @@ const COMPONENTS = [
     id: "driver",
     number: "02",
     label: "24V Dimmable Driver",
-    specs: ["100–150W rating", "IP67 rated", "0–10V dim input", "240V mains feed"],
+    specs: ["150W rating", "IP67 rated", "0–10V dim input", "240V mains feed"],
   },
   {
     id: "dimmer",

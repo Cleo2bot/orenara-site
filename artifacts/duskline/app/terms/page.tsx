@@ -24,7 +24,7 @@ type Section = {
 };
 
 const LAST_UPDATED = "1 July 2026";
-const JURISDICTION = "[State / Territory]";
+const JURISDICTION = "New South Wales";
 
 const sections: Section[] = [
   {
