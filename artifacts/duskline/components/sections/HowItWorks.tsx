@@ -6,19 +6,19 @@ const steps = [
     icon: MessageSquare,
     number: "01",
     title: "Enquire",
-    body: "Tell us about your space — which kit you're interested in, the approximate scope, and your location. Use the form below. We respond within 1–2 business days with pricing and a confirmed lead time.",
+    body: "Tell us about your space — which kit you're interested in, the approximate scope, and your location. Use the form below. We respond within 1–2 business days with pricing and a confirmed delivery schedule.",
   },
   {
     icon: FileCheck,
     number: "02",
-    title: "We confirm spec, pricing, and lead time",
-    body: "Once we understand the scope, we'll confirm the exact specification, quote a price, and lock in lead time. No vague estimates. You'll know exactly what you're ordering before you commit.",
+    title: "We confirm spec, pricing, and delivery",
+    body: "Once we understand the scope, we'll confirm the exact specification, quote a price, and lock in your delivery schedule. No vague estimates. You'll know exactly what you're ordering before you commit.",
   },
   {
     icon: Package,
     number: "03",
     title: "Made to order. Shipped to you.",
-    body: "Your order is manufactured to spec and dispatched direct to you. Current lead time is 20 business days from order confirmation — not from enquiry. We'll keep you updated through the process. Orenara supplies the system; your electrician handles installation.",
+    body: "Built to your spec and dispatched direct — we'll confirm the schedule with your quote and keep you updated through the process. Orenara supplies the system; your electrician handles installation.",
   },
 ];
 
@@ -80,7 +80,7 @@ export default function HowItWorks() {
                 lineHeight: 1.15,
               }}
             >
-              Simple process. Honest lead times.
+              Simple process. No surprises.
             </h2>
           </div>
         </div>
@@ -173,13 +173,13 @@ export default function HowItWorks() {
               className="font-medium mb-1"
               style={{ color: "var(--bone)", fontSize: "0.9375rem" }}
             >
-              20 business day lead time — set the right expectation from the start.
+              Made to order, not off the shelf.
             </p>
             <p style={{ color: "var(--bone-dim)", fontSize: "0.875rem", lineHeight: 1.7 }}>
-              This is a made-to-order product. We don't hold stock. The lead time runs from
-              confirmed order — not from first enquiry. If your project has a hard deadline,
-              tell us in your enquiry and we'll factor it into the conversation.
-              Orenara is supply-only; we don&apos;t offer installation services.
+              We don't hold stock — every system is built to your spec. If your project
+              has a hard deadline, tell us in your enquiry and we'll be straight with you
+              about whether we can meet it. Orenara is supply-only; installation is
+              arranged by you or your electrician.
             </p>
           </div>
         </div>

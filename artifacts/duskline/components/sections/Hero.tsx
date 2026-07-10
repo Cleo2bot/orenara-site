@@ -65,7 +65,7 @@ export default function Hero() {
             lineHeight: 1.7,
           }}
         >
-          IP68 end-to-end. Properly dimmable. Made for conditions that break
+          Fully submersible. Properly dimmable. Made for conditions that break
           everything else.
         </p>
 
@@ -79,9 +79,6 @@ export default function Hero() {
           >
             Enquire for Pricing
           </button>
-          <p className="spec-mono" style={{ letterSpacing: "0.02em" }}>
-            Made to order.&nbsp;&nbsp;Ships in 20 business days.
-          </p>
         </div>
       </div>
 

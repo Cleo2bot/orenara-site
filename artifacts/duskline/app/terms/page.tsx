@@ -196,7 +196,7 @@ const sections: Section[] = [
     clauses: [
       {
         id: "8.1",
-        text: "Products are made to order. Estimated lead times provided at the time of quotation (including any standard or expedited lead time) are estimates only, based on information available at the time, and are not guaranteed delivery dates unless expressly confirmed in writing by Orenara as a firm date for a specific order.",
+        text: "Every system is built to order — allow up to 20 business days from order confirmation. Estimated lead times provided at the time of quotation (including any standard or expedited lead time) are estimates only, based on information available at the time, and are not guaranteed delivery dates unless expressly confirmed in writing by Orenara as a firm date for a specific order.",
       },
       {
         id: "8.2",

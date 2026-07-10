@@ -355,6 +355,9 @@ export default function TradeEnquiryForm() {
               Firm price, confirmed delivery date.
             </p>
           </div>
+          <p style={{ marginTop: "16px", fontSize: "0.8125rem", color: "var(--bone-dim)", lineHeight: 1.5 }}>
+            Every system is built to order — allow up to 20 business days from order confirmation.
+          </p>
         </form>
       </div>
     </section>

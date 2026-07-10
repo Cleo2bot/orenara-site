@@ -11,10 +11,12 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   title: "Orenara — Outdoor LED Strip Lighting, Built for Australian Conditions",
   description:
-    "IP68-rated outdoor LED strip lighting, properly dimmable, built to survive Queensland humidity and coastal salt air. Made-to-order kits for Australian homes. Enquire for pricing.",
+    "Fully submersible outdoor LED strip lighting (IP68), properly dimmable, built to survive Queensland humidity and coastal salt air. Enquire for pricing.",
   keywords: [
     "outdoor LED strip lighting",
     "IP68 LED strip",
+    "submersible led strip lighting",
+    "submersible outdoor lighting",
     "outdoor strip lighting Australia",
     "pergola lighting",
     "pool lighting",
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: "Orenara — Outdoor LED Strip Lighting, Built for Australian Conditions",
     description:
-      "IP68-rated outdoor LED strip lighting, properly dimmable, built to survive Queensland humidity and coastal salt air. Enquire for pricing.",
+      "Fully submersible outdoor LED strip lighting (IP68), properly dimmable, built to survive Queensland humidity and coastal salt air. Enquire for pricing.",
     siteName: "Orenara",
     images: [
       {
@@ -42,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Orenara — Outdoor LED Strip Lighting",
     description:
-      "IP68-rated. Properly dimmable. Built for Australian conditions.",
+      "Fully submersible. Properly dimmable. Built for Australian conditions. IP68-rated.",
   },
   robots: {
     index: true,

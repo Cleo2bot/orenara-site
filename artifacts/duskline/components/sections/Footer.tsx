@@ -41,8 +41,8 @@ export default function Footer() {
               IP68 · Made to Order · Australia
             </p>
             <p style={{ fontSize: "0.9rem", color: "var(--bone-dim)", lineHeight: 1.7, maxWidth: "280px" }}>
-              The most capable outdoor strip lighting available in Australia. IP68-rated,
-              properly dimmable, built to last.
+              The most capable outdoor strip lighting available in Australia. Fully
+              submersible (IP68), properly dimmable, built to last.
             </p>
           </div>
 

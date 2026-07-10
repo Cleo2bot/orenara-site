@@ -14,7 +14,7 @@ const reasons = [
   {
     icon: CalendarClock,
     title: "Firm lead times, not vague estimates",
-    body: "20 business days standard, confirmed at quote stage. We say 20, we mean 20.",
+    body: "Confirmed at quote stage — a firm date, not a range. We say a date, we mean it.",
   },
   {
     icon: PackageCheck,

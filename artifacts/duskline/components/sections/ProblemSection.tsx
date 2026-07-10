@@ -14,7 +14,7 @@ const failures = [
   {
     icon: AlertTriangle,
     title: "Connector corrosion is the silent killer.",
-    body: "Coastal properties add salt air to the equation. Unprotected connectors corrode at the contact points. Voltage drops. Sections go dark. The strip looks fine — the connectors aren't. IP68 end-to-end means sealed from the driver to the terminal.",
+    body: "Coastal properties add salt air to the equation. Unprotected connectors corrode at the contact points. Voltage drops. Sections go dark. The strip looks fine — the connectors aren't. Sealed end-to-end means sealed from the driver to the terminal — the full system is submersible, not just the strip.",
   },
 ];
 
@@ -128,10 +128,10 @@ export default function ProblemSection() {
                 className="font-medium mb-2"
                 style={{ color: "var(--bone)", fontSize: "1rem" }}
               >
-                Orenara is IP68 — end to end.
+                Orenara is fully submersible — end to end.
               </p>
               <p style={{ color: "var(--bone-dim)", fontSize: "0.9375rem", lineHeight: 1.7 }}>
-                Dust-tight, submersion-rated to 1.5m for 30 minutes. Every component in the
+                Dust-tight and submersion-rated (IP68, 1.5m for 30 minutes). Every component in the
                 system — strip, connectors, end caps — carries the same rating. Not just the
                 strip itself. That's what proper outdoor-rated means.
               </p>

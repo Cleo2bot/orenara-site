@@ -6,7 +6,7 @@ import Footer from "@/components/sections/Footer";
 export const metadata: Metadata = {
   title: "Build Your Kit — Orenara Quote Builder",
   description:
-    "Piece your outdoor LED lighting job together zone by zone and get a straight, no-obligation quote. Works out drivers, dimmers, and mounting track for straight and curved runs. IP68, RCM compliant.",
+    "Piece your outdoor LED lighting job together zone by zone and get a straight, no-obligation quote. Works out drivers, dimmers, and mounting track for straight and curved runs. Fully submersible (IP68), RCM compliant.",
   robots: {
     index: true,
     follow: true,

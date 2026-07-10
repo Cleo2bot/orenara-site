@@ -151,6 +151,8 @@ export default function PrintQuoteView({ zones, totals, contact, partLabels }: P
       <hr style={rule} />
 
       <div style={{ fontSize: "0.75rem", color: "var(--print-mid)", lineHeight: 1.6 }}>
+        Every system is built to order — allow up to 20 business days from order confirmation.
+        <br />
         Pricing is enquiry-only. Contact hello@orenara.com to confirm pricing and lead time.
         <br />
         orenara.com.au

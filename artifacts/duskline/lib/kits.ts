@@ -68,7 +68,7 @@ export const kits: Kit[] = [
     image: "/assets/generated/kit-pool-blue.png",
     tagline: "Fully submersible runs",
     description:
-      "Our most demanding application. IP68 submersion-rated for permanent water contact. For pool edges, water features, and submerged elements. Sealed to 1.5m/30min per EN60529.",
+      "Our most demanding application. Fully submersible — rated for permanent water contact (IP68). For pool edges, water features, and submerged elements. Sealed to 1.5m/30min per EN60529.",
     specs: ["IP68 rated (submersible)", "0–10V dimming", "RCM compliant", "Driver & dimmer included"],
     note: "For electrical work near water, all installation must be performed by a licensed electrician per AS/NZS 3000.",
     accent: true,

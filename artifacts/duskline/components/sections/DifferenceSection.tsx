@@ -148,7 +148,8 @@ export default function DifferenceSection() {
             }}
           >
             Sealed silicone, end to end. No seams, no glued joints, no ingress
-            path. Orenara strip is rated IP68 — fully submersible, permanently.
+            path. Orenara strip is fully submersible, permanently — rated IP68
+            end to end.
             Garden beds that flood, pool edges that splash, coastal frontages
             that cop salt and summer storms. It runs through all of it because
             it was specced for exactly that.

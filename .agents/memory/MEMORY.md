@@ -7,3 +7,4 @@
 - [Orenara rebrand ground rules](orenara-rebrand-rules.md) — never push to GitHub without approval; email domain orenara.com is intentional; phased spec with stop-for-review; .next is git-tracked.
 - [Orenara image treatment](orenara-image-treatment.md) — .img-treated's position:relative overrides Tailwind `absolute` (use inline style for fill wrappers); full-strength sepia stack needed to warm green photos.
 - [Lighthouse local quirks](lighthouse-local-quirks.md) — nix chromium + `next start -H 0.0.0.0` + same-session run + NEXT_DIST_DIR to avoid dev/.next clobber; local perf under-reports vs Vercel.
+- [Copy-sweep greps](copy-sweep-greps.md) — JSX wraps prose across lines; single-line greps give false-clean sweeps. Re-run with \s+ + multiline and screenshot key pages.

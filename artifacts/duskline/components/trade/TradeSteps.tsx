@@ -17,7 +17,7 @@ const steps = [
     icon: Truck,
     number: "03",
     title: "Made to order, delivered to site",
-    body: "20 business days standard. Need it faster for a deadline? Say so in the form — we can often expedite.",
+    body: "Lead time confirmed at quote stage. Need it faster for a deadline? Say so in the form — we can often expedite.",
   },
 ];
 

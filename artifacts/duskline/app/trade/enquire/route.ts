@@ -124,6 +124,49 @@ async function sendEmailNotification(enquiry: StoredTradeEnquiry): Promise<void>
   }
 }
 
+async function sendCustomerConfirmation(enquiry: StoredTradeEnquiry): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  // Email domain intentionally orenara.com (Resend-verified); site canonical is orenara.com.au.
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "enquiries@orenara.com";
+
+  if (!apiKey) {
+    console.log("[Orenara] No RESEND_API_KEY set — skipping trade customer confirmation email.");
+    return;
+  }
+
+  const html = `
+    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+      <h2 style="color: #15171C; border-bottom: 2px solid #F5B25C; padding-bottom: 12px;">Trade enquiry received</h2>
+      <p style="line-height: 1.7;">Hi ${escapeHtml(enquiry.name)},</p>
+      <p style="line-height: 1.7;">Got it — we'll come back to you within 24 hours with a firm price and a confirmed delivery date.</p>
+      <p style="line-height: 1.7;">Every system is built to order — allow up to 20 business days from order confirmation.</p>
+      <p style="line-height: 1.7;">Orenara is supply-only; installation is arranged by you or your electrician.</p>
+      <p style="margin-top: 24px; color: #666;">— Orenara Trade<br>orenara.com.au</p>
+    </div>
+  `;
+
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: `Orenara Trade <${fromEmail}>`,
+      to: [enquiry.email],
+      subject: "Trade enquiry received — Orenara",
+      html,
+    }),
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    console.error("[Orenara] Resend API error (trade customer confirmation):", err);
+  } else {
+    console.log("[Orenara] Trade customer confirmation email sent to", enquiry.email);
+  }
+}
+
 export async function POST(req: NextRequest): Promise<NextResponse> {
   let body: Partial<TradeEnquiryData>;
 
@@ -166,6 +209,12 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     await sendEmailNotification(enquiry);
   } catch (err) {
     console.error("[Orenara] Trade email notification failed (non-fatal):", err);
+  }
+
+  try {
+    await sendCustomerConfirmation(enquiry);
+  } catch (err) {
+    console.error("[Orenara] Trade customer confirmation email failed (non-fatal):", err);
   }
 
   return NextResponse.json(

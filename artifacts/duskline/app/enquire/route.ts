@@ -283,6 +283,49 @@ async function sendEmailNotification(enquiry: StoredEnquiry): Promise<void> {
   }
 }
 
+async function sendCustomerConfirmation(enquiry: StoredEnquiry): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  // Email domain intentionally orenara.com (Resend-verified); site canonical is orenara.com.au.
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "enquiries@orenara.com";
+
+  if (!apiKey) {
+    console.log("[Orenara] No RESEND_API_KEY set — skipping customer confirmation email.");
+    return;
+  }
+
+  const html = `
+    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+      <h2 style="color: #15171C; border-bottom: 2px solid #F5B25C; padding-bottom: 12px;">Enquiry received</h2>
+      <p style="line-height: 1.7;">Hi ${escapeHtml(enquiry.name)},</p>
+      <p style="line-height: 1.7;">Thanks for your enquiry. We've received it and we'll come back to you within 1–2 business days with pricing and a confirmed delivery schedule.</p>
+      <p style="line-height: 1.7;">Every system is built to order — allow up to 20 business days from order confirmation.</p>
+      <p style="line-height: 1.7;">Orenara supplies the system only; installation is arranged by you or your electrician.</p>
+      <p style="margin-top: 24px; color: #666;">— Orenara<br>orenara.com.au</p>
+    </div>
+  `;
+
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: `Orenara <${fromEmail}>`,
+      to: [enquiry.email],
+      subject: "We've received your enquiry — Orenara",
+      html,
+    }),
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    console.error("[Orenara] Resend API error (customer confirmation):", err);
+  } else {
+    console.log("[Orenara] Customer confirmation email sent to", enquiry.email);
+  }
+}
+
 export async function POST(req: NextRequest): Promise<NextResponse> {
   let body: Partial<EnquiryData>;
 
@@ -328,6 +371,12 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     await sendEmailNotification(enquiry);
   } catch (err) {
     console.error("[Orenara] Email notification failed (non-fatal):", err);
+  }
+
+  try {
+    await sendCustomerConfirmation(enquiry);
+  } catch (err) {
+    console.error("[Orenara] Customer confirmation email failed (non-fatal):", err);
   }
 
   return NextResponse.json(

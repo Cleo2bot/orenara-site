@@ -41,8 +41,8 @@ export default function TradeHero() {
                 maxWidth: "560px",
               }}
             >
-              Tell us what the job needs. We&apos;ll spec it, price it, and get it to site — 20
-              business days as standard, faster when the deadline demands it.
+              Tell us what the job needs. We&apos;ll spec it, price it, and get it to site —
+              built to order, faster when the deadline demands it.
             </p>
 
             {/* Trade / wholesale pricing callout */}
@@ -95,7 +95,7 @@ export default function TradeHero() {
                   lineHeight: 1.5,
                 }}
               >
-                20 business day standard lead time. Expedite available for hard deadlines.
+                Firm lead time confirmed at quote stage. Expedite available for hard deadlines.
               </p>
             </div>
           </div>
