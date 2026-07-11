@@ -50,7 +50,7 @@ export default function Hero() {
               margin: "0 auto",
             }}
           >
-            Built for salt air, pool chemicals, and Queensland summers.
+            Not waterproof. Submersible.
           </h1>
         </div>
 
@@ -65,8 +65,8 @@ export default function Hero() {
             lineHeight: 1.7,
           }}
         >
-          Fully submersible. Properly dimmable. Made for conditions that break
-          everything else.
+          Sealed end to end and rated for permanent water contact. Salt air,
+          pool chemicals, Queensland summers — built for all of it.
         </p>
 
         {/* CTA group */}
