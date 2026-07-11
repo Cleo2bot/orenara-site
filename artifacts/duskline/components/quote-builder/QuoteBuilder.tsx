@@ -199,7 +199,7 @@ export default function QuoteBuilder() {
     <section style={{ background: "var(--ink)", paddingTop: "160px", paddingBottom: "120px" }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="mb-12 max-w-2xl">
+        <div id="zone-builder" className="mb-12 max-w-2xl">
           <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
             Build Your Kit
           </p>

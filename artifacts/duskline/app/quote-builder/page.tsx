@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import QuoteBuilder from "@/components/quote-builder/QuoteBuilder";
+import QuoteBuilderClosingBand from "@/components/quote-builder/QuoteBuilderClosingBand";
 import Footer from "@/components/sections/Footer";
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export default function QuoteBuilderPage() {
       <Navbar />
       <main>
         <QuoteBuilder />
+        <QuoteBuilderClosingBand />
       </main>
       <Footer />
     </>
