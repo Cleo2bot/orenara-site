@@ -65,8 +65,9 @@ export default function Hero() {
             lineHeight: 1.7,
           }}
         >
-          Sealed end to end and rated for permanent water contact. Salt air,
-          pool chemicals, Queensland summers — built for all of it.
+          Outdoor LED strip lighting — sealed end to end, rated for permanent
+          water contact. Salt air, pool chemicals, Queensland summers. Built for
+          all of it.
         </p>
 
         {/* CTA group */}
