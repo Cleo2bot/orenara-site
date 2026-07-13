@@ -1,0 +1,67 @@
+want to change this a bit - 'Sealed end to end and rated for permanent water contact. Salt air, pool chemicals, Queensland summers — built for all of it.' ---- i think it should be something like LED strip lighting sealed end to end .... - so you know straight away what the product isSharp catch, and it's a genuinely important one: with the old headline gone, the word "lighting" no longer appears anywhere in the hero text. "Not waterproof. Submersible." over a dark landscape could be selling pumps, decking oil, or outdoor speakers for the first two seconds — and paid traffic decides whether to bounce in about that long. The support line has to carry the "what is this" job now, and it should carry it in its opening words, not its middle.
+Options, all keeping your structure:
+1. LED strip lighting, sealed end to end and rated for permanent water contact. Salt air, pool chemicals, Queensland summers — built for all of it.
+Your instinct verbatim, minimal surgery. Slightly long as one opening sentence but reads fine.
+2. Outdoor LED strip lighting — sealed end to end, rated for permanent water contact. Salt air, pool chemicals, Queensland summers. Built for all of it.
+Adds "outdoor" (matches the searcher's own words and the eyebrow badge), and breaks the conditions trio into its own clipped sentence, which is more the voice — short declaratives, full stops doing the work.
+3. Outdoor LED strip lighting, sealed end to end. Rated for permanent water contact — salt air, pool chemicals, Queensland summers included.
+Tightest. Product first, seal second, everything else folded into one sweep. Loses the "built for all of it" cadence, which you may or may not miss.
+I'd take 2: product named in word one, "outdoor" doing quiet keyword-match work with the ads, and the three short sentences scan the way the rest of the site talks. Full hero would read:
+
+Not waterproof. Submersible.
+Outdoor LED strip lighting — sealed end to end, rated for permanent water contact. Salt air, pool chemicals, Queensland summers. Built for all of it.
+
+Amended Replit line (replaces item 2 in the swap prompt):
+
+
+Hero support line TO: "Outdoor LED strip lighting — sealed end to end, rated for permanent water contact. Salt air, pool chemicals, Queensland summers. Built for all of it."
+
+
+Everything else in that prompt stands. And no ripple into the Ads spec — the RSA descriptions already name the product in their own words. Pick your variant, ship it, and the hero is done: four words of claim, one line of what-and-why, a fire pit proving it behind them.[Build Your Kit — Orenara Quote Builder](https://www.orenara.com.au/quote-builder) - i think this page needs an image at the lower section footer type area. something with a bit of a call out in it. when you havent built a kit its a real short croll and you might wonder what to do - could be educational as well as better lookingAssessed page layout to enhance empty state experienceAssessed page layout to enhance empty state experienceLet me look at the page as it stands first.Architected educational image section with callout to demystify builder experienceArchitected educational image section with callout to demystify builder experienceConfirmed — the empty state is: header, "No zones yet," an empty BOM, the email form, footer. Maybe two scrolls, and for someone who clicked "Build Your Kit" without knowing their run lengths, it's a dead end with a form at the bottom. Your read is right, and the fix should attack the actual reason people stall on this page: measurement anxiety. They don't know what a "zone" is, they don't know their lengths, and they assume wrong numbers will get them a wrong quote — so they leave. An image band that answers exactly that fear is both the education and the beauty in one section.
+Even better: you have the perfect image already in the batch — slot 14, the Custom Zone Kit frame — an elevated view of a backyard with path, garden beds, pool edge and bench all traced in light, "like a lighting plan come to life." That image is the concept of zones, photographed. Using it here (and on the Custom Zone kit card) is the one duplicate that's justified, or the agent generates a close sibling.
+One flag from my pull before the prompt: the canonical lead-time note appears in the print summary but I can't see it under the on-page form — it still ends at "We respond within 1–2 business days. No spam. No automated quotes." The agent reported that fix as done; verify in your incognito walk, and it's folded into the prompt below just in case.
+
+Quote builder — new closing section + verification. No changes to builder logic, form, or BOM.
+
+New full-bleed image band between the email form section and the footer, styled exactly like the homepage dusk interstitials (treated image, scrim, text bottom-left):
+
+Image: the multi-zone backyard frame (overhaul_14_kit_customzone.png) — elevated view, multiple zones traced in continuous warm light. If not yet generated, generate per its batch spec first.
+Mono eyebrow: WHAT COUNTS AS A ZONE
+Heading (Archivo 500, breather scale): "Any continuous run is a zone."
+Body (bone-dim, max ~2 lines): "A path edge. A pergola beam. The pool surround. Pace it out — near enough is fine. We confirm every measurement with you before anything is cut."
+Beneath the body, two quiet actions: outline button "Add your first zone" (scrolls to the zone builder at top of this page) and a text link "Or see how the process works" → the homepage How It Works section (correct anchor).
+
+
+Ember discipline: this section contains no filled/ember buttons — outline and text link only. The form's submit above remains the page's single primary.
+Verify/fix: the canonical note "Every system is built to order — allow up to 20 business days from order confirmation." must render on-page in the form footer area, below "We respond within 1–2 business days. No spam. No automated quotes." — same small bone-dim/mono treatment. It currently appears only in the print summary. Confirm or add.
+Mobile: band works at 360px, text legible over the treated image, buttons stack cleanly.
+Screenshots desktop + 360px of the full page (empty state) before pushing.
+
+
+What this does to the empty-state page: it now ends with an answer instead of a shrug — the visitor who doesn't know their measurements gets told "near enough is fine, we check everything," which is simultaneously the education, the reassurance, and the reason to scroll back up and start. "We confirm every measurement before anything is cut" is also pure earned-authority — it's the tradie saying relax, I measure twice. Short page becomes a complete page.carefull there. remember a zone can have multiple runsRecalibrated zone hierarchy and clarified structural relationshipsRecalibrated zone hierarchy and clarified structural relationshipsGood catch — and exactly the kind of error that matters most, because this section's whole job is teaching the builder's mental model, and I had it teaching the wrong one. If the copy says zone = run, the person with a pool surround (coping edge + water feature + two steps) either creates four zones or crams everything into one length field — and either way the BOM comes out wrong before you've even quoted. The education has to match the data model: a zone is an area; runs live inside it.
+Corrected copy for item 1 of the prompt — everything else stands:
+
+
+Mono eyebrow: WHAT COUNTS AS A ZONE
+Heading: "A zone is an area, not a measurement."
+Body: "The pool surround. The pergola. The front path. One zone can hold several runs — the curved edge, the straight edge, the steps. Pace out what you can; we confirm every measurement with you before anything is cut."
+
+
+Same reassurance payload — near enough is fine, we check everything — but now it's teaching people to think the way the builder is structured: name the area first, list its runs inside. That framing should also quietly improve the quality of the enquiries you receive, because zone-organised submissions with rough runs are exactly what you want to quote from, versus one mystery "45m" that could be anything.
+Worth a ten-second glance while the agent's in there: whatever microcopy sits inside the zone-builder UI itself (the "Add a zone" empty state says "Start with the first area of your project" — good, already area-language) should agree with this section. If any field label in the zone form says "zone length" rather than run-based language, flag it — but don't let the agent restructure anything; consistency check only.can you give me the full prompt
+Quote builder — new closing section + verification. No changes to builder logic, form fields, or BOM calculations.
+
+New full-bleed image band between the email form section and the footer, styled exactly like the homepage dusk interstitials (unified image treatment, standard scrim, text bottom-left):
+
+Image: the multi-zone backyard frame (overhaul_14_kit_customzone.png) — elevated view from a deck, multiple zones (path edges, garden beds, pool waterline, bench underglow) traced in continuous warm light, like a lighting plan come to life. If this image has not yet been generated, generate it first per its batch spec: [GLOBAL STYLE BLOCK — photorealistic editorial architectural photography, Australian contemporary, deep dusk, warm 2700K LED strip as primary light source, muted cinematic grade, deep charcoal shadows, no oversaturation, no HDR, no fixtures/bulbs visible, no text/watermarks] Multi-zone backyard at night seen from an elevated deck: pathway edges, garden beds, a pool waterline and a bench underglow all traced in continuous warm LED strip light, one zone's glow reflecting off a glass balustrade, outdoor dining table set for tomorrow in half-shadow, no people. Validate against the approved hero for grade match; continuous glow lines, ~4:3 or wider.
+Mono eyebrow: WHAT COUNTS AS A ZONE
+Heading (Archivo 500, breather scale): "A zone is an area, not a measurement."
+Body (bone-dim, 2–3 lines max): "The pool surround. The pergola. The front path. One zone can hold several runs — the curved edge, the straight edge, the steps. Pace out what you can; we confirm every measurement with you before anything is cut."
+Beneath the body, two quiet actions side by side: outline button "Add your first zone" (smooth-scrolls to the zone builder at the top of this page) and a plain text link "Or see how the process works" linking to the homepage How It Works section (use its actual anchor/id — verify it exists; add an id to that section if needed, nothing else).
+
+
+Ember discipline: this new section contains NO filled/ember buttons — outline button and text link only. The form's submit button above remains this page's single primary CTA. Verify no viewport shows two filled buttons at any breakpoint.
+Verify/fix the lead-time note: the canonical sentence "Every system is built to order — allow up to 20 business days from order confirmation." must render on-page in the form footer area, directly below the existing "We respond within 1–2 business days. No spam. No automated quotes." lines, in the same small bone-dim treatment. It currently appears only inside the hidden print summary. Confirm it exists on-page or add it. Do not duplicate it if already present.
+Consistency check (report only, change nothing without approval): review the zone builder's own microcopy and field labels — empty state, "Add a zone" flow, length fields. Confirm the language is consistent with the zone = area / runs-within-zone model taught by the new section. If any label or helper text says "zone length" or otherwise implies one zone = one run, LIST the instances and stop — do not reword them yourself.
+Responsive: band works at 360px — text legible over the treated image, eyebrow/heading/body scale down cleanly, the two actions stack vertically with clear spacing.
+QA: typecheck clean; screenshots of the full quote-builder page in its empty state (no zones added), desktop + 360px, showing the new band in context above the footer and the lead-time note under the form. Full diff. Do not push until I confirm.
