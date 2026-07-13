@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { SITE_URL } from "@/lib/site";
 
@@ -62,6 +63,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {children}
+        <GoogleAnalytics gaId="G-53WXF4M08D" />
         {/* Google Ads global site tag — only rendered when the Ads ID env var is set.
             strategy="afterInteractive" defers until after hydration so it never blocks
             the main thread (preferred over @next/third-parties here because we need the
