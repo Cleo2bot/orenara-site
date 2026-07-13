@@ -436,13 +436,13 @@ title = "03 — Dusk breather deck (Tier E, attempt 1)"
 id = "qSKiWQ4RsvEfsdVPYXH8I"
 uri = "file://attached_assets/generated_images/overhaul_04_outcome_dinner.png"
 type = "image"
-title = "04 — Outcome dinner (Tier P, attempt 4)"
+title = "Outcome — alfresco dinner"
 
 [[outputs]]
 id = "goI_pSbd_PxBBIgkyuZ1i"
 uri = "file://attached_assets/generated_images/overhaul_05_env_hospitality.png"
 type = "image"
-title = "05 — Commercial & Hospitality (Tier P, attempt 2)"
+title = "Environment — hospitality"
 
 [[outputs]]
 id = "HhV560wt4a2AaR2vJXAfT"
@@ -466,7 +466,7 @@ title = "08 — Coastal (Tier P, attempt 3)"
 id = "myxoIa7opcGh0KACKzySm"
 uri = "file://attached_assets/generated_images/overhaul_09_env_tropical.png"
 type = "image"
-title = "09 — Tropical & Humid (Tier E, attempt 3)"
+title = "Environment — tropical"
 
 [[outputs]]
 id = "zZZ4cC8a_cEW8I1dveedF"
@@ -503,3 +503,9 @@ id = "HNWbXQjLIUhV7xckrj7Kf"
 uri = "file://attached_assets/generated_images/orenara-email-signature.png"
 type = "image"
 title = "Orenara Email Signature"
+
+[[outputs]]
+id = "KcOvyT-T8haTvtl2l8s8X"
+uri = "file://attached_assets/generated_images/hero-firecircle-v3.png"
+type = "image"
+title = "Hero — fire pit night scene (LED dominant)"
