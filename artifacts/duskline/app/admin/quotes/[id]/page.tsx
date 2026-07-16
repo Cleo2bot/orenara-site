@@ -165,6 +165,21 @@ export default async function QuotePage({
             >
               Created {createdAt}
             </p>
+            <a
+              href={`/admin/quotes/${quoteId}/pdf`}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-outline"
+              style={{
+                display: "inline-flex",
+                marginTop: "12px",
+                width: "auto",
+                padding: "8px 18px",
+                fontSize: "0.8125rem",
+              }}
+            >
+              Download PDF
+            </a>
           </div>
         </div>
 
@@ -242,6 +257,10 @@ export default async function QuotePage({
           }))}
           initialSystemPrice={quote.systemPrice ?? ""}
           initialNotes={quote.notes ?? ""}
+          initialWarrantyLine={
+            quote.warrantyLine ??
+            "System warranty: 2 years (submerged application)"
+          }
         />
       </main>
     </div>

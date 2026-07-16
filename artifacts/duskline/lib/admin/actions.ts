@@ -122,7 +122,8 @@ export async function saveQuoteEdits(
     sortOrder: number;
   }[],
   systemPrice: string,
-  notes: string
+  notes: string,
+  warrantyLine: string
 ): Promise<void> {
   await db.transaction(async (tx) => {
     await tx
@@ -148,6 +149,9 @@ export async function saveQuoteEdits(
       .set({
         systemPrice: systemPrice.trim() ? systemPrice.trim() : null,
         notes: notes.trim() ? notes.trim() : null,
+        warrantyLine: warrantyLine.trim()
+          ? warrantyLine.trim()
+          : "System warranty: 2 years (submerged application)",
       })
       .where(eq(quotesTable.id, quoteId));
   });

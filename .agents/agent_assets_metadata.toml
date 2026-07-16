@@ -509,3 +509,9 @@ id = "KcOvyT-T8haTvtl2l8s8X"
 uri = "file://attached_assets/generated_images/hero-firecircle-v3.png"
 type = "image"
 title = "Hero — fire pit night scene (LED dominant)"
+
+[[outputs]]
+id = "XTNkxRuNIEXT1LciEo5Su"
+uri = "file://artifacts/duskline/public/OR-Q-TEST-preview.pdf"
+type = "pdf"
+title = "OR-Q-TEST — Checkpoint 3 PDF preview"

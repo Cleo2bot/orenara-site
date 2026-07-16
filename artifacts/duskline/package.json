@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/third-parties": "^16.2.10",
+    "@react-pdf/renderer": "^4.5.1",
     "@workspace/db": "workspace:*",
     "drizzle-orm": "catalog:",
     "lucide-react": "^0.513.0",

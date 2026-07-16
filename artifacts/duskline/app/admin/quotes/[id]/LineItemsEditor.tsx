@@ -38,15 +38,18 @@ export default function LineItemsEditor({
   initialItems,
   initialSystemPrice,
   initialNotes,
+  initialWarrantyLine,
 }: {
   quoteId: number;
   initialItems: LineItem[];
   initialSystemPrice: string;
   initialNotes: string;
+  initialWarrantyLine: string;
 }) {
   const [items, setItems] = useState<LineItem[]>(initialItems);
   const [systemPrice, setSystemPrice] = useState(initialSystemPrice);
   const [notes, setNotes] = useState(initialNotes);
+  const [warrantyLine, setWarrantyLine] = useState(initialWarrantyLine);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -96,7 +99,7 @@ export default function LineItemsEditor({
     setError(null);
     startTransition(async () => {
       try {
-        await saveQuoteEdits(quoteId, items, systemPrice, notes);
+        await saveQuoteEdits(quoteId, items, systemPrice, notes, warrantyLine);
         setSaved(true);
       } catch (e) {
         setError(e instanceof Error ? e.message : "Save failed.");
@@ -442,7 +445,7 @@ export default function LineItemsEditor({
         </div>
       </div>
 
-      {/* Price + notes */}
+      {/* Price + warranty + notes */}
       <div
         style={{
           background: "var(--ink-raised)",
@@ -451,7 +454,7 @@ export default function LineItemsEditor({
           padding: "20px 24px",
           marginBottom: "16px",
           display: "grid",
-          gridTemplateColumns: "1fr 2fr",
+          gridTemplateColumns: "1fr 1fr 1fr",
           gap: "16px",
         }}
       >
@@ -485,6 +488,39 @@ export default function LineItemsEditor({
               borderRadius: "var(--radius)",
               fontSize: "1rem",
               fontFamily: "var(--font-spec)",
+              outline: "none",
+            }}
+          />
+        </div>
+        <div>
+          <label
+            style={{
+              display: "block",
+              fontSize: "0.75rem",
+              color: "var(--bone-dim)",
+              marginBottom: "5px",
+              textTransform: "uppercase",
+              letterSpacing: "0.06em",
+              fontFamily: "var(--font-body)",
+            }}
+          >
+            Warranty line (PDF)
+          </label>
+          <input
+            value={warrantyLine}
+            onChange={(e) => {
+              setWarrantyLine(e.target.value);
+              setSaved(false);
+            }}
+            style={{
+              width: "100%",
+              background: "var(--ink)",
+              border: "1px solid var(--ink-line)",
+              color: "var(--bone)",
+              padding: "10px 14px",
+              borderRadius: "var(--radius)",
+              fontSize: "0.875rem",
+              fontFamily: "var(--font-body)",
               outline: "none",
             }}
           />
