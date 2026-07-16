@@ -1,5 +1,6 @@
 import {
   pgTable,
+  pgSequence,
   serial,
   text,
   timestamp,
@@ -8,6 +9,12 @@ import {
   boolean,
   pgEnum,
 } from "drizzle-orm/pg-core";
+
+export const quoteNumberSeq = pgSequence("quote_number_seq", {
+  startWith: 7,
+  increment: 1,
+  minValue: 7,
+});
 
 export const quoteStatusEnum = pgEnum("quote_status", [
   "draft",
