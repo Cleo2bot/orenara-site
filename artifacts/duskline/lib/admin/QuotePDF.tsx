@@ -14,26 +14,24 @@ export function registerFonts() {
   const fonts = path.join(process.cwd(), "public", "fonts");
   Font.register({
     family: "Archivo",
-    src: path.join(fonts, "Archivo-Medium.woff2"),
+    src: path.join(fonts, "Archivo-Medium.ttf"),
     fontWeight: 500,
   });
   Font.register({
     family: "InstrumentSans",
-    src: path.join(fonts, "InstrumentSans-Regular.woff2"),
+    src: path.join(fonts, "InstrumentSans-Regular.ttf"),
     fontWeight: 400,
   });
   Font.register({
     family: "IBMPlexMono",
-    src: path.join(fonts, "IBMPlexMono-Regular.woff2"),
+    src: path.join(fonts, "IBMPlexMono-Regular.ttf"),
     fontWeight: 400,
   });
 }
 
 const INK = "#0F1113";
-const INK_RAISED = "#1C1E22";
 const BONE = "#F3EEE4";
 const BONE_DIM = "#B8B2A6";
-const EMBER = "#D9A05B";
 const LINE = "#DEDAD4";
 
 const s = StyleSheet.create({
@@ -43,7 +41,7 @@ const s = StyleSheet.create({
     fontFamily: "InstrumentSans",
     fontSize: 9,
     paddingTop: 48,
-    paddingBottom: 48,
+    paddingBottom: 60,
     paddingLeft: 45,
     paddingRight: 45,
   },
@@ -62,41 +60,33 @@ const s = StyleSheet.create({
   },
   headerLeft: {
     flexDirection: "column",
-    gap: 6,
   },
   quoteNumber: {
     fontFamily: "IBMPlexMono",
     fontSize: 13,
-    letterSpacing: 1,
     color: INK,
     marginTop: 8,
   },
   headerRight: {
     flexDirection: "column",
     alignItems: "flex-end",
-    gap: 3,
   },
   headerMeta: {
     fontFamily: "IBMPlexMono",
     fontSize: 8,
     color: BONE_DIM,
-    letterSpacing: 0.5,
+    marginBottom: 2,
   },
   validUntil: {
     fontFamily: "IBMPlexMono",
     fontSize: 8,
     color: INK,
-    letterSpacing: 0.5,
   },
   /* ── divider ─────────────────────────────────────── */
   divider: {
     height: 1,
     backgroundColor: LINE,
     marginVertical: 14,
-  },
-  thinDivider: {
-    height: 1,
-    backgroundColor: LINE,
   },
   /* ── customer block ─────────────────────────────── */
   projectLabel: {
@@ -106,14 +96,10 @@ const s = StyleSheet.create({
     color: INK,
     marginBottom: 6,
   },
-  customerRow: {
-    flexDirection: "row",
-    gap: 20,
-    marginBottom: 3,
-  },
   customerField: {
     fontSize: 9,
     color: INK,
+    marginBottom: 2,
   },
   customerMuted: {
     fontSize: 8,
@@ -129,12 +115,10 @@ const s = StyleSheet.create({
     paddingBottom: 6,
     borderBottomWidth: 1,
     borderBottomColor: INK,
-    marginBottom: 0,
   },
   tableHeaderCell: {
     fontFamily: "IBMPlexMono",
     fontSize: 7,
-    letterSpacing: 1,
     color: BONE_DIM,
     textTransform: "uppercase",
   },
@@ -149,24 +133,23 @@ const s = StyleSheet.create({
     width: "18%",
     fontFamily: "IBMPlexMono",
     fontSize: 8,
-    letterSpacing: 0.3,
     color: INK,
   },
   cellDescription: {
-    width: "58%",
+    width: "60%",
     fontSize: 9,
     color: INK,
     paddingRight: 8,
   },
   cellQty: {
-    width: "12%",
+    width: "11%",
     fontFamily: "IBMPlexMono",
     fontSize: 9,
     textAlign: "right",
     color: INK,
   },
   cellUnit: {
-    width: "12%",
+    width: "11%",
     fontFamily: "IBMPlexMono",
     fontSize: 8,
     textAlign: "right",
@@ -185,20 +168,19 @@ const s = StyleSheet.create({
     objectFit: "contain",
   },
   /* ── price block ─────────────────────────────────── */
-  priceBlock: {
+  priceRow: {
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "baseline",
-    gap: 8,
     marginTop: 12,
-    marginBottom: 4,
+    marginBottom: 2,
   },
   priceLabel: {
     fontFamily: "IBMPlexMono",
     fontSize: 8,
-    letterSpacing: 0.5,
     color: BONE_DIM,
     textTransform: "uppercase",
+    marginRight: 10,
   },
   priceValue: {
     fontFamily: "Archivo",
@@ -210,8 +192,9 @@ const s = StyleSheet.create({
     fontFamily: "IBMPlexMono",
     fontSize: 8,
     color: BONE_DIM,
-    marginTop: 2,
     textAlign: "right",
+    marginTop: 2,
+    marginBottom: 2,
   },
   /* ── terms ───────────────────────────────────────── */
   termsBlock: {
@@ -220,7 +203,6 @@ const s = StyleSheet.create({
   termsHeading: {
     fontFamily: "IBMPlexMono",
     fontSize: 7,
-    letterSpacing: 1,
     color: BONE_DIM,
     textTransform: "uppercase",
     marginBottom: 8,
@@ -231,16 +213,10 @@ const s = StyleSheet.create({
     marginBottom: 4,
     lineHeight: 1.45,
   },
-  warrantyLine: {
-    fontSize: 8,
-    color: INK,
-    marginBottom: 4,
-    lineHeight: 1.45,
-  },
   /* ── footer ─────────────────────────────────────── */
   footer: {
     position: "absolute",
-    bottom: 36,
+    bottom: 32,
     left: 45,
     right: 45,
     flexDirection: "row",
@@ -251,7 +227,6 @@ const s = StyleSheet.create({
     fontFamily: "IBMPlexMono",
     fontSize: 7,
     color: BONE_DIM,
-    letterSpacing: 0.5,
   },
 });
 
@@ -318,13 +293,10 @@ export function QuotePDFDoc(props: QuotePDFProps) {
   } = props;
 
   const hasImages = lineItems.some((i) => i.imagePath !== null);
-
   const priceNum = systemPrice ? parseFloat(systemPrice) : null;
   const priceIncGst = priceNum !== null ? priceNum * 1.1 : null;
-
   const locationParts = [customerSuburb, customerState].filter(Boolean);
   const location = locationParts.join(", ");
-
   const paymentTerms =
     customerType === "residential"
       ? "Payment in full on order confirmation."
@@ -364,7 +336,6 @@ export function QuotePDFDoc(props: QuotePDFProps) {
 
         {/* LINE ITEMS */}
         <View style={s.tableContainer}>
-          {/* Header row */}
           <View style={s.tableHeader}>
             {hasImages ? (
               <>
@@ -392,13 +363,7 @@ export function QuotePDFDoc(props: QuotePDFProps) {
                 >
                   Unit
                 </Text>
-                <Text
-                  style={[
-                    s.tableHeaderCell,
-                    s.cellImgSlot,
-                    { textAlign: "right" },
-                  ]}
-                />
+                <Text style={[s.tableHeaderCell, s.cellImgSlot]} />
               </>
             ) : (
               <>
@@ -412,11 +377,7 @@ export function QuotePDFDoc(props: QuotePDFProps) {
                   Qty
                 </Text>
                 <Text
-                  style={[
-                    s.tableHeaderCell,
-                    s.cellUnit,
-                    { textAlign: "right" },
-                  ]}
+                  style={[s.tableHeaderCell, s.cellUnit, { textAlign: "right" }]}
                 >
                   Unit
                 </Text>
@@ -424,7 +385,6 @@ export function QuotePDFDoc(props: QuotePDFProps) {
             )}
           </View>
 
-          {/* Data rows */}
           {lineItems.map((item, i) => (
             <View key={i} style={s.tableRow}>
               {hasImages ? (
@@ -439,10 +399,7 @@ export function QuotePDFDoc(props: QuotePDFProps) {
                   <Text style={[s.cellUnit, s.cellImgUnit]}>{item.unit}</Text>
                   <View style={s.cellImgSlot}>
                     {item.imagePath ? (
-                      <Image
-                        style={s.productImage}
-                        src={item.imagePath}
-                      />
+                      <Image style={s.productImage} src={item.imagePath} />
                     ) : null}
                   </View>
                 </>
@@ -462,23 +419,26 @@ export function QuotePDFDoc(props: QuotePDFProps) {
         {priceNum !== null ? (
           <>
             <View style={s.divider} />
-            <View style={s.priceBlock}>
-              <Text style={s.priceLabel}>System price</Text>
-              {customerType === "residential" ? (
-                <View>
+            {customerType === "residential" ? (
+              <>
+                <View style={s.priceRow}>
+                  <Text style={s.priceLabel}>System price</Text>
                   <Text style={s.priceValue}>
                     {formatCurrency(priceIncGst!)} inc GST
                   </Text>
-                  <Text style={s.priceSub}>
-                    ({formatCurrency(priceNum)} ex GST)
-                  </Text>
                 </View>
-              ) : (
+                <Text style={s.priceSub}>
+                  ({formatCurrency(priceNum)} ex GST)
+                </Text>
+              </>
+            ) : (
+              <View style={s.priceRow}>
+                <Text style={s.priceLabel}>System price</Text>
                 <Text style={s.priceValue}>
                   {formatCurrency(priceNum)} ex GST
                 </Text>
-              )}
-            </View>
+              </View>
+            )}
           </>
         ) : null}
 
@@ -491,7 +451,7 @@ export function QuotePDFDoc(props: QuotePDFProps) {
             Every system is built to order — allow up to 20 business days from
             order confirmation.
           </Text>
-          <Text style={s.warrantyLine}>{warrantyLine}</Text>
+          <Text style={s.termsLine}>{warrantyLine}</Text>
           <Text style={s.termsLine}>{paymentTerms}</Text>
           <Text style={s.termsLine}>
             Supply only. Installation by the customer's licensed electrician.

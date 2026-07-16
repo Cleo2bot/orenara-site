@@ -521,3 +521,9 @@ id = "t5cf1j89_j_aN0-36RBt-"
 uri = "file://.local/previews/OR-Q-TEST.pdf"
 type = "pdf"
 title = "OR-Q-TEST — Checkpoint 3 PDF preview"
+
+[[outputs]]
+id = "ZifCZY4d_3rf8nhOhQ839"
+uri = "file://.local/previews/OR-Q-TEST-ttf.pdf"
+type = "pdf"
+title = "OR-Q-TEST — TTF fonts, no letterSpacing"
