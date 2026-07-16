@@ -1,12 +1,26 @@
 "use client";
 
-import { useActionState } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 import { loginAction, type LoginState } from "./actions";
 
 const initial: LoginState = { error: null, locked: false, remainingMs: 0 };
 
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <button
+      type="submit"
+      className="btn-primary"
+      style={{ width: "100%", marginTop: "16px" }}
+      disabled={pending}
+    >
+      {pending ? "Checking…" : "Enter"}
+    </button>
+  );
+}
+
 export default function LoginPage() {
-  const [state, dispatch, pending] = useActionState(loginAction, initial);
+  const [state, dispatch] = useFormState(loginAction, initial);
 
   const lockedMins = Math.ceil((state.remainingMs ?? 0) / 60000);
 
@@ -80,7 +94,6 @@ export default function LoginPage() {
                 required
                 className="enquiry-input"
                 style={{ marginBottom: "8px" }}
-                disabled={pending}
               />
 
               {state.error && (
@@ -96,14 +109,7 @@ export default function LoginPage() {
                 </p>
               )}
 
-              <button
-                type="submit"
-                className="btn-primary"
-                style={{ width: "100%", marginTop: "16px" }}
-                disabled={pending}
-              >
-                {pending ? "Checking…" : "Enter"}
-              </button>
+              <SubmitButton />
             </form>
           )}
         </div>
