@@ -2,13 +2,7 @@ import { logoutAction } from "./login/actions";
 
 export default function AdminPage() {
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <header
         style={{
           display: "flex",
@@ -29,8 +23,6 @@ export default function AdminPage() {
               fontFamily: "var(--font-body)",
               fontSize: "0.8125rem",
               cursor: "pointer",
-              padding: "6px 0",
-              transition: "color 150ms ease",
             }}
           >
             Log out
@@ -41,18 +33,13 @@ export default function AdminPage() {
       <main
         style={{
           flex: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          gap: "12px",
-          padding: "48px 32px",
+          maxWidth: "480px",
+          margin: "0 auto",
+          padding: "64px 24px",
+          width: "100%",
         }}
       >
-        <p
-          className="eyebrow"
-          style={{ marginBottom: "4px" }}
-        >
+        <p className="eyebrow" style={{ marginBottom: "8px" }}>
           Admin
         </p>
         <h1
@@ -61,20 +48,19 @@ export default function AdminPage() {
             fontWeight: 500,
             fontSize: "1.5rem",
             color: "var(--bone)",
-            margin: 0,
+            margin: "0 0 32px",
           }}
         >
           Quote Builder
         </h1>
-        <p
-          style={{
-            color: "var(--bone-dim)",
-            fontSize: "0.9rem",
-            marginTop: "8px",
-          }}
+
+        <a
+          href="/admin/quotes/new"
+          className="btn-primary"
+          style={{ display: "inline-flex" }}
         >
-          Phase 2 — quote form coming next.
-        </p>
+          New Quote
+        </a>
       </main>
     </div>
   );
