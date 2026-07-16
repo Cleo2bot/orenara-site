@@ -533,3 +533,9 @@ id = "ibLdhuNtslihJWpG1B1SO"
 uri = "file://.local/previews/OR-Q-TEST-wordmark.pdf"
 type = "pdf"
 title = "OR-Q-TEST — text wordmark"
+
+[[outputs]]
+id = "Rk0VR36s-9i8gAOtzpnYx"
+uri = "file://.local/previews/OR-Q-TEST-abn.pdf"
+type = "pdf"
+title = "OR-Q-TEST — ABN + wordmark sign-off"
