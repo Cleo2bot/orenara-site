@@ -52,11 +52,13 @@ const s = StyleSheet.create({
     alignItems: "flex-start",
     marginBottom: 20,
   },
-  logo: {
-    width: 120,
-    height: 28,
-    objectFit: "contain",
-    objectPositionX: 0,
+  wordmark: {
+    fontFamily: "Archivo",
+    fontWeight: 500,
+    fontSize: 15,
+    letterSpacing: 3.3,
+    textTransform: "uppercase",
+    color: INK,
   },
   headerLeft: {
     flexDirection: "column",
@@ -252,7 +254,7 @@ export interface QuotePDFProps {
   lineItems: PDFLineItem[];
   systemPrice: string | null;
   warrantyLine: string;
-  logoBase64: string;
+  logoBase64?: string;
   abn: string;
 }
 
@@ -308,7 +310,7 @@ export function QuotePDFDoc(props: QuotePDFProps) {
         {/* HEADER */}
         <View style={s.header}>
           <View style={s.headerLeft}>
-            <Image style={s.logo} src={logoBase64} />
+            <Text style={s.wordmark}>ORENARA</Text>
             <Text style={s.quoteNumber}>{quoteNumber}</Text>
           </View>
           <View style={s.headerRight}>

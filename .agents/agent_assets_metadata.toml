@@ -527,3 +527,9 @@ id = "ZifCZY4d_3rf8nhOhQ839"
 uri = "file://.local/previews/OR-Q-TEST-ttf.pdf"
 type = "pdf"
 title = "OR-Q-TEST — TTF fonts, no letterSpacing"
+
+[[outputs]]
+id = "ibLdhuNtslihJWpG1B1SO"
+uri = "file://.local/previews/OR-Q-TEST-wordmark.pdf"
+type = "pdf"
+title = "OR-Q-TEST — text wordmark"
