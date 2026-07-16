@@ -515,3 +515,9 @@ id = "XTNkxRuNIEXT1LciEo5Su"
 uri = "file://artifacts/duskline/public/OR-Q-TEST-preview.pdf"
 type = "pdf"
 title = "OR-Q-TEST — Checkpoint 3 PDF preview"
+
+[[outputs]]
+id = "t5cf1j89_j_aN0-36RBt-"
+uri = "file://.local/previews/OR-Q-TEST.pdf"
+type = "pdf"
+title = "OR-Q-TEST — Checkpoint 3 PDF preview"
