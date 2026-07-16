@@ -1,0 +1,116 @@
+# REPLIT BRIEF — Orenara Quote Builder v1
+
+Paste each phase as a separate prompt. Do not proceed to the next phase until I have reviewed the checkpoint and said "proceed". No autonomous work between phases.
+
+---
+
+## PHASE 0 — CONTEXT AND GUARDS (paste with Phase 1)
+
+You are working inside the existing Orenara website repo (React/Vite frontend, Express backend, deployed via Vercel).
+
+**DO NOT MODIFY:**
+- Any existing public-facing page, component, route, or copy
+- Design token definitions (colours, fonts, radii) — consume them, never edit them
+- The enquiry form, its API route, or the Resend email pipeline
+- Anything touching analytics, the Google tag, or GA4 events
+- package.json dependencies except additions explicitly required below
+
+All new work lives under a new `/admin` route namespace and new files only. If a task appears to require touching an existing file beyond adding a route registration, STOP and ask.
+
+**Brand tokens to consume (already defined in the repo):**
+- Palette: ink (primary text/structure), bone (background), ember (accent — use sparingly)
+- Type: Archivo (headings), Instrument Sans (body), IBM Plex Mono (part numbers, quote numbers, figures)
+- 2px border radius, no shadows anywhere
+
+---
+
+## PHASE 1 — AUTH + DATA MODEL
+
+**Goal:** a protected `/admin` area and the quote data structure. Nothing visual yet beyond a login gate.
+
+1. Simple auth for `/admin/*`: single admin password checked server-side, stored as environment variable `ADMIN_PASSWORD`, session cookie (httpOnly). No user accounts, no OAuth. Rate-limit login attempts.
+2. Data model (SQLite or the repo's existing storage pattern — match what exists):
+
+**Quote**
+- id, quoteNumber (format `OR-Q-XXXX`, auto-increment starting 0007 — quotes 1–6 were manual)
+- status: draft | sent | accepted | declined | expired
+- createdAt, sentAt, validUntil (auto = sentAt + 14 days)
+- customerType: residential | commercial
+- customer: name, email, phone, suburb, state
+- projectLabel (e.g. "Pool perimeter — East Village")
+- colourTemp: 2700K | 3000K | 4000K | 5700K | TBC
+- notes (internal, never rendered on PDF)
+
+**Zone** (belongs to Quote)
+- name (e.g. "Pool surround", "Water feature")
+
+**Run** (belongs to Zone)
+- label, lengthMetres (decimal)
+
+**LineItem** (belongs to Quote — generated, editable)
+- partNumber, description, qty, unit
+- No unit prices stored against customers see — see Phase 2 pricing note
+
+3. Seed nothing. Empty state is fine.
+
+**CHECKPOINT 1:** show me the schema and the working login gate. STOP.
+
+---
+
+## PHASE 2 — QUOTE FORM + BOM ENGINE
+
+**Goal:** create/edit a quote and have the system derive the bill of materials.
+
+1. `/admin/quotes/new` — form: customer fields, customerType, projectLabel, colourTemp, then zones → runs (add/remove dynamically, lengths in metres).
+2. **BOM derivation rules (business logic — implement exactly):**
+   - Strip: total = sum of run lengths. One line item per run: `OR-STRIP-24V-WW` (or -CW etc. by colourTemp), description "Factory-sealed submersible run — {label}, {length}m", qty = length, unit = l/m
+   - Drivers: `OR-DRV-150W`. Rule: no driver may serve more than **12.0 metres** of strip total. Default allocation: greedy-pack runs into drivers without splitting a run across drivers. Driver count = result of packing. Render as one line item with qty.
+   - Connectors/end caps: one `OR-CON-IP68` per run, qty = run count
+   - Channel: selectable per quote — `OR-CHN-RGD` (rigid, straight) | `OR-CHN-FLX` (segmented, curves) | `OR-CHN-SS` (stainless, recessed/submerged) | none (reuse existing) — qty = total metres, rounded up to whole metres
+   - Plugs: `OR-PLG-240V`, qty = driver count
+3. Generated line items are **editable before finalising** (qty, description) and items can be added manually (e.g. dimmer `OR-DIM-010V`). The engine proposes; I decide.
+4. **Pricing:** a single `systemPrice` field (AUD, ex GST) entered by me manually. v1 does NOT compute pricing from component costs and NEVER stores or displays per-component prices. GST: if customerType = residential, PDF displays "$X,XXX inc GST" (systemPrice × 1.1, with ex figure in parentheses); if commercial, "$X,XXX ex GST".
+
+**CHECKPOINT 2:** create a test quote — 4 runs (12, 12, 5.5, 5.5), confirm BOM proposes 4 drivers when runs can't pack under 12m, correct connector count, channel maths. STOP.
+
+---
+
+## PHASE 3 — PDF GENERATION
+
+**Goal:** the deliverable. A branded, itemised quote PDF rendered server-side.
+
+1. Route: `/admin/quotes/:id/pdf` returns the PDF; button on the quote page.
+2. Layout (single page where content allows, A4):
+   - Header: Orenara wordmark (existing asset in repo), quote number in IBM Plex Mono, date, "Valid until {date}"
+   - Customer block + projectLabel
+   - Line item table: Part No (mono) | Description | Qty | Unit. **No per-line prices.** Clean rules, generous whitespace, ink on bone, no shadows, 2px radii on any boxed elements
+   - Each line item row includes an **image slot** — a fixed square placeholder that renders only if an image exists at `/admin-assets/products/{partNumber}.png`, otherwise collapses cleanly. (No images exist yet; the layout must look complete without them.)
+   - System price block: single figure, prominent, GST treatment per customerType rules from Phase 2
+   - Terms block (verbatim, do not paraphrase):
+     - "Every system is built to order — allow up to 20 business days from order confirmation."
+     - Warranty line: rendered from a per-quote field, default "System warranty: 2 years (submerged application)" — editable per quote
+     - Payment: residential → "Payment in full on order confirmation." commercial → "50% deposit on confirmation, balance before dispatch."
+     - "Supply only. Installation by the customer's licensed electrician. Every run arrives sealed, tested and labelled per zone."
+     - "Quote valid 14 days from issue."
+   - Footer: orenara.com.au, ABN placeholder `{ABN}` for me to set via env/config
+3. Typography embedded in the PDF must match brand tokens (Archivo/Instrument Sans/IBM Plex Mono). If font embedding is problematic in the chosen PDF lib, STOP and present options rather than substituting fonts.
+4. No exclamation marks anywhere in template copy.
+
+**CHECKPOINT 3:** generate the test quote PDF and show it to me. STOP.
+
+---
+
+## PHASE 4 — QUOTE LIST + STATUS
+
+**Goal:** minimal tracking so this becomes the system of record.
+
+1. `/admin/quotes` — table: quote number, customer, projectLabel, systemPrice, status, sent date, valid-until (highlight expired in ember). Sort newest first. Status editable inline.
+2. Auto-expiry: quotes past validUntil with status "sent" display as expired (display state only — do not mutate stored status).
+3. Duplicate action: clone an existing quote to a new draft with a new number.
+
+**CHECKPOINT 4 / QA:** full pass — create, edit, PDF, status change, duplicate, login/logout, and confirm zero diffs to any pre-existing file except route registration. STOP.
+
+---
+
+## EXPLICITLY OUT OF SCOPE (do not build, do not scaffold)
+Email sending, customer-facing portal, e-signatures, component cost/margin storage, supplier data, dashboards, multi-user auth, mobile app. If tempted, don't.
