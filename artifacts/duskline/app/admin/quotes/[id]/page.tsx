@@ -8,6 +8,8 @@ import {
 import { eq, asc } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import LineItemsEditor from "./LineItemsEditor";
+import QuoteHeaderEditor from "./QuoteHeaderEditor";
+import QuoteDeleteButton from "./QuoteDeleteButton";
 import { logoutAction } from "@/app/admin/login/actions";
 
 export default async function QuotePage({
@@ -183,6 +185,20 @@ export default async function QuotePage({
           </div>
         </div>
 
+        <QuoteHeaderEditor
+          quoteId={quoteId}
+          initial={{
+            customerName:   quote.customerName,
+            customerEmail:  quote.customerEmail,
+            customerPhone:  quote.customerPhone  ?? "",
+            customerSuburb: quote.customerSuburb ?? "",
+            customerState:  quote.customerState  ?? "",
+            projectLabel:   quote.projectLabel,
+            colourTemp:     quote.colourTemp,
+            channelType:    quote.channelType,
+          }}
+        />
+
         {/* Zones summary */}
         <div
           style={{
@@ -262,6 +278,14 @@ export default async function QuotePage({
             "System warranty: 2 years (submerged application)"
           }
         />
+
+        <div style={{ marginTop: "32px", paddingTop: "24px", borderTop: "1px solid var(--ink-line)" }}>
+          <QuoteDeleteButton
+            quoteId={quoteId}
+            quoteNumber={quote.quoteNumber}
+            status={quote.status}
+          />
+        </div>
       </main>
     </div>
   );
