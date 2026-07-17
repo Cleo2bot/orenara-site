@@ -214,6 +214,49 @@ export async function duplicateQuote(sourceId: number): Promise<void> {
   redirect(`/admin/quotes/${newId}`);
 }
 
+export async function updateQuoteHeader(
+  quoteId: number,
+  data: {
+    customerName: string;
+    customerEmail: string;
+    customerPhone: string;
+    customerSuburb: string;
+    customerState: string;
+    projectLabel: string;
+    colourTemp: "2700K" | "3000K" | "4000K" | "5700K" | "TBC";
+    channelType: "OR-CHN-RGD" | "OR-CHN-FLX" | "OR-CHN-SS" | "none";
+  }
+): Promise<void> {
+  await db
+    .update(quotesTable)
+    .set({
+      customerName: data.customerName.trim(),
+      customerEmail: data.customerEmail.trim(),
+      customerPhone: data.customerPhone.trim() || null,
+      customerSuburb: data.customerSuburb.trim() || null,
+      customerState: data.customerState.trim() || null,
+      projectLabel: data.projectLabel.trim(),
+      colourTemp: data.colourTemp,
+      channelType: data.channelType,
+    })
+    .where(eq(quotesTable.id, quoteId));
+}
+
+export async function deleteQuote(quoteId: number): Promise<void> {
+  const [quote] = await db
+    .select({ id: quotesTable.id, status: quotesTable.status })
+    .from(quotesTable)
+    .where(eq(quotesTable.id, quoteId));
+  if (!quote) throw new Error("Quote not found.");
+  if (quote.status !== "draft") {
+    throw new Error(
+      "Only draft quotes can be deleted. Mark it declined or expired instead."
+    );
+  }
+  await db.delete(quotesTable).where(eq(quotesTable.id, quoteId));
+  redirect("/admin");
+}
+
 export async function saveQuoteEdits(
   quoteId: number,
   items: {
