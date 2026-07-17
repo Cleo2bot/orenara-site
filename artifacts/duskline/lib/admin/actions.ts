@@ -7,7 +7,7 @@ import {
   runsTable,
   lineItemsTable,
 } from "@workspace/db";
-import { sql, eq } from "drizzle-orm";
+import { sql, eq, asc } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { deriveBOM } from "@/lib/admin/bom";
 
@@ -108,6 +108,110 @@ export async function createQuote(formData: FormData): Promise<void> {
   });
 
   redirect(`/admin/quotes/${quoteId}`);
+}
+
+export async function updateQuoteStatus(
+  quoteId: number,
+  status: "draft" | "sent" | "accepted" | "declined" | "expired"
+): Promise<void> {
+  await db
+    .update(quotesTable)
+    .set({ status })
+    .where(eq(quotesTable.id, quoteId));
+}
+
+export async function duplicateQuote(sourceId: number): Promise<void> {
+  let newId!: number;
+
+  await db.transaction(async (tx) => {
+    const [source] = await tx
+      .select()
+      .from(quotesTable)
+      .where(eq(quotesTable.id, sourceId));
+    if (!source) throw new Error("Source quote not found");
+
+    const seqResult = await tx.execute(
+      sql`SELECT nextval('quote_number_seq') AS n`
+    );
+    const n = Number((seqResult.rows[0] as { n: string }).n);
+    const quoteNumber = `OR-Q-${String(n).padStart(4, "0")}`;
+
+    const now = new Date();
+    const validUntil = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
+
+    const [newQuote] = await tx
+      .insert(quotesTable)
+      .values({
+        quoteNumber,
+        status: "draft",
+        customerType: source.customerType,
+        customerName: source.customerName,
+        customerEmail: source.customerEmail,
+        customerPhone: source.customerPhone,
+        customerSuburb: source.customerSuburb,
+        customerState: source.customerState,
+        projectLabel: source.projectLabel,
+        colourTemp: source.colourTemp,
+        channelType: source.channelType,
+        systemPrice: source.systemPrice,
+        warrantyLine: source.warrantyLine,
+        notes: source.notes,
+        validUntil,
+      })
+      .returning({ id: quotesTable.id });
+
+    newId = newQuote.id;
+
+    const zones = await tx
+      .select()
+      .from(zonesTable)
+      .where(eq(zonesTable.quoteId, sourceId))
+      .orderBy(asc(zonesTable.sortOrder));
+
+    for (const zone of zones) {
+      const [newZone] = await tx
+        .insert(zonesTable)
+        .values({ quoteId: newId, name: zone.name, sortOrder: zone.sortOrder })
+        .returning({ id: zonesTable.id });
+
+      const runs = await tx
+        .select()
+        .from(runsTable)
+        .where(eq(runsTable.zoneId, zone.id))
+        .orderBy(asc(runsTable.sortOrder));
+
+      for (const run of runs) {
+        await tx.insert(runsTable).values({
+          zoneId: newZone.id,
+          label: run.label,
+          lengthMetres: run.lengthMetres,
+          sortOrder: run.sortOrder,
+        });
+      }
+    }
+
+    const items = await tx
+      .select()
+      .from(lineItemsTable)
+      .where(eq(lineItemsTable.quoteId, sourceId))
+      .orderBy(asc(lineItemsTable.sortOrder));
+
+    if (items.length > 0) {
+      await tx.insert(lineItemsTable).values(
+        items.map((item) => ({
+          quoteId: newId,
+          partNumber: item.partNumber,
+          description: item.description,
+          qty: item.qty,
+          unit: item.unit,
+          isGenerated: item.isGenerated,
+          sortOrder: item.sortOrder,
+        }))
+      );
+    }
+  });
+
+  redirect(`/admin/quotes/${newId}`);
 }
 
 export async function saveQuoteEdits(

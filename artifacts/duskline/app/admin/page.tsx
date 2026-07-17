@@ -1,6 +1,39 @@
+import { db } from "@workspace/db";
+import { quotesTable } from "@workspace/db";
+import { desc } from "drizzle-orm";
 import { logoutAction } from "./login/actions";
+import { QuoteList, type QuoteRow } from "./QuoteList";
 
-export default function AdminPage() {
+export const dynamic = "force-dynamic";
+
+export default async function AdminPage() {
+  const rows = await db
+    .select({
+      id: quotesTable.id,
+      quoteNumber: quotesTable.quoteNumber,
+      status: quotesTable.status,
+      customerName: quotesTable.customerName,
+      customerType: quotesTable.customerType,
+      projectLabel: quotesTable.projectLabel,
+      systemPrice: quotesTable.systemPrice,
+      createdAt: quotesTable.createdAt,
+      validUntil: quotesTable.validUntil,
+    })
+    .from(quotesTable)
+    .orderBy(desc(quotesTable.createdAt));
+
+  const quotes: QuoteRow[] = rows.map((r) => ({
+    id: r.id,
+    quoteNumber: r.quoteNumber,
+    status: r.status as QuoteRow["status"],
+    customerName: r.customerName,
+    customerType: r.customerType as QuoteRow["customerType"],
+    projectLabel: r.projectLabel,
+    systemPrice: r.systemPrice ?? null,
+    createdAt: r.createdAt ?? new Date(),
+    validUntil: r.validUntil ?? null,
+  }));
+
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <header
@@ -33,34 +66,47 @@ export default function AdminPage() {
       <main
         style={{
           flex: 1,
-          maxWidth: "480px",
+          maxWidth: "960px",
           margin: "0 auto",
-          padding: "64px 24px",
+          padding: "48px 32px",
           width: "100%",
         }}
       >
-        <p className="eyebrow" style={{ marginBottom: "8px" }}>
-          Admin
-        </p>
-        <h1
+        <div
           style={{
-            fontFamily: "var(--font-display)",
-            fontWeight: 500,
-            fontSize: "1.5rem",
-            color: "var(--bone)",
-            margin: "0 0 32px",
+            display: "flex",
+            alignItems: "baseline",
+            justifyContent: "space-between",
+            marginBottom: "32px",
+            gap: 16,
           }}
         >
-          Quote Builder
-        </h1>
+          <div>
+            <p className="eyebrow" style={{ marginBottom: "6px" }}>
+              Admin
+            </p>
+            <h1
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 500,
+                fontSize: "1.5rem",
+                color: "var(--bone)",
+                margin: 0,
+              }}
+            >
+              Quotes
+            </h1>
+          </div>
+          <a
+            href="/admin/quotes/new"
+            className="btn-primary"
+            style={{ display: "inline-flex", whiteSpace: "nowrap" }}
+          >
+            New Quote
+          </a>
+        </div>
 
-        <a
-          href="/admin/quotes/new"
-          className="btn-primary"
-          style={{ display: "inline-flex" }}
-        >
-          New Quote
-        </a>
+        <QuoteList quotes={quotes} />
       </main>
     </div>
   );
