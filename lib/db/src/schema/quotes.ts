@@ -11,9 +11,9 @@ import {
 } from "drizzle-orm/pg-core";
 
 export const quoteNumberSeq = pgSequence("quote_number_seq", {
-  startWith: 7,
+  startWith: 2142,
   increment: 1,
-  minValue: 7,
+  minValue: 2141,
 });
 
 export const quoteStatusEnum = pgEnum("quote_status", [
