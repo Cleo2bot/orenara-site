@@ -29,12 +29,22 @@ export function registerFonts() {
   });
 }
 
+// Swap the JPG here (or replace the file at the same path) — no other code changes needed.
+const HERO_IMAGE_PATH = path.join(
+  process.cwd(),
+  "public",
+  "admin-assets",
+  "pdf",
+  "hero-pool-dusk.jpg"
+);
+
 const INK = "#0F1113";
 const BONE = "#F3EEE4";
 const BONE_DIM = "#B8B2A6";
 const LINE = "#DEDAD4";
 
 const s = StyleSheet.create({
+  /* ── page ─────────────────────────────────────── */
   page: {
     backgroundColor: BONE,
     color: INK,
@@ -79,7 +89,7 @@ const s = StyleSheet.create({
     color: BONE_DIM,
     marginBottom: 2,
   },
-  validUntil: {
+  validUntilRight: {
     fontFamily: "IBMPlexMono",
     fontSize: 8,
     color: INK,
@@ -89,6 +99,54 @@ const s = StyleSheet.create({
     height: 1,
     backgroundColor: LINE,
     marginVertical: 14,
+  },
+  /* ── hero band ─────────────────────────────────── */
+  heroBand: {
+    height: 113,
+    overflow: "hidden",
+    marginLeft: -45,
+    marginRight: -45,
+    marginBottom: 0,
+  },
+  heroImage: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    objectPosition: "center top",
+  },
+  /* ── pitch block ─────────────────────────────────── */
+  pitchBlock: {
+    backgroundColor: INK,
+    marginLeft: -45,
+    marginRight: -45,
+    paddingLeft: 45,
+    paddingRight: 45,
+    paddingTop: 20,
+    paddingBottom: 20,
+    marginBottom: 14,
+  },
+  pitchBrandLine: {
+    fontFamily: "Archivo",
+    fontWeight: 500,
+    fontSize: 14,
+    color: BONE,
+    marginBottom: 10,
+  },
+  pitchParagraph: {
+    fontFamily: "InstrumentSans",
+    fontSize: 8,
+    color: BONE_DIM,
+    lineHeight: 1.6,
+    marginBottom: 14,
+  },
+  pitchProofsContainer: {
+    flexDirection: "column",
+    gap: 6,
+  },
+  pitchProofItem: {
+    fontFamily: "IBMPlexMono",
+    fontSize: 6.5,
+    color: BONE,
   },
   /* ── customer block ─────────────────────────────── */
   projectLabel: {
@@ -158,7 +216,6 @@ const s = StyleSheet.create({
     color: BONE_DIM,
     paddingLeft: 4,
   },
-  /* image columns (shown only when images exist) */
   cellImgPartNo: { width: "16%" },
   cellImgDescription: { width: "50%" },
   cellImgQty: { width: "10%" },
@@ -198,7 +255,18 @@ const s = StyleSheet.create({
     marginTop: 2,
     marginBottom: 2,
   },
-  /* ── terms ───────────────────────────────────────── */
+  /* ── validity + lead-time (page 1) ─────────────── */
+  leadTimeBlock: {
+    marginTop: 4,
+  },
+  leadTimeLine: {
+    fontFamily: "InstrumentSans",
+    fontSize: 8,
+    color: BONE_DIM,
+    lineHeight: 1.5,
+    marginBottom: 2,
+  },
+  /* ── terms (page 2) ──────────────────────────────── */
   termsBlock: {
     marginTop: 4,
   },
@@ -230,6 +298,18 @@ const s = StyleSheet.create({
     fontSize: 7,
     color: BONE_DIM,
   },
+  /* ── page-2 header (wordmark only) ─────────────── */
+  page2Header: {
+    marginBottom: 20,
+  },
+  page2Wordmark: {
+    fontFamily: "Archivo",
+    fontWeight: 500,
+    fontSize: 15,
+    letterSpacing: 3.3,
+    textTransform: "uppercase",
+    color: INK,
+  },
 });
 
 export interface PDFLineItem {
@@ -254,7 +334,6 @@ export interface QuotePDFProps {
   lineItems: PDFLineItem[];
   systemPrice: string | null;
   warrantyLine: string;
-  logoBase64?: string;
   abn: string;
 }
 
@@ -290,7 +369,6 @@ export function QuotePDFDoc(props: QuotePDFProps) {
     lineItems,
     systemPrice,
     warrantyLine,
-    logoBase64,
     abn,
   } = props;
 
@@ -306,7 +384,9 @@ export function QuotePDFDoc(props: QuotePDFProps) {
 
   return (
     <Document>
+      {/* ══════════════════════════════════════════ PAGE 1 */}
       <Page size="A4" style={s.page}>
+
         {/* HEADER */}
         <View style={s.header}>
           <View style={s.headerLeft}>
@@ -315,13 +395,41 @@ export function QuotePDFDoc(props: QuotePDFProps) {
           </View>
           <View style={s.headerRight}>
             <Text style={s.headerMeta}>Issued {formatDate(createdAt)}</Text>
-            <Text style={s.validUntil}>
+            <Text style={s.validUntilRight}>
               Valid until {formatDate(validUntil)}
             </Text>
           </View>
         </View>
 
         <View style={s.divider} />
+
+        {/* HERO IMAGE BAND */}
+        <View style={s.heroBand}>
+          <Image style={s.heroImage} src={HERO_IMAGE_PATH} />
+        </View>
+
+        {/* PITCH BLOCK */}
+        <View style={s.pitchBlock}>
+          <Text style={s.pitchBrandLine}>Not Waterproof. Submersible.</Text>
+          <Text style={s.pitchParagraph}>
+            Sealed silicone, end to end. No seams, no glued joints, no ingress
+            path. Every Orenara system is rated IP68 across the strip,
+            connectors and end caps — built for pool edges, water features and
+            coastal exposure, and cut to your measured lengths before it leaves
+            us.
+          </Text>
+          <View style={s.pitchProofsContainer}>
+            <Text style={s.pitchProofItem}>
+              IP68 END TO END — strip, connectors and end caps all rated
+            </Text>
+            <Text style={s.pitchProofItem}>
+              NO FIELD JOINS — factory-sealed runs, cut to length
+            </Text>
+            <Text style={s.pitchProofItem}>
+              2-YEAR SUBMERGED WARRANTY
+            </Text>
+          </View>
+        </View>
 
         {/* CUSTOMER BLOCK */}
         <Text style={s.projectLabel}>{projectLabel}</Text>
@@ -336,7 +444,7 @@ export function QuotePDFDoc(props: QuotePDFProps) {
 
         <View style={s.divider} />
 
-        {/* LINE ITEMS */}
+        {/* LINE ITEMS TABLE */}
         <View style={s.tableContainer}>
           <View style={s.tableHeader}>
             {hasImages ? (
@@ -374,12 +482,20 @@ export function QuotePDFDoc(props: QuotePDFProps) {
                   Description
                 </Text>
                 <Text
-                  style={[s.tableHeaderCell, s.cellQty, { textAlign: "right" }]}
+                  style={[
+                    s.tableHeaderCell,
+                    s.cellQty,
+                    { textAlign: "right" },
+                  ]}
                 >
                   Qty
                 </Text>
                 <Text
-                  style={[s.tableHeaderCell, s.cellUnit, { textAlign: "right" }]}
+                  style={[
+                    s.tableHeaderCell,
+                    s.cellUnit,
+                    { textAlign: "right" },
+                  ]}
                 >
                   Unit
                 </Text>
@@ -388,7 +504,7 @@ export function QuotePDFDoc(props: QuotePDFProps) {
           </View>
 
           {lineItems.map((item, i) => (
-            <View key={i} style={s.tableRow}>
+            <View key={i} style={s.tableRow} wrap={false}>
               {hasImages ? (
                 <>
                   <Text style={[s.cellPartNo, s.cellImgPartNo]}>
@@ -444,9 +560,36 @@ export function QuotePDFDoc(props: QuotePDFProps) {
           </>
         ) : null}
 
+        {/* VALIDITY + LEAD-TIME */}
+        <View style={s.divider} />
+        <View style={s.leadTimeBlock}>
+          <Text style={s.leadTimeLine}>
+            Valid until {formatDate(validUntil)}
+          </Text>
+          <Text style={s.leadTimeLine}>
+            Every system is built to order — allow up to 20 business days from
+            order confirmation.
+          </Text>
+        </View>
+
+        {/* FOOTER */}
+        <View style={s.footer}>
+          <Text style={s.footerText}>orenara.com.au</Text>
+          <Text style={s.footerText}>ABN {abn}</Text>
+        </View>
+      </Page>
+
+      {/* ══════════════════════════════════════════ PAGE 2 — TERMS */}
+      <Page size="A4" style={s.page}>
+
+        {/* PAGE 2 HEADER — wordmark only */}
+        <View style={s.page2Header}>
+          <Text style={s.page2Wordmark}>ORENARA</Text>
+        </View>
+
         <View style={s.divider} />
 
-        {/* TERMS */}
+        {/* TERMS — verbatim, all five sentences, in order */}
         <View style={s.termsBlock}>
           <Text style={s.termsHeading}>Terms</Text>
           <Text style={s.termsLine}>

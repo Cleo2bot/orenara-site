@@ -78,10 +78,6 @@ export async function GET(
     };
   });
 
-  const logoPath = path.join(process.cwd(), "public", "orenara-logo-sig.png");
-  const logoData = fs.readFileSync(logoPath);
-  const logoBase64 = `data:image/png;base64,${logoData.toString("base64")}`;
-
   const createdAt = quote.createdAt ? new Date(quote.createdAt) : new Date();
   const validUntil = quote.validUntil
     ? new Date(quote.validUntil)
@@ -110,7 +106,6 @@ export async function GET(
     warrantyLine:
       quote.warrantyLine ??
       "System warranty: 2 years (submerged application)",
-    logoBase64,
     abn,
   }) as unknown as ReactElement<DocumentProps>;
 

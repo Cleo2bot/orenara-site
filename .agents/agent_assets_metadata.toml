@@ -539,3 +539,21 @@ id = "Rk0VR36s-9i8gAOtzpnYx"
 uri = "file://.local/previews/OR-Q-TEST-abn.pdf"
 type = "pdf"
 title = "OR-Q-TEST — ABN + wordmark sign-off"
+
+[[outputs]]
+id = "-RGy120rLuADShXB3vxLQ"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2-q1.pdf"
+type = "pdf"
+title = "Quote 1 — shape A"
+
+[[outputs]]
+id = "nuyAydrInxD7JFVkgi-8V"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2-q3.pdf"
+type = "pdf"
+title = "Quote 3 — shape B"
+
+[[outputs]]
+id = "n9qc9NKVRNvxvPwAG5Zrg"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2-q4.pdf"
+type = "pdf"
+title = "Quote 4 — shape C"
