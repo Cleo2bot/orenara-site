@@ -580,37 +580,37 @@ title = "Quote PDF — OR-Q-2143 (re-render)"
 id = "911K-HkCW9AoDGTDNVlUw"
 uri = "file://artifacts/duskline/public/admin-assets/pdf/crop-previews/A-pool-dusk-y700.jpg"
 type = "image"
-title = "A — pool-dusk, lower band (y=700, shows lit strip + water)"
+title = "A — pool-dusk lower band"
 
 [[outputs]]
 id = "qB6XAn0wDkS8ghhsnLNCd"
 uri = "file://artifacts/duskline/public/admin-assets/pdf/crop-previews/A2-pool-dusk-y650.jpg"
 type = "image"
-title = "A2 — pool-dusk, slightly higher (y=650, more coping visible)"
+title = "A2 — pool-dusk slightly higher"
 
 [[outputs]]
 id = "WSz1NqmEHa6lDnfCMTCoe"
 uri = "file://artifacts/duskline/public/admin-assets/pdf/crop-previews/B1-curved-travertine-y520.jpg"
 type = "image"
-title = "B1 — curved travertine, mid band (y=520)"
+title = "B1 — curved travertine mid"
 
 [[outputs]]
 id = "5l8Zz2jwC1tNQJ02WIfff"
 uri = "file://artifacts/duskline/public/admin-assets/pdf/crop-previews/B2-travertine-edge-y520.jpg"
 type = "image"
-title = "B2 — travertine edge, mid band (y=520)"
+title = "B2 — travertine edge mid (chosen)"
 
 [[outputs]]
 id = "jY2FoftqXvJkWPBdBswam"
 uri = "file://artifacts/duskline/public/admin-assets/pdf/crop-previews/B3-curved-travertine-y700.jpg"
 type = "image"
-title = "B3 — curved travertine, lower band (y=700)"
+title = "B3 — curved travertine lower"
 
 [[outputs]]
 id = "x5AdqG4nRZypQUdW4KMe-"
 uri = "file://artifacts/duskline/public/admin-assets/pdf/crop-previews/B4-travertine-edge-y700.jpg"
 type = "image"
-title = "B4 — travertine edge, lower band (y=700)"
+title = "B4 — travertine edge lower"
 
 [[outputs]]
 id = "P7dnHfkPRx9nRWFDeNbFG"
