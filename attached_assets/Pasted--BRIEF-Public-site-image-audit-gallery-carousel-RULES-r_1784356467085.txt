@@ -1,0 +1,74 @@
+# BRIEF: Public site image audit + gallery carousel
+
+## RULES — read first, these override everything below
+1. **Every checkpoint is a hard stop. You STOP and WAIT for the word "proceed." Do not continue past a checkpoint for any reason, including confidence that the next phase is obvious.**
+2. **No push to GitHub without Ben's explicit approval. Never route around a blocked path — if git commit fails, STOP and report; do not use the GitHub API or any alternative push mechanism.**
+
+Pushes to main auto-deploy to production via Vercel. The public site is live revenue infrastructure. You propose; Ben decides.
+
+## DO NOT MODIFY
+- Resend enquiry-notification pipeline (any file touching it)
+- Google tag + GA4 wiring on form success
+- Enquiry form logic and fields
+- Anything under /admin (quote builder)
+- Database schema, env vars, package.json dependencies EXCEPT where Phase 3 explicitly permits one carousel dependency
+- Page copy/text content — this task is images, one new component, and the review-section removal specified below. Nothing else.
+
+## Context
+New product/application images have been uploaded to the workspace (the recent PNG batch). Task: (1) audit every image currently used on public pages, (2) propose a replace/add mapping using the new images, (3) build a swipeable gallery carousel, (4) integrate, PLUS remove the existing customer review/testimonial section from the public site — each as a separate phase with a checkpoint.
+
+**Review section removal:** the review/testimonial section currently on the public site is to be removed entirely for now. Remove the section cleanly (component unmounted, no orphaned imports, no layout gap or broken spacing where it sat). Do not delete the component file — move it to an _archive location so it can be restored later. If reviews appear in more than one place (e.g. homepage + trade page), list every instance in Phase 1 and remove all of them in Phase 4 unless Ben says otherwise at Checkpoint 2. If any structured-data/schema markup (e.g. review or aggregateRating JSON-LD) references reviews, remove that too — orphaned review schema is an SEO liability.
+
+Image quality bar: warm white 3000K, dusk settings, premium hardscape (pool coping, stone steps, porcelain paving). The new batch is the reference standard.
+
+---
+
+## PHASE 1 — Audit only. No file changes of any kind.
+Produce an inventory table of every image referenced on public pages (/, /trade, all kit pages, and any other public route):
+
+| File path | Page(s) + section | Rendered via next/image? | Format | Dimensions | File size (KB) |
+
+Also list:
+- The new uploaded image batch: file paths, dimensions, file sizes as stored
+- Any images in /public not referenced anywhere (orphans)
+- Total image weight per public page as currently shipped
+- **Review section inventory:** every place the review/testimonial section appears (page + component file path), plus any review-related structured data (JSON-LD) found
+
+**CHECKPOINT 1 — STOP. Output the tables and wait for "proceed."**
+
+---
+
+## PHASE 2 — Proposal only. No file changes of any kind.
+Based on the Phase 1 inventory, propose:
+1. **Replace/add mapping:** for each new image, which page + section it should replace or be added to, with one line of reasoning. Flag any existing image you recommend keeping.
+2. **Optimisation plan:** convert all new (and any unoptimised existing) images to WebP, max 1920px on the long edge, target under ~250KB each, originals archived not deleted. All rendering via next/image with correct `sizes` attributes and lazy loading (except any above-the-fold hero, which gets `priority`).
+3. **Gallery carousel placement:** propose where the carousel lives (e.g. homepage section and/or dedicated route) and which images it contains.
+4. **Section naming:** present options for the carousel's heading — do NOT default to "Projects", "Our work", or "Jobs". Ben will choose the name at this checkpoint.
+5. **Alt text:** proposed descriptive alt text for every image placed (pool/outdoor lighting descriptive, natural language, no keyword stuffing).
+6. **Review removal scope:** confirm the full list of review-section instances (and any review JSON-LD) from Phase 1 to be removed, and what fills or closes the layout gap in each spot (e.g. section removed cleanly vs. carousel taking its place — propose, don't decide).
+
+**CHECKPOINT 2 — STOP. Ben will approve/amend the mapping and choose the section name. Wait for "proceed."**
+
+---
+
+## PHASE 3 — Build the carousel component. No integration into pages yet. No push.
+- Component: responsive, touch/swipe on mobile, arrow + dot navigation on desktop, loops, lazy-loads offscreen slides.
+- Dependency: prefer zero new dependencies (CSS scroll-snap + minimal JS). If a library is genuinely warranted, embla-carousel-react is the only pre-approved option — anything else requires asking first.
+- All images via next/image. No layout shift (explicit dimensions / fill with aspect ratio).
+- Accessible: keyboard navigable, buttons labelled, respects prefers-reduced-motion.
+- Optional per-slide caption support (short application label, e.g. "Pool coping — recessed channel"), content per the approved Phase 2 mapping.
+- Build it renderable in the workspace preview on an unrouted test page or the workspace only.
+- Run the local production build and confirm it passes.
+
+**CHECKPOINT 3 — STOP. Show the component in preview. Wait for "proceed."**
+
+---
+
+## PHASE 4 — Integrate. Still no push.
+- Execute the approved Phase 2 mapping: optimised images in place, old images archived (moved, not deleted — e.g. /public/_archive/), carousel mounted in the approved location with the approved heading.
+- Remove the review/testimonial section per the approved Phase 2 scope: component file archived not deleted, no orphaned imports, no broken layout/spacing where it sat, any review JSON-LD removed.
+- Verify no references to archived images or the removed review section remain (no broken images, no dead imports).
+- Run the local production build — must pass clean.
+- Report: pages changed, before/after image weight per page, screenshots of each changed section.
+
+**CHECKPOINT 4 — STOP. Ben reviews. Push to GitHub happens only after his explicit approval, and only via normal git. After an approved push, Ben will verify the Vercel deploy and spot-check /, /trade, and one kit page.**
