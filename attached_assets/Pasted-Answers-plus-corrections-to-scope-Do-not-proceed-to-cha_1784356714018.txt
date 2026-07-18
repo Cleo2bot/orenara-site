@@ -1,0 +1,31 @@
+Answers, plus corrections to scope. Do not proceed to changes — this is direction for your Phase 2 proposal.
+
+1. HERO: Yes, swap to install-pool-dusk.png (full-bleed, dark sky holds the overlay text). Pool-first is the brand.
+
+2. ENVIRONMENTS: Assign closest genuine fits:
+   - Pool & Aquatic → install-travertine-pool-edge
+   - Tropical & Humid → install-pool-pavilion-tropical
+   - Coastal → install-lap-pool-luxury-home
+   - Commercial & Hospitality → install-rooftop-pool-cityview
+   - Marina and Rural: KEEP current AI images for now. Matching photos in the same style are being produced and will be supplied — leave these two slots flagged in your proposal as "pending supplied image".
+
+3. KIT CARDS: Replace all 4 with application-matched shots:
+   - Pool kit → install-curved-travertine-pool
+   - Pathway kit → install-curved-retaining-path
+   - Pergola kit → install-courtyard-patio-led
+   - Custom zone kit → install-step-edge-night
+   Propose alternatives if you think a different mapping reads better — flag, don't decide.
+
+4. TRADE PAGE: Yes, replace all three:
+   - TradeHero → install-rooftop-pool-cityview (commercial signal)
+   - SpecSection banner → install-travertine-steps-pool (works under text overlay — confirm contrast)
+   - WhyTrades → install-waterfall-rockpond or install-curved-granite-edge — propose one.
+
+SCOPE CORRECTIONS:
+A. Review removal covers BOTH ReviewPhotos.tsx and TradeReviews.tsx, all 10 image files archived with them, plus any review JSON-LD.
+B. Filename convention: during WebP conversion, rename all new images from the install- prefix to orenara-{descriptor}.webp (e.g. orenara-pool-dusk.webp). No public-facing filename may contain the word "install".
+C. strip-submerged.webp (3,092 KB, priority-loaded) must be included in the optimisation pass — recompress to the same targets as the new batch.
+D. Confirm whether individual kit detail pages were audited. If they contain images, add them to the inventory before proposing.
+E. Gallery carousel contents: propose the best 8–10 of the batch, not all 18 — repetition weakens it.
+
+Now produce your full Phase 2 proposal per the brief. CHECKPOINT 2 still applies — propose, then STOP and wait for "proceed". No file changes. No push to GitHub without explicit approval.
