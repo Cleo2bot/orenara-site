@@ -305,8 +305,8 @@ export default function MountingSystem() {
         <div className="track-img-outer">
           <div className="track-img-inner">
             <Image
-              src="/images/product/segmented-track.webp"
-              alt="Orenara flexible segmented aluminium track curving to a consistent radius"
+              src="/images/product/curved-track-1600.webp"
+              alt="Flexible segmented mounting track on a curve"
               fill
               sizes="(max-width: 767px) 100vw, (max-width: 1280px) 100vw, 1280px"
               style={{ objectFit: "cover", objectPosition: "center 50%" }}

@@ -80,8 +80,8 @@ export default function KitComponents() {
           }}
         >
           <Image
-            src="/images/product/kit-landscape.webp"
-            alt="Orenara kit components: silicone LED neon strip, 24V dimmable driver, touch dimmer panel, 240V mains lead"
+            src="/images/product/product-kit-top-view-1600.webp"
+            alt="Submersible LED strip system components"
             fill
             sizes="(max-width: 768px) 100vw, 1280px"
             style={{ objectFit: "cover", objectPosition: "center" }}
