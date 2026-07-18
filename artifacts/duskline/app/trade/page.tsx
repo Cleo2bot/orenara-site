@@ -10,6 +10,14 @@ export const metadata: Metadata = {
   title: "Orenara Trade — Priced fast, delivered when we say",
   description:
     "Trade orders for IP68 outdoor LED strip lighting. Firm price and confirmed delivery date within 24 hours. Expedite available for hard deadlines. Supply-only, RCM compliant.",
+  alternates: {
+    canonical: "https://www.orenara.com.au/trade",
+  },
+  openGraph: {
+    title: "Orenara Trade — Priced fast, delivered when we say",
+    description:
+      "Trade orders for IP68 outdoor LED strip lighting. Firm price and confirmed delivery date within 24 hours. Expedite available for hard deadlines. Supply-only, RCM compliant.",
+  },
   robots: {
     index: true,
     follow: true,

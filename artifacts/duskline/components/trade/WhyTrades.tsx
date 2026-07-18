@@ -114,7 +114,7 @@ export default function WhyTrades() {
           <div className="img-treated">
             <img
               src="/images/gallery/orenara-waterfall-rockpond.webp"
-              alt="Two tradies relaxing on a ute tailgate at dusk beside a driveway lit with warm Orenara strip lighting, coastal mansion behind."
+              alt="Waterfall and rock pond water feature at night with Orenara LED strip lighting integrated into the rockwork"
               style={{ display: "block", width: "100%", height: "auto" }}
             />
           </div>

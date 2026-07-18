@@ -49,7 +49,7 @@ export default function SpecSection() {
           >
             <Image
               src="/images/gallery/orenara-travertine-steps-pool.webp"
-              alt="Orenara continuous dot-free LED strip concealed beneath a sandstone wall coping, casting an even warm amber glow across the stone face at deep dusk by the coast"
+              alt="Travertine pool steps with continuous dot-free Orenara LED strip casting warm light across the stone and water"
               fill
               sizes="(max-width: 768px) 100vw, 1200px"
               style={{ objectFit: "cover" }}
