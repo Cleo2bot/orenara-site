@@ -14,12 +14,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function QuoteBuilderPage() {
+export default function QuoteBuilderPage({ searchParams }: { searchParams: { kit?: string } }) {
   return (
     <>
       <Navbar />
       <main>
-        <QuoteBuilder />
+        <QuoteBuilder initialKitSlug={searchParams.kit} />
         <QuoteBuilderClosingBand />
       </main>
       <Footer />

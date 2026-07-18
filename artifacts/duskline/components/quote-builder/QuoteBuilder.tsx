@@ -17,6 +17,13 @@ import {
 
 const timelines = ["ASAP", "1–3 months", "3–6 months", "Just researching"];
 
+const KIT_NAMES: Record<string, string> = {
+  "pathway-kit": "Pathway Kit",
+  "pergola-kit": "Pergola Kit",
+  "pool-water-feature-kit": "Pool & Water Feature Kit",
+  "custom-zone-kit": "Custom Zone Kit",
+};
+
 function makeId(prefix: string): string {
   return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 }
@@ -58,7 +65,12 @@ const labelStyle: React.CSSProperties = {
   textTransform: "uppercase",
 };
 
-export default function QuoteBuilder() {
+interface QuoteBuilderProps {
+  initialKitSlug?: string;
+}
+
+export default function QuoteBuilder({ initialKitSlug }: QuoteBuilderProps) {
+  const kitName = (initialKitSlug && KIT_NAMES[initialKitSlug]) || "Not specified — quote builder";
   const [zones, setZones] = useState<ZoneFormState[]>([]);
   const [contact, setContact] = useState<ContactState>(INITIAL_CONTACT);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -134,7 +146,7 @@ export default function QuoteBuilder() {
           email: contact.email,
           phone: contact.phone || undefined,
           suburb: contact.suburb,
-          kit: "Custom Zone Kit",
+          kit: kitName,
           timeline: contact.timeline,
           zones: calculatedZones.filter((z) => z.totalLengthMetres > 0),
           totals,
@@ -203,6 +215,27 @@ export default function QuoteBuilder() {
           <p className="spec-badge mb-6" style={{ display: "inline-flex" }}>
             Build Your Kit
           </p>
+          {initialKitSlug && KIT_NAMES[initialKitSlug] && (
+            <p
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                fontSize: "0.8125rem",
+                color: "var(--bone-dim)",
+                marginBottom: "16px",
+                padding: "6px 12px",
+                background: "var(--ink-raised)",
+                border: "1px solid var(--ink-line)",
+                borderRadius: "var(--radius)",
+              }}
+            >
+              Kit:{" "}
+              <span style={{ color: "var(--bone)", fontWeight: 500 }}>
+                {KIT_NAMES[initialKitSlug]}
+              </span>
+            </p>
+          )}
           <h1
             className="font-medium mb-4"
             style={{
@@ -511,7 +544,7 @@ export default function QuoteBuilder() {
         </div>
       </div>
 
-      <PrintQuoteView zones={calculatedZones} totals={totals} contact={contact} partLabels={PART_LABELS} />
+      <PrintQuoteView zones={calculatedZones} totals={totals} contact={contact} partLabels={PART_LABELS} kitName={kitName} />
     </section>
   );
 }

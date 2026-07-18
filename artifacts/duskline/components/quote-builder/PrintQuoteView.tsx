@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PART_NUMBERS, type QuoteZoneCalculated, type QuoteTotals } from "@/lib/quoteCalc";
+import { PART_NUMBERS, getKitPartNumber, type QuoteZoneCalculated, type QuoteTotals } from "@/lib/quoteCalc";
 
 interface PrintContact {
   name: string;
@@ -16,11 +16,12 @@ interface PrintQuoteViewProps {
   totals: QuoteTotals;
   contact: PrintContact;
   partLabels: Record<string, string>;
+  kitName: string;
 }
 
 const rule = { border: "none", borderTop: "1px solid var(--print-line)", margin: "16px 0" };
 
-export default function PrintQuoteView({ zones, totals, contact, partLabels }: PrintQuoteViewProps) {
+export default function PrintQuoteView({ zones, totals, contact, partLabels, kitName }: PrintQuoteViewProps) {
   const validZones = zones.filter((z) => z.totalLengthMetres > 0);
   const [generatedDate, setGeneratedDate] = useState("");
 
@@ -67,7 +68,7 @@ export default function PrintQuoteView({ zones, totals, contact, partLabels }: P
         <div><strong>Phone:</strong> {contact.phone || "—"}</div>
         <div><strong>Suburb / State:</strong> {contact.suburb || "—"}</div>
         <div><strong>Timeline:</strong> {contact.timeline || "—"}</div>
-        <div><strong>Kit:</strong> Custom Zone Kit ({PART_NUMBERS.kits["Custom Zone Kit"]})</div>
+        <div><strong>Kit:</strong> {kitName}{getKitPartNumber(kitName) ? ` (${getKitPartNumber(kitName)})` : ""}</div>
       </div>
 
       <hr style={rule} />

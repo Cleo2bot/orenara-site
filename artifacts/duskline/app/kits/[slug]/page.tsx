@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Wordmark from "@/components/Wordmark";
 import Footer from "@/components/sections/Footer";
+import KitWorkedExample from "@/components/sections/KitWorkedExample";
 import { getKitBySlug, kits } from "@/lib/kits";
 
 export function generateStaticParams() {
@@ -165,15 +166,73 @@ export default function KitDetailPage({ params }: { params: { slug: string } }) 
           ))}
         </div>
 
-        {/* CTAs */}
-        <div className="flex flex-wrap gap-3">
-          <Link href={`/#enquire`} className="btn-outline" data-testid="kit-detail-enquire-btn">
-            Enquire for Pricing
-          </Link>
-          <Link href="/quote-builder" className="btn-outline" data-testid="kit-detail-quote-builder-btn">
-            Open Quote Builder
-          </Link>
-        </div>
+        {kit.slug === "pathway-kit" ? (
+          <>
+            <KitWorkedExample />
+
+            {/* Start your quote — Phase 2 pilot (Pathway) */}
+            <div
+              style={{
+                paddingTop: "40px",
+                borderTop: "1px solid var(--ink-line)",
+              }}
+            >
+              <h2
+                className="font-medium"
+                style={{
+                  fontSize: "clamp(1.25rem, 2.5vw, 1.625rem)",
+                  color: "var(--bone)",
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.2,
+                  marginBottom: "12px",
+                }}
+              >
+                Start your quote.
+              </h2>
+              <p
+                style={{
+                  fontSize: "0.9375rem",
+                  color: "var(--bone-dim)",
+                  lineHeight: 1.7,
+                  marginBottom: "28px",
+                  maxWidth: "580px",
+                }}
+              >
+                Tell us your lengths and where the power is. We&apos;ll spec the rest and come back with a firm price — every system is built to order, allow up to 20 business days from order confirmation.
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <Link
+                  href={`/quote-builder?kit=${kit.slug}`}
+                  className="btn-primary"
+                  data-testid="kit-detail-start-quote-btn"
+                >
+                  Start your quote
+                </Link>
+                <Link
+                  href="/#enquire"
+                  style={{
+                    fontSize: "0.9375rem",
+                    color: "var(--bone-dim)",
+                    textDecoration: "underline",
+                    textUnderlineOffset: "3px",
+                  }}
+                  data-testid="kit-detail-enquire-link"
+                >
+                  or enquire for pricing
+                </Link>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="flex flex-wrap gap-3">
+            <Link href="/#enquire" className="btn-outline" data-testid="kit-detail-enquire-btn">
+              Enquire for Pricing
+            </Link>
+            <Link href="/quote-builder" className="btn-outline" data-testid="kit-detail-quote-builder-btn">
+              Open Quote Builder
+            </Link>
+          </div>
+        )}
       </div>
 
       <Footer />
