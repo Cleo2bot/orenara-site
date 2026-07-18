@@ -1,0 +1,19 @@
+Proposal is close. Corrections before proceed — read all of these, they change your execution plan.
+
+1. REVIEW REMOVAL IS INCOMPLETE. The text review card (stars, quote, attribution) in InstallerReview.tsx does NOT stay. The entire review section is removed: ReviewPhotos.tsx, TradeReviews.tsx, AND the review card content of InstallerReview.tsx. The gallery is not placed inside the review section — it becomes its own standalone section component in that position. If InstallerReview.tsx ends up empty, archive it.
+
+2. ARCHIVE, NOT DELETE — everything. No file is deleted in this job. Create /public/_archive/ (excluded from any sitemap) and move there: the 10 review images, the 8 unused assets, and every section image being replaced (old hero.webp, env-*.webp, kit-*.webp, trade PNGs, review components). The dated 2026*.jpg files are original photography — under no circumstances delete them.
+
+3. FOLDER RENAME: /public/images/install/ → /public/images/gallery/. Everything under /public is a public URL, so the no-"install" naming rule applies to the folder too. Component: name it Gallery.tsx. Section heading: "Gallery".
+
+4. PHASES STAY SPLIT. Your execution order merges Phase 3 and Phase 4 — it stays two phases:
+   PHASE 3 (after this proceed): image conversion/renaming into /public/images/gallery/, recompression, and building Gallery.tsx rendering on a preview/test page only. NO changes to live page components, NO review removal, NO archiving yet. Then STOP at CHECKPOINT 3 with preview screenshots.
+   PHASE 4 (after a second proceed): integration, review removal, archiving, typecheck, production build, section screenshots. Then STOP at CHECKPOINT 4.
+
+5. ADDITIONS:
+   - how-it-works.png (1,180 KB): keep the image for now but recompress in place to ≤ 250 KB WebP, same as strip-submerged.
+   - Gallery behaviour per the original brief: touch/swipe mobile, arrows + dots desktop, loops, lazy-loads, keyboard navigable, respects prefers-reduced-motion. No autoplay-only pattern. Zero new dependencies preferred; embla-carousel-react is the only pre-approved library.
+
+Confirmed as proposed: all image assignments including WhyTrades → waterfall-rockpond, kit mappings as listed, rooftop shared across env-hospitality/TradeHero, optimisation targets, desert image excluded.
+
+Proceed to PHASE 3 ONLY. Checkpoint 3 is a hard stop. No push to GitHub without explicit approval.

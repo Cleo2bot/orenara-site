@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "embla-carousel-react": "^8.6.0",
     "@next/third-parties": "^16.2.10",
     "@react-pdf/renderer": "^4.5.1",
     "@workspace/db": "workspace:*",
