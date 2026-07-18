@@ -557,3 +557,57 @@ id = "n9qc9NKVRNvxvPwAG5Zrg"
 uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2-q4.pdf"
 type = "pdf"
 title = "Quote 4 — shape C"
+
+[[outputs]]
+id = "3mJKaKjjTGtpnIC1b7gzf"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2c-q1.pdf"
+type = "pdf"
+title = "Quote PDF — OR-Q-2140 (re-render)"
+
+[[outputs]]
+id = "ep6xaJJ3KDGjcmi_-llcT"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2c-q3.pdf"
+type = "pdf"
+title = "Quote PDF — OR-Q-2142 (re-render, 8 items)"
+
+[[outputs]]
+id = "JhHOBh_C1WRmCddOSa0o5"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2c-q4.pdf"
+type = "pdf"
+title = "Quote PDF — OR-Q-2143 (re-render)"
+
+[[outputs]]
+id = "911K-HkCW9AoDGTDNVlUw"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/crop-previews/A-pool-dusk-y700.jpg"
+type = "image"
+title = "A — pool-dusk, lower band (y=700, shows lit strip + water)"
+
+[[outputs]]
+id = "qB6XAn0wDkS8ghhsnLNCd"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/crop-previews/A2-pool-dusk-y650.jpg"
+type = "image"
+title = "A2 — pool-dusk, slightly higher (y=650, more coping visible)"
+
+[[outputs]]
+id = "WSz1NqmEHa6lDnfCMTCoe"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/crop-previews/B1-curved-travertine-y520.jpg"
+type = "image"
+title = "B1 — curved travertine, mid band (y=520)"
+
+[[outputs]]
+id = "5l8Zz2jwC1tNQJ02WIfff"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/crop-previews/B2-travertine-edge-y520.jpg"
+type = "image"
+title = "B2 — travertine edge, mid band (y=520)"
+
+[[outputs]]
+id = "jY2FoftqXvJkWPBdBswam"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/crop-previews/B3-curved-travertine-y700.jpg"
+type = "image"
+title = "B3 — curved travertine, lower band (y=700)"
+
+[[outputs]]
+id = "x5AdqG4nRZypQUdW4KMe-"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/crop-previews/B4-travertine-edge-y700.jpg"
+type = "image"
+title = "B4 — travertine edge, lower band (y=700)"

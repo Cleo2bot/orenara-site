@@ -11,20 +11,20 @@ import {
 import path from "path";
 
 export function registerFonts() {
-  const fonts = path.join(process.cwd(), "public", "fonts");
+  const fontDir = path.join(process.cwd(), "public", "fonts");
   Font.register({
     family: "Archivo",
-    src: path.join(fonts, "Archivo-Medium.ttf"),
+    src: path.join(fontDir, "Archivo-Medium.ttf"),
     fontWeight: 500,
   });
   Font.register({
     family: "InstrumentSans",
-    src: path.join(fonts, "InstrumentSans-Regular.ttf"),
+    src: path.join(fontDir, "InstrumentSans-Regular.ttf"),
     fontWeight: 400,
   });
   Font.register({
     family: "IBMPlexMono",
-    src: path.join(fonts, "IBMPlexMono-Regular.ttf"),
+    src: path.join(fontDir, "IBMPlexMono-Regular.ttf"),
     fontWeight: 400,
   });
 }
@@ -38,29 +38,49 @@ const HERO_IMAGE_PATH = path.join(
   "hero-pool-dusk.jpg"
 );
 
-const INK = "#0F1113";
-const BONE = "#F3EEE4";
+const INK      = "#0F1113";
+const BONE     = "#F3EEE4";
 const BONE_DIM = "#B8B2A6";
-const LINE = "#DEDAD4";
+const LINE     = "#DEDAD4";
+const H_PAD    = 45;
+
+/**
+ * Prevent fi/fl/ff ligature glyph substitution that silently drops letters.
+ * Inserts ZWNJ (U+200C) between each pair.
+ */
+function nolig(text: string): string {
+  return text.replace(/fi|fl|ff/g, (m) => m[0] + "\u200C" + m[1]);
+}
 
 const s = StyleSheet.create({
-  /* ── page ─────────────────────────────────────── */
+  /* ── page ─────────────────────────────────────────────────────────── */
   page: {
     backgroundColor: BONE,
     color: INK,
     fontFamily: "InstrumentSans",
     fontSize: 9,
-    paddingTop: 48,
-    paddingBottom: 60,
-    paddingLeft: 45,
-    paddingRight: 45,
+    paddingTop: 44,
+    paddingBottom: 44,
+    paddingLeft: 0,
+    paddingRight: 0,
+    flexDirection: "column",
   },
-  /* ── header ─────────────────────────────────────── */
+
+  /* ── section — horizontal indent for normal content ── */
+  section: {
+    paddingLeft: H_PAD,
+    paddingRight: H_PAD,
+  },
+
+  /* ── header ──────────────────────────────────────────────────────── */
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    marginBottom: 20,
+    marginBottom: 16,
+  },
+  headerLeft: {
+    flexDirection: "column",
   },
   wordmark: {
     fontFamily: "Archivo",
@@ -70,14 +90,11 @@ const s = StyleSheet.create({
     textTransform: "uppercase",
     color: INK,
   },
-  headerLeft: {
-    flexDirection: "column",
-  },
   quoteNumber: {
     fontFamily: "IBMPlexMono",
     fontSize: 13,
     color: INK,
-    marginTop: 8,
+    marginTop: 6,
   },
   headerRight: {
     flexDirection: "column",
@@ -94,67 +111,65 @@ const s = StyleSheet.create({
     fontSize: 8,
     color: INK,
   },
-  /* ── divider ─────────────────────────────────────── */
+
+  /* ── divider — spans full page (inline margins handle indentation) ── */
   divider: {
     height: 1,
     backgroundColor: LINE,
-    marginVertical: 14,
+    marginLeft: H_PAD,
+    marginRight: H_PAD,
+    marginVertical: 11,
   },
-  /* ── hero band ─────────────────────────────────── */
+
+  /* ── hero band — full bleed, explicit height keeps image cropped ── */
   heroBand: {
-    height: 113,
-    overflow: "hidden",
-    marginLeft: -45,
-    marginRight: -45,
-    marginBottom: 0,
+    height: 82,
+    width: "100%",
   },
   heroImage: {
     width: "100%",
-    height: "100%",
+    height: 82,
     objectFit: "cover",
     objectPosition: "center top",
   },
-  /* ── pitch block ─────────────────────────────────── */
+
+  /* ── pitch block — full bleed, own horizontal padding ── */
   pitchBlock: {
     backgroundColor: INK,
-    marginLeft: -45,
-    marginRight: -45,
-    paddingLeft: 45,
-    paddingRight: 45,
-    paddingTop: 20,
-    paddingBottom: 20,
-    marginBottom: 14,
+    paddingLeft: H_PAD,
+    paddingRight: H_PAD,
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginBottom: 8,
   },
   pitchBrandLine: {
     fontFamily: "Archivo",
     fontWeight: 500,
-    fontSize: 14,
+    fontSize: 12,
     color: BONE,
-    marginBottom: 10,
+    marginBottom: 6,
   },
   pitchParagraph: {
     fontFamily: "InstrumentSans",
     fontSize: 8,
     color: BONE_DIM,
-    lineHeight: 1.6,
-    marginBottom: 14,
-  },
-  pitchProofsContainer: {
-    flexDirection: "column",
-    gap: 6,
+    lineHeight: 1.4,
+    marginBottom: 6,
   },
   pitchProofItem: {
     fontFamily: "IBMPlexMono",
     fontSize: 6.5,
     color: BONE,
+    marginBottom: 3,
   },
-  /* ── customer block ─────────────────────────────── */
+
+  /* ── customer block ──────────────────────────────────────────────── */
   projectLabel: {
     fontFamily: "Archivo",
     fontSize: 13,
     fontWeight: 500,
     color: INK,
-    marginBottom: 6,
+    marginBottom: 4,
   },
   customerField: {
     fontSize: 9,
@@ -164,15 +179,15 @@ const s = StyleSheet.create({
   customerMuted: {
     fontSize: 8,
     color: BONE_DIM,
-    marginBottom: 2,
   },
-  /* ── table ───────────────────────────────────────── */
+
+  /* ── table ───────────────────────────────────────────────────────── */
   tableContainer: {
     marginTop: 4,
   },
   tableHeader: {
     flexDirection: "row",
-    paddingBottom: 6,
+    paddingBottom: 5,
     borderBottomWidth: 1,
     borderBottomColor: INK,
   },
@@ -184,10 +199,10 @@ const s = StyleSheet.create({
   },
   tableRow: {
     flexDirection: "row",
-    paddingVertical: 7,
+    paddingVertical: 3,
     borderBottomWidth: 1,
     borderBottomColor: LINE,
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   cellPartNo: {
     width: "18%",
@@ -216,22 +231,23 @@ const s = StyleSheet.create({
     color: BONE_DIM,
     paddingLeft: 4,
   },
-  cellImgPartNo: { width: "16%" },
+  cellImgPartNo:      { width: "16%" },
   cellImgDescription: { width: "50%" },
-  cellImgQty: { width: "10%" },
-  cellImgUnit: { width: "10%" },
-  cellImgSlot: { width: "14%", alignItems: "flex-end" },
+  cellImgQty:         { width: "10%" },
+  cellImgUnit:        { width: "10%" },
+  cellImgSlot:        { width: "14%", alignItems: "flex-end" },
   productImage: {
     width: 28,
     height: 28,
     objectFit: "contain",
   },
-  /* ── price block ─────────────────────────────────── */
+
+  /* ── price block ─────────────────────────────────────────────────── */
   priceRow: {
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "baseline",
-    marginTop: 12,
+    marginTop: 10,
     marginBottom: 2,
   },
   priceLabel: {
@@ -253,9 +269,9 @@ const s = StyleSheet.create({
     color: BONE_DIM,
     textAlign: "right",
     marginTop: 2,
-    marginBottom: 2,
   },
-  /* ── validity + lead-time (page 1) ─────────────── */
+
+  /* ── validity + lead-time (page 1) ──────────────────────────────── */
   leadTimeBlock: {
     marginTop: 4,
   },
@@ -263,10 +279,11 @@ const s = StyleSheet.create({
     fontFamily: "InstrumentSans",
     fontSize: 8,
     color: BONE_DIM,
-    lineHeight: 1.5,
+    lineHeight: 1.4,
     marginBottom: 2,
   },
-  /* ── terms (page 2) ──────────────────────────────── */
+
+  /* ── terms (page 2) ──────────────────────────────────────────────── */
   termsBlock: {
     marginTop: 4,
   },
@@ -283,24 +300,33 @@ const s = StyleSheet.create({
     marginBottom: 4,
     lineHeight: 1.45,
   },
-  /* ── footer ─────────────────────────────────────── */
+
+  /* ── spacer ──────────────────────────────────────────────────────── */
+  spacer: {
+    flexGrow: 1,
+  },
+
+  /* ── footer — in-flow, sits after the spacer ─────────────────────── */
   footer: {
-    position: "absolute",
-    bottom: 32,
-    left: 45,
-    right: 45,
+    paddingTop: 8,
+    paddingLeft: H_PAD,
+    paddingRight: H_PAD,
+    paddingBottom: 4,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    borderTopWidth: 1,
+    borderTopColor: LINE,
   },
   footerText: {
     fontFamily: "IBMPlexMono",
     fontSize: 7,
     color: BONE_DIM,
   },
-  /* ── page-2 header (wordmark only) ─────────────── */
+
+  /* ── page-2 header ───────────────────────────────────────────────── */
   page2Header: {
-    marginBottom: 20,
+    marginBottom: 16,
   },
   page2Wordmark: {
     fontFamily: "Archivo",
@@ -354,6 +380,15 @@ function formatCurrency(amount: number): string {
   }).format(amount);
 }
 
+/** Format 11-digit ABN to standard display: XX XXX XXX XXX */
+function formatABN(raw: string): string {
+  const d = raw.replace(/\D/g, "");
+  if (d.length === 11) {
+    return `${d.slice(0, 2)} ${d.slice(2, 5)} ${d.slice(5, 8)} ${d.slice(8, 11)}`;
+  }
+  return raw;
+}
+
 export function QuotePDFDoc(props: QuotePDFProps) {
   const {
     quoteNumber,
@@ -373,132 +408,114 @@ export function QuotePDFDoc(props: QuotePDFProps) {
   } = props;
 
   const hasImages = lineItems.some((i) => i.imagePath !== null);
-  const priceNum = systemPrice ? parseFloat(systemPrice) : null;
+  const priceNum    = systemPrice ? parseFloat(systemPrice) : null;
   const priceIncGst = priceNum !== null ? priceNum * 1.1 : null;
+
   const locationParts = [customerSuburb, customerState].filter(Boolean);
-  const location = locationParts.join(", ");
-  const paymentTerms =
+  const location      = locationParts.join(", ");
+  // Single-line contact: "Suburb, State · email · phone"
+  const contactParts  = [location, customerEmail, customerPhone].filter(Boolean);
+  const contactLine   = nolig(contactParts.join(" \u00B7 "));
+
+  const paymentTerms = nolig(
     customerType === "residential"
-      ? "Payment in full on order confirmation."
-      : "50% deposit on confirmation, balance before dispatch.";
+      ? "Payment in full on order con\u200Cfirmation."
+      : "50% deposit on con\u200Cfirmation, balance before dispatch."
+  );
+
+  const leadTimeSentence = nolig(
+    "Every system is built to order \u2014 allow up to 20 business days from order con\u200Cfirmation."
+  );
+
+  const warrantyDisplay    = nolig(warrantyLine);
+  const supplyOnlySentence = nolig(
+    "Supply only. Installation by the customer\u2019s licensed electrician. Every run arrives sealed, tested and labelled per zone."
+  );
+
+  const displayABN = formatABN(abn);
+
+  const FooterView = (
+    <View style={s.footer}>
+      <Text style={s.footerText}>orenara.com.au</Text>
+      <Text style={s.footerText}>ABN {displayABN}</Text>
+    </View>
+  );
 
   return (
     <Document>
-      {/* ══════════════════════════════════════════ PAGE 1 */}
+      {/* ═══════════════════════════════════════════════════════ PAGE 1 */}
       <Page size="A4" style={s.page}>
 
         {/* HEADER */}
-        <View style={s.header}>
+        <View style={[s.section, s.header]}>
           <View style={s.headerLeft}>
             <Text style={s.wordmark}>ORENARA</Text>
             <Text style={s.quoteNumber}>{quoteNumber}</Text>
           </View>
           <View style={s.headerRight}>
-            <Text style={s.headerMeta}>Issued {formatDate(createdAt)}</Text>
+            <Text style={s.headerMeta}>
+              {nolig("Issued " + formatDate(createdAt))}
+            </Text>
             <Text style={s.validUntilRight}>
-              Valid until {formatDate(validUntil)}
+              {nolig("Valid until " + formatDate(validUntil))}
             </Text>
           </View>
         </View>
 
         <View style={s.divider} />
 
-        {/* HERO IMAGE BAND */}
+        {/* HERO IMAGE BAND — full bleed */}
         <View style={s.heroBand}>
           <Image style={s.heroImage} src={HERO_IMAGE_PATH} />
         </View>
 
-        {/* PITCH BLOCK */}
+        {/* PITCH BLOCK — full bleed with own padding */}
         <View style={s.pitchBlock}>
           <Text style={s.pitchBrandLine}>Not Waterproof. Submersible.</Text>
           <Text style={s.pitchParagraph}>
-            Sealed silicone, end to end. No seams, no glued joints, no ingress
-            path. Every Orenara system is rated IP68 across the strip,
-            connectors and end caps — built for pool edges, water features and
-            coastal exposure, and cut to your measured lengths before it leaves
-            us.
+            {nolig(
+              "Sealed silicone, end to end. No seams, no glued joints, no ingress path. " +
+              "Every Orenara system is rated IP68 across the strip, connectors and end caps \u2014 " +
+              "built for pool edges, water features and coastal exposure."
+            )}
           </Text>
-          <View style={s.pitchProofsContainer}>
-            <Text style={s.pitchProofItem}>
-              IP68 END TO END — strip, connectors and end caps all rated
-            </Text>
-            <Text style={s.pitchProofItem}>
-              NO FIELD JOINS — factory-sealed runs, cut to length
-            </Text>
-            <Text style={s.pitchProofItem}>
-              2-YEAR SUBMERGED WARRANTY
-            </Text>
-          </View>
+          <Text style={s.pitchProofItem}>
+            {nolig("IP68 END TO END \u2014 strip, connectors and end caps all rated")}
+          </Text>
+          <Text style={s.pitchProofItem}>
+            {nolig("NO FIELD JOINS \u2014 factory-sealed runs, cut to length")}
+          </Text>
+          <Text style={s.pitchProofItem}>2-YEAR SUBMERGED WARRANTY</Text>
         </View>
 
         {/* CUSTOMER BLOCK */}
-        <Text style={s.projectLabel}>{projectLabel}</Text>
-        <Text style={s.customerField}>{customerName}</Text>
-        {location ? (
-          <Text style={s.customerMuted}>{location}</Text>
-        ) : null}
-        <Text style={s.customerMuted}>{customerEmail}</Text>
-        {customerPhone ? (
-          <Text style={s.customerMuted}>{customerPhone}</Text>
-        ) : null}
+        <View style={s.section}>
+          <Text style={s.projectLabel}>{nolig(projectLabel)}</Text>
+          <Text style={s.customerField}>{nolig(customerName)}</Text>
+          {contactLine ? (
+            <Text style={s.customerMuted}>{contactLine}</Text>
+          ) : null}
+        </View>
 
         <View style={s.divider} />
 
         {/* LINE ITEMS TABLE */}
-        <View style={s.tableContainer}>
+        <View style={[s.section, s.tableContainer]}>
           <View style={s.tableHeader}>
             {hasImages ? (
               <>
-                <Text style={[s.tableHeaderCell, s.cellImgPartNo]}>
-                  Part No
-                </Text>
-                <Text style={[s.tableHeaderCell, s.cellImgDescription]}>
-                  Description
-                </Text>
-                <Text
-                  style={[
-                    s.tableHeaderCell,
-                    s.cellImgQty,
-                    { textAlign: "right" },
-                  ]}
-                >
-                  Qty
-                </Text>
-                <Text
-                  style={[
-                    s.tableHeaderCell,
-                    s.cellImgUnit,
-                    { textAlign: "right" },
-                  ]}
-                >
-                  Unit
-                </Text>
+                <Text style={[s.tableHeaderCell, s.cellImgPartNo]}>Part No</Text>
+                <Text style={[s.tableHeaderCell, s.cellImgDescription]}>Description</Text>
+                <Text style={[s.tableHeaderCell, s.cellImgQty, { textAlign: "right" }]}>Qty</Text>
+                <Text style={[s.tableHeaderCell, s.cellImgUnit, { textAlign: "right" }]}>Unit</Text>
                 <Text style={[s.tableHeaderCell, s.cellImgSlot]} />
               </>
             ) : (
               <>
                 <Text style={[s.tableHeaderCell, s.cellPartNo]}>Part No</Text>
-                <Text style={[s.tableHeaderCell, s.cellDescription]}>
-                  Description
-                </Text>
-                <Text
-                  style={[
-                    s.tableHeaderCell,
-                    s.cellQty,
-                    { textAlign: "right" },
-                  ]}
-                >
-                  Qty
-                </Text>
-                <Text
-                  style={[
-                    s.tableHeaderCell,
-                    s.cellUnit,
-                    { textAlign: "right" },
-                  ]}
-                >
-                  Unit
-                </Text>
+                <Text style={[s.tableHeaderCell, s.cellDescription]}>Description</Text>
+                <Text style={[s.tableHeaderCell, s.cellQty, { textAlign: "right" }]}>Qty</Text>
+                <Text style={[s.tableHeaderCell, s.cellUnit, { textAlign: "right" }]}>Unit</Text>
               </>
             )}
           </View>
@@ -507,11 +524,9 @@ export function QuotePDFDoc(props: QuotePDFProps) {
             <View key={i} style={s.tableRow} wrap={false}>
               {hasImages ? (
                 <>
-                  <Text style={[s.cellPartNo, s.cellImgPartNo]}>
-                    {item.partNumber}
-                  </Text>
+                  <Text style={[s.cellPartNo, s.cellImgPartNo]}>{item.partNumber}</Text>
                   <Text style={[s.cellDescription, s.cellImgDescription]}>
-                    {item.description}
+                    {nolig(item.description)}
                   </Text>
                   <Text style={[s.cellQty, s.cellImgQty]}>{item.qty}</Text>
                   <Text style={[s.cellUnit, s.cellImgUnit]}>{item.unit}</Text>
@@ -524,7 +539,7 @@ export function QuotePDFDoc(props: QuotePDFProps) {
               ) : (
                 <>
                   <Text style={s.cellPartNo}>{item.partNumber}</Text>
-                  <Text style={s.cellDescription}>{item.description}</Text>
+                  <Text style={s.cellDescription}>{nolig(item.description)}</Text>
                   <Text style={s.cellQty}>{item.qty}</Text>
                   <Text style={s.cellUnit}>{item.unit}</Text>
                 </>
@@ -534,8 +549,8 @@ export function QuotePDFDoc(props: QuotePDFProps) {
         </View>
 
         {/* PRICE BLOCK */}
-        {priceNum !== null ? (
-          <>
+        {priceNum !== null && (
+          <View style={s.section}>
             <View style={s.divider} />
             {customerType === "residential" ? (
               <>
@@ -557,59 +572,52 @@ export function QuotePDFDoc(props: QuotePDFProps) {
                 </Text>
               </View>
             )}
-          </>
-        ) : null}
+          </View>
+        )}
 
         {/* VALIDITY + LEAD-TIME */}
-        <View style={s.divider} />
-        <View style={s.leadTimeBlock}>
-          <Text style={s.leadTimeLine}>
-            Valid until {formatDate(validUntil)}
-          </Text>
-          <Text style={s.leadTimeLine}>
-            Every system is built to order — allow up to 20 business days from
-            order confirmation.
-          </Text>
+        <View style={s.section}>
+          <View style={s.divider} />
+          <View style={s.leadTimeBlock}>
+            <Text style={s.leadTimeLine}>
+              {nolig("Valid until " + formatDate(validUntil))}
+            </Text>
+            <Text style={s.leadTimeLine}>{leadTimeSentence}</Text>
+          </View>
         </View>
+
+        {/* SPACER pushes footer to bottom */}
+        <View style={s.spacer} />
 
         {/* FOOTER */}
-        <View style={s.footer}>
-          <Text style={s.footerText}>orenara.com.au</Text>
-          <Text style={s.footerText}>ABN {abn}</Text>
-        </View>
+        {FooterView}
       </Page>
 
-      {/* ══════════════════════════════════════════ PAGE 2 — TERMS */}
+      {/* ═══════════════════════════════════════════════════════ PAGE 2 */}
       <Page size="A4" style={s.page}>
 
-        {/* PAGE 2 HEADER — wordmark only */}
-        <View style={s.page2Header}>
+        <View style={[s.section, s.page2Header]}>
           <Text style={s.page2Wordmark}>ORENARA</Text>
         </View>
 
         <View style={s.divider} />
 
-        {/* TERMS — verbatim, all five sentences, in order */}
-        <View style={s.termsBlock}>
+        <View style={[s.section, s.termsBlock]}>
           <Text style={s.termsHeading}>Terms</Text>
-          <Text style={s.termsLine}>
-            Every system is built to order — allow up to 20 business days from
-            order confirmation.
-          </Text>
-          <Text style={s.termsLine}>{warrantyLine}</Text>
+          <Text style={s.termsLine}>{leadTimeSentence}</Text>
+          <Text style={s.termsLine}>{warrantyDisplay}</Text>
           <Text style={s.termsLine}>{paymentTerms}</Text>
+          <Text style={s.termsLine}>{supplyOnlySentence}</Text>
           <Text style={s.termsLine}>
-            Supply only. Installation by the customer's licensed electrician.
-            Every run arrives sealed, tested and labelled per zone.
+            {nolig("Quote valid 14 days from issue.")}
           </Text>
-          <Text style={s.termsLine}>Quote valid 14 days from issue.</Text>
         </View>
 
+        {/* SPACER pushes footer to bottom */}
+        <View style={s.spacer} />
+
         {/* FOOTER */}
-        <View style={s.footer}>
-          <Text style={s.footerText}>orenara.com.au</Text>
-          <Text style={s.footerText}>ABN {abn}</Text>
-        </View>
+        {FooterView}
       </Page>
     </Document>
   );
