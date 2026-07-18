@@ -623,3 +623,9 @@ id = "KIdEcqKThgQ0AxvZ6W3qw"
 uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2e-q3-hero-overlay.pdf"
 type = "pdf"
 title = "OR-Q-2142 — tagline on hero, no pitch block"
+
+[[outputs]]
+id = "xX_IkeA8bBp2w4hu7n-6M"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2f-q3-black-tagline.pdf"
+type = "pdf"
+title = "OR-Q-2142 — black tagline on hero"

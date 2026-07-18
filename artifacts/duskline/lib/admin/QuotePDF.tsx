@@ -144,7 +144,7 @@ const s = StyleSheet.create({
     fontFamily: "Archivo",
     fontWeight: 500,
     fontSize: 13,
-    color: BONE,
+    color: INK,
   },
 
   /* ── customer block ──────────────────────────────────────────────── */
