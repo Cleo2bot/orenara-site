@@ -121,46 +121,30 @@ const s = StyleSheet.create({
     marginVertical: 11,
   },
 
-  /* ── hero band — full bleed, explicit height keeps image cropped ── */
+  /* ── hero band — full bleed, tagline overlaid via absolute child ── */
   heroBand: {
-    height: 82,
+    height: 110,
     width: "100%",
-  },
-  heroImage: {
-    width: "100%",
-    height: 82,
-    objectFit: "cover",
-    objectPosition: "center top",
-  },
-
-  /* ── pitch block — full bleed, own horizontal padding ── */
-  pitchBlock: {
-    backgroundColor: INK,
-    paddingLeft: H_PAD,
-    paddingRight: H_PAD,
-    paddingTop: 10,
-    paddingBottom: 10,
+    position: "relative",
     marginBottom: 8,
   },
-  pitchBrandLine: {
+  heroImage: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: 110,
+    objectFit: "cover",
+    objectPosition: "center",
+  },
+  heroTagline: {
+    position: "absolute",
+    bottom: 12,
+    left: H_PAD,
     fontFamily: "Archivo",
     fontWeight: 500,
-    fontSize: 12,
+    fontSize: 13,
     color: BONE,
-    marginBottom: 6,
-  },
-  pitchParagraph: {
-    fontFamily: "InstrumentSans",
-    fontSize: 8,
-    color: BONE_DIM,
-    lineHeight: 1.4,
-    marginBottom: 6,
-  },
-  pitchProofItem: {
-    fontFamily: "IBMPlexMono",
-    fontSize: 6.5,
-    color: BONE,
-    marginBottom: 3,
   },
 
   /* ── customer block ──────────────────────────────────────────────── */
@@ -464,28 +448,10 @@ export function QuotePDFDoc(props: QuotePDFProps) {
 
         <View style={s.divider} />
 
-        {/* HERO IMAGE BAND — full bleed */}
+        {/* HERO IMAGE BAND — full bleed with tagline overlaid */}
         <View style={s.heroBand}>
           <Image style={s.heroImage} src={HERO_IMAGE_PATH} />
-        </View>
-
-        {/* PITCH BLOCK — full bleed with own padding */}
-        <View style={s.pitchBlock}>
-          <Text style={s.pitchBrandLine}>Not Waterproof. Submersible.</Text>
-          <Text style={s.pitchParagraph}>
-            {nolig(
-              "Sealed silicone, end to end. No seams, no glued joints, no ingress path. " +
-              "Every Orenara system is rated IP68 across the strip, connectors and end caps \u2014 " +
-              "built for pool edges, water features and coastal exposure."
-            )}
-          </Text>
-          <Text style={s.pitchProofItem}>
-            {nolig("IP68 END TO END \u2014 strip, connectors and end caps all rated")}
-          </Text>
-          <Text style={s.pitchProofItem}>
-            {nolig("NO FIELD JOINS \u2014 factory-sealed runs, cut to length")}
-          </Text>
-          <Text style={s.pitchProofItem}>2-YEAR SUBMERGED WARRANTY</Text>
+          <Text style={s.heroTagline}>Not Waterproof. Submersible.</Text>
         </View>
 
         {/* CUSTOMER BLOCK */}

@@ -617,3 +617,9 @@ id = "P7dnHfkPRx9nRWFDeNbFG"
 uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2d-q3-hero-b2.pdf"
 type = "pdf"
 title = "OR-Q-2142 — B2 hero (travertine edge, lit coping)"
+
+[[outputs]]
+id = "KIdEcqKThgQ0AxvZ6W3qw"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2e-q3-hero-overlay.pdf"
+type = "pdf"
+title = "OR-Q-2142 — tagline on hero, no pitch block"
