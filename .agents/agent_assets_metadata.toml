@@ -629,3 +629,9 @@ id = "xX_IkeA8bBp2w4hu7n-6M"
 uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2f-q3-black-tagline.pdf"
 type = "pdf"
 title = "OR-Q-2142 — black tagline on hero"
+
+[[outputs]]
+id = "qzwQpDZtaAQ-bR16cAzp0"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2g-q3-tagline-top.pdf"
+type = "pdf"
+title = "OR-Q-2142 — white tagline, top of hero"

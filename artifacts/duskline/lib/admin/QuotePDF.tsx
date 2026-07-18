@@ -139,12 +139,12 @@ const s = StyleSheet.create({
   },
   heroTagline: {
     position: "absolute",
-    bottom: 12,
+    top: 12,
     left: H_PAD,
     fontFamily: "Archivo",
     fontWeight: 500,
     fontSize: 13,
-    color: INK,
+    color: BONE,
   },
 
   /* ── customer block ──────────────────────────────────────────────── */
