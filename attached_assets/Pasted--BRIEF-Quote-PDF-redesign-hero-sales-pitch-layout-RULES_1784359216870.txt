@@ -1,0 +1,68 @@
+# BRIEF: Quote PDF redesign — hero + sales pitch layout
+
+## RULES — read first, these override everything below
+1. **Every checkpoint is a hard stop. You STOP and WAIT for the word "proceed." Do not continue past a checkpoint for any reason.**
+2. **No push to GitHub without Ben's explicit approval. Never route around a blocked path — if git commit fails, STOP and report; do not use the GitHub API or any alternative push mechanism.**
+
+Additional standing rules from previous sessions:
+- You do not write or reword customer-facing copy. All copy in this brief is provided. If a layout problem makes provided copy not fit, flag it at a checkpoint — do not rewrite it.
+- Shared-file discoveries (a file used by more than the target feature) get flagged at the checkpoint, not silently folded in.
+
+## DO NOT MODIFY
+- Quote data model, schema, quote_number_seq, or any numbering behaviour
+- BOM engine, pricing logic, GST calculation, or GST display logic (residential = inc GST, commercial = ex GST — this stays exactly as is)
+- The terms & conditions TEXT — it renders verbatim, unchanged, always
+- The canonical lead-time sentence — renders verbatim where lead time is stated: "Every system is built to order — allow up to 20 business days from order confirmation."
+- Admin UI outside the PDF route
+- Anything outside /admin/quotes/[id]/pdf and the PDF template components it uses
+- Public site pages and components
+
+## KNOWN TRAPS — regressions here are unacceptable
+- Fonts: TTF ONLY. WOFF2 with letterSpacing drops glyphs. No new font files — use the TTF set already registered in the PDF renderer.
+- ORENARA wordmark: text-rendered, never an image asset.
+- @react-pdf/renderer does NOT support WebP. The hero image must be JPG or PNG (see Phase 1).
+
+## Goal
+The quote PDF becomes half sales document, half quote — modelled on the kit detail pages: dark, image-led, premium. A generic hero image and a short submersible pitch above the quote table. Typical quotes (3–5 line items) fit page 1; terms always on page 2.
+
+---
+
+## PHASE 1 — Audit + layout proposal. No file changes.
+1. Map the current PDF template: components, sections in render order, fonts registered, current page-break behaviour.
+2. Hero asset plan: propose conversion of the pool-dusk source image to a print JPG (~1600px wide, quality ~80, target 200–400 KB), stored in a dedicated path for PDF assets (e.g. /public/admin-assets/pdf/) — NOT in the web gallery folder, and never WebP.
+3. Propose the page-1 layout with approximate measurements (A4):
+   - Header row: ORENARA wordmark (text) left, "QUOTE" + quote number + date right
+   - Hero image band, full width, approx 40–50mm tall, cropped landscape
+   - Pitch block (copy provided below): brand line + short paragraph + three proof points
+   - Quote table (existing columns/logic unchanged)
+   - Totals with existing GST display by customerType
+   - Validity date + canonical lead-time sentence
+   - Contact footer
+   - Page 2: terms verbatim. If the quote table cannot fit on page 1, it flows to page 2 above the terms — never truncated, never shrunk below legible.
+4. Flag anything in the current template that conflicts with this layout.
+
+**CHECKPOINT 1 — STOP. Present the map and layout proposal. Wait for "proceed."**
+
+---
+
+## PITCH COPY (provided — render as written, do not edit)
+Brand line (prominent): **Not Waterproof. Submersible.**
+
+Paragraph: Sealed silicone, end to end. No seams, no glued joints, no ingress path. Every Orenara system is rated IP68 across the strip, connectors and end caps — built for pool edges, water features and coastal exposure, and cut to your measured lengths before it leaves us.
+
+Proof points (three, rendered as short labelled items):
+- IP68 END TO END — strip, connectors and end caps all rated
+- NO FIELD JOINS — factory-sealed runs, cut to length
+- 2-YEAR SUBMERGED WARRANTY
+
+(Warranty line note: mixed jobs display "3 years (2 years for submerged runs)" — if warranty display already varies by job type elsewhere in the template, flag at Checkpoint 1 rather than deciding.)
+
+---
+
+## PHASE 2 — Build. No push.
+- Implement the approved layout in the PDF template.
+- Generate the print JPG hero asset per the approved plan.
+- Render test PDFs from at least three real shapes: a 2-line residential quote, a 4–5 line residential quote, and the largest existing commercial quote (multi-run + option line). Confirm: page 1 fits for the typical shapes, overflow behaves for the large one, GST display correct per customerType in each, terms verbatim on the final page, no glyph drops anywhere (check letterSpacing text specifically).
+- Typecheck clean, local production build passes.
+
+**CHECKPOINT 2 — STOP. Present the three test PDFs. Wait for review. No push to GitHub without explicit approval.**
