@@ -20,7 +20,7 @@ const KIT_ITEMS = [
   {
     number: "04",
     label: "240V Mains Lead",
-    detail: "AU/NZ plug, pre-wired, plug-and-play installation",
+    detail: "Pre-terminated leads — electrician connection required",
   },
 ];
 
