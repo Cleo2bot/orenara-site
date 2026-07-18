@@ -611,3 +611,9 @@ id = "x5AdqG4nRZypQUdW4KMe-"
 uri = "file://artifacts/duskline/public/admin-assets/pdf/crop-previews/B4-travertine-edge-y700.jpg"
 type = "image"
 title = "B4 — travertine edge, lower band (y=700)"
+
+[[outputs]]
+id = "P7dnHfkPRx9nRWFDeNbFG"
+uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2d-q3-hero-b2.pdf"
+type = "pdf"
+title = "OR-Q-2142 — B2 hero (travertine edge, lit coping)"
