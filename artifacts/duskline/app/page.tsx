@@ -7,6 +7,7 @@ import ProductKits from "@/components/sections/ProductKits";
 import DifferenceSection from "@/components/sections/DifferenceSection";
 import KitComponents from "@/components/sections/KitComponents";
 import KitBox from "@/components/sections/KitBox";
+import StripGlow from "@/components/sections/StripGlow";
 import EmberBreather from "@/components/sections/EmberBreather";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Gallery from "@/components/sections/Gallery";
@@ -25,6 +26,7 @@ export default function HomePage() {
         <DifferenceSection />
         <Environments />
         <KitComponents />
+        <StripGlow />
         <KitBox />
         <MountingSystem />
         <EmberBreather />
