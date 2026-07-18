@@ -137,7 +137,7 @@ export default function Gallery() {
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-12">
-          <p className="eyebrow mb-6">Gallery</p>
+          <p className="eyebrow mb-6">GALLERY</p>
           <h2
             className="font-medium"
             style={{
@@ -148,7 +148,7 @@ export default function Gallery() {
               maxWidth: "560px",
             }}
           >
-            Installed. Photographed. Real jobs.
+            Where the system lives.
           </h2>
           <p
             style={{
@@ -159,8 +159,8 @@ export default function Gallery() {
               maxWidth: "520px",
             }}
           >
-            IP68 strip lighting in permanent outdoor installations across
-            Australia — pools, water features, garden edges, and paved terraces.
+            Pool coping, water features, garden edges, paved terraces. Sealed
+            end to end, warm white throughout.
           </p>
         </div>
 

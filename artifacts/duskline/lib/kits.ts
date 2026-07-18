@@ -44,7 +44,7 @@ export const kits: Kit[] = [
   {
     slug: "pergola-kit",
     name: "Pergola Kit",
-    image: "/images/gallery/orenara-courtyard-patio.webp",
+    image: "/assets/generated/kit-pergola.webp",
     tagline: "Overhead structural runs, BBQ and alfresco zones",
     description:
       "Built for overhead installation in structural channels. High-output 24V strip with consistent colour temperature. Suitable for spans up to 10m per run from a single driver.",
