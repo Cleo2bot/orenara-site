@@ -23,7 +23,7 @@ export const kits: Kit[] = [
   {
     slug: "pathway-kit",
     name: "Pathway Kit",
-    image: "/assets/generated/kit-pathway.webp",
+    image: "/images/gallery/orenara-curved-retaining-path.webp",
     tagline: "Garden edges, walkways, water features",
     description:
       "Designed for ground-level and near-ground applications. Fully flexible strip with horizontal-bend capability. Pairs with an RCM-compliant 24V driver and 0–10V dimmer.",
@@ -44,7 +44,7 @@ export const kits: Kit[] = [
   {
     slug: "pergola-kit",
     name: "Pergola Kit",
-    image: "/assets/generated/kit-pergola.webp",
+    image: "/images/gallery/orenara-courtyard-patio.webp",
     tagline: "Overhead structural runs, BBQ and alfresco zones",
     description:
       "Built for overhead installation in structural channels. High-output 24V strip with consistent colour temperature. Suitable for spans up to 10m per run from a single driver.",
@@ -65,7 +65,7 @@ export const kits: Kit[] = [
   {
     slug: "pool-water-feature-kit",
     name: "Pool & Water Feature Kit",
-    image: "/assets/generated/kit-pool.webp",
+    image: "/images/gallery/orenara-curved-travertine-pool.webp",
     tagline: "Fully submersible runs",
     description:
       "Our most demanding application. Fully submersible — rated for permanent water contact (IP68). For pool edges, water features, and submerged elements. Sealed to 1.5m/30min per EN60529.",
@@ -86,7 +86,7 @@ export const kits: Kit[] = [
   {
     slug: "custom-zone-kit",
     name: "Custom Zone Kit",
-    image: "/assets/generated/kit-customzone.webp",
+    image: "/images/gallery/orenara-step-edge-night.webp",
     tagline: "Larger or multi-zone properties",
     description:
       "Multiple zones, extended runs, or architectural applications that need a spec conversation before quoting. Tell us about your space and we'll come back with a detailed breakdown.",

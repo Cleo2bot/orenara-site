@@ -19,7 +19,7 @@ export default function Hero() {
         aria-hidden="true"
       >
         <Image
-          src="/assets/generated/hero.webp"
+          src="/images/gallery/orenara-pool-dusk.webp"
           alt=""
           fill
           priority

@@ -136,7 +136,7 @@ export default function TradeSteps() {
         >
           <div className="img-treated">
             <img
-              src="/assets/generated/trade-sandstone-wall.png"
+              src="/images/gallery/orenara-travertine-steps-pool.webp"
               alt="Continuous warm Orenara strip glow washing across a coastal sandstone retaining wall at dusk."
               style={{ display: "block", width: "100%", height: "auto" }}
             />

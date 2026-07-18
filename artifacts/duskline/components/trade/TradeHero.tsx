@@ -111,7 +111,7 @@ export default function TradeHero() {
           >
             <div className="img-treated" style={{ height: "100%" }}>
               <img
-                src="/assets/generated/trade-mansion-coast.png"
+                src="/images/gallery/orenara-rooftop-pool-city.webp"
                 alt="Modern coastal mansion at dusk with Orenara warm strip lighting integrated into sandstone entry steps, ocean spray beyond."
                 style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }}
               />

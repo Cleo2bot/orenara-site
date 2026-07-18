@@ -19,7 +19,7 @@ export default function QuoteBuilderClosingBand() {
         >
           <div className="img-treated">
             <img
-              src="/assets/generated/kit-customzone.webp"
+              src="/images/gallery/orenara-step-edge-night.webp"
               alt="Elevated view of a contemporary Australian backyard at deep dusk — path edges, garden beds, pool surround and bench underglow traced in continuous warm 2700K LED strip light, like a lighting plan come to life."
               loading="lazy"
               decoding="async"

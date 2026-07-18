@@ -113,7 +113,7 @@ export default function WhyTrades() {
         >
           <div className="img-treated">
             <img
-              src="/assets/generated/trade-hero-tailgate.png"
+              src="/images/gallery/orenara-waterfall-rockpond.webp"
               alt="Two tradies relaxing on a ute tailgate at dusk beside a driveway lit with warm Orenara strip lighting, coastal mansion behind."
               style={{ display: "block", width: "100%", height: "auto" }}
             />

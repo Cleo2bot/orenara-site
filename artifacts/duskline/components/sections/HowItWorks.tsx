@@ -53,7 +53,7 @@ export default function HowItWorks() {
             }}
           >
             <Image
-              src="/assets/generated/how-it-works.png"
+              src="/assets/generated/how-it-works.webp"
               alt="Outdoor alfresco entertaining area at dusk lit with warm amber LED strip lighting"
               fill
               sizes="(max-width: 768px) 100vw, 1200px"

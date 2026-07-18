@@ -48,7 +48,7 @@ export default function SpecSection() {
             }}
           >
             <Image
-              src="/assets/generated/trade-sandstone-wall.png"
+              src="/images/gallery/orenara-travertine-steps-pool.webp"
               alt="Orenara continuous dot-free LED strip concealed beneath a sandstone wall coping, casting an even warm amber glow across the stone face at deep dusk by the coast"
               fill
               sizes="(max-width: 768px) 100vw, 1200px"
