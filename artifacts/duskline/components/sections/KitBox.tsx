@@ -52,8 +52,8 @@ export default function KitBox() {
           }}
         >
           <Image
-            src="/images/product/strip-closeup.webp"
-            alt="Orenara silicone LED neon strip end cap and dot-free diffusion surface, macro detail"
+            src="/images/product/connector-detail-1600.webp"
+            alt="Factory-sealed IP68 connector detail"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             style={{ objectFit: "cover", objectPosition: "center" }}

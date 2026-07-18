@@ -25,6 +25,7 @@ export default function HomePage() {
         <DifferenceSection />
         <Environments />
         <KitComponents />
+        <KitBox />
         <MountingSystem />
         <EmberBreather />
         <ProductKits />
