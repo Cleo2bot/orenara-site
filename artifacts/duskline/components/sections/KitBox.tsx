@@ -52,7 +52,7 @@ export default function KitBox() {
           }}
         >
           <Image
-            src="/images/product/connector-detail-1600.webp"
+            src="/images/product/connector-detail-v2-1600.webp"
             alt="Factory-sealed IP68 connector detail"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
