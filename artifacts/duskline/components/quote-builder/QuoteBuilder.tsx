@@ -334,6 +334,7 @@ export default function QuoteBuilder({ initialKitSlug }: QuoteBuilderProps) {
                       ["Drivers", totals.drivers, PART_NUMBERS.driver],
                       ["Dimmers", totals.dimmers, PART_NUMBERS.dimmer],
                       ["240V plugs", totals.plugs, PART_NUMBERS.plug],
+                      ["IP68 connector + end-cap sets", totals.connectorSets, PART_NUMBERS.connectorSet],
                       ["Rigid channel", `${totals.rigidChannelMetres}m`, PART_NUMBERS.rigidChannel],
                       ["Flexible track", `${totals.flexibleTrackMetres}m`, PART_NUMBERS.flexibleTrack],
                     ].map(([label, value, partNumber]) => (

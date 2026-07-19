@@ -8,15 +8,15 @@ type ProofImage = {
 const images: ProofImage[] = [
   {
     src: "/images/gallery/orenara-step-edge-night.webp",
-    alt: "Step edge lighting at night — Orenara LED strip running beneath step nosings, casting warm wash",
+    alt: "Step edges lit at night by Orenara LED strip beneath each nosing",
   },
   {
     src: "/images/gallery/orenara-pool-pavilion-tropical.webp",
-    alt: "Tropical pool pavilion at night with Orenara LED strip lighting along the pool edge and pavilion structure",
+    alt: "Tropical pool pavilion at dusk with warm Orenara strip lighting along the pool surround",
   },
   {
     src: "/images/gallery/orenara-garden-rockbed.webp",
-    alt: "Garden rock bed wall with Orenara LED strip lighting installed along the base, illuminating the rockwork",
+    alt: "Garden rock bed wall washed in warm light from Orenara LED strip at its base",
   },
 ];
 

@@ -12,6 +12,7 @@ export const PART_NUMBERS = {
   driver: "OR-DRV-150W",
   dimmer: "OR-DIM-010V",
   plug: "OR-PLG-240V",
+  connectorSet: "OR-CON-IP68",
   kits: {
     "Pathway Kit": "OR-KIT-PATH",
     "Pergola Kit": "OR-KIT-PERG",
@@ -27,6 +28,7 @@ export const PART_LABELS = {
   driver: "Driver, 150W, 0-10V",
   dimmer: "Dimmer, 0-10V wall control",
   plug: "240V Plug & Power Cable",
+  connectorSet: "IP68 connector + end-cap set",
 } as const;
 
 export function getKitPartNumber(kitName: string): string | undefined {
@@ -56,6 +58,7 @@ export interface QuoteZoneCalculated {
   driversNeeded: number;
   dimmersNeeded: number;
   plugsNeeded: number;
+  connectorSetsNeeded: number;
   rigidChannelMetres: number;
   flexibleTrackMetres: number;
 }
@@ -65,6 +68,7 @@ export interface QuoteTotals {
   drivers: number;
   dimmers: number;
   plugs: number;
+  connectorSets: number;
   rigidChannelMetres: number;
   flexibleTrackMetres: number;
 }
@@ -73,11 +77,32 @@ function isValidRun(run: QuoteRunInput): boolean {
   return Number.isFinite(run.lengthMetres) && run.lengthMetres > 0;
 }
 
+/**
+ * Greedy first-fit driver packing, matching the fulfilment packing rule:
+ * iterate runs in order, a driver serves at most 12.0m, a run is never
+ * split across drivers — when the current run would overflow the driver,
+ * open a new one.
+ */
+export function packDriversForRuns(runs: QuoteRunInput[]): number {
+  if (runs.length === 0) return 0;
+  let driverCount = 0;
+  let currentLoad = 0;
+  for (const run of runs) {
+    if (currentLoad + run.lengthMetres > MAX_RUN_PER_DRIVER) {
+      driverCount++;
+      currentLoad = run.lengthMetres;
+    } else {
+      currentLoad += run.lengthMetres;
+    }
+  }
+  return driverCount + 1;
+}
+
 export function calculateZone(zone: QuoteZoneInput): QuoteZoneCalculated {
   const validRuns = zone.runs.filter(isValidRun);
 
   const totalLengthMetres = validRuns.reduce((sum, r) => sum + r.lengthMetres, 0);
-  const driversNeeded = totalLengthMetres > 0 ? Math.ceil(totalLengthMetres / MAX_RUN_PER_DRIVER) : 0;
+  const driversNeeded = packDriversForRuns(validRuns);
 
   const rigidChannelMetres = validRuns
     .filter((r) => r.shape === "straight")
@@ -99,6 +124,7 @@ export function calculateZone(zone: QuoteZoneInput): QuoteZoneCalculated {
     driversNeeded,
     dimmersNeeded: driversNeeded,
     plugsNeeded: driversNeeded,
+    connectorSetsNeeded: validRuns.length,
     rigidChannelMetres,
     flexibleTrackMetres,
   };
@@ -111,10 +137,11 @@ export function calculateTotals(zones: QuoteZoneCalculated[]): QuoteTotals {
       drivers: acc.drivers + z.driversNeeded,
       dimmers: acc.dimmers + z.dimmersNeeded,
       plugs: acc.plugs + z.plugsNeeded,
+      connectorSets: acc.connectorSets + z.connectorSetsNeeded,
       rigidChannelMetres: acc.rigidChannelMetres + z.rigidChannelMetres,
       flexibleTrackMetres: acc.flexibleTrackMetres + z.flexibleTrackMetres,
     }),
-    { stripMetres: 0, drivers: 0, dimmers: 0, plugs: 0, rigidChannelMetres: 0, flexibleTrackMetres: 0 }
+    { stripMetres: 0, drivers: 0, dimmers: 0, plugs: 0, connectorSets: 0, rigidChannelMetres: 0, flexibleTrackMetres: 0 }
   );
 }
 

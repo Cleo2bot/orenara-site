@@ -111,7 +111,7 @@ export default function PrintQuoteView({ zones, totals, contact, partLabels, kit
             <strong>Total run length:</strong> {zone.totalLengthMetres}m &nbsp;|&nbsp;{" "}
             <strong>Required parts:</strong> {zone.driversNeeded}x {partLabels.driver} ({PART_NUMBERS.driver}),{" "}
             {zone.dimmersNeeded}x {partLabels.dimmer} ({PART_NUMBERS.dimmer}), {zone.plugsNeeded}x {partLabels.plug} (
-            {PART_NUMBERS.plug})
+            {PART_NUMBERS.plug}), {zone.connectorSetsNeeded}x {partLabels.connectorSet} ({PART_NUMBERS.connectorSet})
           </div>
           {zone.runs.length > 1 && (
             <div style={{ fontSize: "0.75rem", color: "var(--print-faint)", marginTop: "4px" }}>
@@ -137,6 +137,7 @@ export default function PrintQuoteView({ zones, totals, contact, partLabels, kit
             [`${partLabels.driver}`, PART_NUMBERS.driver, totals.drivers],
             [`${partLabels.dimmer}`, PART_NUMBERS.dimmer, totals.dimmers],
             [`${partLabels.plug}`, PART_NUMBERS.plug, totals.plugs],
+            [`${partLabels.connectorSet}`, PART_NUMBERS.connectorSet, totals.connectorSets],
             [`${partLabels.rigidChannel}`, PART_NUMBERS.rigidChannel, `${totals.rigidChannelMetres}m`],
             [`${partLabels.flexibleTrack}`, PART_NUMBERS.flexibleTrack, `${totals.flexibleTrackMetres}m`],
           ].map(([label, partNumber, value]) => (

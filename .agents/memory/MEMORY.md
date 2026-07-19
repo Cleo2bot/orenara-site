@@ -10,3 +10,4 @@
 - [Orenara image-gen lessons](orenara-image-generation.md) — prompt N-1 people to hit max-N; sconces need camera distance + "only light sources are…" phrasing; dark matte clothing fixes glowing figures.
 - [Copy-sweep greps](copy-sweep-greps.md) — JSX wraps prose across lines; single-line greps give false-clean sweeps. Re-run with \s+ + multiline and screenshot key pages.
 - [react-pdf layout rules](react-pdf-layout.md) — no negative margins for bleed; no absolute footer (use spacer+flow); image overlay needs position:relative on band + absolute on both Image and Text.
+- [Interactive-state screenshots](interactive-screenshots.md) — runTest may return empty screenshotPaths; capture interactive UI states with nix chromium + temporary puppeteer-core (remove after).
