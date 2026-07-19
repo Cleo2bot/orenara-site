@@ -16,11 +16,10 @@ export default function Hero() {
       <div
         className="img-treated"
         style={{ position: "absolute", inset: 0 }}
-        aria-hidden="true"
       >
         <Image
-          src="/images/gallery/orenara-pool-dusk.webp"
-          alt=""
+          src="/images/gallery/orenara-curved-path-pool-dusk.webp"
+          alt="Curved garden path and raised planter walls edge-lit at dusk by Orenara LED strip, leading to a pool beside a modern home"
           fill
           priority
           sizes="100vw"
