@@ -11,6 +11,7 @@ import StripGlow from "@/components/sections/StripGlow";
 import EmberBreather from "@/components/sections/EmberBreather";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Gallery from "@/components/sections/Gallery";
+import ProofBand from "@/components/sections/ProofBand";
 import SpecSection from "@/components/sections/SpecSection";
 import EnquiryForm from "@/components/sections/EnquiryForm";
 import OutcomeSection from "@/components/sections/OutcomeSection";
@@ -25,6 +26,7 @@ export default function HomePage() {
         <ProblemSection />
         <DifferenceSection />
         <Environments />
+        <Gallery />
         <KitComponents />
         <StripGlow />
         <KitBox />
@@ -32,9 +34,9 @@ export default function HomePage() {
         <EmberBreather />
         <ProductKits />
         <HowItWorks />
-        <Gallery />
         <OutcomeSection />
         <SpecSection />
+        <ProofBand />
         <EnquiryForm />
       </main>
       <Footer />

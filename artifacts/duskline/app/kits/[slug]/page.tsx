@@ -166,11 +166,10 @@ export default function KitDetailPage({ params }: { params: { slug: string } }) 
           ))}
         </div>
 
-        {kit.slug === "pathway-kit" ? (
-          <>
-            <KitWorkedExample />
+        <>
+          <KitWorkedExample />
 
-            {/* Start your quote — Phase 2 pilot (Pathway) */}
+          {/* Start your quote */}
             <div
               style={{
                 paddingTop: "40px",
@@ -221,18 +220,22 @@ export default function KitDetailPage({ params }: { params: { slug: string } }) 
                   or enquire for pricing
                 </Link>
               </div>
+              {kit.slug === "pool-water-feature-kit" && (
+                <p
+                  style={{
+                    fontSize: "0.875rem",
+                    color: "var(--bone-dim)",
+                    lineHeight: 1.7,
+                    marginTop: "20px",
+                    maxWidth: "580px",
+                  }}
+                  data-testid="kit-detail-electrician-note"
+                >
+                  For electrical work near water, all installation must be performed by a licensed electrician per AS/NZS 3000.
+                </p>
+              )}
             </div>
           </>
-        ) : (
-          <div className="flex flex-wrap gap-3">
-            <Link href="/#enquire" className="btn-outline" data-testid="kit-detail-enquire-btn">
-              Enquire for Pricing
-            </Link>
-            <Link href="/quote-builder" className="btn-outline" data-testid="kit-detail-quote-builder-btn">
-              Open Quote Builder
-            </Link>
-          </div>
-        )}
       </div>
 
       <Footer />
