@@ -8,6 +8,15 @@ const nextConfig = {
     "*.picard.repl.co",
     "*.replit.app",
   ],
+  async redirects() {
+    return [
+      {
+        source: "/about",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
