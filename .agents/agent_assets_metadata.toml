@@ -635,3 +635,21 @@ id = "qzwQpDZtaAQ-bR16cAzp0"
 uri = "file://artifacts/duskline/public/admin-assets/pdf/checkpoint2g-q3-tagline-top.pdf"
 type = "pdf"
 title = "OR-Q-2142 — white tagline, top of hero"
+
+[[outputs]]
+id = "YQssItq1ZW6Y2Jo5cYCPm"
+uri = "file://scripts/exports/orenara-wordmark-dark-on-white.png"
+type = "image"
+title = "Wordmark — dark on white (use this for Xero)"
+
+[[outputs]]
+id = "TGZTXWjNPDE2dy7RpLVDk"
+uri = "file://scripts/exports/orenara-wordmark-dark.png"
+type = "image"
+title = "Wordmark — dark on transparent"
+
+[[outputs]]
+id = "ZYWa5f8Az5GqnXN2CoSTq"
+uri = "file://scripts/exports/orenara-wordmark-bone-on-ink.png"
+type = "image"
+title = "Wordmark — bone on charcoal (brand dark version)"
