@@ -653,3 +653,21 @@ id = "ZYWa5f8Az5GqnXN2CoSTq"
 uri = "file://scripts/exports/orenara-wordmark-bone-on-ink.png"
 type = "image"
 title = "Wordmark — bone on charcoal (brand dark version)"
+
+[[outputs]]
+id = "kTsukdjbJ8cQXIG77ddwA"
+uri = "file://scripts/exports/orenara-ig-avatar-ember-o.png"
+type = "image"
+title = "Instagram profile — ember \"O\" monogram"
+
+[[outputs]]
+id = "muYRwwqDtWCOL-t_Cdwle"
+uri = "file://scripts/exports/orenara-ig-avatar-bone-o.png"
+type = "image"
+title = "Instagram profile — bone \"O\" monogram"
+
+[[outputs]]
+id = "vZa61K26GVJSudzJ98JWi"
+uri = "file://scripts/exports/orenara-ig-avatar-wordmark.png"
+type = "image"
+title = "Instagram profile — full wordmark"
