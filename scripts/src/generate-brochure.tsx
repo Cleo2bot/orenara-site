@@ -134,10 +134,13 @@ const CrossSection = () => (
   <Svg width={230} height={190} viewBox="0 0 230 190">
     {/* channel outer */}
     <Path d="M55 60 L55 160 L175 160 L175 60 L167 60 L167 152 L63 152 L63 60 Z" fill={INK} />
-    {/* strip body inside channel */}
-    <Rect x={69} y={78} width={92} height={74} fill="#E6DFD0" stroke={INK} strokeWidth={1} />
+    {/* strip body inside channel, flush with top of walls */}
+    <Rect x={69} y={60} width={92} height={74} fill="#E6DFD0" stroke={INK} strokeWidth={1} />
     {/* emitting surface */}
-    <Rect x={69} y={78} width={92} height={12} fill={EMBER} />
+    <Rect x={69} y={60} width={92} height={12} fill={EMBER} />
+    {/* retention tangs the strip sits on */}
+    <Rect x={63} y={134} width={12} height={5} fill={INK} />
+    <Rect x={155} y={134} width={12} height={5} fill={INK} />
     {/* dim: strip width 16.5 */}
     <Line x1={69} y1={44} x2={161} y2={44} stroke={INK} strokeWidth={0.8} />
     <Line x1={69} y1={40} x2={69} y2={48} stroke={INK} strokeWidth={0.8} />
@@ -147,9 +150,9 @@ const CrossSection = () => (
     <Line x1={55} y1={174} x2={55} y2={182} stroke={INK} strokeWidth={0.8} />
     <Line x1={175} y1={174} x2={175} y2={182} stroke={INK} strokeWidth={0.8} />
     {/* dim: strip height 16.5 */}
-    <Line x1={196} y1={78} x2={196} y2={152} stroke={INK} strokeWidth={0.8} />
-    <Line x1={192} y1={78} x2={200} y2={78} stroke={INK} strokeWidth={0.8} />
-    <Line x1={192} y1={152} x2={200} y2={152} stroke={INK} strokeWidth={0.8} />
+    <Line x1={196} y1={60} x2={196} y2={134} stroke={INK} strokeWidth={0.8} />
+    <Line x1={192} y1={60} x2={200} y2={60} stroke={INK} strokeWidth={0.8} />
+    <Line x1={192} y1={134} x2={200} y2={134} stroke={INK} strokeWidth={0.8} />
     {/* dim: channel height 19.6 */}
     <Line x1={30} y1={60} x2={30} y2={160} stroke={INK} strokeWidth={0.8} />
     <Line x1={26} y1={60} x2={34} y2={60} stroke={INK} strokeWidth={0.8} />
