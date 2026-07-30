@@ -671,3 +671,9 @@ id = "vZa61K26GVJSudzJ98JWi"
 uri = "file://scripts/exports/orenara-ig-avatar-wordmark.png"
 type = "image"
 title = "Instagram profile — full wordmark"
+
+[[outputs]]
+id = "h5zCBrAuIQIN5XWG5Qsdw"
+uri = "file://scripts/exports/orenara-sf16-system-reference.pdf"
+type = "pdf"
+title = "Orenara SF16 System Reference — draft brochure"
