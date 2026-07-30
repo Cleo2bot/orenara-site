@@ -677,3 +677,9 @@ id = "h5zCBrAuIQIN5XWG5Qsdw"
 uri = "file://scripts/exports/orenara-sf16-system-reference.pdf"
 type = "pdf"
 title = "Orenara SF16 System Reference (updated)"
+
+[[outputs]]
+id = "ag4M1t7rlW_SoorGjmLPL"
+uri = "file://scripts/exports/orenara-channel-catalogue.pdf"
+type = "pdf"
+title = "Orenara Channel System Catalogue"
