@@ -258,7 +258,7 @@ const certs = [
   "FLAME RES.",
   "SOLVENT RES.",
   "LM-80",
-  "5YR MFR. WARRANTY",
+  "3YR WARRANTY",
 ];
 
 const connectors = [
@@ -394,7 +394,7 @@ const Brochure = () => (
               key={i}
               style={{
                 borderWidth: 1,
-                borderColor: c === "5YR MFR. WARRANTY" ? EMBER : LINE,
+                borderColor: c === "3YR WARRANTY" ? EMBER : LINE,
                 borderRadius: 2,
                 paddingVertical: 6,
                 paddingHorizontal: 8,
@@ -402,12 +402,12 @@ const Brochure = () => (
                 marginBottom: 6,
               }}
             >
-              <Text style={[s.monoSm, c === "5YR MFR. WARRANTY" ? { color: "#A66B24" } : {}]}>{c}</Text>
+              <Text style={[s.monoSm, c === "3YR WARRANTY" ? { color: "#A66B24" } : {}]}>{c}</Text>
             </View>
           ))}
         </View>
         <Text style={[s.body, { fontSize: 8, color: BONE_DIM, marginTop: 6 }]}>
-          5yr manufacturer strip warranty (Olympia). Orenara system warranty: 2 years submerged / 3 years above-water.
+          Orenara warranty: 3 years above-water, 2 years fully submerged.
         </Text>
         <Text style={[s.body, { fontSize: 8, color: BONE_DIM, marginTop: 4 }]}>
           LED density and cutting unit confirmed at quote stage — OR-SF-16M covers multiple density variants; plan cut points from your confirmed job spec, not this reference sheet.
