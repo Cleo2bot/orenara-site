@@ -6,8 +6,8 @@
  * Archivo 500 headings, Instrument Sans 400 body, IBM Plex Mono 400 for all
  * part numbers, dimensions and spec figures. 2px radius, no shadows.
  *
- * NOTE: Connector OR- codes are PROPOSED placeholders pending the user's
- * official mapping. Channel codes come from the user's own design brief.
+ * Part codes per the Orenara part-number reference (30 Jul 2026).
+ * Buried channel family has no OR- code yet — shown as "on request".
  */
 import React from "react";
 import {
@@ -263,21 +263,21 @@ const connectors = [
   {
     img: "conn-direct.png",
     name: "Direct entry",
-    code: "OR-CN-D",
+    code: "OR-CON-DIR",
     exit: "Cable exits in line with the strip",
     note: "Straight runs, open ends",
   },
   {
     img: "conn-side.png",
     name: "Side entry",
-    code: "OR-CN-S",
+    code: "OR-CON-SIDE",
     exit: "Cable exits at 90\u00B0, level with the strip",
     note: "Tight end-of-run spaces",
   },
   {
     img: "conn-bottom.png",
     name: "Bottom entry",
-    code: "OR-CN-B",
+    code: "OR-CON-BTM",
     exit: "Cable exits straight down, under the strip",
     note: "THE RECESSED-INSTALL CONNECTOR",
     highlight: true,
@@ -285,21 +285,21 @@ const connectors = [
   {
     img: "conn-lshape.png",
     name: "L-shape entry",
-    code: "OR-CN-L",
+    code: "OR-CON-L",
     exit: "Cable turns 90\u00B0 within the fitting",
     note: "Shallow cavities, wall returns",
   },
   {
     img: "conn-jumper.png",
     name: "Jumper",
-    code: "OR-CN-J",
+    code: "OR-CON-JMP",
     exit: "Strip-to-strip bridge, both ends sealed",
-    note: "Mid-run splice across joints",
+    note: "Genuine mid-run splices only",
   },
   {
     img: "conn-endcap.png",
     name: "End cap",
-    code: "OR-CN-EC",
+    code: "OR-CAP",
     exit: "Seals the blind end of every run",
     note: "Factory-fitted, IP68",
   },
@@ -311,7 +311,7 @@ const channels = [
   { img: "ch-ss-rigid.jpg", ctx: "Recessed under pool coping", code: "OR-SS-CC", mat: "Stainless 316L, rigid", dims: "18.6 × 20.3mm" },
   { img: "ch-ss-flex.jpg", ctx: "Recessed, curved coping", code: "OR-SS-FLX", mat: "Stainless 316L, flexible", dims: "18.0 × 21.8mm" },
   { img: "ch-plastic.jpg", ctx: "Budget / light duty", code: "OR-PC-CC", mat: "Polycarbonate", dims: "23.5 × 22.9mm" },
-  { img: "ch-buried.jpg", ctx: "Buried in ground / deck", code: "OR-AL-BR", mat: "Aluminium, buried & recessed", dims: "25.9 × 44.9mm" },
+  { img: "ch-buried.jpg", ctx: "Buried in ground / deck", code: "ON REQUEST", mat: "Aluminium, buried & recessed", dims: "25.9 × 44.9mm" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -357,7 +357,7 @@ const Brochure = () => (
     {/* ------------------------------------------------ P2 — Strip spec */}
     <PageShell pageNo="02" section="01 — The Strip">
       <View style={[s.pad, { marginTop: 18 }]}>
-        <Text style={s.eyebrow}>SF16 Mono — Silicone Linear Flex</Text>
+        <Text style={s.eyebrow}>SF16 Mono — OR-SF-16M</Text>
         <Text style={s.h1}>16.5mm of sealed silicone.</Text>
         <Text style={[s.body, { maxWidth: 400, marginTop: 6, color: "#3A3D41" }]}>
           A solid silicone extrusion with a flat diffusing face — no dotting, no
@@ -405,7 +405,7 @@ const Brochure = () => (
           ))}
         </View>
         <Text style={[s.body, { fontSize: 8, color: BONE_DIM, marginTop: 6 }]}>
-          Also available in the SF16 family: constant-current mono (15m/30m runs), tunable white, RGB and RGBW.
+          Also available in the SF16 family: constant-current mono OR-SF-16CC (15m/30m runs), tunable white OR-SF-16T, RGB OR-SF-16RGB and RGBW OR-SF-16RGBW.
           Ask for the variant sheet when your job needs colour or longer single feeds.
         </Text>
       </View>
@@ -540,7 +540,7 @@ const Brochure = () => (
         <View style={{ width: 200, borderWidth: 1, borderColor: EMBER, borderRadius: 2, padding: 10 }}>
           <Text style={[s.monoSm, { color: "#A66B24" }]}>WITH CC MONO</Text>
           <Text style={{ fontSize: 8, lineHeight: 1.5, marginTop: 4, color: "#3A3D41" }}>
-            The constant-current strip runs 30m on a double feed — the same pool
+            The constant-current strip (OR-SF-16CC) runs 30m on a double feed — the same pool
             becomes two runs and four feed points, with no mid-run splice on
             either long side.
           </Text>
@@ -578,8 +578,9 @@ const Brochure = () => (
         <View style={{ flex: 1, paddingRight: 16 }}>
           <Text style={s.th}>Dimming compatibility</Text>
           {[
-            ["Mono / CC mono", "DALI, DMX, 0/1-10V, Triac, PWM"],
-            ["Tunable / RGB / RGBW", "DALI or DMX, PWM — decoder required"],
+            ["Mono / CC mono", "0-10V, DALI, DMX, Triac, PWM"],
+            ["Tunable white", "0-10V, DALI, DMX, PWM"],
+            ["RGB / RGBW", "DMX or PWM — decoder required"],
           ].map(([a, b], i) => (
             <View key={i} style={[s.row, i === 0 ? { borderTopWidth: 1, borderTopColor: LINE, marginTop: 4 } : {}]}>
               <Text style={[s.cellPad, { width: 110, fontSize: 8 }]}>{a}</Text>
