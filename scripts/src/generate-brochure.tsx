@@ -7,7 +7,7 @@
  * part numbers, dimensions and spec figures. 2px radius, no shadows.
  *
  * Part codes per the Orenara part-number reference (30 Jul 2026).
- * Buried channel family has no OR- code yet — shown as "on request".
+ * Buried channel: OR-AL-BUR (deep aluminium buried/recessed profile, 25.9 × 44.9mm).
  */
 import React from "react";
 import {
@@ -245,7 +245,7 @@ const specRows: [string, string][] = [
   ["Min bend diameter", "120mm"],
   ["Max run — single feed", "10m (CC: 15m)"],
   ["Max run — double feed", "20m (CC: 30m)"],
-  ["Lumen maintenance", "L70 70,000h @ 25\u00B0C"],
+  ["Lumen maintenance", "L70 — confirm per job"],
   ["Operating temp", "-40\u00B0C to 55\u00B0C"],
   ["CCT options", "2200K – 6500K"],
   ["IP rating", "IP68 — submersible"],
@@ -258,8 +258,7 @@ const certs = [
   "FLAME RES.",
   "SOLVENT RES.",
   "LM-80",
-  "ANSI C78.377",
-  "5YR WARRANTY",
+  "5YR MFR. WARRANTY",
 ];
 
 const connectors = [
@@ -313,8 +312,8 @@ const channels = [
   { img: "ch-alu-flex.jpg", ctx: "Surface, curved", code: "OR-AL-FLX", mat: "Aluminium, flexible segmented", dims: "20.4 × 19.8mm" },
   { img: "ch-ss-rigid.jpg", ctx: "Recessed under pool coping", code: "OR-SS-CC", mat: "Stainless 316L, rigid", dims: "18.6 × 20.3mm" },
   { img: "ch-ss-flex.jpg", ctx: "Recessed, curved coping", code: "OR-SS-FLX", mat: "Stainless 316L, flexible", dims: "18.0 × 21.8mm" },
-  { img: "ch-plastic.jpg", ctx: "Budget / light duty", code: "OR-PC-CC", mat: "Polycarbonate", dims: "23.5 × 22.9mm" },
-  { img: "ch-buried.jpg", ctx: "Buried in ground / deck", code: "ON REQUEST", mat: "Aluminium, buried & recessed", dims: "25.9 × 44.9mm" },
+  { img: "ch-plastic.jpg", ctx: "Budget / light duty", code: "OR-PC-CC", mat: "Plastic", dims: "23.5 × 22.9mm" },
+  { img: "ch-buried.jpg", ctx: "Buried in ground / deck", code: "OR-AL-BUR", mat: "Aluminium, buried & recessed", dims: "25.9 × 44.9mm" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -395,7 +394,7 @@ const Brochure = () => (
               key={i}
               style={{
                 borderWidth: 1,
-                borderColor: c === "5YR WARRANTY" ? EMBER : LINE,
+                borderColor: c === "5YR MFR. WARRANTY" ? EMBER : LINE,
                 borderRadius: 2,
                 paddingVertical: 6,
                 paddingHorizontal: 8,
@@ -403,11 +402,17 @@ const Brochure = () => (
                 marginBottom: 6,
               }}
             >
-              <Text style={[s.monoSm, c === "5YR WARRANTY" ? { color: "#A66B24" } : {}]}>{c}</Text>
+              <Text style={[s.monoSm, c === "5YR MFR. WARRANTY" ? { color: "#A66B24" } : {}]}>{c}</Text>
             </View>
           ))}
         </View>
         <Text style={[s.body, { fontSize: 8, color: BONE_DIM, marginTop: 6 }]}>
+          5yr manufacturer strip warranty (Olympia). Orenara system warranty: 2 years submerged / 3 years above-water.
+        </Text>
+        <Text style={[s.body, { fontSize: 8, color: BONE_DIM, marginTop: 4 }]}>
+          LED density and cutting unit confirmed at quote stage — OR-SF-16M covers multiple density variants; plan cut points from your confirmed job spec, not this reference sheet.
+        </Text>
+        <Text style={[s.body, { fontSize: 8, color: BONE_DIM, marginTop: 4 }]}>
           Also available in the SF16 family: constant-current mono OR-SF-16CC (15m/30m runs), tunable white OR-SF-16T, RGB OR-SF-16RGB and RGBW OR-SF-16RGBW.
           Ask for the variant sheet when your job needs colour or longer single feeds.
         </Text>
@@ -506,6 +511,9 @@ const Brochure = () => (
           Aluminium channel (OR-AL-CC) is the standard specification: rigid, surface-mount or recessed,
           in 350mm / 1m / 2m lengths. Flexible segmented aluminium follows curves down to the strip's
           own 120mm bend limit.
+        </Text>
+        <Text style={[s.body, { fontSize: 8, color: BONE_DIM, marginTop: 4 }]}>
+          Stainless 316L channel (OR-SS-CC / OR-SS-FLX) — SF16 compatibility pending manufacturer confirmation. Specify only after confirming with Orenara.
         </Text>
       </View>
     </PageShell>
