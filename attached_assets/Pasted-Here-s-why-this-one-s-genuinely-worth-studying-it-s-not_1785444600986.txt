@@ -1,0 +1,104 @@
+Here's why this one's genuinely worth studying — it's not the strip itself, it's how they've packaged the decision-making around it:
+
+1. It names a real competitor we didn't have in the file
+Emaux is a pool/spa equipment brand selling this direct — a named, published-spec competitor at the retail/pool-industry level, distinct from Havit (electrical retail) or the architectural quote-only peers already in the competitive file. Worth adding.
+
+2. Near-identical spec to ours, on paper
+24V, 10W/m, IP68, 3000K–6500K CCT range, 12cm bend diameter, waterproof/UV/saltwater/flame/solvent/dirt resistant, ANSI C78.377 + LM-80 certified — this is essentially our SF16 mono spec sheet with a pool-brand label on it. Same category, same claims.
+
+3. The thing that's actually good — a worked example
+Page 5 shows "Typical design for a regular 10×20m rectangular pool for 3000K lighting intensity" — an actual reference install, not just component specs. That's the gap in our own materials: we have no worked example that shows a customer "here's what a standard pool perimeter job looks like end to end." It removes the guesswork buyers have to do themselves, which is generally the friction point that stalls quote-builder enquiries.
+
+4. Two connector types spec'd for orientation, named plainly
+GL10BD / GL10SD — "Side Direct Connectors," explicitly framed as "to configure the connector orientation for best installation." That's exactly the ambiguity we keep hitting with Antony's pedestal-tile job and others — Emaux solves it by naming the two options and letting the installer pick, right there in the doc. Worth mirroring that clarity in our own product reference material.
+
+5. Distribution line at the bottom
+"Available from: [reseller]" — suggests a retail/reseller network, not direct-to-consumer. Useful competitive-position data if we ever want to know how they're priced at the shelf versus us.
+
+Where it doesn't threaten us: no stated max single-feed run length (unlike our 10m/15m CC figures) and no visible per-metre pricing — so we can't yet tell if they undercut us or not. Worth flagging to the competitive file as a name to track, not yet a priced threat.
+
+Want me to add Emaux to the competitive intelligence file, and pull the connector-orientation clarity idea into the site's IP-ratings/product education backlog item?
+
+Cam you give me like a design prompt of how this is put together. I ove the connector imagery too. It explains visually how the connectors work. You'll notice this is 16.5 x 16.5 light. So you know where they are getting it all from. But this is well put together with all our produxts
+
+Deconstructed branding framework and adapted visual language systematically
+Deconstructed branding framework and adapted visual language systematically
+
+Good catch on the 16.5mm × 16.5mm figure — that's the same cross-section dimension that showed up on the silicone neon-flex diagram from Olympia's own material earlier in this chat. Strong sign Emaux isn't manufacturing this themselves — they're very likely white-labelling the same OEM base product family as our own supply chain, just with sharper packaging and marketing around it. Worth remembering: the underlying hardware may not be a competitive edge for them at all — the presentation is.
+
+Here's a design prompt capturing how it's built, adapted to pull in Orenara's own products and brand system:
+
+Design prompt: Orenara Product & Installation Reference Sheet
+
+Format: single-page technical brochure, portrait A4, print and PDF-ready.
+
+Brand system: ink (
+#0F1113) for structure/text, bone (
+#F3EEE4) background, ember accent used sparingly for callouts only. Archivo 500 for headings, Instrument Sans 400 for body copy, IBM Plex Mono 400 for all part numbers, dimensions, and spec figures. 2px border radius throughout, no drop shadows, generous whitespace — nothing crowded.
+
+Header block: wordmark (text, never the icon alone), one-line positioning statement ("Not Waterproof. Submersible."), product family name in Archivo.
+
+Section 1 — Cutaway/cross-section diagram: a to-scale side profile of the strip and channel assembly, dimension lines calling out width and height in mono type (matching the 16.5mm callout style) — shows the physical envelope installers need for cavity/coping planning, not a marketing render.
+
+Section 2 — Certification icon grid: 4–5 columns of simple line-icon squares (dimmable, ambient temp range, IP68, UV resistant, saltwater resistant, flame resistant, warranty years) — consistent 1px stroke weight, ink on bone, no colour except the odd ember highlight on the headline claim (e.g. "3yr warranty").
+
+Section 3 — Connector orientation diagram (the standout piece): exploded-view illustration showing the two or three connector entry types side-by-side — direct-entry, side-entry, bottom-entry — each labelled with its OR- part number in mono type, with a small arrow indicating cable exit direction. This is the single most useful visual from the Emaux piece: it turns an abstract spec question ("which connector do I need?") into something an installer can point at.
+
+Section 4 — Worked reference install: one annotated diagram of a "typical" job — e.g. a 20m pool perimeter — showing run breakdown, driver placement, and feed points at actual proportions. This is the piece we don't have yet and should build first; it's the thing that answers a buyer's "what does this actually look like on a real job" question before they ever get to a quote.
+
+Section 5 — Wiring diagram: simple schematic, driver-to-strip-to-dimmer, in line-art style matching the connector diagram.
+
+Footer: lead-time sentence verbatim, supply-only line verbatim, part number table if space allows.
+
+This maps almost exactly onto backlog item #6 (IP-ratings education page) plus gives you the connector-orientation asset that would have made both Antony's and past bottom-entry questions a non-issue. Want me to draft the actual copy/content for a first version of this, or brief it as a Higgsfield production job?
+
+Architected comprehensive SF16 brief showcasing premium stainless and recessed advantages
+Architected comprehensive SF16 brief showcasing premium stainless and recessed advantages
+
+Good instinct — Emaux is showing one strip type and one channel option. We've actually got the deeper range across SF16 alone, and the recessed-stainless application is exactly where the "who owns the seal" pitch lands hardest. Here's the brief built off the real SF16 product set.
+
+Design brief: Orenara SF16 System Reference — "The Full Range"
+
+Positioning line for the doc itself: Emaux and similar pool-brand strips show one strip, one channel, one connector. This shows the full system — because a strip-only spec sheet stops being useful the moment your run exceeds 10m or needs to disappear into stone.
+
+Section 1 — Strip range (the part Emaux collapses into one line)
+
+Show all five SF16 variants side by side, not just mono:
+
+Standard mono (2835/3528, 120 LEDs/m) — 10m single-feed / 20m double-feed
+CC mono (constant-current) — 15m single-feed / 30m double-feed — this is the standout column; call it out visually since it's the thing that lets a pool perimeter avoid a mid-run join where Emaux's 20m max would force a splice on anything long
+Tunable white (DW) — dual-CCT
+RGB — no white channel, longer run than RGBW
+RGBW (12V and 24V, two distinct run envelopes)
+
+Table format, mono-type figures: voltage / W/m / max run single-double / min bend Ø / CRI / certs. This is a straight beat on Emaux, who show one row.
+
+Section 2 — Connector orientation diagram (the piece you loved, extended)
+
+Emaux showed 2 orientations. We have 5: direct, side, bottom, L-shape, plus jumper for mid-run splice. Exploded-view diagram, each with its OR- code and an arrow showing cable exit direction — but the standout panel should be bottom-entry, since that's the one Emaux doesn't show at all and it's the one that matters most for flush/recessed work (pond edges, tile-flush capping — exactly Antony's pedestal-tile scenario). Caption it as the "recessed install" connector.
+
+Section 3 — Channel system: where we actually lead
+
+This is the section Emaux has nothing to compete with. Lay it out as a decision tree, not a list:
+
+Install context	Channel	Material
+Surface, straight	OR-AL-CC	Aluminium, rigid
+Surface, curved	OR-AL-FLX	Aluminium, flexible segmented
+Recessed under pool coping	OR-SS-CC	Stainless 316L
+Recessed, curved coping	OR-SS-FLX	Stainless 316L, flexible
+Budget / light-duty	OR-PC-CC	Plastic
+Buried	ALC-WL-B-02 family	Aluminium, buried-and-recessed
+
+⚠️ One honest gap to flag before this goes to print: the stainless channel range (SSC16 series) is confirmed against SF17 in Olympia's sheets, not formally confirmed as fitting SF16 yet — worth locking that down with Ava before we print "SF16 + stainless" as a headline claim. Don't want the flagship section resting on an unconfirmed fit.
+
+Section 4 — Worked example (the section to lead with visually)
+
+A cutaway of a stainless channel recessed into pool coping, cross-section dimensioned, showing the strip sitting inside, sealed connector at the joint, coping stone above. This is the single image that makes the whole "who owns the seal" pitch tangible — nobody else in the anchor map (Havit, DIY, wholesale) shows this because none of them own a full recessed system. Annotate: no field join, factory-tested before dispatch, 2yr submerged warranty.
+
+Section 5 — Driver/control matrix
+
+One clean table: mono/CC → DALI, DMX, 0-10V, Triac, PWM. Tunable/RGB/RGBW → DALI or DMX only, PWM, decoder required for colour. This kills the recurring "does dimming work with this strip" back-and-forth we keep having over email (Jeff Strath, JMC, SWIMCO all hit this).
+
+Visual system
+
+Same brand rules as before — ink/bone/ember, Archivo headings, Plex Mono for every dimension and part number, 2px radius, no shadows. But given this is positioned as the technical leadership piece, slightly denser than a marketing page is fine here — this one's meant to be pinned to a site shed wall, not scrolled on Instagram.
