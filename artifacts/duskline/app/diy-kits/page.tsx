@@ -502,19 +502,19 @@ function KitCard({
         )}
 
         {/* actions */}
-        <div className="mt-auto pt-4 flex items-center gap-3 border-t border-bone-line">
-          <Link
-            href={`/diy-kits/${kit.id}`}
-            className="flex-1 text-center text-xs font-spec tracking-wider text-ink/65 hover:text-ink border border-bone-line hover:border-ink/25 bg-bone-tile hover:bg-bone px-4 py-2.5 rounded-xs transition-colors"
-          >
-            What's included →
-          </Link>
+        <div className="mt-auto pt-4 border-t border-bone-line space-y-2">
           <button
             onClick={() => onRegister(kit.id)}
-            className="flex-1 bg-[--ember] hover:bg-[--ember-deep] text-ink font-display text-xs tracking-wider uppercase px-4 py-2.5 rounded-xs transition-colors"
+            className="w-full bg-[--ember] hover:bg-[--ember-deep] text-ink font-display text-sm tracking-widest uppercase py-3 rounded-xs transition-colors"
           >
             Join waitlist
           </button>
+          <Link
+            href={`/diy-kits/${kit.id}`}
+            className="block w-full text-center text-xs font-spec tracking-wider text-ink/45 hover:text-ink py-1.5 transition-colors"
+          >
+            See what's in the kit →
+          </Link>
         </div>
       </div>
     </article>
@@ -535,8 +535,8 @@ export default function DiyKitsPage() {
 
   return (
     <div className="min-h-screen bg-bone text-ink">
-      {/* ── nav — solid black ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/8 bg-black">
+      {/* ── nav — solid black, inline style guarantees it overrides Tailwind v4 theme ── */}
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/8" style={{ backgroundColor: '#0F1113' }}>
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link
             href="/"

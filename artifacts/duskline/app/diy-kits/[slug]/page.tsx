@@ -393,7 +393,7 @@ export default function KitDetailPage({
   return (
     <div className="min-h-screen bg-bone text-ink">
       {/* nav */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/8 bg-black">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/8" style={{ backgroundColor: '#0F1113' }}>
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link
             href="/"
