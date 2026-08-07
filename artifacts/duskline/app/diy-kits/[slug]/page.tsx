@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useId } from "react";
+import React, { useState, useId, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { useSearchParams, notFound } from "next/navigation";
 import { KITS, KitId, KitDef } from "../../../lib/diy-kits-data";
 
 /* ------------------------------------------------------------------ shared */
@@ -53,9 +53,11 @@ function Select({
 type FormState = "idle" | "submitting" | "success" | "error";
 type Control = "fixed" | "dimmer";
 
-function WaitlistForm({ kit }: { kit: KitDef }) {
+function WaitlistForm({ kit, initialLength }: { kit: KitDef; initialLength?: string }) {
   const formId = useId();
-  const [lengths, setLengths] = useState<string[]>([]);
+  const [lengths, setLengths] = useState<string[]>(
+    initialLength && kit.lengths.includes(initialLength) ? [initialLength] : []
+  );
   const [color, setColor] = useState<string>("");
   const [control, setControl] = useState<Control>("fixed");
   const [name, setName] = useState("");
@@ -385,6 +387,8 @@ export default function KitDetailPage({
 }) {
   const kit = KITS.find((k) => k.id === params.slug);
   if (!kit) notFound();
+  const searchParams = useSearchParams();
+  const initialLength = searchParams.get("length") ?? undefined;
 
   return (
     <div className="min-h-screen bg-bone text-ink">
@@ -626,7 +630,7 @@ export default function KitDetailPage({
               directly shape how we launch.
             </p>
           </div>
-          <WaitlistForm kit={kit} />
+          <WaitlistForm kit={kit} initialLength={initialLength} />
         </div>
       </section>
 

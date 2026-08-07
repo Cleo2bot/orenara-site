@@ -402,8 +402,8 @@ function KitCard({
 }) {
   return (
     <article className="border border-bone-line rounded-xs overflow-hidden bg-bone-card flex flex-col group">
-      {/* image — badge only, no title overlay */}
-      <div className="relative w-full aspect-[16/10] overflow-hidden">
+      {/* image — links to detail page */}
+      <Link href={`/diy-kits/${kit.id}`} className="relative w-full aspect-[16/10] overflow-hidden block">
         <Image
           src={kit.image}
           alt={kit.application}
@@ -424,7 +424,7 @@ function KitCard({
             {kit.tagline}
           </p>
         </div>
-      </div>
+      </Link>
 
       {/* card body */}
       <div className="p-5 flex flex-col flex-1">
@@ -443,12 +443,13 @@ function KitCard({
           </p>
           <div className="flex flex-wrap gap-1.5">
             {kit.lengths.map((l) => (
-              <span
+              <Link
                 key={l}
-                className="font-spec text-xs text-ink/65 border border-bone-line bg-bone-tile px-2.5 py-1 rounded-xs"
+                href={`/diy-kits/${kit.id}?length=${l}`}
+                className="font-spec text-xs text-ink/65 border border-bone-line bg-bone-tile hover:border-[--ember]/50 hover:text-ink px-2.5 py-1 rounded-xs transition-colors"
               >
                 {l}
-              </span>
+              </Link>
             ))}
           </div>
         </div>
