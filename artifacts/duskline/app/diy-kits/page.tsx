@@ -429,10 +429,10 @@ function KitCard({
       {/* card body */}
       <div className="p-5 flex flex-col flex-1">
         {/* title — below image, never clipped */}
-        <h3 className="font-display text-xl text-ink mb-2 leading-tight">
+        <h3 className="font-display text-2xl text-ink mb-1.5 leading-tight tracking-tight">
           {kit.name}
         </h3>
-        <p className="text-sm text-ink/65 leading-relaxed mb-5">
+        <p className="text-sm text-ink/60 leading-relaxed mb-5">
           {kit.application}
         </p>
 
@@ -502,16 +502,16 @@ function KitCard({
         )}
 
         {/* actions */}
-        <div className="mt-auto pt-2 flex items-center gap-3 border-t border-bone-line">
+        <div className="mt-auto pt-4 flex items-center gap-3 border-t border-bone-line">
           <Link
             href={`/diy-kits/${kit.id}`}
-            className="text-xs font-spec tracking-wider text-ink/55 hover:text-ink transition-colors pt-3"
+            className="flex-1 text-center text-xs font-spec tracking-wider text-ink/65 hover:text-ink border border-bone-line hover:border-ink/25 bg-bone-tile hover:bg-bone px-4 py-2.5 rounded-xs transition-colors"
           >
             What's included →
           </Link>
           <button
             onClick={() => onRegister(kit.id)}
-            className="ml-auto mt-3 bg-[--ember] hover:bg-[--ember-deep] text-ink font-display text-xs tracking-wider uppercase px-4 py-2 rounded-xs transition-colors"
+            className="flex-1 bg-[--ember] hover:bg-[--ember-deep] text-ink font-display text-xs tracking-wider uppercase px-4 py-2.5 rounded-xs transition-colors"
           >
             Join waitlist
           </button>
