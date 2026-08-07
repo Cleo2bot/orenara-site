@@ -21,6 +21,13 @@
   --ember-deep: #A9743B;     /* hover/pressed state of ember only */
   --radius: 2px;             /* global radius — aluminium-extrusion language */
 
+  /* Light-section tokens (DIY kits page content areas, bone backgrounds) */
+  --bone-card: #E9E4DA;      /* card / panel bg on bone background */
+  --bone-tile: #DED9CF;      /* inner tile / form field bg on bone-card */
+  --bone-line: rgba(15, 17, 19, 0.12); /* borders on light backgrounds */
+  --ink-body: rgba(15, 17, 19, 0.65);  /* body copy on light backgrounds */
+  --ink-label: rgba(15, 17, 19, 0.45); /* labels/captions on light backgrounds */
+
   /* Print-only tokens (PrintQuoteView renders on white paper) */
   --print-ink: #15171C;
   --print-mid: #555555;
@@ -39,6 +46,9 @@
   --color-bone-dim: var(--bone-dim);
   --color-ember: var(--ember);
   --color-ember-deep: var(--ember-deep);
+  --color-bone-card: var(--bone-card);
+  --color-bone-tile: var(--bone-tile);
+  --color-bone-line: var(--bone-line);
   --color-transparent: transparent;
   --color-current: currentColor;
 
