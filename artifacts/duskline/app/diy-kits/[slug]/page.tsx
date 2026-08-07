@@ -8,7 +8,7 @@ import { KITS, KitId, KitDef } from "../../../lib/diy-kits-data";
 
 /* ------------------------------------------------------------------ shared */
 const inputCls =
-  "w-full bg-bone-tile border border-bone-line text-ink rounded-xs px-3 py-2.5 text-sm placeholder:text-ink/35 focus:outline-none focus:border-ember transition-colors";
+  "w-full bg-bone-tile border border-bone-line text-ink rounded-xs px-3 py-2.5 text-sm placeholder:text-ink/35 focus:outline-none focus:border-ink/40 transition-colors";
 
 function Select({
   id,
@@ -125,7 +125,7 @@ function WaitlistForm({ kit, initialLength }: { kit: KitDef; initialLength?: str
   if (formState === "success") {
     return (
       <div className="py-12 text-center">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-ember mb-4">
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-ink/30 mb-4">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path
               d="M4 10l4 4 8-8"
@@ -149,7 +149,7 @@ function WaitlistForm({ kit, initialLength }: { kit: KitDef; initialLength?: str
     "block text-[9px] font-spec tracking-widest text-ink/45 uppercase mb-2";
   const chipBase =
     "px-3 py-1.5 text-sm font-spec border rounded-xs transition-colors";
-  const chipOn = "bg-ember border-ember text-ink";
+  const chipOn = "bg-ink border-ink text-bone";
   const chipOff =
     "bg-transparent border-bone-line text-ink/60 hover:border-[--ink]/30";
 
@@ -368,7 +368,7 @@ function WaitlistForm({ kit, initialLength }: { kit: KitDef; initialLength?: str
       <button
         type="submit"
         disabled={formState === "submitting"}
-        className="w-full bg-ember hover:bg-ember-deep text-ink font-display text-sm tracking-wider uppercase py-3.5 rounded-xs transition-colors disabled:opacity-50"
+        className="w-full bg-ink hover:bg-ink/80 text-bone font-display text-sm tracking-wider uppercase py-3.5 rounded-xs transition-colors disabled:opacity-50"
       >
         {formState === "submitting" ? "Sending…" : "Notify me when it's ready"}
       </button>
@@ -397,7 +397,7 @@ export default function KitDetailPage({
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link
             href="/"
-            className="font-display text-sm tracking-[0.25em] text-bone hover:text-ember transition-colors"
+            className="font-display text-sm tracking-[0.25em] text-bone hover:text-bone/70 transition-colors"
           >
             ORENARA
           </Link>
@@ -428,7 +428,7 @@ export default function KitDetailPage({
                 {kit.channelBadge}
               </span>
             </div>
-            <p className="font-spec text-xs tracking-widest text-ember uppercase mb-2">
+            <p className="font-spec text-xs tracking-widest text-bone/55 uppercase mb-2">
               {kit.tagline}
             </p>
             <h1 className="font-display text-3xl sm:text-4xl md:text-5xl text-bone leading-tight max-w-2xl">
@@ -447,7 +447,7 @@ export default function KitDetailPage({
                 {kit.application}
               </p>
               {kit.channelNote && (
-                <p className="text-sm text-ink/55 border-l-2 border-ember/50 pl-4 italic leading-relaxed mb-6">
+                <p className="text-sm text-ink/50 border-l border-ink/20 pl-4 italic leading-relaxed mb-6">
                   {kit.channelNote}
                 </p>
               )}
@@ -472,7 +472,7 @@ export default function KitDetailPage({
                 <p className="font-spec text-[9px] tracking-widest text-ink/40 uppercase mb-1">
                   Install difficulty
                 </p>
-                <p className="font-display text-lg text-ember mb-1">
+                <p className="font-display text-lg text-ink mb-1">
                   {kit.difficulty}
                 </p>
                 <p className="text-xs text-ink/60 leading-relaxed">
@@ -504,7 +504,7 @@ export default function KitDetailPage({
                   <div className="space-y-2">
                     {kit.colorOptions.map((c) => (
                       <div key={c.name} className="flex items-start gap-2">
-                        <span className="text-ember mt-0.5 flex-shrink-0 text-xs">–</span>
+                        <span className="text-ink/40 mt-0.5 flex-shrink-0 text-xs">–</span>
                         <div>
                           <span className="text-sm text-ink font-display">
                             {c.name}
@@ -533,7 +533,7 @@ export default function KitDetailPage({
       {/* what's in the kit */}
       <section className="bg-bone-card border-b border-bone-line">
         <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
-          <p className="font-spec text-xs tracking-widest text-ember uppercase mb-3">
+          <p className="font-spec text-xs tracking-widest text-ink/40 uppercase mb-3">
             What's in the box
           </p>
           <h2 className="font-display text-2xl sm:text-3xl text-ink mb-8">
@@ -545,7 +545,7 @@ export default function KitDetailPage({
                 key={item.label}
                 className="bg-bone-tile border border-bone-line rounded-xs p-5 flex items-start gap-3"
               >
-                <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-ember mt-2" />
+                <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-ink/30 mt-2" />
                 <div>
                   <p className="text-sm text-ink font-display mb-1">
                     {item.label}
@@ -563,7 +563,7 @@ export default function KitDetailPage({
       {/* how it installs */}
       <section className="bg-bone border-b border-bone-line">
         <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
-          <p className="font-spec text-xs tracking-widest text-ember uppercase mb-3">
+          <p className="font-spec text-xs tracking-widest text-ink/40 uppercase mb-3">
             Installation
           </p>
           <h2 className="font-display text-2xl sm:text-3xl text-ink mb-8">
@@ -578,8 +578,8 @@ export default function KitDetailPage({
                 } ${i < kit.howItInstalls.length - 2 ? "border-b border-bone-line" : ""}`}
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full border border-ember/40 bg-ember/8 flex items-center justify-center">
-                    <span className="font-spec text-[11px] text-ember">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full border border-ink/20 bg-ink/5 flex items-center justify-center">
+                    <span className="font-spec text-[11px] text-ink/40">
                       {i + 1}
                     </span>
                   </div>
@@ -601,13 +601,13 @@ export default function KitDetailPage({
       {/* ideal for */}
       <section className="bg-bone-card border-b border-bone-line">
         <div className="max-w-6xl mx-auto px-6 py-12">
-          <p className="font-spec text-xs tracking-widest text-ember uppercase mb-3">
+          <p className="font-spec text-xs tracking-widest text-ink/40 uppercase mb-3">
             Ideal for
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-2xl">
             {kit.idealFor.map((use) => (
               <div key={use} className="flex items-start gap-2 text-sm text-ink/65">
-                <span className="text-ember mt-0.5 flex-shrink-0">–</span>
+                <span className="text-ink/40 mt-0.5 flex-shrink-0">–</span>
                 {use}
               </div>
             ))}
@@ -619,7 +619,7 @@ export default function KitDetailPage({
       <section className="bg-bone border-b border-bone-line">
         <div className="max-w-2xl mx-auto px-6 py-16 lg:py-20">
           <div className="text-center mb-10">
-            <p className="font-spec text-xs tracking-widest text-ember uppercase mb-3">
+            <p className="font-spec text-xs tracking-widest text-ink/40 uppercase mb-3">
               Register
             </p>
             <h2 className="font-display text-3xl text-ink mb-3">
