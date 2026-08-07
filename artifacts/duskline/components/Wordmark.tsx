@@ -29,7 +29,7 @@ const sizeMap: Record<string, string> = {
 export default function Wordmark({ size = "md", className = "" }: WordmarkProps) {
   return (
     <svg
-      viewBox="-4 4 428 94"
+      viewBox="-4 14 428 84"
       fill="none"
       stroke="currentColor"
       strokeWidth="7.5"
@@ -51,7 +51,7 @@ export default function Wordmark({ size = "md", className = "" }: WordmarkProps)
       {/* spine · middle arm · bottom foot · foot right upstroke */}
       <path d="M134,30 V94 M134,58 H167 M134,94 H171 M171,94 V75" />
       {/* floating dash — detached, above cap line */}
-      <line x1="139" y1="13" x2="166" y2="13" />
+      <line x1="139" y1="21" x2="166" y2="21" />
 
       {/* ── N ─────────────────────────────────────────────── */}
       {/* left spine · diagonal · right spine */}
