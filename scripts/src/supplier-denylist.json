@@ -1,0 +1,13 @@
+{
+  "comment": "Supplier branding/codes that must NEVER appear in any generated PDF. Each entry is a case-insensitive regex; word boundaries prevent false positives (e.g. F16 must not match SF16). Shared by check-pdf-leaks.ts, which both PDF generators run automatically after rendering.",
+  "patterns": [
+    "\\bOlympia\\b",
+    "\\bALC[A-Z0-9-]*",
+    "\\bSSC[A-Z0-9-]*",
+    "\\bSJJ[A-Z0-9-]*",
+    "\\bMJ-SF[A-Z0-9-]*",
+    "\\bPC16[A-Z0-9-]*",
+    "\\bPC17[A-Z0-9-]*",
+    "\\bF16\\b"
+  ]
+}
