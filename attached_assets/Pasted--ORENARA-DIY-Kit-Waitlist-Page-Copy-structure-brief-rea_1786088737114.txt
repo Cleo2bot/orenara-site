@@ -1,0 +1,152 @@
+# ORENARA — DIY Kit Waitlist Page
+**Copy & structure brief — ready for Replit build brief once reviewed**
+
+⚠️ Launch date used as placeholder throughout: **"September 2026."** Swap for a real date before this goes live — a vague or slipping date undermines the "coming soon" urgency it's meant to create.
+
+---
+
+## Positioning note before the copy
+
+This isn't a different product — it's the same factory-sealed, plug-and-play system you already sell, packaged into fixed preset lengths and sold direct rather than through the quote pipeline. No electrician required because it plugs into an existing GPO, same as every current system does — not because anything about the seal is different. Keep that distinction explicit in the copy: DIY doesn't mean lower-grade, it means simpler to buy and easier to install yourself.
+
+---
+
+## Page structure
+
+### 1. Hero
+
+**Headline:** The same submersible system. Now in a box you can order today.
+
+**Subhead:** Factory-sealed, fully submersible IP68 strip lighting — pre-configured into ready-to-install kits. No electrician, no custom quote, no waiting on a design consult. Just pick your length and plug it in.
+
+**Availability line:** Kits launching September 2026. Register below to be first in line — and help us price it right.
+
+---
+
+### 2. What it actually is
+
+**Section header:** Same system. Different way to buy it.
+
+Body copy:
+> Everything that makes our supply-only systems hold up underwater — the sealed silicone strip, the factory-moulded connectors, the tested-before-dispatch process — is exactly the same here. What's different is how you get it: instead of a custom quote built around your exact site, you choose from a set of ready-made lengths and configurations, and it arrives ready to install.
+>
+> No electrician required. Every kit ships with a standard plug — you're not hard-wiring anything, just running it into an existing power point and screwing down the channel.
+
+---
+
+### 3. How it works — browse kits, pick a length, join the list
+
+This is a **kit gallery**, not a linear three-step form. The person flicks through a few application-based kits, sees the run-length options for each, and can join the waitlist right from the kit they're looking at — no separate page, no forced sequence.
+
+**Section header:** Find the kit that suits your space.
+
+**Kit cards (carousel or grid — confirm which suits the build), one per application:**
+
+| Kit | Application | Channel | Notes |
+|---|---|---|---|
+| **Stair Kit** | Step edges, stair nosing | Aluminium | Preset lengths matched to typical stair runs |
+| **Pool Surround Kit** | Pool coping, pond edges | **Stainless only** | No aluminium option offered here — decided for the customer, not a choice they have to make |
+| **Patio Kit** | Deck edges, patio perimeter | Aluminium | Longer preset lengths available |
+| **Path Kit** | Garden paths, walkways | Aluminium | Shorter, curve-friendly presets |
+
+*(Confirm the final kit list and whether stairs/patio/path also get a stainless upsell option, or stay aluminium-only by design — "pools only get stainless" reads as a deliberate simplification, worth deciding if any other kit gets the same locked-in treatment rather than a choice.)*
+
+**Each kit card shows, without needing a click-through:**
+- A representative image of that application
+- The available preset lengths for that kit (e.g. 3m / 5m / 8m — confirm actual presets per kit, ideally tied to the 10m single-feed limit so no CC-strip complexity enters this tier)
+- A short one-line description
+- **A waitlist button right on the card** — join the list for *that* kit specifically, not just the page generally
+
+**Clicking into a kit** opens a fuller view (still same page, not a new URL) showing:
+- What's included for that specific kit
+- The control options available (see below)
+- The same waitlist form, pre-filled with which kit they were looking at
+
+---
+
+### 4. Control options
+
+**Section header:** Set it and forget it.
+
+- **Fixed-on** — plug in, it's on. Simplest option.
+- **Wall dimmer** — manual brightness control, no app required.
+- **Smart app control** — WiFi-connected, adjust from your phone, works with Google Home and Alexa. Includes **automatic dusk-to-dawn scheduling** — set it once and it turns on and off with the sun.
+
+⚠️ **Do not publish the smart control claims until confirmed sourced.** This is the same category of controller flagged on an earlier quote (Tuya-ecosystem, Google Home/Alexa compatible) but it was swapped out at the time because it wasn't in the confirmed control catalogue — nothing's been costed or locked in with Ava yet. "GPS-based" or "comes home and turns on" style claims belong to the customer's own phone automation (a Google Home/Alexa routine triggered by location), not something the driver itself does — word this as "works with your existing smart home routines" rather than claiming Orenara supplies location-based automation directly.
+
+---
+
+### 5. What's included in every kit
+
+Simple icon-row or bullet list, plain language, no part numbers:
+
+- Sealed IP68 strip, cut and tested to your chosen length
+- Channel matched to the kit (aluminium, or stainless for pool kits)
+- Factory-fitted connectors and end caps — nothing to assemble
+- Driver, sized correctly for the length
+- Standard 240V plug — no hard-wiring
+- Fitting screws and a one-page install guide
+
+---
+
+### 5. Why it's still an Orenara system
+
+Short trust section — this is where the warranty-ownership pitch belongs, adapted for a DIY buyer:
+
+> A DIY kit doesn't mean a lower-grade product. Every connection is still factory-sealed before it leaves us — there's nothing for you to waterproof yourself. You're doing the screwing-down and the plugging-in; we've already done the sealing.
+
+---
+
+### 6. Registration / waitlist form
+
+Appears both as a **quick join button on every kit card** (opens this form pre-filled with that kit) and once more at the bottom of the page for anyone who scrolls past without picking one.
+
+**Header:** Get notified when kits go live — and help us get the price right.
+
+Fields:
+- **Which kit are you interested in?** (auto-filled if they clicked from a kit card; dropdown if they used the bottom-of-page form)
+- Name
+- Email
+- Phone (optional)
+- Roughly how many metres?
+- **"What would you expect to pay for a kit like this?"** (open number field)
+- **"At what price would this be too expensive to consider?"** (open number field)
+- Are you a licensed electrician, or installing this yourself? (self-declare — segmentation + light legal cover)
+
+**Submit button copy:** Notify me when it's ready
+
+**Confirmation copy (post-submit):** You're on the list. We'll email you the moment kits go live — likely September 2026.
+
+---
+
+### 7. Footer / fine print
+
+- Lead-time sentence does NOT apply here (this is a stocked/preset product, not made-to-order) — confirm actual DIY-kit lead time before launch and state it plainly once known.
+- No payment is taken at registration — make this explicit near the form so nobody thinks they're pre-ordering or being charged.
+- Standard supply-only line, adapted: "Supply only — you install it yourself, following the included guide."
+
+---
+
+## Build notes for Replit (once copy is approved)
+
+- New page, new route (e.g. `/diy-kit` or `/kits`)
+- **Kit gallery is one page, not separate URLs per kit** — clicking into a kit expands/reveals detail in place (accordion, modal, or expanding card — Replit's call on the cleanest implementation), so the waitlist form can carry "which kit" context without a page reload
+- **Two distinct tracked events needed, not one:**
+  1. **Kit view event** — fires when someone opens/expands a specific kit (Stair / Pool Surround / Patio / Path). This is the "what people are actually interested in before they even commit to a form" signal — arguably more valuable than the form submit alone, since it captures browsing intent from people who don't convert too.
+  2. **Waitlist submit event** — fires on form submission, same as the original conversion plan, but should carry the kit name as a parameter (e.g. GA4 event parameter `kit_name`) so submits can be broken down by kit later, not just counted as one blended total.
+- New form → same Resend pipeline pattern as the existing enquiry form
+- No payment processing, no cart — this is registration-only
+- Standard checkpoint/approval discipline applies: brief in phases, no push to GitHub without explicit approval, verify build passes before deploy, spot-check the public page after
+- Once live and both events are confirmed firing, the Google Ads conversion actions can be created via the Windsor.ai connector already in place — likely two: "DIY Kit Interest" (view-based, higher volume, softer signal) and "DIY Kit Waitlist" (submit-based, harder signal), so Google Ads can eventually optimise toward the real conversion rather than just view volume
+
+---
+
+## Still open — needs your decision before this locks in
+
+1. **Real launch date** (currently placeholder "September 2026")
+2. **Final kit list and per-kit preset lengths** — confirm the four kits above are right, and lock in lengths per kit, ideally tied to the 10m single-feed limit so the DIY tier never needs CC strip or split-run complexity
+3. **Whether the "pools only get stainless" locked-decision treatment extends to any other kit**, or stays unique to pool surround
+4. **Whether colour-change (RGB/RGBW/tunable) is offered in the DIY tier at all**, or kept exclusively in the custom/quote pipeline
+5. **Smart control sourcing — confirm with Ava before publishing.** The app/WiFi/dusk-to-dawn claims need a real, costed, confirmed product behind them before they go live. This is the single biggest risk of overpromising on the whole page.
+6. **Actual DIY-kit lead time** once you know it (stocked vs still made-to-order-but-faster)
+7. **Pricing** — this page collects the willingness-to-pay data; the two open-number fields are the mechanism, per the earlier discussion
