@@ -11,7 +11,7 @@ type Control = "fixed" | "dimmer";
 
 /* ------------------------------------------------------------------ shared input styles */
 const inputCls =
-  "w-full bg-bone-tile border border-bone-line text-ink rounded-xs px-3 py-2.5 text-sm placeholder:text-ink/35 focus:outline-none focus:border-[--ember] transition-colors";
+  "w-full bg-bone-tile border border-bone-line text-ink rounded-xs px-3 py-2.5 text-sm placeholder:text-ink/35 focus:outline-none focus:border-ember transition-colors";
 
 /* ------------------------------------------------------------------ Select */
 function Select({
@@ -135,7 +135,7 @@ function WaitlistForm({
   if (formState === "success") {
     return (
       <div className="py-10 text-center">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-[--ember] mb-4">
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-ember mb-4">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path
               d="M4 10l4 4 8-8"
@@ -159,7 +159,7 @@ function WaitlistForm({
     "block text-[9px] font-spec tracking-widest text-ink/45 uppercase mb-2";
   const chipBase =
     "px-3 py-1.5 text-sm font-spec border rounded-xs transition-colors";
-  const chipOn = "bg-[--ember] border-[--ember] text-ink";
+  const chipOn = "bg-ember border-ember text-ink";
   const chipOff =
     "bg-transparent border-bone-line text-ink/60 hover:border-[--ink]/30";
 
@@ -381,7 +381,7 @@ function WaitlistForm({
       <button
         type="submit"
         disabled={formState === "submitting"}
-        className="w-full bg-[--ember] hover:bg-[--ember-deep] text-ink font-display text-sm tracking-wider uppercase py-3.5 rounded-xs transition-colors disabled:opacity-50"
+        className="w-full bg-ember hover:bg-ember-deep text-ink font-display text-sm tracking-wider uppercase py-3.5 rounded-xs transition-colors disabled:opacity-50"
       >
         {formState === "submitting" ? "Sending…" : "Notify me when it's ready"}
       </button>
@@ -414,13 +414,13 @@ function KitCard({
         <div className="absolute inset-0 bg-gradient-to-t from-[--ink]/30 to-transparent" />
         {/* channel badge */}
         <div className="absolute top-3 right-3 bg-[--ink]/75 backdrop-blur-sm border border-white/10 px-2.5 py-1.5 rounded-xs">
-          <span className="font-spec text-[9px] tracking-[0.15em] text-[--bone] uppercase">
+          <span className="font-spec text-[9px] tracking-[0.15em] text-bone uppercase">
             {kit.channelBadge}
           </span>
         </div>
         {/* tagline at bottom */}
         <div className="absolute bottom-0 left-0 right-0 px-5 pb-4">
-          <p className="font-spec text-[9px] tracking-[0.15em] text-[--ember] uppercase">
+          <p className="font-spec text-[9px] tracking-[0.15em] text-ember uppercase">
             {kit.tagline}
           </p>
         </div>
@@ -446,7 +446,7 @@ function KitCard({
               <Link
                 key={l}
                 href={`/diy-kits/${kit.id}?length=${l}`}
-                className="font-spec text-xs text-ink/65 border border-bone-line bg-bone-tile hover:border-[--ember]/50 hover:text-ink px-2.5 py-1 rounded-xs transition-colors"
+                className="font-spec text-xs text-ink/65 border border-bone-line bg-bone-tile hover:border-ember/50 hover:text-ink px-2.5 py-1 rounded-xs transition-colors"
               >
                 {l}
               </Link>
@@ -465,7 +465,7 @@ function KitCard({
                 key={use}
                 className="flex items-start gap-2 text-xs text-ink/60"
               >
-                <span className="text-[--ember] mt-0.5 flex-shrink-0">–</span>
+                <span className="text-ember mt-0.5 flex-shrink-0">–</span>
                 {use}
               </div>
             ))}
@@ -496,7 +496,7 @@ function KitCard({
 
         {/* channel note */}
         {kit.channelNote && (
-          <p className="text-xs text-ink/55 border-l-2 border-[--ember]/50 pl-3 mb-4 italic leading-relaxed">
+          <p className="text-xs text-ink/55 border-l-2 border-ember/50 pl-3 mb-4 italic leading-relaxed">
             {kit.channelNote}
           </p>
         )}
@@ -505,7 +505,7 @@ function KitCard({
         <div className="mt-auto pt-4 border-t border-bone-line space-y-2">
           <button
             onClick={() => onRegister(kit.id)}
-            className="w-full bg-[--ember] hover:bg-[--ember-deep] text-ink font-display text-sm tracking-widest uppercase py-3 rounded-xs transition-colors"
+            className="w-full bg-ember hover:bg-ember-deep text-ink font-display text-sm tracking-widest uppercase py-3 rounded-xs transition-colors"
           >
             Join waitlist
           </button>
@@ -540,13 +540,13 @@ export default function DiyKitsPage() {
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link
             href="/"
-            className="font-display text-sm tracking-[0.25em] text-[--bone] hover:text-[--ember] transition-colors"
+            className="font-display text-sm tracking-[0.25em] text-bone hover:text-ember transition-colors"
           >
             ORENARA
           </Link>
           <button
             onClick={() => scrollToBottom()}
-            className="font-spec text-[9px] tracking-widest uppercase text-[--ember] border border-[--ember]/40 hover:border-[--ember] px-3 py-1.5 rounded-xs transition-colors"
+            className="font-spec text-[9px] tracking-widest uppercase text-ember border border-ember/40 hover:border-ember px-3 py-1.5 rounded-xs transition-colors"
           >
             Join waitlist
           </button>
@@ -564,18 +564,18 @@ export default function DiyKitsPage() {
             className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[--ink] via-[--ink]/60 to-[--ink]/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/10" />
         </div>
         <div className="relative max-w-6xl mx-auto px-6 pb-20 pt-24">
-          <p className="font-spec text-xs tracking-widest text-[--ember] uppercase mb-4">
+          <p className="font-spec text-xs tracking-widest text-ember uppercase mb-4">
             SF16 DIY Kit — Launching September 2026
           </p>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-6 max-w-2xl text-[--bone]">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-6 max-w-2xl text-bone">
             The same submersible system.
             <br className="hidden sm:block" /> Now in a box you can order
             today.
           </h1>
-          <p className="text-[--bone-dim] text-lg leading-relaxed max-w-xl mb-10">
+          <p className="text-bone-dim text-lg leading-relaxed max-w-xl mb-10">
             Factory-sealed, fully submersible IP68 strip lighting —
             pre-configured into ready-to-install kits. No electrician, no
             custom quote, no waiting on a design consult. Just pick your length
@@ -588,13 +588,13 @@ export default function DiyKitsPage() {
                   .getElementById("kits")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="bg-[--ember] hover:bg-[--ember-deep] text-ink font-display tracking-wider uppercase px-8 py-3.5 rounded-xs transition-colors"
+              className="bg-ember hover:bg-ember-deep text-ink font-display tracking-wider uppercase px-8 py-3.5 rounded-xs transition-colors"
             >
               Find your kit
             </button>
             <button
               onClick={() => scrollToBottom()}
-              className="border border-[--bone-dim]/30 hover:border-[--bone-dim] text-[--bone] font-display tracking-wider uppercase px-8 py-3.5 rounded-xs transition-colors"
+              className="border border-bone/20 hover:border-bone/50 text-bone font-display tracking-wider uppercase px-8 py-3.5 rounded-xs transition-colors"
             >
               Join the waitlist
             </button>
@@ -603,8 +603,8 @@ export default function DiyKitsPage() {
             {["IP68 Submersible", "Factory sealed", "240V plug-in", "3yr warranty"].map(
               (t) => (
                 <div key={t} className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-[--ember] flex-shrink-0" />
-                  <span className="font-spec text-xs tracking-widest text-[--bone-dim] uppercase">
+                  <span className="w-1 h-1 rounded-full bg-ember flex-shrink-0" />
+                  <span className="font-spec text-xs tracking-widest text-bone-dim uppercase">
                     {t}
                   </span>
                 </div>
@@ -619,7 +619,7 @@ export default function DiyKitsPage() {
         <div className="max-w-6xl mx-auto px-6 py-20 lg:py-28">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <p className="font-spec text-xs tracking-widest text-[--ember] uppercase mb-4">
+              <p className="font-spec text-xs tracking-widest text-ember uppercase mb-4">
                 Same system. Different way to buy it.
               </p>
               <h2 className="font-display text-3xl sm:text-4xl leading-tight text-ink mb-6">
@@ -649,10 +649,10 @@ export default function DiyKitsPage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[--ink] to-transparent p-5">
-                <p className="font-spec text-[9px] tracking-widest text-[--ember] uppercase mb-1">
+                <p className="font-spec text-[9px] tracking-widest text-ember uppercase mb-1">
                   IP68 factory-moulded connector
                 </p>
-                <p className="text-sm text-[--bone-dim]">
+                <p className="text-sm text-bone-dim">
                   Sealed at the factory. Pressure-tested before dispatch.
                   Nothing for you to assemble.
                 </p>
@@ -666,7 +666,7 @@ export default function DiyKitsPage() {
       <section id="kits" className="bg-bone border-t border-bone-line">
         <div className="max-w-6xl mx-auto px-6 py-20 lg:py-28">
           <div className="mb-12">
-            <p className="font-spec text-xs tracking-widest text-[--ember] uppercase mb-3">
+            <p className="font-spec text-xs tracking-widest text-ember uppercase mb-3">
               Find your kit
             </p>
             <h2 className="font-display text-3xl sm:text-4xl leading-tight text-ink">
@@ -694,7 +694,7 @@ export default function DiyKitsPage() {
       <section className="bg-bone-card border-t border-bone-line">
         <div className="max-w-6xl mx-auto px-6 py-16 lg:py-24">
           <div className="mb-10">
-            <p className="font-spec text-xs tracking-widest text-[--ember] uppercase mb-3">
+            <p className="font-spec text-xs tracking-widest text-ember uppercase mb-3">
               Inside the box
             </p>
             <h2 className="font-display text-2xl sm:text-3xl text-ink">
@@ -712,8 +712,8 @@ export default function DiyKitsPage() {
                 key={item.label}
                 className="rounded-xs border border-bone-line bg-bone-tile p-5 flex items-start gap-4"
               >
-                <div className="flex-shrink-0 mt-0.5 w-10 h-10 rounded-xs border border-[--ember]/25 bg-[--ember]/8 flex items-center justify-center">
-                  <span className="font-spec text-[8px] tracking-wider text-[--ember] uppercase text-center leading-none">
+                <div className="flex-shrink-0 mt-0.5 w-10 h-10 rounded-xs border border-ember/25 bg-ember/8 flex items-center justify-center">
+                  <span className="font-spec text-[8px] tracking-wider text-ember uppercase text-center leading-none">
                     {item.tag}
                   </span>
                 </div>
@@ -731,7 +731,7 @@ export default function DiyKitsPage() {
 
           {/* control options */}
           <div className="mt-8 rounded-xs border border-bone-line bg-bone-tile p-6 lg:p-8">
-            <p className="font-spec text-xs tracking-widest text-[--ember] uppercase mb-3">
+            <p className="font-spec text-xs tracking-widest text-ember uppercase mb-3">
               Control options
             </p>
             <h3 className="font-display text-xl text-ink mb-5">
@@ -766,7 +766,7 @@ export default function DiyKitsPage() {
         <div className="max-w-6xl mx-auto px-6 py-16 lg:py-24">
           <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-start">
             <div>
-              <p className="font-spec text-xs tracking-widest text-[--ember] uppercase mb-4">
+              <p className="font-spec text-xs tracking-widest text-ember uppercase mb-4">
                 Why it's still an Orenara system
               </p>
               <h2 className="font-display text-2xl sm:text-3xl text-ink mb-6">
@@ -781,7 +781,7 @@ export default function DiyKitsPage() {
               <div className="space-y-4 mb-8">
                 {TRUST_POINTS.map((point) => (
                   <div key={point.label} className="flex items-start gap-4">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[--ember] flex-shrink-0 mt-2" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-ember flex-shrink-0 mt-2" />
                     <div>
                       <p className="text-sm text-ink font-display mb-0.5">
                         {point.label}
@@ -853,7 +853,7 @@ export default function DiyKitsPage() {
       >
         <div className="max-w-2xl mx-auto px-6 py-20">
           <div className="text-center mb-10">
-            <p className="font-spec text-xs tracking-widest text-[--ember] uppercase mb-3">
+            <p className="font-spec text-xs tracking-widest text-ember uppercase mb-3">
               Register
             </p>
             <h2 className="font-display text-3xl text-ink mb-3">
