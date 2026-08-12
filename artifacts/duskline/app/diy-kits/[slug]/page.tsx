@@ -4,7 +4,6 @@ import React, { useState, useId, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams, notFound } from "next/navigation";
-import Wordmark from "../../../components/Wordmark";
 import { KITS, KitId, KitDef } from "../../../lib/diy-kits-data";
 
 /* ------------------------------------------------------------------ shared */
@@ -398,10 +397,9 @@ export default function KitDetailPage({
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link
             href="/"
-            className="text-bone hover:opacity-70 transition-opacity"
-            aria-label="Orenara home"
+            className="font-display text-sm tracking-[0.25em] text-bone hover:text-bone/70 transition-colors"
           >
-            <Wordmark size="sm" />
+            ORENARA
           </Link>
           <Link
             href="/diy-kits"

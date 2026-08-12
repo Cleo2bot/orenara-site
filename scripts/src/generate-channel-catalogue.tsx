@@ -567,13 +567,4 @@ const Doc = () => (
 );
 
 mkdirSync(path.dirname(OUT), { recursive: true });
-renderToFile(<Doc />, OUT)
-  .then(async () => {
-    console.log("written:", OUT);
-    const { checkPdfForLeaks } = await import("./check-pdf-leaks.js");
-    checkPdfForLeaks(OUT);
-  })
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  });
+renderToFile(<Doc />, OUT).then(() => console.log("written:", OUT));

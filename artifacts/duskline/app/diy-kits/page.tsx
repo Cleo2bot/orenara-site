@@ -3,7 +3,6 @@
 import React, { useState, useRef, useId } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Wordmark from "../../components/Wordmark";
 import { KITS, BOX_ITEMS, TRUST_POINTS, KitId, KitDef } from "../../lib/diy-kits-data";
 
 /* ------------------------------------------------------------------ types */
@@ -541,10 +540,9 @@ export default function DiyKitsPage() {
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link
             href="/"
-            className="text-bone hover:opacity-70 transition-opacity"
-            aria-label="Orenara home"
+            className="font-display text-sm tracking-[0.25em] text-bone hover:text-bone/70 transition-colors"
           >
-            <Wordmark size="sm" />
+            ORENARA
           </Link>
           <button
             onClick={() => scrollToBottom()}

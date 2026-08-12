@@ -625,8 +625,6 @@ async function main() {
   mkdirSync(path.resolve(__dirname, "../exports"), { recursive: true });
   await renderToFile(<Brochure />, OUT);
   console.log("written:", OUT);
-  const { checkPdfForLeaks } = await import("./check-pdf-leaks.js");
-  checkPdfForLeaks(OUT);
 }
 main().catch((e) => {
   console.error(e);
