@@ -1,0 +1,169 @@
+# ORENARA — BUILD BRIEF: Catalog-Only Pricing & Quote Builder Overhaul
+**Prepared 13 August 2026 — for the Replit Agent**
+
+Read this brief in full before starting. This changes both the pricing model and the customer flow — it's not a small tweak to the existing tool.
+
+---
+
+## Non-negotiable working rules (restate every session with the agent)
+- **No push to GitHub/main without Ben's explicit approval.** Every phase below ends in a hard checkpoint stop — wait for "proceed" before continuing to the next one.
+- Local production build must pass before any push. After push, verify the Vercel deploy succeeded and spot-check `/`, `/trade`, and one kit page.
+- If a path is blocked, **stop and report it** — do not route around it (e.g. do not push via the GitHub API if a git commit is blocked).
+- Do not silently resolve a spec contradiction — flag it and wait for a decision.
+
+---
+
+## Business context (why this brief exists)
+Orenara is retiring bespoke, quote-per-job pricing in favour of a fixed-tier catalog, self-served on the site. Every job going forward should map to a catalog tier; there is no custom/bespoke path left for new enquiries. This removes the back-and-forth on every enquiry and closes a pricing-transparency gap — the old itemized quote format let electricians price-check the driver line separately from the sealed system.
+
+**Pricing is two-band and INTERIM — do not hardcode a single flat rate:**
+- **10m tier: $139/m** (inc GST residential, +GST trade). Confirmed-safe — based on standard mono strip, real landed cost.
+- **15m–40m tiers: $149/m.** Every tier above 10m runs on CC strip, and CC strip's Olympia landed cost is currently an estimate, not a confirmed invoice — this rate carries thin margin (modelled 1.6–2.0×, not the ~3× standard) until that cost is confirmed. This is a deliberate low-price/thin-margin choice for launch, not a safety buffer.
+- **This rate will very likely change** once Ben has Olympia's confirmed CC strip cost from Ava — could move either direction depending on what the real number is. Build the pricing as a **per-tier lookup table, not a single constant**, so this is a one-line config change later, not a redeploy of the pricing logic itself.
+
+---
+
+## RESOLVED — single product line, DIY kits retired
+Ben's decision: **(A)** — the new catalog replaces the DIY kit concept entirely. One product family, always electrician-installed. This is final, not open.
+
+**Real current state (supersedes any earlier "5m Starter / 10m Pool Surround / 15m Perimeter" description of this work):** a `/diy-kits` build already exists in Replit — a listing page with four kit cards (Pool Surround, Stair, Patio, Path), per-kit detail pages at `/diy-kits/[slug]`, a waitlist API route, and a `diy-kits-data.ts` data file. It isn't linked from site nav, so it's effectively dark already — good, no rush, but it means this is real shipped work, not a plan on paper.
+
+**Migrate this, don't rebuild from scratch.** The page structure — category cards → detail page → length selection — is close to exactly what Phase 2's entry flow needs. Only the positioning, some copy, and the length ladders need to change.
+
+**Keep as-is:**
+- The route pattern (rename `/diy-kits` → `/kits` — "diy" shouldn't persist in the URL, sitemap, or code once the positioning drops).
+- The four kit cards — **Pool Surround, Stair, Patio, Path** — use these as the entry categories instead of any other naming. They're more specific and already visually tested. Drop "Custom Zone" as a named card entirely — that role is now the existing "Request Review" exception path (Phase 3), not a card with its own length ladder.
+- `diy-kits-data.ts` as the data model — rename the file, extend its schema to carry tier/channel/pricing logic instead of DIY box-contents.
+- The waitlist API route pattern — same shape as the "Request Review" lead-capture flow already specified, can likely become it directly.
+- The `?length=` URL preselection pattern — reuse this to link a chosen tier straight into the price calculator.
+- The card visual design and photography (channel-type tags, "ideal for" bullets, ink/bone palette) — on-brand, no changes needed.
+
+**Must change:**
+- Hero copy — drop "Plug in — no electrician required." Replace with something like: "The same submersible system, configured for your application. Installed by your licensed electrician."
+- Drop the **"control options" section** entirely (WiFi/app-control — retired, see below).
+- Rewrite **install-step content** — currently written for self-install; either become electrician-facing spec/reference detail, or drop in favour of the plain descriptive paragraph already specified in Phase 3's wording section.
+- Review the **"trust section"** specifically — if it currently sells ease-of-self-install, it needs to shift to the warranty/seal-ownership framing that's the real differentiator (see brand voice: the premium is warranty ownership, not product).
+- **Length ladders need to be per-category, not one universal ladder** — see below.
+
+**What this retires:**
+- Everything DIY-specific in the current `/diy-kits` build: control options, self-install steps, "no electrician required" copy.
+- The WiFi-controller/app-control work (Ltech WIFI-104, WIFI-RDM01, Tuya-vs-closed-app question) — **dropped, not paused.**
+
+**Bonus: this closes out three previously-blocking open items** that existed only to support the "no electrician" DIY claim, none of which are relevant anymore:
+1. Mean Well driver RCM/SAA independent approval — was gating any "plug-and-play" advertising claim. No longer a gate; the electrician handles compliance on install same as any other job.
+2. Tuya/WiFi controller SKU type (genuine Tuya bridge vs Ltech's closed app) — moot, no controller in the product.
+3. Controller landed cost as a mandatory BOM line — moot, same reason.
+
+Physical wall dimmers (OR-DIM-010V) are also no longer excluded on DIY-compatibility grounds — mains-side dimmer wiring was only a problem when there was no electrician on site. Not adding dimming to v1 scope regardless (see Phase 3 scope limit), but worth knowing the constraint that ruled it out before no longer applies.
+
+---
+
+## Per-category length ladders (real decision needed — starting point below, not final)
+The current `/diy-kits` build's length options (Pool Surround 3/5/8/10m; Stair 2/3/5m; Patio 3/5/8/10m; Path 2/3/5m) were sized for small DIY features. They don't match the real job sizes in the pipeline — Pool Surround jobs alone have run 10.9m to 40m, median around 20m. A single universal 10–40m ladder across all four categories isn't right either — a stair run and a pool perimeter aren't the same scale of thing. Recommend per-category ladders, roughly:
+
+| Category | Suggested lengths | Reasoning |
+|---|---|---|
+| Pool Surround | 5 / 10 / 15 / 20 / 25 / 30 / 35 / 40m | Real jobs span this whole range |
+| Stair | 2 / 3 / 5 / 8m | Stair runs are inherently short and multi-segment; current ladder is close to right |
+| Patio | 5 / 10 / 15 / 20 / 25m | Matches real patio/pergola job sizes seen so far |
+| Path | 10 / 15 / 20 / 25 / 30 / 35 / 40m | Driveways and boundary paths run long, similar to Pool Surround |
+
+This is a first pass from real quote history, not a locked answer — worth a quick sanity check against a few more jobs before it's built into the UI. **Concrete-embedded/buried jobs (e.g. Andrew's driveway pattern cast into concrete) don't fit any of these four cards cleanly — route to Request Review rather than forcing them into Path.**
+
+---
+
+## Recommended entry flow (applies across all phases)
+1. Customer picks a kit — **Pool Surround, Stair, Patio, or Path.**
+2. Kit sets the channel-type default (see Phase 4) and its own length ladder (above). Customer can override channel type.
+3. Customer selects a length, sees price instantly (Phase 3).
+
+The category is a UI shortcut only — the order that gets confirmed is always the explicit length + channel + colour combination the customer sees on screen, never something inferred from the category alone.
+
+---
+
+## Phase 1 — Fix the Quote Builder's calculation bugs
+No new UI in this phase. Fix the math the tool already has.
+
+- **Driver count** must respect the 12m-per-driver rule — one driver never carries more than 12.0m of strip. Greedy-pack, never split a run mid-driver. *(Confirmed bug: a 35m submission returned 2 drivers; it needs 3.)*
+- **Strip run-length ceiling:** standard mono strip caps at 10m single-feed / 20m double-feed. Anything over 10m single-feed must switch to CC strip (OR-SF-16CC), capped at 15m single-feed / 30m double-feed. Anything beyond 30m must split into multiple independently-fed physical runs — never propose one run past CC's double-feed ceiling.
+- **80% derate** applies per individual run, never pooled across zones.
+
+**Checkpoint — stop here.** Verify the fix against Nigel's 35m case (should return 3 drivers, CC strip, correctly zoned) before continuing.
+
+---
+
+## Phase 2 — Restructure to a fixed-tier catalog
+Replace arbitrary-length input with fixed tiers. **Available lengths are per-category — see the "Per-category length ladders" table above, not one universal set.** The reference table below shows the strip/run/driver logic for the longer end of the range (Pool Surround, Path); apply the same 12m-per-driver and single-feed-cap logic to whatever lengths each category actually offers — Stair's short lengths mostly stay single-run, single-driver.
+
+Reference config per tier — **every tier above 10m is delivered as multiple independently-fed physical runs, not one continuous cut length.** This is not a compromise; it's the same pattern already used successfully on real jobs (SWIMCO's 4 runs, Cody's 4 runs off one driver). Each run must independently satisfy two separate limits: the 12m-per-driver wattage cap, and the strip's own single-feed length cap (10m mono / 15m CC). Don't try to feed one continuous run from multiple drivers — split into more runs instead.
+
+| Tier | Strip | Physical runs (each independently fed) | Drivers |
+|---|---|---|---|
+| 10m | Standard mono | 1 run × 10m | 1 |
+| 15m | CC | 2 runs (e.g. 8m + 7m) | 2 |
+| 20m | CC | 2 runs (e.g. 10m + 10m) | 2 |
+| 25m | CC | 3 runs (e.g. 9m + 8m + 8m) | 3 |
+| 30m | CC | 3 runs (e.g. 10m + 10m + 10m) | 3 |
+| 35m | CC | 3 runs (e.g. 12m + 12m + 11m) | 3 |
+| 40m | CC | 4 runs (e.g. 10m × 4) | 4 |
+
+⚠️ The customer sees one product, one zone, one price. Internally this is always multiple BOM line groups (multiple runs, connector sets, and drivers) — consistent with the standing "no field joins" rule. Actual split points (e.g. exactly where the 3 runs in a 30m tier fall) should follow the customer's real corners/geometry where known: for site-wide catalog defaults where geometry isn't collected, split evenly.
+
+Channel type is a separate selector, available at every tier: **Rigid Aluminium / Stainless Recessed / Flexible Curved / Buried (concrete-embed).** See Phase 4 for the open data dependency on Stainless.
+
+**Checkpoint — stop here** before wiring up live pricing.
+
+---
+
+## Phase 3 — Instant pricing, no back-and-forth
+- Replace "submit enquiry, wait for Ben's reply" with an in-page **"Calculate price"** button.
+  - Fire a GA4 event on click — extend the existing Google tag wiring, don't rebuild it. **Flag to Ben before this ships:** the site's existing GA4/Google Ads conversion actions ("Enquiry," "Trade Enquiry," "Quote Builder") feed a live, funded Google Ads campaign. This new button changes what those actions mean — needs a decision on whether "Calculate price" / "Send Order" become new tracked conversion actions or map onto the existing ones, made together with the Marketing side of the business, not assumed by the agent.
+  - On click: show the total (rate × tier length per the per-tier rate table above — $139/m at 10m, $149/m at 15m–40m) and the description text (below). No per-line pricing, no part numbers. **Rate must be a config lookup by tier, not a hardcoded constant** — this will be updated once Ava confirms CC strip cost.
+  - **GST display:** always show the inc-GST total as the primary figure (ACL requirement, and there's no reliable way to auto-detect residential vs trade on a self-serve page). Offer an explicit "view ex GST" toggle the customer chooses themselves — do not try to infer customer type silently.
+  - **Scope limit for v1:** mono/CC strip only. No RGB, RGBW, or tunable colour-change strip in the catalog — those need a decoder/repeater and a different connector prefix per colour, which is real added complexity. If colour-change demand shows up, that's a Phase 5 conversation, not something to build speculatively now.
+- Two actions below the price:
+  - **"Confirm & Request Invoice"** (not "Send Order") — no payment is actually taken at this step, so the label needs to be honest about that. Captures customer + delivery + electrician contact, creates a confirmed order record **that echoes back the exact configuration selected — length tier, channel type, colour temp — as the definitive record of what was agreed**, notifies Ben via the existing Resend pipeline so he raises the Xero invoice manually. Confirmation screen copy should say plainly that nothing ships until the invoice is paid. **Do not build payment/checkout** — this stays the deliberate manual seam already in place.
+  - **"Request Review"** — for anything that doesn't fit a tier cleanly. Routes to Ben as a normal enquiry, using the same Resend pipeline as today's enquiry form. This is functionally the existing enquiry flow, not a new thing — keep it visually secondary, it's the exception path, not the default.
+- **Order numbering:** confirmed catalog orders get their own sequence, distinct from the OR-Q-#### quote numbers used by the admin tool (e.g. OR-ORD-####), so the two systems never collide or need reconciling against each other.
+
+**Checkpoint — stop here.** This is the phase with real production risk (new customer-facing pricing flow) — do not push without an explicit review. Spot-check on mobile specifically, not just desktop — Ben runs this business from phone/iPad.
+
+---
+
+## Wording changes (apply everywhere this copy appears)
+**Remove all mention of "wiring diagram" / "wiring documentation supplied."** Don't replace it with alternative wording — just drop it.
+
+Standard description template, no per-line pricing, no part numbers, no brand names:
+
+> "[Length]m submersible IP68 LED strip system, [colour temp], factory-sealed and tested before dispatch. [Channel type] channel, IP68 mould-injection connectors and end caps throughout. Drivers sized and split across the run so brightness holds evenly end to end. Weatherproof plug included. Supply only — installation by your licensed electrician."
+
+---
+
+## Phase 4 — Channel-selection logic (has an open data dependency — do not ship blind)
+Default by kit, customer can override:
+- **Pool Surround** → Stainless Recessed
+- **Stair** → Rigid Aluminium
+- **Patio** → Rigid Aluminium
+- **Path** → Flexible Curved
+
+None of the four kits is a clean fit for buried/concrete-embedded work (e.g. Andrew's driveway pattern cast directly into concrete) — that channel type only comes up through Request Review, not as a kit default.
+
+⚠️ **Blocking dependency:** Stainless channel is only formally confirmed compatible with the SF17 strip line in Olympia's spec sheets — not SF16, which is what we use on nearly every job, and which is what the Pool Surround kit defaults to. We've shipped stainless with SF16 before without a documented confirmation. Ben is chasing this with Ava directly. Build the UI regardless, but **do not remove this caveat, and do not treat Stainless as fully safe to publish, until Ben confirms it's resolved.**
+
+**Checkpoint — Phase 4 only proceeds once Ben confirms the SF16/stainless question is closed.**
+
+---
+
+## Do not modify
+- Resend enquiry pipeline / email notifications.
+- Google tag / GA4 wiring — extend it, don't rebuild it.
+- Neon DB core enquiry/quote schema — additive migrations only, never destructive. Never touch a sent quote record (no renumbering, no deletion, no edits).
+- No Xero API integration — the manual seam is deliberate.
+- No payment/checkout build.
+- `/admin` routes (Phases 1–4 of the admin quote tool are already shipped) — leave untouched except where explicitly instructed above.
+
+## Explicitly retire (part of this brief, not a separate task)
+- Any older "5m Starter / 10m Pool Surround / 15m Perimeter" kit pages or pricing, if these exist anywhere separate from the current `/diy-kits` build.
+- The "control options" section and any WiFi-controller/app-control feature copy, imagery, or in-progress UI in the `/diy-kits` build.
+- All "no electrician needed" / self-install / plug-and-play messaging, site-wide, including the current `/diy-kits` hero copy.
+- The self-install steps content on the `/diy-kits/[slug]` detail pages — rewritten or dropped per the migration guidance above.
