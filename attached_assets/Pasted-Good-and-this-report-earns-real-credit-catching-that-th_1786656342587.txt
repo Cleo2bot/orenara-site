@@ -1,0 +1,11 @@
+Good—and this report earns real credit: catching that the label fix from last session never touched the actual `sideLens` computation feeding pricing and driver calc is a serious catch, not a minor detail. That means every "26.8m confirmed" claim before now was checking the label while the number actually driving the invoice was still 17.2m. That's a strong validation of the rule you just wrote to memory — I'd sharpen it slightly for the note: **a fix isn't verified until every place that formula is used has been checked, not just the one surfacing in the UI.** Same shape as the label vs. constant issue, different location. Noting that as a standing check on this project — I'll flag it explicitly any time a report says "fixed" without showing where else the same logic might live.
+
+Two things worth a direct answer before I'd call this settled, then happy to pick up wherever your message got cut off:
+
+**Was "submerged forces stainless, regardless of item type" a deliberate call, or an inherited side-effect of reusing Pool's material logic?** I think it's actually *correct* — the corrosion reasoning on the pool page ("aluminium corrodes in chlorinated and salt water") applies physically to any submerged run, not just ones shaped like a pool. A submerged garden-bed water feature needs stainless for the same reason a pool perimeter does. But worth confirming that's the actual reasoning behind it and not just "pool's rule got copied onto the boolean" without re-checking it made sense for Stairs/Path/Zone too.
+
+**What did the 6 regression tests actually cover?** Given the lesson just learned about labels lying about what's underneath, I'd want the specific list — particularly confirmation that at least one test was a **non-pool item with `submerged` toggled on** (a Stair or Zone), verifying it actually forces stainless, hides trim, and shows the 2-year note end-to-end — not just that Pool (which was already forced) still works.
+
+Still not checkpointed — your own look at the dev server stays the final gate, same as every round before this.
+
+And — looks like your message cut off after "and -". What was the second half?
