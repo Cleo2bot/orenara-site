@@ -117,7 +117,7 @@ export const TRUST_POINTS = [
   {
     label: "Warranty ownership",
     detail:
-      "Orenara owns the IP68 seal. If it fails under warranty, we fix it — not your electrician.",
+      "3 years on standard installations, 2 years on permanent submersion. Orenara owns the IP68 seal — if it fails, we fix it, not your electrician.",
   },
   {
     label: "Factory-sealed connectors",
@@ -125,9 +125,9 @@ export const TRUST_POINTS = [
       "Pressure-tested before dispatch. Every connection is made before it leaves our facility.",
   },
   {
-    label: "No field termination",
+    label: "No field splicing",
     detail:
-      "Nothing is joined, cut or sealed on-site. Your electrician installs a finished system.",
+      "Strip is factory-sealed end to end. If you trim to length on site, a factory-matched snap end cap fits by hand — no crimping, no factory equipment.",
   },
   {
     label: "Same components",

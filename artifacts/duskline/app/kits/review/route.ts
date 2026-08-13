@@ -42,6 +42,10 @@ interface ZoneEntry {
   poolSides?: Record<string, boolean>;
   // stair-specific
   steps?: string;
+  // path-specific
+  pathRuns?: string;
+  // box-specific
+  zoneShape?: string;
 }
 
 interface KitConfig {
@@ -140,6 +144,10 @@ function zoneRow(z: ZoneEntry, idx: number): string {
   if (isPool) {
     const mount = z.poolMount === "recessed" ? "Recessed" : "Coping";
     desc = `Pool · ${mount}${z.poolL && z.poolW ? ` · ${z.poolL}×${z.poolW}m` : ""}`;
+  } else if (z.type === "box" && z.zoneShape === "rect") {
+    desc = `Zone · Rectangle${z.poolL && z.poolW ? ` · ${z.poolL}×${z.poolW}m` : ""}`;
+  } else if (z.type === "path" && z.pathRuns && parseInt(z.pathRuns) > 1) {
+    desc = `Path · ${z.metres ?? "?"}m × ${z.pathRuns} runs`;
   } else {
     desc = `${z.type.charAt(0).toUpperCase()}${z.type.slice(1)} · ${z.metres ?? "?"}m`;
   }
@@ -192,6 +200,21 @@ function runsForZone(z: ZoneEntry): QuoteRunInput[] {
   if (z.type === "stair") {
     const stepCount = Math.max(1, parseInt(z.steps ?? "8") || 8);
     return Array.from({ length: stepCount }, () => ({ lengthMetres: m, shape: "straight" as const }));
+  }
+  if (z.type === "path") {
+    const runCount = Math.max(1, parseInt(z.pathRuns ?? "1") || 1);
+    return Array.from({ length: runCount }, () => ({ lengthMetres: m, shape: "straight" as const }));
+  }
+  if (z.type === "box" && z.zoneShape === "rect") {
+    const l = parseFloat(z.poolL ?? "0");
+    const w = parseFloat(z.poolW ?? "0");
+    if (isNaN(l) || l <= 0 || isNaN(w) || w <= 0) return [];
+    const sides = z.poolSides ?? { top: true, bottom: true, left: true, right: true };
+    return (["top","bottom","left","right"] as const).flatMap(side => {
+      if (!sides[side]) return [];
+      const len = (side === "top" || side === "bottom") ? l : w;
+      return len > 0 ? [{ lengthMetres: len, shape: "straight" as const }] : [];
+    });
   }
   return [{ lengthMetres: m, shape: "straight" as const }];
 }

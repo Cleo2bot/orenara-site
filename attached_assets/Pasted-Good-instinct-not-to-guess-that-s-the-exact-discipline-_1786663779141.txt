@@ -1,0 +1,20 @@
+Good instinct not to guess — that's the exact discipline this whole session has been enforcing on the codebase (frosted PC diffuser, LTSYS), so it's a good sign to see it self-applied rather than fabricating a plausible-sounding feature list to fill the gap.
+
+Run D in parallel now — it doesn't depend on anything in C, no reason to hold it. Here's the full Stage C spec, restated:
+
+C1 — Path: replace "Total run length" with "Length per run" × "Number of runs."
+Mirrors Stairs' existing tread-width × step-count pattern. Solves lighting both sides of a path (14m × 2 runs) without the customer pre-calculating a combined total. Default runs = 1. Should also produce explicit run objects up front, the same way Stairs already does — worth confirming this doesn't reopen any version of the B1 connector-count issue for Path specifically.
+
+C2 — Zone: add a Shape toggle — Linear / Rectangle.
+Restores functionality from the original design (a fourth shape called "Box" — rectangle with per-side include/exclude, no mount/tile logic) that didn't make it into what shipped as Zone. Linear keeps current single-length behaviour. Rectangle adds W×L inputs and reuses Pool's existing side-toggle component directly — don't rebuild it. Mode within Zone, not a fifth add-button, to keep the "four kits" framing already live in marketing copy.
+
+C3 — Pool: change default Channel Profile from Flex to Straight.
+Pool is a rectangular shape with straight sides — nothing to bend around. Flex was an earlier recommendation based on curved coping in general; doesn't match the rectangular geometry actually built. Path's Flex default is unaffected.
+
+C4 — Order summary panel header should reflect a combined multi-area order.
+Confirmed bug: after adding Path to a Stairs order, the summary panel still read "STAIR" — no indication the second item was included. Update the header to something generic (e.g. "Your order") once more than one area exists.
+
+C5 — Make the "add more areas" hint persistent, not tied to an empty canvas.
+Likely cause: the encouragement copy was written for Build Your Space's blank-canvas state. Kit pages always load pre-seeded with one item, so if the hint is conditional on zero items, it never displays on any kit page. Make it visible near the Add buttons regardless of item count.
+
+Checkpoint after both C and D land, same as every stage before this — production build, not typecheck, before either is called done.

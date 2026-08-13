@@ -35,6 +35,8 @@ export interface BuildItem {
   metres: string;          // raw input — path/stair/box only; pool uses poolL/poolW
   shape: "straight" | "curved";
   steps?: string;          // stair only — step count, cosmetic
+  pathRuns?: string;       // path only — number of independent parallel runs, default "1"
+  zoneShape?: "linear" | "rect"; // box only — linear (single run) or rectangle with side toggles
   // pool-specific
   poolL?: string;          // length (long dimension) in metres
   poolW?: string;          // width (short dimension) in metres
@@ -61,8 +63,8 @@ const TYPE_CONFIG: Record<ItemType, {
   defaultMaterial: "aluminium" | "stainless";
   defaultProfile: "straight" | "flex";
 }> = {
-  pool:  { label: "Pool",   defaultName: "Pool",   defaultShape: "curved",   hint: "Total perimeter (m)", defaultMaterial: "stainless", defaultProfile: "flex" },
-  path:  { label: "Path",   defaultName: "Path",   defaultShape: "straight", hint: "Total run length (m)", defaultMaterial: "aluminium", defaultProfile: "flex" },
+  pool:  { label: "Pool",   defaultName: "Pool",   defaultShape: "curved",   hint: "Total perimeter (m)", defaultMaterial: "stainless", defaultProfile: "straight" },
+  path:  { label: "Path",   defaultName: "Path",   defaultShape: "straight", hint: "Length per run (m)", defaultMaterial: "aluminium", defaultProfile: "flex" },
   stair: { label: "Stairs", defaultName: "Stairs", defaultShape: "straight", defaultSteps: "8", hint: "Tread width per step (m)", defaultMaterial: "aluminium", defaultProfile: "straight" },
   box:   { label: "Zone",   defaultName: "Zone",   defaultShape: "straight", hint: "Total run length (m)", defaultMaterial: "aluminium", defaultProfile: "straight" },
 };
@@ -411,17 +413,87 @@ function ItemCard({ item, index, onChange, onRemove }: ItemCardProps) {
         ) : (
           /* ── Generic fields: path / stair / box */
           <>
-            {/* run length — primary */}
-            <div>
-              <label className={labelCls}>{cfg.hint}</label>
-              <div className="relative">
-                <input type="number" value={item.metres}
-                  onChange={e => onChange(item.id, { metres: e.target.value })}
-                  min={0.5} max={40} step={0.5} placeholder="e.g. 12"
-                  className={`${inputCls} w-full pr-7`}/>
-                <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-ink/35">m</span>
+            {/* C2 — Zone shape toggle (box only) */}
+            {item.type === "box" && (
+              <div>
+                <label className={labelCls}>Zone shape</label>
+                <div className="flex gap-2">
+                  {(["linear", "rect"] as const).map(s => (
+                    <button key={s} type="button"
+                      onClick={() => onChange(item.id, { zoneShape: s })}
+                      className={`${chipBase} ${(item.zoneShape ?? "linear") === s ? chipOn : chipOff}`}>
+                      {s === "linear" ? "Linear" : "Rectangle"}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
+
+            {/* run length — path / stair / linear zone */}
+            {(item.type !== "box" || (item.zoneShape ?? "linear") === "linear") && (
+              <div>
+                <label className={labelCls}>{cfg.hint}</label>
+                <div className="relative">
+                  <input type="number" value={item.metres}
+                    onChange={e => onChange(item.id, { metres: e.target.value })}
+                    min={0.5} max={40} step={0.5} placeholder="e.g. 12"
+                    className={`${inputCls} w-full pr-7`}/>
+                  <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-ink/35">m</span>
+                </div>
+              </div>
+            )}
+
+            {/* C2 — Rectangle zone: L × W inputs + per-side toggles (reuses Pool's side logic) */}
+            {item.type === "box" && (item.zoneShape ?? "linear") === "rect" && (
+              <>
+                <div className="flex gap-3">
+                  <div className="flex-1">
+                    <label className={labelCls}>Length (m)</label>
+                    <input type="number" value={item.poolL ?? ""}
+                      onChange={e => onChange(item.id, { poolL: e.target.value })}
+                      min={0.5} max={40} step={0.5} placeholder="e.g. 8"
+                      className={inputCls}/>
+                  </div>
+                  <div className="flex-1">
+                    <label className={labelCls}>Width (m)</label>
+                    <input type="number" value={item.poolW ?? ""}
+                      onChange={e => onChange(item.id, { poolW: e.target.value })}
+                      min={0.5} max={40} step={0.5} placeholder="e.g. 4"
+                      className={inputCls}/>
+                  </div>
+                </div>
+                <div>
+                  <label className={labelCls}>Include sides</label>
+                  <div className="flex flex-wrap gap-1.5">
+                    {(["Top","Bottom","Left","Right"] as const).map(side => {
+                      const k = side.toLowerCase() as keyof PoolSides;
+                      const defaultSides: PoolSides = { top: true, bottom: true, left: true, right: true };
+                      const poolSides = item.poolSides ?? defaultSides;
+                      return (
+                        <button key={side} type="button"
+                          onClick={() => onChange(item.id, { poolSides: { ...poolSides, [k]: !poolSides[k] } })}
+                          className={`${chipBase} ${poolSides[k] ? chipOn : chipOff}`}>
+                          {side}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* C1 — Number of runs (path only) */}
+            {item.type === "path" && (
+              <div>
+                <label className={labelCls}>Number of runs</label>
+                <input type="number" value={item.pathRuns ?? "1"}
+                  onChange={e => onChange(item.id, { pathRuns: e.target.value })}
+                  min={1} max={20} step={1} className={`${inputCls} w-24`}/>
+                <p className="text-[10px] text-ink/40 mt-1 leading-relaxed">
+                  E.g. 2 for both sides of a path. Each run is lit independently.
+                </p>
+              </div>
+            )}
 
             {/* shape — path only */}
             {item.type === "path" && (
@@ -746,12 +818,19 @@ function BuildPricingPanel({
     trim:           it.trim           ?? false,
     submerged:      it.submerged      ?? (it.type === "pool"),
     ...(it.steps ? { steps: it.steps } : {}),
+    ...(it.type === "path" && (parseInt(it.pathRuns ?? "1") || 1) > 1 ? { pathRuns: it.pathRuns } : {}),
     ...(it.type === "pool" ? {
       poolL:         it.poolL    ?? "",
       poolW:         it.poolW    ?? "",
       poolMount:     it.poolMount ?? "coping",
       poolTileWidth: it.poolTileWidth ?? "600",
       poolSides:     it.poolSides ?? { top: true, bottom: true, left: true, right: true },
+    } : {}),
+    ...(it.type === "box" && (it.zoneShape ?? "linear") === "rect" ? {
+      zoneShape: "rect",
+      poolL:     it.poolL  ?? "",
+      poolW:     it.poolW  ?? "",
+      poolSides: it.poolSides ?? { top: true, bottom: true, left: true, right: true },
     } : {}),
   }));
 
@@ -815,7 +894,7 @@ function BuildPricingPanel({
   return (
     <div className="rounded-xs border border-bone-line bg-bone-tile p-6">
       <p className="font-spec text-[8px] tracking-widest text-ink/40 uppercase mb-1">
-        {kitName}
+        {items.length > 1 ? "Your order" : kitName}
       </p>
       {totalMetres > 0 && (
         <p className="font-spec text-[8px] tracking-widest text-ink/30 mb-4">
@@ -1134,6 +1213,23 @@ export default function SpaceBuilder({
         shape: item.shape,
       }));
     }
+    // C1: path with N runs — each run is independently fed, checked individually for CC vs mono.
+    if (item.type === "path") {
+      const runCount = Math.max(1, parseInt(item.pathRuns ?? "1") || 1);
+      return Array.from({ length: runCount }, () => ({ lengthMetres: m, shape: item.shape }));
+    }
+    // C2: zone rectangle — per-side runs reusing pool's side-toggle data (no mount/tile offset).
+    if (item.type === "box" && (item.zoneShape ?? "linear") === "rect") {
+      const l = parseFloat(item.poolL ?? "0");
+      const w = parseFloat(item.poolW ?? "0");
+      if (isNaN(l) || l <= 0 || isNaN(w) || w <= 0) return [];
+      const sides = item.poolSides ?? { top: true, bottom: true, left: true, right: true };
+      return (["top","bottom","left","right"] as const).flatMap(side => {
+        if (!sides[side]) return [];
+        const len = (side === "top" || side === "bottom") ? l : w;
+        return len > 0 ? [{ lengthMetres: len, shape: "straight" as const }] : [];
+      });
+    }
     return [{ lengthMetres: m, shape: item.shape }];
   });
 
@@ -1178,6 +1274,9 @@ export default function SpaceBuilder({
                   <AddButton key={type} type={type} onClick={() => addItem(type)}/>
                 ))}
               </div>
+              <p className="text-[10px] text-ink/30 mt-2 leading-relaxed">
+                Pool, stairs, path, and custom zones can all be combined in one order.
+              </p>
             </div>
 
             {/* item cards */}

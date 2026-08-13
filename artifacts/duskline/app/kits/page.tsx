@@ -451,9 +451,11 @@ export default function KitsPage() {
               </h2>
               <p className="text-ink/65 leading-relaxed mb-8">
                 Every connection is factory-sealed before it leaves us. Your
-                electrician installs a finished system — there's nothing to
-                waterproof, nothing to splice, nothing to commission. If the
-                seal fails under warranty, that's our problem to fix, not theirs.
+                electrician installs a finished system — nothing to waterproof,
+                nothing to splice, nothing to commission. Trim to length on site
+                if you need to: a factory-matched snap end cap fits by hand, no
+                equipment needed. If the seal fails under warranty, that's our
+                problem to fix, not theirs.
               </p>
               <div className="space-y-4 mb-8">
                 {TRUST_POINTS.map((point) => (
@@ -471,7 +473,7 @@ export default function KitsPage() {
                 ))}
               </div>
               <div className="flex flex-wrap gap-2">
-                {["IP68", "IP67 driver", "3yr warranty", "LM-80", "UV resistant"].map(
+                {["IP68", "IP67 driver", "3yr standard", "2yr submerged", "LM-80", "UV resistant"].map(
                   (badge) => (
                     <span
                       key={badge}
