@@ -1,0 +1,11 @@
+The math and mobile verification both hold up — real content, real screenshot evidence, the breakpoint boundary confirmed. Two things worth nailing down before this goes anywhere near a push, though.
+
+## "Clean compile" — is that the actual production build, or just typecheck?
+
+This has been the standing rule since the very first brief: **local production build must pass before any push**, not just a clean typecheck. Those are genuinely different things — `tsc` passing cleanly doesn't guarantee `next build` (or equivalent) succeeds; static generation, environment variable resolution, and bundling can all fail independently of type correctness. Given how many files got touched across this phase in rapid parallel edits, I'd want an explicit "ran the full production build, it passed" before treating this as push-ready — not because I doubt the work, but because this exact distinction is precisely what the standing rule exists to catch.
+
+## What does "CONFIRM" on the mobile bar actually do?
+
+You mentioned a `panelRef` for "scroll-to-confirm," which reads like the button scrolls the user up to the full panel rather than submitting anything directly — but the report never states that explicitly, and it matters. If someone lands on the page, sees the sticky bar immediately, and taps "CONFIRM" before ever touching channel, connector, or trim options, the button needs to take them to review what they've actually configured, not silently submit a default/partial config. Worth a one-line confirmation of which it is before this ships, since it's exactly the kind of thing that's obvious in testing (where you've already configured everything) and invisible until a real customer does it out of order.
+
+Confirm both of those and this is genuinely ready. Push itself is your call to make, not something I'll approve on your behalf — but once you do give the go-ahead, the standing sequence still applies after: verify the Vercel deploy succeeded, then spot-check live pages, and worth adding `/kits/build` to that list now alongside `/`, `/trade`, and a kit page, since it's new and it's the highest-risk addition in this phase.
