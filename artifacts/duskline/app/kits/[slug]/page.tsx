@@ -15,7 +15,7 @@ import {
   calculateKitPricing,
   fmtAUD,
   CONNECTOR_ENTRY_LABELS,
-  MIN_ORDER_EX_GST,
+  MIN_ORDER_INC_GST,
 } from "../../../lib/kits-data";
 import {
   calculateRunConfig,
@@ -226,14 +226,8 @@ function PricingPanel({
         <div className="mb-5 space-y-1.5">
           {!pricing.minimumApplied && (
             <div className="flex justify-between text-xs text-ink/55">
-              <span>{metres}m × {fmtAUD(pricing.pricePerMetre)}/m</span>
-              <span>{fmtAUD(pricing.subtotalExGST)} ex GST</span>
-            </div>
-          )}
-          {!pricing.minimumApplied && (
-            <div className="flex justify-between text-xs text-ink/55">
-              <span>GST (10%)</span>
-              <span>{fmtAUD(pricing.gst)}</span>
+              <span>{metres}m × {fmtAUD(pricing.pricePerMetre)}/m inc GST</span>
+              <span>{fmtAUD(pricing.subtotalIncGST)}</span>
             </div>
           )}
           <div className="flex justify-between items-baseline border-t border-bone-line pt-2 mt-2">
@@ -244,8 +238,8 @@ function PricingPanel({
           </div>
           {pricing.minimumApplied && (
             <p className="text-[10px] text-ink/40 leading-relaxed">
-              Minimum self-serve order is {fmtAUD(MIN_ORDER_EX_GST)} ex GST. Your {metres}m run
-              ({fmtAUD(pricing.subtotalExGST)} ex GST) falls below this threshold.
+              Minimum self-serve order is {fmtAUD(MIN_ORDER_INC_GST)} inc GST. Your {metres}m run
+              ({fmtAUD(pricing.subtotalIncGST)} inc GST) falls below this threshold.
             </p>
           )}
         </div>

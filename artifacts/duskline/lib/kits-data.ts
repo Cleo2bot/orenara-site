@@ -151,19 +151,20 @@ export function roundTo10cm(metres: number): number {
   return Math.round(metres * 10) / 10;
 }
 
-/* ------------------------------------------------------------------ pricing */
-export const PRICE_PER_METRE_10M = 139;        // $139/m at the 10m tier
-export const PRICE_PER_METRE_STANDARD = 149;   // $149/m at 15m–40m tiers
-export const MIN_ORDER_EX_GST = 500;           // $500 floor (self-serve only)
-export const GST_RATE = 0.10;
+/* ------------------------------------------------------------------ pricing
+ * IMPORTANT: $139/m, $149/m, and the $500 floor are ALL inc-GST amounts.
+ * Do NOT multiply them by 1.1 — that would apply GST twice.
+ * totalIncGST = metres × pricePerMetre (already inc GST).
+ */
+export const PRICE_PER_METRE_10M      = 139;  // $139/m inc GST at ≤10m
+export const PRICE_PER_METRE_STANDARD = 149;  // $149/m inc GST at >10m
+export const MIN_ORDER_INC_GST        = 500;  // $500 inc-GST floor (self-serve)
 
 export interface KitPricing {
   metres: number;
-  pricePerMetre: number;
-  subtotalExGST: number;   // metres × pricePerMetre (before floor)
-  effectiveExGST: number;  // after $500 floor
-  gst: number;
-  totalIncGST: number;
+  pricePerMetre: number;   // inc GST
+  subtotalIncGST: number;  // metres × pricePerMetre, before floor
+  totalIncGST: number;     // final displayed total inc GST (after floor)
   minimumApplied: boolean;
 }
 
@@ -172,18 +173,14 @@ export function getPricePerMetre(metres: number): number {
 }
 
 export function calculateKitPricing(metres: number): KitPricing {
-  const pricePerMetre = getPricePerMetre(metres);
-  const subtotalExGST = +(metres * pricePerMetre).toFixed(2);
-  const minimumApplied = subtotalExGST < MIN_ORDER_EX_GST;
-  const effectiveExGST = minimumApplied ? MIN_ORDER_EX_GST : subtotalExGST;
-  const gst = +(effectiveExGST * GST_RATE).toFixed(2);
-  const totalIncGST = +(effectiveExGST + gst).toFixed(2);
+  const pricePerMetre    = getPricePerMetre(metres);
+  const subtotalIncGST   = +(metres * pricePerMetre).toFixed(2);
+  const minimumApplied   = subtotalIncGST < MIN_ORDER_INC_GST;
+  const totalIncGST      = minimumApplied ? MIN_ORDER_INC_GST : subtotalIncGST;
   return {
     metres,
     pricePerMetre,
-    subtotalExGST,
-    effectiveExGST,
-    gst,
+    subtotalIncGST,
     totalIncGST,
     minimumApplied,
   };

@@ -124,9 +124,8 @@ function configBlock(p: SubmissionPayload): string {
     <table style="width:100%;border-collapse:collapse;font-size:13px;border-top:1px solid #eee;padding-top:10px;margin-bottom:16px;">
       ${pricing.minimumApplied
         ? `<tr><td style="padding:4px 0;color:#666;">Minimum order</td><td style="padding:4px 0;font-weight:600;">${fmtAUD(pricing.totalIncGST)} inc GST</td></tr>
-           <tr><td colspan="2" style="padding:2px 0;font-size:11px;color:#999;">Minimum order applied (ex GST: ${fmtAUD(pricing.effectiveExGST)})</td></tr>`
-        : `<tr><td style="padding:4px 0;color:#666;">${p.length} × ${fmtAUD(pricing.pricePerMetre)}/m</td><td style="padding:4px 0;">${fmtAUD(pricing.subtotalExGST)} ex GST</td></tr>
-           <tr><td style="padding:4px 0;color:#666;">GST (10%)</td><td style="padding:4px 0;">${fmtAUD(pricing.gst)}</td></tr>
+           <tr><td colspan="2" style="padding:2px 0;font-size:11px;color:#999;">Minimum order applied — quoted run (${fmtAUD(pricing.subtotalIncGST)} inc GST) is below the $500 floor.</td></tr>`
+        : `<tr><td style="padding:4px 0;color:#666;">${p.length} × ${fmtAUD(pricing.pricePerMetre)}/m inc GST</td><td style="padding:4px 0;">${fmtAUD(pricing.subtotalIncGST)}</td></tr>
            <tr><td style="padding:4px 0;color:#666;font-weight:600;">Total</td><td style="padding:4px 0;font-weight:600;">${fmtAUD(pricing.totalIncGST)} inc GST</td></tr>`
       }
     </table>
