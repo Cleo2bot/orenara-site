@@ -1,0 +1,27 @@
+Yes — that makes complete sense, and it's actually the same root problem as the bugs we've been chasing this whole session, just showing up as a UX issue instead of a calculation bug. **Every time something's been implemented twice — Stairs on its own path vs. the shared logic, Pool's flat-run vs. decomposed model — it's drifted or broken.** The kit pages and Build Your Space having two separate configurator implementations is that same pattern at the component level: one gets the nice schematic, the other gets chips and text, and now there's genuinely two things to keep in sync forever instead of one.
+
+## The fix isn't "link them together" — it's "there's only one builder"
+
+Kit pages should keep what's genuinely good about them — the hero image, the application copy, the "why it's still an Orenara system" trust content, all of which Build Your Space doesn't have and shouldn't need to. But **the actual configurator underneath should be the exact same Pool/Path/Stairs/Zone components from Build Your Space**, not a second, separately-coded chip UI. Land on Pool Surround's page, scroll past the hero, and you're straight into the schematic pool builder — pre-loaded with one Pool item already on it, ready to configure.
+
+That also quietly kills the need for the "Multiple areas?" nudge card entirely. If the real builder is just *there*, someone who starts on the Pool Surround page and realises they also want a path can just add one, right in place — no separate page to discover, no cross-link required, because there's nothing to link to that isn't already the thing they're looking at.
+
+One more consolidation worth doing while this is being touched: Quick Order's page currently shows a detailed system breakdown (strip type, part numbers, driver derate) that Build Your Space's summary panel doesn't. That detail should live in the one shared builder too — available everywhere, not gated to whichever implementation happened to get it first.
+
+Given how many of this session's bugs trace back to duplicated logic, I want this investigated before it's rebuilt, same as the Pool and Stairs checks.
+
+---
+
+**Prompt for Replit:**
+
+> Investigate before rewriting. Confirm: are the kit pages (`/kits/pool-surround`, `/kits/stair`, etc.) currently running a separate, independently-coded configurator (the material/profile chips, length chips, connector entry UI) from the Pool/Path/Stairs/Zone components used in `/kits/build`? Report the actual extent of duplication — which pieces are genuinely separate implementations vs. already shared — before changing anything.
+>
+> **Goal:** one configurator implementation, not two. Kit pages keep their hero image and marketing copy (application description, trust content) as page furniture, but the configurator underneath should be the same Pool/Path/Stairs/Zone schematic components used in Build Your Space — not a separate chip-based UI. Landing on Pool Surround's page should drop you into the real schematic pool builder, pre-seeded with one Pool item, using the same component that's in `/kits/build`.
+>
+> The embedded builder should still allow adding further items (Path, Stairs, another Zone) inline, exactly like the full Build Your Space canvas — don't lock it to single-item. This removes the need for the "Multiple areas?" nudge card once it's in place; that card can come out.
+>
+> Also fold the detailed system-configuration output currently only on Quick Order pages (strip type, part numbers, driver derate explanation) into the shared builder, so it's available whether someone arrives via a kit page or via `/kits/build` directly.
+>
+> Propose the routing approach rather than assuming one — whether kit pages keep their own URLs and embed the shared component, or become thin wrappers redirecting into `/kits/build` with a pre-seed parameter, is a real decision with trade-offs either way. State the recommendation and reasoning before building it.
+>
+> Report the investigation findings and the proposed approach as a checkpoint before writing any code. Standing rules apply: no push without explicit approval, full production build (not just typecheck) before anything's called done.
