@@ -70,7 +70,7 @@ export function deriveBOM(
 
   items.push({
     partNumber: "OR-DRV-150W",
-    description: "Driver — 150W, 24V DC",
+    description: "Driver — Mean Well HLG-150H-24B, 24V DC, 150W, IP67",
     qty: String(driverCount),
     unit: "ea",
     isGenerated: true,

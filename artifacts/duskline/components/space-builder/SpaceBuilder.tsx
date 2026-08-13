@@ -603,7 +603,7 @@ function ItemCard({ item, index, onChange, onRemove }: ItemCardProps) {
                     <div>
                       <p className="text-xs text-ink font-display">Trim allowance</p>
                       <p className="text-[10px] text-ink/40 leading-relaxed">
-                        Adds one spare connector set. Cuts must land on a valid 10cm mark.
+                        Adds one DIY snap end cap ({PART_NUMBERS.trimEndCap}) — fits by hand after cutting. Cuts must land on a valid 10cm mark.
                       </p>
                     </div>
                   </div>
@@ -673,7 +673,7 @@ function DriverSummary({
             <p className="text-sm text-ink font-display">
               {totalDrivers === 1 ? "1 driver" : `${totalDrivers} drivers`}
             </p>
-            <p className="text-xs text-ink/50 mt-0.5">LM-150-24 · 80% derate · 150W rated</p>
+            <p className="text-xs text-ink/50 mt-0.5">HLG-150H-24B · Mean Well · 80% derate · 150W rated</p>
           </div>
           <span className="font-spec text-[9px] tracking-wider text-ink/40 flex-shrink-0 mt-0.5">
             {PART_NUMBERS.driver}{totalDrivers > 1 ? ` ×${totalDrivers}` : ""}
@@ -686,7 +686,7 @@ function DriverSummary({
         )}
         {hasTrim && (
           <p className="text-[10px] text-ink/45 leading-relaxed pt-2 border-t border-bone-line">
-            Trim allowance: cuts must land on a valid 10cm mark. One spare connector set included.
+            Trim allowance: cuts must land on a valid 10cm mark. One {PART_NUMBERS.trimEndCap} snap end cap included — fits by hand, no factory equipment needed.
           </p>
         )}
         <p className="text-[10px] text-ink/35 leading-relaxed pt-2 border-t border-bone-line">

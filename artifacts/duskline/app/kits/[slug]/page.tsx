@@ -107,7 +107,7 @@ function KitPageInner({ slug }: { slug: string }) {
                 },
                 {
                   label: "IP67 driver",
-                  detail: "LM-150-24 · 24V DC · 80% derated · one per independently-fed run",
+                  detail: "HLG-150H-24B · Mean Well · 24V DC · 80% derated · one per independently-fed run",
                 },
                 {
                   label: "Factory IP68 connectors",

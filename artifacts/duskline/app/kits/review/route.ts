@@ -124,7 +124,7 @@ function zoneRow(z: ZoneEntry, idx: number): string {
   const materialLabel = z.material === "stainless" ? "Stainless 316L" : "Aluminium";
   const profileLabel  = z.profile === "flex" ? "Flex" : "Straight";
   const connLabel     = CONNECTOR_ENTRY_LABELS[z.connectorEntry ?? "bottom"] ?? z.connectorEntry ?? "Bottom";
-  const trimNote      = z.trim ? " · trim allowance" : "";
+  const trimNote      = z.trim ? " · trim — DIY-SN-END-16-D snap end cap" : "";
   const isPool        = z.type === "pool";
   const isSubmerged   = z.submerged ?? isPool;
   const warrantyYears = isSubmerged ? ZONE_WARRANTY.submerged : ZONE_WARRANTY.standard;
@@ -175,7 +175,7 @@ function configBlock(p: SubmissionPayload): string {
           <tr><td style="padding:4px 0;color:#666;">Length</td><td style="padding:4px 0;font-weight:500;">${p.length}</td></tr>
           <tr><td style="padding:4px 0;color:#666;">Channel</td><td style="padding:4px 0;">${materialLabel} · ${profileLabel}</td></tr>
           <tr><td style="padding:4px 0;color:#666;">Connector entry</td><td style="padding:4px 0;">${connLabel}</td></tr>
-          ${p.trim ? `<tr><td style="padding:4px 0;color:#666;">Trim on site</td><td style="padding:4px 0;">Yes — spare connector set included</td></tr>` : ""}
+          ${p.trim ? `<tr><td style="padding:4px 0;color:#666;">Trim on site</td><td style="padding:4px 0;">Yes — DIY-SN-END-16-D snap end cap included (field-fittable)</td></tr>` : ""}
         </table>`;
       })();
 

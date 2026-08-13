@@ -35,7 +35,7 @@ export const kits: Kit[] = [
     specTable: [
       { item: "LED Strip, 24V warm white", partNumber: PART_NUMBERS.stripMono, details: "IP68 fully submersible, 24V DC, 10W/m, dot-free diffusion, sealed end caps, dimmable 0–10V" },
       { item: "Flexible Segmented Track", partNumber: PART_NUMBERS.flexibleTrack, details: "Horizontal bend, ground-level mount" },
-      { item: "Driver, 150W", partNumber: PART_NUMBERS.driver, details: "150W, IP67 rated, 0–10V dim input, 240V mains feed" },
+      { item: "Mean Well HLG-150H-24B", partNumber: PART_NUMBERS.driver, details: "150W, IP67, 24V DC, 0–10V dim input, 240V mains feed" },
       { item: "Dimmer, 0–10V wall control", partNumber: PART_NUMBERS.dimmer, details: "Wall-mounted touch panel, scene presets, wireless pairing, 1 per driver" },
       { item: "240V Plug & Power Cable", partNumber: PART_NUMBERS.plug, details: "AU/NZ plug, pre-wired, 1.5m, weatherproof outdoor-rated cable" },
       { item: "Pathway Kit (complete)", partNumber: PART_NUMBERS.kits["Pathway Kit"], details: "Pre-specced bundle — quote for exact quantities" },
@@ -56,7 +56,7 @@ export const kits: Kit[] = [
     specTable: [
       { item: "LED Strip, 24V warm white", partNumber: PART_NUMBERS.stripMono, details: "IP68 fully submersible, 24V DC, 10W/m, dot-free diffusion, sealed end caps, dimmable 0–10V" },
       { item: "Rigid Channel", partNumber: PART_NUMBERS.rigidChannel, details: "Straight runs, overhead/structural mount" },
-      { item: "Driver, 150W", partNumber: PART_NUMBERS.driver, details: "150W, IP67 rated, 0–10V dim input, 240V mains feed" },
+      { item: "Mean Well HLG-150H-24B", partNumber: PART_NUMBERS.driver, details: "150W, IP67, 24V DC, 0–10V dim input, 240V mains feed" },
       { item: "Dimmer, 0–10V wall control", partNumber: PART_NUMBERS.dimmer, details: "Wall-mounted touch panel, scene presets, wireless pairing, 1 per driver" },
       { item: "240V Plug & Power Cable", partNumber: PART_NUMBERS.plug, details: "AU/NZ plug, pre-wired, 1.5m, weatherproof outdoor-rated cable" },
       { item: "Pergola Kit (complete)", partNumber: PART_NUMBERS.kits["Pergola Kit"], details: "Pre-specced bundle — quote for exact quantities" },
@@ -77,7 +77,7 @@ export const kits: Kit[] = [
     specTable: [
       { item: "LED Strip, 24V warm white (submersible)", partNumber: PART_NUMBERS.stripMono, details: "IP68 fully submersible, 24V DC, 10W/m, dot-free diffusion, sealed end caps, dimmable 0–10V, sealed to 1.5m/30min per EN60529" },
       { item: "Flexible Segmented Track", partNumber: PART_NUMBERS.flexibleTrack, details: "Curved edges around pool/water feature" },
-      { item: "Driver, 150W", partNumber: PART_NUMBERS.driver, details: "150W, IP67 rated, 0–10V dim input, 240V mains feed" },
+      { item: "Mean Well HLG-150H-24B", partNumber: PART_NUMBERS.driver, details: "150W, IP67, 24V DC, 0–10V dim input, 240V mains feed" },
       { item: "Dimmer, 0–10V wall control", partNumber: PART_NUMBERS.dimmer, details: "Wall-mounted touch panel, scene presets, wireless pairing, 1 per driver" },
       { item: "240V Plug & Power Cable", partNumber: PART_NUMBERS.plug, details: "AU/NZ plug, pre-wired, 1.5m, weatherproof outdoor-rated cable" },
       { item: "Pool & Water Feature Kit (complete)", partNumber: PART_NUMBERS.kits["Pool & Water Feature Kit"], details: "Pre-specced bundle — quote for exact quantities" },
@@ -99,7 +99,7 @@ export const kits: Kit[] = [
       { item: "LED Strip, 24V warm white", partNumber: PART_NUMBERS.stripMono, details: "IP68 fully submersible, 24V DC, 10W/m, dot-free diffusion, sealed end caps, dimmable 0–10V" },
       { item: "Flexible Segmented Track", partNumber: PART_NUMBERS.flexibleTrack, details: "For curved runs within a zone" },
       { item: "Rigid Channel", partNumber: PART_NUMBERS.rigidChannel, details: "For straight runs within a zone" },
-      { item: "Driver, 150W", partNumber: PART_NUMBERS.driver, details: "150W, IP67 rated, 0–10V dim input, 240V mains feed" },
+      { item: "Mean Well HLG-150H-24B", partNumber: PART_NUMBERS.driver, details: "150W, IP67, 24V DC, 0–10V dim input, 240V mains feed" },
       { item: "Dimmer, 0–10V wall control", partNumber: PART_NUMBERS.dimmer, details: "Wall-mounted touch panel, scene presets, wireless pairing, 1 per driver" },
       { item: "240V Plug & Power Cable", partNumber: PART_NUMBERS.plug, details: "AU/NZ plug, pre-wired, 1.5m, weatherproof outdoor-rated cable" },
       { item: "Custom Zone Kit (complete)", partNumber: PART_NUMBERS.kits["Custom Zone Kit"], details: "Configured per zone — use the Quote Builder for an exact breakdown" },

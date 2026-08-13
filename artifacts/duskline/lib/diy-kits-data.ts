@@ -70,7 +70,7 @@ export const KITS: KitDef[] = [
       {
         label: "IP67 LED driver",
         detail:
-          "Sized for your run, 24V DC, weatherproof enclosure, Australian plug included",
+          "HLG-150H-24B · Mean Well · 24V DC · sized for your run · weatherproof enclosure · Australian plug included",
       },
       {
         label: "240V Australian plug",
@@ -145,7 +145,7 @@ export const KITS: KitDef[] = [
       {
         label: "IP67 LED driver",
         detail:
-          "Single driver powers the whole run, 24V, weatherproof enclosure, Australian plug",
+          "HLG-150H-24B · Mean Well · 24V DC · single driver powers the whole run · weatherproof enclosure · Australian plug",
       },
       {
         label: "Stainless fixings + guide",
@@ -210,7 +210,7 @@ export const KITS: KitDef[] = [
       {
         label: "IP67 LED driver",
         detail:
-          "Sized for your run, 24V, weatherproof enclosure, Australian plug",
+          "HLG-150H-24B · Mean Well · 24V DC · sized for your run · weatherproof enclosure · Australian plug",
       },
       {
         label: "240V Australian plug",
@@ -281,7 +281,7 @@ export const KITS: KitDef[] = [
       {
         label: "IP67 LED driver",
         detail:
-          "24V, weatherproof, sized for your run, Australian plug included",
+          "HLG-150H-24B · Mean Well · 24V DC · sized for your run · weatherproof enclosure · Australian plug included",
       },
       {
         label: "Stainless fixings + guide",

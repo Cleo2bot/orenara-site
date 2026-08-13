@@ -1,0 +1,21 @@
+Two decisive answers, not further investigation — write these directly into fixes.
+
+1. Trim spare connector: use the DIY Snap End Cap, not a generic "IP68 connector set."
+
+This resolves A4. The reason on-site trim looked undeliverable was that every connector reference pointed at mould-injection parts (the Jumper, the standard IP68 connector sets) — factory-only, correctly excluded from field work. But DIY-SN-END-16-D-01/02 is a genuinely different part — designed specifically to snap onto a cut end by hand, no factory equipment needed. That's exactly the trim use case: the customer cuts to length, the new end needs capping, not splicing or extending. It's the right part for the job, not a compromise.
+
+Scope it narrowly:
+
+Only used as the trim spare, only on non-submerged items — submerged items already correctly have no trim option at all, and that stays unchanged.
+Never becomes the default/primary connector on a normal, untrimmed run — mould-injection stays standard everywhere else, same as today.
+Update the part number mapping and every display location (BOM lines, What's Included cards, confirmation emails) to name this specific part, not a generic "IP68 connector set" description that implied the wrong connector entirely.
+
+D1's copy from the earlier prompt can now proceed — trim-on-site is real and deliverable, it just needed the right part attached to it. One small adjustment: reference "a factory-matched end cap your electrician fits by hand" or similar, rather than a vague "spare connector" — precision's mattered everywhere else this session, worth keeping it here too.
+
+2. Remove LTSYS entirely — Mean Well only.
+
+Confirms A2. Replace every reference with the correct designation: HLG-150H-24B — the B suffix specifically, since the copy already claims IP67 next to it, and A is IP65. That exact suffix mistake happened once before, on OR-Q-2119, earlier in this project — worth not repeating it now that the brand's being corrected.
+
+Audit for every instance, not just the two already confirmed (SpaceBuilder's DriverSummary, kits/[slug] What's Included). Given how many places LM-150-24 turned up across different kit pages during review, check all four kit pages, Build Your Space, and any admin or confirmation email templates before calling this done.
+
+Checkpoint before production build: report every location LTSYS was found and corrected, and confirm the DIY Snap End Cap's scoping (trim-only, non-submerged-only, never the default) before either change goes further.

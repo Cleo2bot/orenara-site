@@ -1,4 +1,4 @@
-export const DRIVER_RATED_WATTS = 150; // LTSYS LM-150-24-G1A2F
+export const DRIVER_RATED_WATTS = 150; // Mean Well HLG-150H-24B
 export const STRIP_WATTS_PER_METRE = 10; // SF16 spec
 export const SAFETY_DERATE = 0.8; // don't run drivers at 100% continuously
 export const MAX_RUN_PER_DRIVER = (DRIVER_RATED_WATTS * SAFETY_DERATE) / STRIP_WATTS_PER_METRE; // 12 metres
@@ -27,6 +27,8 @@ export const PART_NUMBERS = {
   dimmer: "OR-DIM-010V",
   plug: "OR-PLG-240V",
   connectorSet: "OR-CON-IP68",
+  /** Snap end cap for on-site trim — field-fittable by hand. -01/-02 are colour variants. */
+  trimEndCap: "DIY-SN-END-16-D",
   kits: {
     "Pathway Kit": "OR-KIT-PATH",
     "Pergola Kit": "OR-KIT-PERG",
@@ -42,10 +44,11 @@ export const PART_LABELS = {
   strip: "SF16 strip, 24V mono",
   flexibleTrack: "Flexible Segmented Track (per metre)",
   rigidChannel: "Rigid Channel (per metre)",
-  driver: "Driver, 150W, 0-10V",
+  driver: "Mean Well HLG-150H-24B · 24V DC · 150W · IP67",
   dimmer: "Dimmer, 0-10V wall control",
   plug: "240V Plug & Power Cable",
   connectorSet: "IP68 connector + end-cap set",
+  trimEndCap: "Snap end cap · field-fittable · suits cut strip ends",
 } as const;
 
 export function getKitPartNumber(kitName: string): string | undefined {
