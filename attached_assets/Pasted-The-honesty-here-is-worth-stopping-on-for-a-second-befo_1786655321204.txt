@@ -1,0 +1,15 @@
+The honesty here is worth stopping on for a second before anything else: **"the test passed because it was checking the wrong number, not because the code was right"** is exactly the right way to describe what happened, and it's a genuinely important catch — not just about this bug, but about the whole verification methodology used this session. A baseline that's read back from the output of the code being tested isn't a baseline, it's a mirror. Worth writing down as a standing rule now, not just fixing quietly: **any regression baseline must be computed independently from the spec first, then compared against the code — never derived by running the code and calling the result "expected."** That would have caught this the first time, and it's cheap to enforce going forward.
+
+Math on the fix checks out: 8.2 + 5.2, doubled, is 26.8m. Confirmed correct.
+
+## Two things still open, not follow-ups
+
+**Issue 2 is a partial fix, not the fix that was asked for.** What's built is "if item type is Pool, forbid trim." What was specified was a `submerged` boolean per item, independent of type, precisely because a Stairs or Zone item can also be submerged — pool entry steps, a water-feature edge — and the trim-forbidden logic needs to follow *that*, not the shape. As built right now, someone adding submerged entry stairs to a pool order still sees a working trim checkbox on that item. That's the exact liability scenario this was meant to close, just moved one item type over. This needs generalizing before it's actually done, not shipped as "handles the common case."
+
+**Warranty term tracking wasn't addressed at all.** The `warrantyTermYears` field derived from `submerged`, and the confirmation-echo of warranty term per item, were both explicitly scoped in the same message as the trim fix — neither shows up in this report. Given trim-forbidden and warranty-term both key off the same `submerged` flag, building the flag properly now should make both land together rather than needing a second pass.
+
+## What I can't verify from here
+
+I don't have eyes on the live dev server — everything I'm checking is the math in the report, not the actual page. You're the one who needs to look at `/kits/pool-surround` and confirm 26.8m is genuinely what renders, per your own bar in the last message. A screenshot would let me sanity-check it against the arithmetic too, but the real confirmation has to come from you looking at it live.
+
+**Not checkpointed yet.** Needs: your visual confirmation of the 26.8m figure, the `submerged` flag generalized beyond Pool-only (with trim-forbidden following the flag, not the item type), and warranty term built and echoed on the confirmation — that last piece can be scoped as an immediate continuation of this same fix rather than a new stage, since it's the other half of the same field.
