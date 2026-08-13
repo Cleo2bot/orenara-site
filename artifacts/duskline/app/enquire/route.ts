@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { writeFile, readFile, mkdir } from "fs/promises";
 import path from "path";
-import { PART_NUMBERS, PART_LABELS, getKitPartNumber } from "@/lib/quoteCalc";
+import { PART_NUMBERS, PART_LABELS, getKitPartNumber, type StripType } from "@/lib/quoteCalc";
 
 interface QuoteRunPayload {
   lengthMetres: number;
@@ -14,9 +14,11 @@ interface QuoteZonePayload {
   note?: string;
   runs: QuoteRunPayload[];
   totalLengthMetres: number;
+  stripType?: StripType;
   driversNeeded: number;
   dimmersNeeded: number;
   plugsNeeded: number;
+  connectorSetsNeeded?: number;
   rigidChannelMetres: number;
   flexibleTrackMetres: number;
 }
@@ -26,6 +28,7 @@ interface QuoteTotalsPayload {
   drivers: number;
   dimmers: number;
   plugs: number;
+  connectorSets?: number;
   rigidChannelMetres: number;
   flexibleTrackMetres: number;
 }
