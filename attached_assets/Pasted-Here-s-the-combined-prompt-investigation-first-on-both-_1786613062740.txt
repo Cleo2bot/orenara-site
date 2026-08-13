@@ -1,0 +1,39 @@
+Here's the combined prompt — investigation first on both, since neither should be fixed by guessing.
+
+---
+
+**Two tasks, both start with reading code before changing anything. Standing rules apply: no push without explicit approval, production build (not just typecheck) before anything's called done, checkpoint before proceeding past investigation into fixes.**
+
+## Task 1 — Nav: retirement check + cross-linking
+
+**First, check what "Quote builder" in the top nav actually links to.** The original Phase 1 brief explicitly required the old arbitrary-length Quote Builder tool to be retired and redirected to `/kits` once the new catalog shipped — specifically to avoid two competing paths existing at once. If that nav link still routes to the old tool, that's a retirement that never happened, not a nav styling issue. Report which it is before fixing anything.
+
+If it's still live: redirect it the same way `/diy-kits` was redirected (301, permanent) and remove it from the nav, or repoint the nav item at `/kits`.
+
+**Second, add cross-linking between Quick Order and Build Your Space.** Right now there's no path from a `/kits/[slug]` page to `/kits/build`, or back. Add:
+- A visible link/CTA on each `/kits/[slug]` page — something like "Need more than one area? Build your space instead" — pointing to `/kits/build`.
+- A way back from `/kits/build` to browse individual kits, if someone lands there and actually just wants Quick Order.
+- Make sure `/kits` (the listing page) presents both paths clearly, not just Quick Order cards with Build Your Space undiscoverable.
+
+## Task 2 — Pool item on Build Your Space doesn't match spec, verify before rebuilding
+
+**Read the code before touching the UI.** Screenshot shows a Pool card with one field ("Total perimeter (m)") and a Straight/Curved toggle — that's the Path/line pattern, not the Pool spec. Confirm:
+1. Does the Pool item currently produce **one flat run** from the perimeter total, or does it decompose into per-side runs anywhere? Same class of question as the Stairs bug — check `validRuns` or wherever Pool gets mapped into `QuoteRunInput`s.
+2. **Does Zone show the same generic pattern as Pool?** The screenshot's Zone icon (dashed rounded rectangle) looks like it might share Pool's current implementation rather than being distinct. Check whether Pool and Zone are actually two different components or the same generic "rectangle" component reused with a different label.
+3. Does Stairs (already fixed) still correctly expand into N runs, unaffected by whatever's going on here?
+
+**Report findings before rebuilding anything.**
+
+**Then rebuild Pool to the actual spec**, regardless of what's found:
+- Inputs: **W × L dimensions** (with common presets — 6×4, 7×4, 6×3, 8×4, 10×4), not a single perimeter figure.
+- **Mount type: Coping / Recessed**, with a **tile width input** (default 600mm) that only shows when Recessed is selected.
+- **Per-side include/exclude** — four sides (top/bottom/left/right or equivalent), each independently toggleable, since real jobs often exclude a side (spa, feature wall, etc.).
+- **Recessed must show both shapes** — the true pool rectangle (lower-opacity "shadow") and the offset lighting loop around it, so the "set back from the edge" relationship is visible, not just a bigger single rectangle.
+- Perimeter length is *computed* from W, L, mount, and tile — not typed in directly.
+- Each included side becomes its own run (splitting further only if an individual side exceeds 12m), feeding into the same shared `packDriversForRuns` — same principle as Stairs: physically accurate runs, not one flat total.
+
+**Do not build a fix for Zone until Task 2's investigation confirms whether it's actually a separate problem or the same root cause as Pool** — fixing the same underlying component once is better than patching two symptoms separately.
+
+---
+
+**Checkpoint before any fix work starts:** report back on the nav link's actual destination, and on both Pool questions (flat-run vs decomposed, and whether Zone shares the same component) — in plain findings, before writing new code. Wait for confirmation to proceed into the actual rebuild.
