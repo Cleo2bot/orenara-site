@@ -1,0 +1,27 @@
+Good news on Phase 1+2, and one correction to make while it's fresh, then the real work — writing what actually needs to happen next, since it's grown well past what the original Phase 3 described.
+
+Sign-off on Phase 1+2
+
+Everything checks out. One small technical fix worth making before it's forgotten: the /diy-kits redirects should be 301, not 307. 307 signals "temporary, might change back" — this is a permanent retirement, and 301 is what tells search engines to transfer any existing link equity to /kits rather than treating it as a transient reroute. Easy fix, worth doing now while it's a one-line change rather than a future SEO cleanup task.
+
+All three follow-ups approved — the amber leftover is exactly the kind of thing worth catching now (matches the ink/bone-only decision already made for /diy-kits), dead file cleanup is good hygiene, and Phase 3 pricing is what we're about to redefine below.
+
+The real thing to flag before anything else
+
+The original Phase 3 ("Calculate price button, pick from a length ladder") is now stale. Everything since has moved toward something bigger — multi-element builds, real pool geometry, driver-packed visuals. That's not a small revision to Phase 3, it's a different feature.
+
+Rather than throw away the /kits/[slug] pages that just shipped, I'd run both:
+
+Quick order — what's already live. Pick a kit, pick a length, done. Fast, and right for anyone with one straightforward run.
+Build your space — new. The canvas — pool, path, stairs, box, add as many as needed, priced together. Right for anyone like Lachlan, with more than one piece or a shape that doesn't fit a straight length.
+
+Both surfaced from /kits, quick order as the obvious default, build-your-space as the option underneath for anyone who needs it. This protects the Phase 2 work rather than replacing it, and it's a smaller, honest scope for Phase 3a vs Phase 3b — worth shipping the smaller one first if you want a faster win.
+
+Writing this up properly now rather than another mockup — this is what goes to Replit.
+
+Created a file, read a file
+Created a file, read a file
+
+That's ready to hand over. Structured as 3a (refinements to what's already live — lower risk, could ship on its own) and 3b (the canvas — genuinely new, bigger). If you want to sequence them separately rather than one big handoff, 3a alone is a clean, shippable unit while 3b gets built.
+
+Two things I didn't decide for you, flagged in the doc rather than assumed: whether Path's straight/curved toggle should ever affect pricing (I kept it cosmetic only — a curved run doesn't cost more than a straight one of the same length, but say so if that's wrong), and the exact min/max bounds on custom length per item type, which I left as "sensible, not specified" since that's more a judgement call on your real job sizes than something I should invent numbers for.

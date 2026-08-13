@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { NextRequest, NextResponse } from "next/server";
 
-export function GET() {
-  redirect("/kits");
+export function GET(req: NextRequest) {
+  return NextResponse.redirect(new URL("/kits", req.nextUrl.origin), { status: 301 });
 }

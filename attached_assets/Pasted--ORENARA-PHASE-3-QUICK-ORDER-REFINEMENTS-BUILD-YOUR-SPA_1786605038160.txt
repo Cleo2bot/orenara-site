@@ -1,0 +1,91 @@
+# ORENARA — PHASE 3: QUICK ORDER REFINEMENTS + BUILD YOUR SPACE
+**Prepared 13 August 2026 — for the Replit Agent. Phase 1 and Phase 2 are complete and verified — this brief does not touch that work except where explicitly stated.**
+
+This supersedes Phase 3 and Phase 4 of the original catalog-pivot brief. Those phases described a simpler flow than what's specified here — this is the current, correct spec.
+
+---
+
+## Non-negotiable working rules (restate every session — unchanged)
+- No push to GitHub/main without Ben's explicit approval. Every phase section below ends in a checkpoint — wait for "proceed."
+- Local production build must pass before any push. After push, verify Vercel deploy and spot-check `/`, `/trade`, `/kits`, one kit detail page, and one build-your-space session, **on mobile as well as desktop.**
+- If a path is blocked, stop and report it — never route around it.
+- Do not silently resolve a spec contradiction — flag it and wait.
+
+---
+
+## Small fix before anything else
+**Change the `/diy-kits` redirects from 307 to 301.** Permanent retirement, not a temporary reroute — 301 is what transfers SEO value correctly. One-line change, do it first.
+
+---
+
+## Architecture decision (final, not open)
+Two paths, both reachable from `/kits`:
+- **Quick order** — the existing `/kits/[slug]` flow from Phase 2, unchanged in structure. Gets the refinements in Phase 3a below.
+- **Build your space** — new, at `/kits/build`. The multi-element canvas from Phase 3b below.
+
+Quick order stays the default/primary CTA on `/kits` — it's faster for the common case. Build your space is offered as a clearly-labelled secondary option, not forced on everyone.
+
+**Both paths call the same shared calculation functions from Phase 1 (`calculateRunConfig`, `packDriversForRuns`) — do not reimplement driver/run logic a third time.** Single source of truth continues to apply.
+
+---
+
+## Phase 3a — Refinements to Quick Order (lower risk, ship first if sequencing matters)
+
+These apply to the existing `/kits/[slug]` flow.
+
+**1. Channel as material × profile, not three flat options.**
+Two independent choices: **material** (Aluminium / Stainless) and **profile** (Straight / Flex). Default per kit: Pool Surround → Stainless + Flex (recommended pairing, say so in the UI). Stair → Aluminium + Straight. Patio → Aluminium + Straight. Path → Aluminium + Flex.
+⚠️ Stainless in either profile still sits behind the same open dependency from the original brief — SF16 stainless compatibility is unconfirmed with Ava. Don't remove that caveat from the UI logic.
+
+**2. Connector entry, exposed with a default.**
+Four options — Direct / Side / Bottom / L-shape — Bottom pre-selected and labelled "(default)". **Disable L-shape when Stainless material is selected** — L-shape entry isn't confirmed available on SF17, which is the only strip line confirmed for stainless. Grey it out with a short note, don't just hide it.
+
+**3. Custom length entry, alongside the preset chips.**
+Every length field accepts a typed value as well as the preset chips, using the same `calculateRunConfig` output either way. Round input to the nearest 10cm (matches the strip's real cut precision — confirmed for mono; CC's finer 5cm precision means a 10cm mark is always valid too, so one rounding rule works for both). Set sensible min/max bounds per kit type rather than accepting anything.
+
+**4. Trim and spare connector.**
+Add a checkbox: "I might trim this on site." When checked: show a note that cuts must land on a valid 10cm mark, and add one spare connector set to the order. Every run ships factory-terminated — trimming removes the connector on that end, so a spare is genuinely needed, not an upsell.
+
+**5. $500 minimum order (self-serve only — separate from the $1,250 bespoke minimum).**
+If the calculated total falls under $500, charge $500 flat and label it "Minimum order applied" instead of "Total, inc GST" — never silently substitute the number without saying so. **This is a different, lower minimum than the $1,250 standing minimum on the Request Review / bespoke path** — that one stays as-is, since it's protecting Ben's time on a path that still consumes it. $500 reflects that a confirmed self-serve order barely touches Ben's time at all.
+
+**6. Soft email capture, not a price gate.**
+Price displays immediately, no gate — that's the whole point of this rebuild. Add a **non-blocking** secondary action next to "Confirm & Request Invoice": "Email me this quote instead." Captures an identifiable lead without withholding the thing that removes friction. Do not make this required before the price shows.
+
+**Checkpoint — stop here.** Verify all six against one real scenario (e.g. a 22m Pool Surround, recessed, stainless-flex, bottom entry, trim checked) before continuing to 3b.
+
+---
+
+## Phase 3b — Build Your Space (new, bigger scope)
+
+New route: `/kits/build`. A blank canvas. Four add buttons: **Pool, Path, Stairs, Box.** Clicking one adds a default instance directly to the canvas — no separate staging form, no modal. Each item on the canvas is its own card: a small live SVG drawing, inline editable fields specific to its type, and a remove control. Editing any field re-renders that item's drawing immediately.
+
+**Item types and their fields:**
+- **Pool** — same fields as Quick Order's pool config (preset sizes or custom W×L, coping/recessed mount, tile width if recessed, per-side include/exclude). Recessed mount must draw **both** the true pool shape (lower-opacity "shadow" rect) and the offset lighting loop around it — showing one bigger rectangle alone doesn't communicate "set back from the edge."
+- **Box** — same as Pool minus the mount/tile concept: literal W×L rectangle, per-side include/exclude. For garden beds, planters, anything rectangular that isn't a pool.
+- **Stairs** — tread width × tread count. Each tread is its own run (they already share drivers correctly via the existing packing logic — this isn't new BOM logic, just a new input shape for generating runs).
+- **Path** — editable name (default "Path" — used for anything not a set shape: a garden bed cut-in, a water feature edge), straight/curved toggle (cosmetic only, doesn't affect price or BOM), single length.
+
+**Run generation:** each item type has its own function producing an array of `{itemId, label, len}` runs, split at 12m per the existing `splitRun` logic where any individual side/length exceeds it. All runs across all items on the canvas feed into one shared `packDriversForRuns` call — driver assignment happens across the whole space, not per item.
+
+**Visual language — keep it simple.** Each item's own drawing shows active/inactive sides in one consistent colour (not driver-coloured) — painting driver groupings directly onto the shapes made an earlier version confusing. **Driver grouping shows as a separate summary section below the canvas** — one card per driver, listing which runs (with their item labels) it serves, each with its own colour swatch there only.
+
+**Pricing panel:** identical pattern to Quick Order — live total, $500 floor with the same labelling behaviour, "Confirm & Request Invoice" / "Email me this quote instead" / "Request Review" as the three actions.
+
+**Order confirmation must echo the complete canvas state** — every item, every field, exactly as configured — as the definitive record of what was agreed. This is not optional; it's the same principle Quick Order already follows.
+
+**Data model note for future extensibility (do not build this now):** keep each canvas item as clean structured data — `{id, type, ...fields}` — populated only through the same functions the add-buttons call. There's a future idea to let someone upload a sketch and have it pre-fill the canvas; that only works cleanly if item creation is already decoupled from the UI like this. Nothing to build for that now, just don't paint yourself into an architecture that makes it hard later.
+
+**Checkpoint — stop here before wiring the pricing panel.** Get sign-off on the four item types and their drawings looking right before pricing goes live on top of them.
+
+**Checkpoint — stop again before push.** This is a genuinely new page with real production risk. Mobile spot-check specifically — the canvas layout (cards wrapping, inline editing) is the part most likely to break on a small screen.
+
+---
+
+## Flag to Marketing before either phase ships
+The interaction model is richer now — item added, item type, item edited, price viewed, email-quote requested, order confirmed. That's a real event taxonomy, not one "calculate price" GA4 event. Worth a proper conversation about what gets tracked before this goes live, same flag as the original brief raised for the simpler version — more true now, not less.
+
+---
+
+## Do not modify (unchanged from original brief, still applies)
+- Resend enquiry pipeline, Google tag/GA4 wiring (extend, don't rebuild), Neon DB schema (additive only, never touch a sent quote or confirmed order), no Xero API integration, no payment/checkout build, `/admin` routes untouched.
