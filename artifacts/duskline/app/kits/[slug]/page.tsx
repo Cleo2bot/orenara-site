@@ -404,6 +404,7 @@ function KitPageInner({ slug }: { slug: string }) {
   const [connectorEntry, setConnectorEntry]   = useState<ConnectorEntry>("bottom");
   const [trim, setTrim]                       = useState<boolean>(false);
   const customInputRef = useRef<HTMLInputElement>(null);
+  const panelRef       = useRef<HTMLDivElement>(null);
 
   // Auto-switch L-shape → bottom when stainless selected
   useEffect(() => {
@@ -724,9 +725,9 @@ function KitPageInner({ slug }: { slug: string }) {
             </div>
           </div>
 
-          {/* ── right column — sticky pricing panel */}
+          {/* ── right column — sticky pricing panel (desktop) */}
           <div className="mt-10 lg:mt-0">
-            <div className="lg:sticky lg:top-20">
+            <div ref={panelRef} className="lg:sticky lg:top-20">
               <PricingPanel
                 kit={kit}
                 metres={validMetres}
@@ -741,8 +742,8 @@ function KitPageInner({ slug }: { slug: string }) {
         </div>
       </div>
 
-      {/* footer */}
-      <footer className="bg-bone-tile border-t border-bone-line">
+      {/* footer — extra bottom padding on mobile to clear the fixed CTA bar */}
+      <footer className="bg-bone-tile border-t border-bone-line pb-20 lg:pb-0">
         <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
           <Link href="/" className="font-display text-sm tracking-[0.25em] text-ink/50 hover:text-ink transition-colors">ORENARA</Link>
           <div className="flex items-center gap-6 text-xs text-ink/40">
@@ -752,6 +753,35 @@ function KitPageInner({ slug }: { slug: string }) {
           </div>
         </div>
       </footer>
+
+      {/* ── Mobile bottom CTA bar — hidden lg+ where sticky right panel takes over */}
+      {(() => {
+        const pricing = validMetres !== null ? calculateKitPricing(validMetres) : null;
+        return (
+          <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-bone border-t border-bone-line">
+            <div className="px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] flex items-center gap-3">
+              <div className="flex-1 min-w-0">
+                {pricing ? (
+                  <>
+                    <p className="font-display text-lg text-ink leading-none">{fmtAUD(pricing.totalIncGST)}</p>
+                    <p className="font-spec text-[8px] tracking-widest text-ink/40 mt-0.5 uppercase">
+                      {pricing.minimumApplied ? "Minimum order" : "Total inc GST"}
+                    </p>
+                  </>
+                ) : (
+                  <p className="text-sm text-ink/40">Select a length to price</p>
+                )}
+              </div>
+              <button
+                onClick={() => panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
+                className="flex-shrink-0 bg-ink text-bone font-spec text-[10px] tracking-widest uppercase px-5 py-3 rounded-xs hover:bg-ink/90 transition-colors"
+              >
+                {pricing ? "Confirm →" : "See options →"}
+              </button>
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }
