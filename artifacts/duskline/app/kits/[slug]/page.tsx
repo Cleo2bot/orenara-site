@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { KITS, KitId } from "../../../lib/kits-data";
+import { PART_NUMBERS } from "../../../lib/quoteCalc";
 import SpaceBuilder, { makeInitialItem, ItemType } from "../../../components/space-builder/SpaceBuilder";
 
 /* ── Map kit slug → initial area type for pre-seeding ── */
@@ -99,19 +100,19 @@ function KitPageInner({ slug }: { slug: string }) {
               {[
                 {
                   label: "IP68 silicone strip",
-                  detail: "SF16 series · 24V · mono up to 10m per run, CC strip over 10m",
+                  detail: `${PART_NUMBERS.stripMono} · 24V · mono up to 10m per run · ${PART_NUMBERS.stripCC} over 10m`,
                 },
                 {
                   label: `${kit.channel} channel`,
-                  detail: `${kit.defaultProfile === "flex" ? "Flexible segmented" : "Rigid"} profile · frosted PC diffuser`,
+                  detail: `${kit.defaultProfile === "flex" ? "Flexible segmented" : "Rigid"} profile · diffuser included`,
                 },
                 {
-                  label: "IP67 driver",
-                  detail: "HLG-150H-24B · Mean Well · 24V DC · 80% derated · one per independently-fed run",
+                  label: "Mean Well HLG-150H-24B",
+                  detail: `${PART_NUMBERS.driver} · 24V DC · IP67 · 80% derated · one per independently-fed run`,
                 },
                 {
                   label: "Factory IP68 connectors",
-                  detail: "Moulded onto strip ends · pressure-tested before dispatch",
+                  detail: `${PART_NUMBERS.connectorSet} · moulded onto strip ends · pressure-tested before dispatch`,
                 },
               ].map((item) => (
                 <div key={item.label} className="rounded-xs border border-bone-line bg-bone-tile p-4">

@@ -60,7 +60,7 @@ export const KITS: KitDef[] = [
       {
         label: "316L stainless channel",
         detail:
-          "Marine-grade with frosted PC diffuser — rated for permanent immersion and pool chemicals",
+          "Marine-grade with diffuser — rated for permanent immersion and pool chemicals",
       },
       {
         label: "Factory IP68 connectors",
@@ -130,7 +130,7 @@ export const KITS: KitDef[] = [
       {
         label: "Anodised aluminium channel",
         detail:
-          "Surface-mount recessed profile with frosted diffuser — sits flush under the nosing overhang",
+          "Surface-mount recessed profile with diffuser — sits flush under the nosing overhang",
       },
       {
         label: "IP68 link cables",
@@ -200,7 +200,7 @@ export const KITS: KitDef[] = [
       {
         label: "Surface-mount aluminium channel",
         detail:
-          "Flat-back profile with frosted diffuser — screws direct to timber, masonry or steel fascia",
+          "Flat-back profile with diffuser — screws direct to timber, masonry or steel fascia",
       },
       {
         label: "Factory IP68 connectors",
@@ -272,7 +272,7 @@ export const KITS: KitDef[] = [
       {
         label: "Flexible segmented aluminium channel",
         detail:
-          "Segments pivot to follow any curve radius — bends by hand, diffuser included",
+          "Segments pivot to follow any curve radius — bends by hand, diffuser clips in",
       },
       {
         label: "Factory IP68 connectors",
@@ -318,7 +318,7 @@ export const BOX_ITEMS = [
   },
   {
     label: "Matched channel",
-    detail: "Aluminium or stainless. Frosted diffuser included.",
+    detail: "Aluminium or stainless. Diffuser included.",
     tag: "Channel",
   },
   {

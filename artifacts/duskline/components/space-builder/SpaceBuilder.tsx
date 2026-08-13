@@ -14,6 +14,8 @@ import {
   PART_NUMBERS,
   PART_LABELS,
   StripType,
+  MAX_PHYSICAL_RUN_MONO,
+  MAX_PHYSICAL_RUN_CC,
 } from "../../lib/quoteCalc";
 
 /* ──────────────────────────────────────────────────── types */
@@ -681,7 +683,7 @@ function DriverSummary({
         </div>
         {stripType === "cc" && (
           <p className="text-[10px] text-ink/45 leading-relaxed pt-2 border-t border-bone-line">
-            One or more runs exceed 10m — CC strip (OR-SF-16CC) required across the whole job for consistent brightness.
+            One or more runs exceed 10m — CC strip (OR-SF-16CC) required for that area to maintain consistent brightness along the run.
           </p>
         )}
         {hasTrim && (
@@ -1089,7 +1091,12 @@ export default function SpaceBuilder({
   // Pool → per-side QuoteRunInputs (4 sides max, split at >12m).
   // Stairs → N runs of tread_width each (each tread is its own physical run).
   // Path/box → one flat run each.
-  const validRuns: QuoteRunInput[] = items.flatMap(item => {
+  //
+  // B1 (connector count): each independently-fed sub-run needs its own connector
+  //   set — use Math.ceil(len / maxPerRun) per run, not validRuns.length.
+  // B3 (strip-type scope): strip type is computed per-item so a pool run > 10m
+  //   forces CC only for that item; an independent 0.9m stair run stays mono.
+  const itemRunGroups: QuoteRunInput[][] = items.map(item => {
     if (item.type === "pool") {
       const l = parseFloat(item.poolL ?? "0");
       const w = parseFloat(item.poolW ?? "0");
@@ -1130,11 +1137,27 @@ export default function SpaceBuilder({
     return [{ lengthMetres: m, shape: item.shape }];
   });
 
-  const totalMetres     = +validRuns.reduce((s, r) => s + r.lengthMetres, 0).toFixed(2);
-  const stripType       = validRuns.length > 0 ? zoneStripType(validRuns) : "mono";
-  const totalDrivers    = validRuns.length > 0 ? packDriversForRuns(validRuns, stripType) : 0;
-  // One connector set per independently-fed physical run; trim items add one spare each
-  const connectorSets   = validRuns.length;
+  const validRuns: QuoteRunInput[] = itemRunGroups.flat();
+
+  // Per-item stats: each item's strip type and connector count are independent.
+  // Strip type is determined by the longest run within that item only.
+  const perItemStats = itemRunGroups.map(runs => {
+    if (runs.length === 0) return { stripType: "mono" as StripType, connectorSets: 0, drivers: 0 };
+    const st    = zoneStripType(runs);
+    const maxPR = st === "mono" ? MAX_PHYSICAL_RUN_MONO : MAX_PHYSICAL_RUN_CC;
+    return {
+      stripType:     st,
+      connectorSets: runs.reduce((sum, r) => sum + Math.ceil(r.lengthMetres / maxPR), 0),
+      drivers:       packDriversForRuns(runs, st),
+    };
+  });
+
+  const totalMetres   = +validRuns.reduce((s, r) => s + r.lengthMetres, 0).toFixed(2);
+  // Overall strip type: CC if any item needs it (DriverSummary notes which area drives it)
+  const stripType     = perItemStats.some(s => s.stripType === "cc") ? "cc" : "mono";
+  const totalDrivers  = perItemStats.reduce((sum, s) => sum + s.drivers, 0);
+  // B1 fix: connector sets = sum of physical sub-runs across items, not validRuns.length
+  const connectorSets = perItemStats.reduce((sum, s) => sum + s.connectorSets, 0);
   const hasTrim         = items.some(i => i.trim);
   const pricing         = totalMetres > 0 ? calculateKitPricing(totalMetres) : null;
 
