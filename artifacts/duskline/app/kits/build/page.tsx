@@ -19,13 +19,21 @@ import {
 /* ──────────────────────────────────────────────────── types */
 type ItemType = "pool" | "path" | "stair" | "box";
 
+interface PoolSides { top: boolean; bottom: boolean; left: boolean; right: boolean }
+
 interface BuildItem {
   id: string;
   type: ItemType;
   name: string;
-  metres: string;          // raw input value — parse on use
+  metres: string;          // raw input — path/stair/box only; pool uses poolL/poolW
   shape: "straight" | "curved";
   steps?: string;          // stair only — step count, cosmetic
+  // pool-specific
+  poolL?: string;          // length (long dimension) in metres
+  poolW?: string;          // width (short dimension) in metres
+  poolMount?: "coping" | "recessed";
+  poolTileWidth?: string;  // mm; only relevant when recessed, default "600"
+  poolSides?: PoolSides;   // which sides are included in the run
 }
 
 let _seq = 0;
@@ -48,24 +56,69 @@ const TYPE_CONFIG: Record<ItemType, {
  * Each SVG is 200×120. Strip shown as warm amber, structure as ink/15.
  * These are schematic — communicate what the item IS at a glance.
  */
-function PoolSchematic({ metres, shape }: { metres: number; shape: "straight" | "curved" }) {
-  const rx = shape === "curved" ? 18 : 2;
-  const label = metres > 0 ? `${metres}m perimeter` : "perimeter";
+function PoolSchematic({
+  poolL, poolW, mount, tileWidthMm, sides,
+}: {
+  poolL: number; poolW: number;
+  mount: "coping" | "recessed";
+  tileWidthMm: number;
+  sides: PoolSides;
+}) {
+  const hasSize = poolL > 0 && poolW > 0;
+  // Pool body in SVG space
+  const px = 26, py = 13, pw = 148, ph = 80;
+  const inset = 11; // visual inset representing recessed channel setback
+
+  // Coping: strip runs right on the pool edge
+  const copingPaths: Record<keyof PoolSides, string> = {
+    top:    `M ${px} ${py} L ${px+pw} ${py}`,
+    bottom: `M ${px} ${py+ph} L ${px+pw} ${py+ph}`,
+    left:   `M ${px} ${py} L ${px} ${py+ph}`,
+    right:  `M ${px+pw} ${py} L ${px+pw} ${py+ph}`,
+  };
+  // Recessed: strip runs on inner offset track
+  const recessedPaths: Record<keyof PoolSides, string> = {
+    top:    `M ${px+inset} ${py+inset} L ${px+pw-inset} ${py+inset}`,
+    bottom: `M ${px+inset} ${py+ph-inset} L ${px+pw-inset} ${py+ph-inset}`,
+    left:   `M ${px+inset} ${py+inset} L ${px+inset} ${py+ph-inset}`,
+    right:  `M ${px+pw-inset} ${py+inset} L ${px+pw-inset} ${py+ph-inset}`,
+  };
+  const paths = mount === "recessed" ? recessedPaths : copingPaths;
+
+  // Derived label
+  let label = "Enter pool dimensions";
+  if (hasSize) {
+    const tileM = mount === "recessed" ? tileWidthMm / 1000 : 0;
+    const longRun  = +(poolL - 2 * tileM).toFixed(2);
+    const shortRun = +(poolW - 2 * tileM).toFixed(2);
+    const total = +((sides.top ? longRun : 0) + (sides.bottom ? longRun : 0)
+                  + (sides.left ? shortRun : 0) + (sides.right ? shortRun : 0)).toFixed(1);
+    const n = Object.values(sides).filter(Boolean).length;
+    label = `${poolL}×${poolW}m · ${n} side${n !== 1 ? "s" : ""} · ${total}m total`;
+  }
+
   return (
     <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
       {/* pool body */}
-      <rect x="22" y="18" width="156" height="76" rx={rx} fill="rgba(15,17,19,0.04)" stroke="rgba(15,17,19,0.12)" strokeWidth="1"/>
-      {/* LED strip on coping */}
-      <rect x="22" y="18" width="156" height="76" rx={rx} fill="none"
-        stroke="var(--ember)" strokeWidth="3" strokeLinecap="round"
-        strokeDasharray={metres > 0 ? "none" : "6 4"}
-        opacity="0.85"/>
-      {/* water texture lines */}
-      <line x1="50" y1="56" x2="100" y2="56" stroke="rgba(15,17,19,0.08)" strokeWidth="1" strokeLinecap="round"/>
-      <line x1="60" y1="65" x2="130" y2="65" stroke="rgba(15,17,19,0.08)" strokeWidth="1" strokeLinecap="round"/>
-      <line x1="50" y1="74" x2="90" y2="74" stroke="rgba(15,17,19,0.08)" strokeWidth="1" strokeLinecap="round"/>
-      {/* label */}
-      <text x="100" y="110" textAnchor="middle" fontSize="9" fill="rgba(15,17,19,0.3)" fontFamily="sans-serif">{label}</text>
+      <rect x={px} y={py} width={pw} height={ph} rx="3"
+        fill="rgba(15,17,19,0.04)" stroke="rgba(15,17,19,0.12)" strokeWidth="1"/>
+      {/* recessed: true pool edge as faint dashed reference */}
+      {mount === "recessed" && (
+        <rect x={px} y={py} width={pw} height={ph} rx="3"
+          fill="none" stroke="rgba(15,17,19,0.18)" strokeWidth="1" strokeDasharray="4 3"/>
+      )}
+      {/* water texture */}
+      <line x1="62" y1="49" x2="110" y2="49" stroke="rgba(15,17,19,0.07)" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="74" y1="60" x2="132" y2="60" stroke="rgba(15,17,19,0.07)" strokeWidth="1" strokeLinecap="round"/>
+      {/* LED strips — one segment per included side */}
+      {(["top","bottom","left","right"] as const).map(side =>
+        sides[side] ? (
+          <path key={side} d={paths[side]} stroke="var(--ember)" strokeWidth="3" strokeLinecap="round" opacity="0.85"/>
+        ) : (
+          <path key={side} d={paths[side]} stroke="rgba(15,17,19,0.10)" strokeWidth="2" strokeLinecap="round" strokeDasharray="3 3"/>
+        )
+      )}
+      <text x="100" y="112" textAnchor="middle" fontSize="8" fill="rgba(15,17,19,0.3)" fontFamily="sans-serif">{label}</text>
     </svg>
   );
 }
@@ -149,7 +202,13 @@ function ItemSchematic({ item }: { item: BuildItem }) {
   const metres = isNaN(m) || m <= 0 ? 0 : m;
   const steps = parseInt(item.steps ?? "8") || 8;
   switch (item.type) {
-    case "pool":  return <PoolSchematic  metres={metres} shape={item.shape}/>;
+    case "pool":  return <PoolSchematic
+      poolL={parseFloat(item.poolL ?? "0") || 0}
+      poolW={parseFloat(item.poolW ?? "0") || 0}
+      mount={item.poolMount ?? "coping"}
+      tileWidthMm={parseFloat(item.poolTileWidth ?? "600") || 600}
+      sides={item.poolSides ?? { top: true, bottom: true, left: true, right: true }}
+    />;
     case "path":  return <PathSchematic  metres={metres} shape={item.shape}/>;
     case "stair": return <StairSchematic treadWidth={metres} steps={steps}/>;
     case "box":   return <BoxSchematic   metres={metres}/>;
@@ -227,57 +286,140 @@ function ItemCard({ item, index, onChange, onRemove }: ItemCardProps) {
 
       {/* fields */}
       <div className="px-4 pb-4 space-y-3">
-        {/* length — always full width, always primary */}
-        <div>
-          <label className={labelCls}>{cfg.hint}</label>
-          <div className="relative">
-            <input
-              type="number"
-              value={item.metres}
-              onChange={e => onChange(item.id, { metres: e.target.value })}
-              min={0.5}
-              max={40}
-              step={0.5}
-              placeholder="e.g. 12"
-              className={`${inputCls} w-full pr-7`}
-            />
-            <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-ink/35">m</span>
-          </div>
-        </div>
-
-        {/* shape — pool and path only */}
-        {(item.type === "pool" || item.type === "path") && (
-          <div>
-            <label className={labelCls}>Profile</label>
-            <div className="flex gap-2">
-              {(["straight", "curved"] as const).map(s => (
-                <button
-                  key={s}
-                  type="button"
-                  onClick={() => onChange(item.id, { shape: s })}
-                  className={`${chipBase} ${item.shape === s ? chipOn : chipOff}`}
-                >
-                  {s === "straight" ? "Straight" : "Curved"}
-                </button>
-              ))}
+        {item.type === "pool" ? (
+          /* ── Pool: W×L dimensions, mount type, side toggles */
+          <>
+            {/* common size presets */}
+            <div>
+              <label className={labelCls}>Common sizes (L × W)</label>
+              <div className="flex flex-wrap gap-1.5">
+                {(["6×4","7×4","6×3","8×4","10×4"] as const).map(preset => {
+                  const [pl, pw] = preset.split("×");
+                  const active = item.poolL === pl && item.poolW === pw;
+                  return (
+                    <button key={preset} type="button"
+                      onClick={() => onChange(item.id, { poolL: pl, poolW: pw })}
+                      className={`${chipBase} ${active ? chipOn : chipOff}`}>
+                      {preset}m
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        )}
 
-        {/* steps — stair only, secondary below metres */}
-        {item.type === "stair" && (
-          <div>
-            <label className={labelCls}>Steps (cosmetic — affects schematic only)</label>
-            <input
-              type="number"
-              value={item.steps ?? "8"}
-              onChange={e => onChange(item.id, { steps: e.target.value })}
-              min={2}
-              max={20}
-              step={1}
-              className={`${inputCls} w-32`}
-            />
-          </div>
+            {/* custom dimensions */}
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className={labelCls}>Length (m)</label>
+                <div className="relative">
+                  <input type="number" value={item.poolL ?? ""}
+                    onChange={e => onChange(item.id, { poolL: e.target.value })}
+                    min={2} max={30} step={0.5} placeholder="e.g. 7"
+                    className={`${inputCls} w-full pr-7`}/>
+                  <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-ink/35">m</span>
+                </div>
+              </div>
+              <div>
+                <label className={labelCls}>Width (m)</label>
+                <div className="relative">
+                  <input type="number" value={item.poolW ?? ""}
+                    onChange={e => onChange(item.id, { poolW: e.target.value })}
+                    min={2} max={20} step={0.5} placeholder="e.g. 4"
+                    className={`${inputCls} w-full pr-7`}/>
+                  <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-ink/35">m</span>
+                </div>
+              </div>
+            </div>
+
+            {/* mount type */}
+            <div>
+              <label className={labelCls}>Channel mount</label>
+              <div className="flex gap-2">
+                {(["coping","recessed"] as const).map(mt => (
+                  <button key={mt} type="button"
+                    onClick={() => onChange(item.id, { poolMount: mt })}
+                    className={`${chipBase} ${(item.poolMount ?? "coping") === mt ? chipOn : chipOff}`}>
+                    {mt === "coping" ? "Coping" : "Recessed"}
+                  </button>
+                ))}
+              </div>
+              {(item.poolMount ?? "coping") === "recessed" && (
+                <div className="mt-2.5">
+                  <label className={labelCls}>Tile width (mm)</label>
+                  <input type="number" value={item.poolTileWidth ?? "600"}
+                    onChange={e => onChange(item.id, { poolTileWidth: e.target.value })}
+                    min={50} max={1200} step={50}
+                    className={`${inputCls} w-28`}/>
+                  <p className="text-[10px] text-ink/40 mt-1 leading-relaxed">
+                    Strip sets back from the pool edge by this amount at each corner.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* per-side toggles */}
+            <div>
+              <label className={labelCls}>Include sides</label>
+              <div className="flex flex-wrap gap-1.5">
+                {(["Top","Bottom","Left","Right"] as const).map(side => {
+                  const k = side.toLowerCase() as keyof PoolSides;
+                  const defaultSides: PoolSides = { top: true, bottom: true, left: true, right: true };
+                  const poolSides = item.poolSides ?? defaultSides;
+                  return (
+                    <button key={side} type="button"
+                      onClick={() => onChange(item.id, { poolSides: { ...poolSides, [k]: !poolSides[k] } })}
+                      className={`${chipBase} ${poolSides[k] ? chipOn : chipOff}`}>
+                      {side}
+                    </button>
+                  );
+                })}
+              </div>
+              <p className="text-[10px] text-ink/40 mt-1.5 leading-relaxed">
+                Exclude a side for spas, feature walls, or inaccessible edges.
+              </p>
+            </div>
+          </>
+        ) : (
+          /* ── Generic fields: path / stair / box */
+          <>
+            {/* run length — primary */}
+            <div>
+              <label className={labelCls}>{cfg.hint}</label>
+              <div className="relative">
+                <input type="number" value={item.metres}
+                  onChange={e => onChange(item.id, { metres: e.target.value })}
+                  min={0.5} max={40} step={0.5} placeholder="e.g. 12"
+                  className={`${inputCls} w-full pr-7`}/>
+                <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-ink/35">m</span>
+              </div>
+            </div>
+
+            {/* shape — path only */}
+            {item.type === "path" && (
+              <div>
+                <label className={labelCls}>Profile</label>
+                <div className="flex gap-2">
+                  {(["straight","curved"] as const).map(s => (
+                    <button key={s} type="button"
+                      onClick={() => onChange(item.id, { shape: s })}
+                      className={`${chipBase} ${item.shape === s ? chipOn : chipOff}`}>
+                      {s === "straight" ? "Straight" : "Curved"}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* steps — stair only */}
+            {item.type === "stair" && (
+              <div>
+                <label className={labelCls}>Steps (cosmetic — affects schematic only)</label>
+                <input type="number" value={item.steps ?? "8"}
+                  onChange={e => onChange(item.id, { steps: e.target.value })}
+                  min={2} max={20} step={1} className={`${inputCls} w-32`}/>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
@@ -372,7 +514,14 @@ function BuildPricingPanel({
     type: it.type,
     metres: it.metres,
     shape: it.shape,
-    ...(it.steps ? { steps: it.steps } : {}),
+    ...(it.steps     ? { steps:         it.steps }         : {}),
+    ...(it.type === "pool" ? {
+      poolL:        it.poolL ?? "",
+      poolW:        it.poolW ?? "",
+      poolMount:    it.poolMount ?? "coping",
+      poolTileWidth: it.poolTileWidth ?? "600",
+      poolSides:    it.poolSides ?? { top: true, bottom: true, left: true, right: true },
+    } : {}),
   }));
 
   async function submitConfirm(e: React.FormEvent) {
@@ -642,6 +791,12 @@ export default function BuildPage() {
         metres: "",
         shape:  cfg.defaultShape,
         ...(cfg.defaultSteps ? { steps: cfg.defaultSteps } : {}),
+        ...(type === "pool" ? {
+          poolL: "", poolW: "",
+          poolMount: "coping" as const,
+          poolTileWidth: "600",
+          poolSides: { top: true, bottom: true, left: true, right: true },
+        } : {}),
       },
     ]);
   }, []);
@@ -655,16 +810,42 @@ export default function BuildPage() {
   }, []);
 
   // Derive shared computation from all valid items.
-  // Stairs expand into N separate runs of tread_width each — each tread is
-  // an independently-fed physical run with its own connector set, matching
-  // how multi-tread jobs actually ship. All other item types produce one run.
+  // Pool → per-side QuoteRunInputs (4 sides max, split at >12m).
+  // Stairs → N runs of tread_width each (each tread is its own physical run).
+  // Path/box → one flat run each.
   const validRuns: QuoteRunInput[] = items.flatMap(item => {
+    if (item.type === "pool") {
+      const l = parseFloat(item.poolL ?? "0");
+      const w = parseFloat(item.poolW ?? "0");
+      if (isNaN(l) || l <= 0 || isNaN(w) || w <= 0) return [];
+      const mount  = item.poolMount ?? "coping";
+      const tileM  = mount === "recessed" ? (parseFloat(item.poolTileWidth ?? "600") || 600) / 1000 : 0;
+      const sides  = item.poolSides ?? { top: true, bottom: true, left: true, right: true };
+      const sideLens = {
+        top:    +(l - 2 * tileM).toFixed(3),
+        bottom: +(l - 2 * tileM).toFixed(3),
+        left:   +(w - 2 * tileM).toFixed(3),
+        right:  +(w - 2 * tileM).toFixed(3),
+      };
+      return (["top","bottom","left","right"] as const).flatMap(side => {
+        if (!sides[side]) return [];
+        const len = sideLens[side];
+        if (len <= 0) return [];
+        // Split sides longer than 12m into equal-length segments
+        if (len > 12) {
+          const n = Math.ceil(len / 12);
+          const seg = +(len / n).toFixed(2);
+          return Array.from({ length: n }, () => ({ lengthMetres: seg, shape: "straight" as const }));
+        }
+        return [{ lengthMetres: len, shape: "straight" as const }];
+      });
+    }
     const m = parseFloat(item.metres);
     if (isNaN(m) || m <= 0) return [];
     if (item.type === "stair") {
       const stepCount = Math.max(1, parseInt(item.steps ?? "8") || 8);
       return Array.from({ length: stepCount }, () => ({
-        lengthMetres: m,          // m = tread width per step
+        lengthMetres: m,   // m = tread width per step
         shape: item.shape,
       }));
     }
@@ -684,7 +865,6 @@ export default function BuildPage() {
           <Link href="/" className="font-display text-sm tracking-[0.25em] text-ink/60 hover:text-ink transition-colors flex-shrink-0">ORENARA</Link>
           <div className="hidden sm:flex items-center gap-6 text-xs text-ink/50">
             <Link href="/kits" className="hover:text-ink transition-colors">Kits</Link>
-            <Link href="/quote-builder" className="hover:text-ink transition-colors">Quote builder</Link>
             <Link href="/trade" className="hover:text-ink transition-colors">Trade</Link>
           </div>
         </div>
@@ -699,6 +879,12 @@ export default function BuildPage() {
           <h1 className="font-display text-3xl sm:text-4xl text-ink mb-2">Build Your Space</h1>
           <p className="text-ink/55 max-w-xl leading-relaxed">
             Add the areas you want to light. Each item is priced as part of one job — all runs share a single driver calculation.
+          </p>
+          <p className="mt-3 text-xs text-ink/40">
+            Single area?{" "}
+            <Link href="/kits" className="underline underline-offset-2 hover:text-ink/70 transition-colors">
+              Browse individual kit specs →
+            </Link>
           </p>
         </div>
       </div>

@@ -39,13 +39,13 @@ export default function Navbar() {
             <span className="hidden md:inline">Trade Order</span>
           </Link>
           <Link
-            href="/quote-builder"
+            href="/kits/build"
             className="btn-outline w-auto whitespace-nowrap"
             style={{ padding: "10px 18px", fontSize: "0.8125rem", width: "auto" }}
-            data-testid="nav-quote-builder-link"
+            data-testid="nav-build-link"
           >
-            <span className="md:hidden">Build Kit</span>
-            <span className="hidden md:inline">Build Your Kit</span>
+            <span className="md:hidden">Build your space</span>
+            <span className="hidden md:inline">Build your space</span>
           </Link>
         </div>
       </nav>

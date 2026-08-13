@@ -470,7 +470,7 @@ function KitPageInner({ slug }: { slug: string }) {
           <Link href="/" className="font-display text-sm tracking-[0.25em] text-ink/60 hover:text-ink transition-colors flex-shrink-0">ORENARA</Link>
           <div className="hidden sm:flex items-center gap-6 text-xs text-ink/50">
             <Link href="/kits" className="hover:text-ink transition-colors">Kits</Link>
-            <Link href="/quote-builder" className="hover:text-ink transition-colors">Quote builder</Link>
+            <Link href="/kits/build" className="hover:text-ink transition-colors">Build your space</Link>
             <Link href="/trade" className="hover:text-ink transition-colors">Trade</Link>
           </div>
         </div>
@@ -713,6 +713,22 @@ function KitPageInner({ slug }: { slug: string }) {
                   </li>
                 ))}
               </ul>
+            </div>
+
+            {/* multi-zone cross-link */}
+            <div className="rounded-xs border border-bone-line bg-bone-tile/60 px-5 py-4 flex items-center justify-between gap-4">
+              <div>
+                <p className="text-sm text-ink font-display">Multiple areas?</p>
+                <p className="text-xs text-ink/55 mt-0.5 leading-relaxed">
+                  Pool, path, and stairs together — all priced in one job.
+                </p>
+              </div>
+              <Link
+                href="/kits/build"
+                className="flex-shrink-0 font-spec text-[9px] tracking-widest uppercase border border-ink/25 text-ink/60 px-4 py-2 rounded-xs hover:bg-ink hover:text-bone hover:border-ink transition-colors whitespace-nowrap"
+              >
+                Build your space →
+              </Link>
             </div>
 
             {/* compliance note */}

@@ -287,7 +287,7 @@ export default function KitsPage() {
             ORENARA
           </Link>
           <div className="hidden sm:flex items-center gap-6 text-xs text-ink/50">
-            <Link href="/quote-builder" className="hover:text-ink transition-colors">Quote builder</Link>
+            <Link href="/kits/build" className="hover:text-ink transition-colors">Build your space</Link>
             <Link href="/trade" className="hover:text-ink transition-colors">Trade</Link>
           </div>
         </div>
@@ -393,6 +393,47 @@ export default function KitsPage() {
             {KITS.map((k) => (
               <KitCard key={k.id} kit={k} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Build Your Space — multi-zone CTA ── */}
+      <section className="bg-bone border-t border-bone-line">
+        <div className="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+            <div>
+              <p className="font-spec text-xs tracking-widest text-ink/40 uppercase mb-4">
+                Multiple areas
+              </p>
+              <h2 className="font-display text-3xl sm:text-4xl leading-tight text-ink mb-4">
+                Pool, path, and stairs in one order.
+              </h2>
+              <p className="text-ink/65 leading-relaxed mb-6">
+                Add each area of your job separately. We calculate the strip, drivers, and connectors for the whole site in one go — one price, one order, one dispatch.
+              </p>
+              <Link
+                href="/kits/build"
+                className="inline-block font-spec text-[9px] tracking-widest uppercase bg-ink text-bone px-6 py-3 rounded-xs hover:bg-ink/90 transition-colors"
+              >
+                Build your space →
+              </Link>
+            </div>
+            <div className="mt-10 lg:mt-0 rounded-xs border border-bone-line bg-bone-tile p-7 space-y-4">
+              {([
+                { label: "Pool surround",  detail: "W × L dimensions, per-side include/exclude, coping or recessed mount" },
+                { label: "Garden path",    detail: "Straight or curved run — any length" },
+                { label: "Stair nosing",   detail: "Per-tread — each step gets its own independent run" },
+                { label: "Custom zone",    detail: "Soffit, feature wall, any other continuous run" },
+              ] as const).map(item => (
+                <div key={item.label} className="flex items-start gap-3">
+                  <span className="w-1 h-1 rounded-full bg-ink/30 flex-shrink-0 mt-2"/>
+                  <div>
+                    <p className="text-sm text-ink font-display">{item.label}</p>
+                    <p className="text-xs text-ink/50 leading-relaxed">{item.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
