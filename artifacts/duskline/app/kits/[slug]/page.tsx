@@ -104,7 +104,7 @@ function KitPageInner({ slug }: { slug: string }) {
                 },
                 {
                   label: `${kit.channel} channel`,
-                  detail: `${kit.defaultProfile === "flex" ? "Flexible segmented" : "Rigid"} profile · diffuser included`,
+                  detail: "Diffuser included · profile selected in the builder above",
                 },
                 {
                   label: "Mean Well HLG-150H-24B",

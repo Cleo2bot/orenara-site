@@ -1,0 +1,21 @@
+B1 and B5 are clean. B4 needs a direct answer before I'd call it done, though — I think the actual bug that started this whole thread might still be there.
+
+B1 — verified, approved
+
+Ran the arithmetic on the example given: 15m at a 12m-per-driver split gives ceil(15/12) = 2. Matches what's reported. Good.
+
+B4 — the Channel card's fix table reads like the original bug wasn't actually touched
+
+Look at what the table says for Channel: "Before: already used kit.channel + kit.defaultProfile" — and the only listed change is the diffuser wording. But the bug that started B4 in the first place was specifically that the card showed "Flexible segmented profile" while the live toggle above it showed Straight selected. defaultProfile is exactly the kind of variable name that describes a static, kit-level fallback — not the customer's actual live selection. If that's genuinely what's still driving the Channel card's description, the original contradiction (toggle says one thing, card says another) is probably still sitting there, just with correct diffuser wording now instead of a fabricated spec.
+
+Need a direct answer, not a re-read of the code: on the Pool page, toggle the Channel Profile from Straight to Flex and back — does the "What's Included" card's description change to match, live? If yes, great, this was already fine and I misread the table. If no, this needs an actual fix, not just confirmation that it was already using something.
+
+B3 — one clarification, not necessarily a bug
+
+Per-item strip typing is the right fix. One thing worth confirming: when an order mixes a mono-eligible item (short stair treads) with a CC-required item (a longer pool side), does the order confirmation / BOM correctly itemize both strip types separately, or does it still show one collapsed "Strip: CC" line implying everything in the order is CC? I recall the email logic was built to split mono/CC into separate line items when a job has both — if that's still true and just applies downstream of what's shown in the on-screen summary, this is fine as a display simplification. Worth a quick confirm rather than an assumption either way.
+
+B5 — thorough, approved. One side question it raises.
+
+Good, complete audit — five separate instances caught in diy-kits-data.ts alone. That does raise something, though: is that file still an active data source for a live page, or is it dead code that a retired route no longer renders? If it's genuinely dead, fixing copy in it is harmless but pointless — and its continued existence means the "dead file cleanup" task approved back at the Phase 2 checkpoint still hasn't actually happened, months later. Worth checking while this is fresh rather than letting it sit open indefinitely.
+
+Holding Stage C/D until B4 gets a real toggle-and-observe answer — everything else here is either approved or a quick clarification, not a blocker.
