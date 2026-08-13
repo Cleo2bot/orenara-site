@@ -16,10 +16,30 @@ import {
 /* ------------------------------------------------------------------ types */
 type SubmissionType = "review" | "confirm" | "email_quote";
 
+interface ZoneEntry {
+  name: string;
+  type: string;
+  metres?: string;
+  material?: string;
+  profile?: string;
+  connectorEntry?: string;
+  trim?: boolean;
+  // pool-specific
+  poolL?: string;
+  poolW?: string;
+  poolMount?: string;
+  poolTileWidth?: string;
+  poolSides?: Record<string, boolean>;
+  // stair-specific
+  steps?: string;
+}
+
 interface KitConfig {
   kit: string;
   kitId: string;
   length: string;
+  zones?: ZoneEntry[];
+  // legacy single-zone fields (kept for backward compat)
   channelMaterial?: string;
   channelProfile?: string;
   connectorEntry?: string;
@@ -53,6 +73,7 @@ function validate(body: unknown): SubmissionPayload | null {
     kit: (b.kit as string),
     kitId: typeof b.kitId === "string" ? b.kitId : "",
     length: typeof b.length === "string" ? b.length : "",
+    zones: Array.isArray(b.zones) ? (b.zones as ZoneEntry[]) : undefined,
     channelMaterial: typeof b.channelMaterial === "string" ? b.channelMaterial : undefined,
     channelProfile: typeof b.channelProfile === "string" ? b.channelProfile : undefined,
     connectorEntry: typeof b.connectorEntry === "string" ? b.connectorEntry : undefined,
@@ -93,6 +114,33 @@ async function appendLog(
 }
 
 /* ------------------------------------------------------------------ email helpers */
+
+/** Render one zone row (per-area breakdown for multi-area builds). */
+function zoneRow(z: ZoneEntry, idx: number): string {
+  const materialLabel = z.material === "stainless" ? "Stainless 316L" : "Aluminium";
+  const profileLabel  = z.profile === "flex" ? "Flex" : "Straight";
+  const connLabel     = CONNECTOR_ENTRY_LABELS[z.connectorEntry ?? "bottom"] ?? z.connectorEntry ?? "Bottom";
+  const trimNote      = z.trim ? " · trim allowance" : "";
+  const isPool        = z.type === "pool";
+
+  let desc = "";
+  if (isPool) {
+    const mount = z.poolMount === "recessed" ? "Recessed" : "Coping";
+    desc = `Pool · ${mount}${z.poolL && z.poolW ? ` · ${z.poolL}×${z.poolW}m` : ""}`;
+  } else {
+    desc = `${z.type.charAt(0).toUpperCase()}${z.type.slice(1)} · ${z.metres ?? "?"}m`;
+  }
+
+  return `<tr>
+    <td style="padding:5px 0;color:#555;vertical-align:top;font-size:12px;width:24px;">${idx + 1}.</td>
+    <td style="padding:5px 0;vertical-align:top;">
+      <span style="font-weight:500;font-size:13px;">${z.name}</span>
+      <span style="color:#888;font-size:12px;"> — ${desc}</span><br>
+      <span style="color:#999;font-size:11px;">${materialLabel} · ${profileLabel} · ${connLabel} entry${trimNote}</span>
+    </td>
+  </tr>`;
+}
+
 function configBlock(p: SubmissionPayload): string {
   const metres = p.length ? getLengthMetres(p.length) : null;
   if (!metres) return "";
@@ -103,19 +151,33 @@ function configBlock(p: SubmissionPayload): string {
   const stripLabel =
     runCfg.stripType === "cc" ? PART_LABELS.stripCC : PART_LABELS.stripMono;
   const pricing = calculateKitPricing(metres);
-  const connLabel =
-    CONNECTOR_ENTRY_LABELS[p.connectorEntry ?? "bottom"] ?? p.connectorEntry ?? "Bottom";
-  const materialLabel = p.channelMaterial === "stainless" ? "Stainless 316L" : "Aluminium";
-  const profileLabel = p.channelProfile === "flex" ? "Flex" : "Straight";
+
+  // Per-area breakdown — shown when zones payload is present
+  const zonesSection = p.zones && p.zones.length > 0
+    ? `<table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px;">
+         <tr><td colspan="2" style="padding:4px 0 8px;color:#666;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;">Areas configured</td></tr>
+         ${p.zones.map((z, i) => zoneRow(z, i)).join("")}
+       </table>`
+    : (() => {
+        // Legacy single-zone format (fallback)
+        const connLabel     = CONNECTOR_ENTRY_LABELS[p.connectorEntry ?? "bottom"] ?? p.connectorEntry ?? "Bottom";
+        const materialLabel = p.channelMaterial === "stainless" ? "Stainless 316L" : "Aluminium";
+        const profileLabel  = p.channelProfile === "flex" ? "Flex" : "Straight";
+        return `<table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px;">
+          <tr><td style="padding:4px 0;color:#666;width:140px;">Kit</td><td style="padding:4px 0;font-weight:500;">${p.kit}</td></tr>
+          <tr><td style="padding:4px 0;color:#666;">Length</td><td style="padding:4px 0;font-weight:500;">${p.length}</td></tr>
+          <tr><td style="padding:4px 0;color:#666;">Channel</td><td style="padding:4px 0;">${materialLabel} · ${profileLabel}</td></tr>
+          <tr><td style="padding:4px 0;color:#666;">Connector entry</td><td style="padding:4px 0;">${connLabel}</td></tr>
+          ${p.trim ? `<tr><td style="padding:4px 0;color:#666;">Trim on site</td><td style="padding:4px 0;">Yes — spare connector set included</td></tr>` : ""}
+        </table>`;
+      })();
 
   return `
     <table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px;">
       <tr><td style="padding:4px 0;color:#666;width:140px;">Kit</td><td style="padding:4px 0;font-weight:500;">${p.kit}</td></tr>
-      <tr><td style="padding:4px 0;color:#666;">Length</td><td style="padding:4px 0;font-weight:500;">${p.length}</td></tr>
-      <tr><td style="padding:4px 0;color:#666;">Channel</td><td style="padding:4px 0;">${materialLabel} · ${profileLabel}</td></tr>
-      <tr><td style="padding:4px 0;color:#666;">Connector entry</td><td style="padding:4px 0;">${connLabel}</td></tr>
-      ${p.trim ? `<tr><td style="padding:4px 0;color:#666;">Trim on site</td><td style="padding:4px 0;">Yes — spare connector set included</td></tr>` : ""}
+      <tr><td style="padding:4px 0;color:#666;">Total</td><td style="padding:4px 0;font-weight:500;">${p.length}</td></tr>
     </table>
+    ${zonesSection}
     <table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px;">
       <tr><td style="padding:4px 0;color:#666;">Strip</td><td style="padding:4px 0;">${stripLabel} (${stripPart})</td></tr>
       <tr><td style="padding:4px 0;color:#666;">Runs</td><td style="padding:4px 0;">${runCfg.physicalRuns.map(r=>`${r.toFixed(1)}m`).join(" + ")} (${runCfg.physicalRuns.length}× independently fed)</td></tr>

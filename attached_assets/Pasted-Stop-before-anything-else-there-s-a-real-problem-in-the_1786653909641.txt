@@ -1,0 +1,29 @@
+Stop — before anything else, there's a real problem in the verification itself, and it's serious enough that nothing here should be treated as signed off yet.
+
+## The pool regression baseline is the known-buggy number, not the fixed one
+
+**"Pool 17.2m" is being cited as a passing baseline. That's the subtraction bug's output, not the corrected one.**
+
+Walk the math on the same 7×4 pool, 600mm tile that's been the reference case all session:
+
+- **Coping:** 2×(7+4) = **22m** ✓ — matches, fine.
+- **Recessed, correct (addition, per spec):** (7+1.2) + (4+1.2), doubled = **26.8m**
+- **Recessed, buggy (subtraction, what got fixed earlier):** (7−1.2) + (4−1.2), doubled = **17.2m**
+
+17.2m isn't close to the buggy value — it's exactly it, to the decimal. That means one of two things happened: either the earlier fix never actually landed in what's now the shared `SpaceBuilder` component (plausible if the fix was made in the old, now-replaced pool component, and didn't carry over when everything got consolidated), or it landed and then got reverted somewhere in this four-stage pass. Either way, **the regression test just verified a bug as correct behaviour.** This is precisely the "confidently wrong, not obviously broken" pattern that's shown up three times already this session — except this time it slipped past the verification step meant to catch it.
+
+Don't just re-report a number here — show the actual formula being used for recessed dimensions right now, so we can see it's `+ 2×tile` and not `− 2×tile` before trusting any figure that comes back.
+
+## Stage 2 doesn't include what was asked for last message
+
+The submerged/warranty/no-trim-for-pool work — explicitly scoped into Stage 2 in the previous message, specifically because it's a liability issue, not a nice-to-have — isn't anywhere in this report. What's described ("Collapsible Advanced section with connector entry and trim allowance checkbox") reads like trim is still showing universally, which means **a pool item can currently still be marked for on-site trimming.** That's the exact scenario this was meant to close off. This can't be a follow-up task — it needs to go in before anything ships.
+
+## One more thing worth confirming while this is open
+
+"SpaceBuilder sends `kit: kitName` and `length: "${totalMetres}m total"`" to `/kits/review` — that reads like a single combined string, not an itemized breakdown per area (material, connector, submerged status, warranty term). If that's genuinely all `/kits/review` receives, the order confirmation isn't echoing the actual configuration anymore — it's echoing a summary of it. Worth a direct answer: does the review payload carry the full per-item detail, or just kit name and total length?
+
+## And a process question, not an accusation
+
+Did Stage 1 get verified in isolation — components extracted, both pages confirmed rendering identically, *before* Stage 2's new fields went in? That staging was specifically the plan to catch exactly this kind of cross-contamination. If it happened, say what was checked. If everything landed in one combined pass, that's worth knowing plainly, since it changes how much I'd trust "all four stages done" as a single claim versus four independently-verified ones.
+
+Nothing here gets a checkpoint until the recessed number is confirmed correct with the actual formula shown, and submerged/warranty is actually in place — not reported as done when it isn't.

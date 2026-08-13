@@ -107,9 +107,12 @@ function PoolSchematic({
   // Derived label
   let label = "Enter pool dimensions";
   if (hasSize) {
+    // Recessed: channel extends PAST each corner by one tile-width on each end,
+    // so the run is LONGER than the pool dimension, not shorter.
+    // Correct: poolL + 2×tile. Wrong (bug): poolL − 2×tile.
     const tileM = mount === "recessed" ? tileWidthMm / 1000 : 0;
-    const longRun  = +(poolL - 2 * tileM).toFixed(2);
-    const shortRun = +(poolW - 2 * tileM).toFixed(2);
+    const longRun  = +(poolL + 2 * tileM).toFixed(2);
+    const shortRun = +(poolW + 2 * tileM).toFixed(2);
     const total = +((sides.top ? longRun : 0) + (sides.bottom ? longRun : 0)
                   + (sides.left ? shortRun : 0) + (sides.right ? shortRun : 0)).toFixed(1);
     const n = Object.values(sides).filter(Boolean).length;
@@ -524,28 +527,38 @@ function ItemCard({ item, index, onChange, onRemove }: ItemCardProps) {
                     Bottom entry covers most installations. Confirm with your electrician.
                   </p>
                 </div>
-                {/* trim */}
-                <div className="flex items-start gap-2.5">
-                  <button
-                    type="button"
-                    role="checkbox"
-                    aria-checked={item.trim ?? false}
-                    onClick={() => onChange(item.id, { trim: !(item.trim ?? false) })}
-                    className={`flex-shrink-0 mt-0.5 w-4 h-4 rounded-[2px] border transition-colors ${item.trim ? "bg-ink border-ink" : "border-bone-line hover:border-ink/40"}`}
-                  >
-                    {item.trim && (
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3.5 8l3 3 6-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    )}
-                  </button>
-                  <div>
-                    <p className="text-xs text-ink font-display">Trim allowance</p>
-                    <p className="text-[10px] text-ink/40 leading-relaxed">
-                      Adds one spare connector set. Cuts must land on a valid 10cm mark.
+                {/* trim — pool items are factory-sealed; trimming voids submersion warranty */}
+                {item.type === "pool" ? (
+                  <div className="rounded-xs border border-bone-line bg-bone-card px-3 py-2.5">
+                    <p className="text-xs text-ink font-display mb-0.5">No on-site trimming</p>
+                    <p className="text-[10px] text-ink/50 leading-relaxed">
+                      Pool channels are factory-sealed IP68. Field trimming breaks the submersion
+                      seal and voids the warranty — order the calculated length.
                     </p>
                   </div>
-                </div>
+                ) : (
+                  <div className="flex items-start gap-2.5">
+                    <button
+                      type="button"
+                      role="checkbox"
+                      aria-checked={item.trim ?? false}
+                      onClick={() => onChange(item.id, { trim: !(item.trim ?? false) })}
+                      className={`flex-shrink-0 mt-0.5 w-4 h-4 rounded-[2px] border transition-colors ${item.trim ? "bg-ink border-ink" : "border-bone-line hover:border-ink/40"}`}
+                    >
+                      {item.trim && (
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M3.5 8l3 3 6-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      )}
+                    </button>
+                    <div>
+                      <p className="text-xs text-ink font-display">Trim allowance</p>
+                      <p className="text-[10px] text-ink/40 leading-relaxed">
+                        Adds one spare connector set. Cuts must land on a valid 10cm mark.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
