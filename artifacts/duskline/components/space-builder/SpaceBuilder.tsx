@@ -44,6 +44,7 @@ export interface BuildItem {
   profile?: "straight" | "flex";
   connectorEntry?: "direct" | "side" | "bottom" | "l-shape";
   trim?: boolean;
+  submerged?: boolean;
 }
 
 let _seq = 0;
@@ -70,6 +71,9 @@ const CONNECTOR_LABELS: Record<"direct" | "side" | "bottom" | "l-shape", string>
   bottom:    "Bottom entry",
   "l-shape": "L-shape",
 };
+
+/** Warranty terms — keyed off per-item `submerged` flag, not item type. */
+const WARRANTY_YEARS = { submerged: 2, standard: 3 } as const;
 
 /* ──────────────────────────────────────────────────── SVG schematics
  * Each SVG is 200×120. Strip shown as warm amber, structure as ink/15.
@@ -449,28 +453,38 @@ function ItemCard({ item, index, onChange, onRemove }: ItemCardProps) {
         <div className="pt-2 border-t border-bone-line space-y-3">
 
           {/* material */}
-          <div>
-            <label className={labelCls}>Channel material</label>
-            <div className="flex gap-2">
-              <button type="button"
-                onClick={() => { if (item.type !== "pool") onChange(item.id, { material: "aluminium" }); }}
-                disabled={item.type === "pool"}
-                className={`${chipBase} ${(item.material ?? TYPE_CONFIG[item.type].defaultMaterial) === "aluminium" ? chipOn : chipOff} disabled:opacity-40 disabled:cursor-not-allowed`}>
-                Aluminium
-              </button>
-              <button type="button"
-                onClick={() => { if (item.type !== "pool") onChange(item.id, { material: "stainless" }); }}
-                disabled={item.type === "pool"}
-                className={`${chipBase} ${(item.material ?? TYPE_CONFIG[item.type].defaultMaterial) === "stainless" ? chipOn : chipOff} disabled:opacity-100 disabled:cursor-default`}>
-                Stainless 316L
-              </button>
-            </div>
-            <p className="text-[10px] text-ink/45 mt-1.5 leading-relaxed">
-              {item.type === "pool"
-                ? "Only stainless — aluminium corrodes in chlorinated and salt water."
-                : "Use stainless 316L for permanent water contact — pool coping, water features, ponds."}
-            </p>
-          </div>
+          {(() => {
+            // submerged overrides type-based defaults: pool is always submerged;
+            // other types may also be submerged (pool steps, water-feature edges).
+            const isSubmerged = item.submerged ?? (item.type === "pool");
+            const effectiveMaterial = isSubmerged
+              ? "stainless"
+              : (item.material ?? TYPE_CONFIG[item.type].defaultMaterial);
+            return (
+              <div>
+                <label className={labelCls}>Channel material</label>
+                <div className="flex gap-2">
+                  <button type="button"
+                    onClick={() => { if (!isSubmerged) onChange(item.id, { material: "aluminium" }); }}
+                    disabled={isSubmerged}
+                    className={`${chipBase} ${effectiveMaterial === "aluminium" ? chipOn : chipOff} disabled:opacity-40 disabled:cursor-not-allowed`}>
+                    Aluminium
+                  </button>
+                  <button type="button"
+                    onClick={() => { if (!isSubmerged) onChange(item.id, { material: "stainless" }); }}
+                    disabled={isSubmerged}
+                    className={`${chipBase} ${effectiveMaterial === "stainless" ? chipOn : chipOff} disabled:opacity-100 disabled:cursor-default`}>
+                    Stainless 316L
+                  </button>
+                </div>
+                <p className="text-[10px] text-ink/45 mt-1.5 leading-relaxed">
+                  {isSubmerged
+                    ? "Only stainless — aluminium corrodes in permanent water contact."
+                    : "Use stainless 316L for permanent water contact — pool coping, water features, ponds."}
+                </p>
+              </div>
+            );
+          })()}
 
           {/* profile */}
           <div>
@@ -501,12 +515,47 @@ function ItemCard({ item, index, onChange, onRemove }: ItemCardProps) {
             </button>
             {advancedOpen && (
               <div className="mt-2.5 space-y-3 pl-3 border-l border-bone-line">
+                {/* submerged toggle — pool items are always submerged; non-pool items may be (entry steps, water-feature edges) */}
+                {item.type !== "pool" && (
+                  <div>
+                    <label className={labelCls}>Installation environment</label>
+                    <div
+                      className="flex items-start gap-2.5 cursor-pointer"
+                      onClick={() => {
+                        const next = !(item.submerged ?? false);
+                        onChange(item.id, {
+                          submerged: next,
+                          material:  next ? "stainless" : TYPE_CONFIG[item.type].defaultMaterial,
+                          ...(next ? { trim: false } : {}),
+                        });
+                      }}
+                    >
+                      <div className={`flex-shrink-0 mt-0.5 w-4 h-4 rounded-[2px] border transition-colors ${item.submerged ? "bg-ink border-ink" : "border-bone-line hover:border-ink/40"}`}>
+                        {item.submerged && (
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3.5 8l3 3 6-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        )}
+                      </div>
+                      <div>
+                        <p className="text-xs text-ink font-display">Submerged installation</p>
+                        <p className="text-[10px] text-ink/40 leading-relaxed">
+                          Pool entry steps, water-feature edges, or any permanently wet run.
+                          Forces stainless · field trimming not permitted.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* connector entry */}
                 <div>
                   <label className={labelCls}>Connector entry</label>
                   <div className="flex flex-wrap gap-1.5">
                     {(["direct", "side", "bottom", "l-shape"] as const).map(ce => {
-                      const isStainless = (item.material ?? TYPE_CONFIG[item.type].defaultMaterial) === "stainless";
+                      const isSubmerged = item.submerged ?? (item.type === "pool");
+                      const effectiveMaterial = isSubmerged ? "stainless" : (item.material ?? TYPE_CONFIG[item.type].defaultMaterial);
+                      const isStainless = effectiveMaterial === "stainless";
                       const lshapeDisabled = ce === "l-shape" && isStainless;
                       const current = item.connectorEntry ?? "bottom";
                       // If current is l-shape but stainless is active, treat as if bottom is selected
@@ -527,13 +576,13 @@ function ItemCard({ item, index, onChange, onRemove }: ItemCardProps) {
                     Bottom entry covers most installations. Confirm with your electrician.
                   </p>
                 </div>
-                {/* trim — pool items are factory-sealed; trimming voids submersion warranty */}
-                {item.type === "pool" ? (
+                {/* trim — forbidden for any submerged item (pool or otherwise); trimming breaks IP68 seal */}
+                {(item.submerged ?? item.type === "pool") ? (
                   <div className="rounded-xs border border-bone-line bg-bone-card px-3 py-2.5">
                     <p className="text-xs text-ink font-display mb-0.5">No on-site trimming</p>
                     <p className="text-[10px] text-ink/50 leading-relaxed">
-                      Pool channels are factory-sealed IP68. Field trimming breaks the submersion
-                      seal and voids the warranty — order the calculated length.
+                      Submerged channels are factory-sealed IP68. Field trimming breaks the
+                      submersion seal and voids the warranty — order the calculated length.
                     </p>
                   </div>
                 ) : (
@@ -559,6 +608,13 @@ function ItemCard({ item, index, onChange, onRemove }: ItemCardProps) {
                     </div>
                   </div>
                 )}
+
+                {/* warranty term — derived from submerged flag */}
+                <p className="text-[10px] text-ink/35 leading-relaxed pt-1 border-t border-bone-line">
+                  {(item.submerged ?? item.type === "pool")
+                    ? `${WARRANTY_YEARS.submerged}-year warranty (submerged · IP68 sealed)`
+                    : `${WARRANTY_YEARS.standard}-year warranty (standard outdoor)`}
+                </p>
               </div>
             )}
           </div>
@@ -686,6 +742,7 @@ function BuildPricingPanel({
     profile:        it.profile        ?? TYPE_CONFIG[it.type].defaultProfile,
     connectorEntry: it.connectorEntry ?? "bottom",
     trim:           it.trim           ?? false,
+    submerged:      it.submerged      ?? (it.type === "pool"),
     ...(it.steps ? { steps: it.steps } : {}),
     ...(it.type === "pool" ? {
       poolL:         it.poolL    ?? "",
@@ -964,6 +1021,7 @@ export function makeInitialItem(type: ItemType, overrides?: Partial<BuildItem>):
     profile:  cfg.defaultProfile,
     connectorEntry: "bottom",
     trim: false,
+    submerged: type === "pool",   // pool items are always submerged; others default to surface
     ...(cfg.defaultSteps ? { steps: cfg.defaultSteps } : {}),
     ...(type === "pool" ? {
       poolL: "", poolW: "",
@@ -1007,6 +1065,7 @@ export default function SpaceBuilder({
         profile:        cfg.defaultProfile,
         connectorEntry: "bottom" as const,
         trim:           false,
+        submerged:      type === "pool",
         ...(cfg.defaultSteps ? { steps: cfg.defaultSteps } : {}),
         ...(type === "pool" ? {
           poolL: "", poolW: "",
@@ -1038,11 +1097,13 @@ export default function SpaceBuilder({
       const mount  = item.poolMount ?? "coping";
       const tileM  = mount === "recessed" ? (parseFloat(item.poolTileWidth ?? "600") || 600) / 1000 : 0;
       const sides  = item.poolSides ?? { top: true, bottom: true, left: true, right: true };
+      // Recessed: channel EXTENDS past each corner by one tile-width (same formula as PoolSchematic label).
+      // Correct: l + 2×tile. Bug was l − 2×tile (shorter, not longer).
       const sideLens = {
-        top:    +(l - 2 * tileM).toFixed(3),
-        bottom: +(l - 2 * tileM).toFixed(3),
-        left:   +(w - 2 * tileM).toFixed(3),
-        right:  +(w - 2 * tileM).toFixed(3),
+        top:    +(l + 2 * tileM).toFixed(3),
+        bottom: +(l + 2 * tileM).toFixed(3),
+        left:   +(w + 2 * tileM).toFixed(3),
+        right:  +(w + 2 * tileM).toFixed(3),
       };
       return (["top","bottom","left","right"] as const).flatMap(side => {
         if (!sides[side]) return [];

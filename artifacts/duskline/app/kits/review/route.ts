@@ -16,6 +16,9 @@ import {
 /* ------------------------------------------------------------------ types */
 type SubmissionType = "review" | "confirm" | "email_quote";
 
+/** Warranty years used for display — must stay in sync with SpaceBuilder WARRANTY_YEARS constant. */
+const ZONE_WARRANTY = { submerged: 2, standard: 3 } as const;
+
 interface ZoneEntry {
   name: string;
   type: string;
@@ -24,6 +27,7 @@ interface ZoneEntry {
   profile?: string;
   connectorEntry?: string;
   trim?: boolean;
+  submerged?: boolean;
   // pool-specific
   poolL?: string;
   poolW?: string;
@@ -122,6 +126,9 @@ function zoneRow(z: ZoneEntry, idx: number): string {
   const connLabel     = CONNECTOR_ENTRY_LABELS[z.connectorEntry ?? "bottom"] ?? z.connectorEntry ?? "Bottom";
   const trimNote      = z.trim ? " · trim allowance" : "";
   const isPool        = z.type === "pool";
+  const isSubmerged   = z.submerged ?? isPool;
+  const warrantyYears = isSubmerged ? ZONE_WARRANTY.submerged : ZONE_WARRANTY.standard;
+  const warrantyNote  = isSubmerged ? `${warrantyYears}-yr warranty · IP68 sealed` : `${warrantyYears}-yr warranty`;
 
   let desc = "";
   if (isPool) {
@@ -136,7 +143,7 @@ function zoneRow(z: ZoneEntry, idx: number): string {
     <td style="padding:5px 0;vertical-align:top;">
       <span style="font-weight:500;font-size:13px;">${z.name}</span>
       <span style="color:#888;font-size:12px;"> — ${desc}</span><br>
-      <span style="color:#999;font-size:11px;">${materialLabel} · ${profileLabel} · ${connLabel} entry${trimNote}</span>
+      <span style="color:#999;font-size:11px;">${materialLabel} · ${profileLabel} · ${connLabel} entry${trimNote} · ${warrantyNote}</span>
     </td>
   </tr>`;
 }
