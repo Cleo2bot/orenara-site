@@ -124,6 +124,7 @@ function PricingPanel({
 }) {
   const formId = useId();
   const pricing = metres !== null ? calculateKitPricing(metres) : null;
+  const [showExGST, setShowExGST] = useState(false);
   const [panelMode, setPanelMode] = useState<PanelMode>("idle");
   const [emailOpen, setEmailOpen] = useState(false);
 
@@ -230,12 +231,36 @@ function PricingPanel({
               <span>{fmtAUD(pricing.subtotalIncGST)}</span>
             </div>
           )}
-          <div className="flex justify-between items-baseline border-t border-bone-line pt-2 mt-2">
-            <span className="text-sm text-ink font-display">
-              {pricing.minimumApplied ? "Minimum order applied" : "Total inc GST"}
+          <div className="flex justify-between items-baseline border-t border-bone-line pt-2 mt-2 gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-sm text-ink font-display">
+                {pricing.minimumApplied
+                  ? "Minimum order applied"
+                  : showExGST
+                  ? "Total ex GST"
+                  : "Total inc GST"}
+              </span>
+              {!pricing.minimumApplied && (
+                <button
+                  onClick={() => setShowExGST(v => !v)}
+                  className="font-spec text-[7px] tracking-widest uppercase text-ink/35 hover:text-ink/60 border border-bone-line hover:border-ink/25 rounded-xs px-1.5 py-0.5 transition-colors"
+                >
+                  {showExGST ? "inc GST" : "ex GST"}
+                </button>
+              )}
+            </div>
+            <span className="font-display text-xl text-ink flex-shrink-0">
+              {fmtAUD(showExGST && !pricing.minimumApplied
+                ? pricing.totalExGST
+                : pricing.totalIncGST)}
             </span>
-            <span className="font-display text-xl text-ink">{fmtAUD(pricing.totalIncGST)}</span>
           </div>
+          {showExGST && !pricing.minimumApplied && (
+            <div className="flex justify-between text-xs text-ink/40">
+              <span>+ {fmtAUD(pricing.gst)} GST (10%)</span>
+              <span>= {fmtAUD(pricing.totalIncGST)} inc GST</span>
+            </div>
+          )}
           {pricing.minimumApplied && (
             <p className="text-[10px] text-ink/40 leading-relaxed">
               Minimum self-serve order is {fmtAUD(MIN_ORDER_INC_GST)} inc GST. Your {metres}m run
