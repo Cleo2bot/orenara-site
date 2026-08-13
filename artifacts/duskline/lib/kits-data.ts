@@ -162,9 +162,11 @@ export const MIN_ORDER_INC_GST        = 500;  // $500 inc-GST floor (self-serve)
 
 export interface KitPricing {
   metres: number;
-  pricePerMetre: number;   // inc GST
-  subtotalIncGST: number;  // metres × pricePerMetre, before floor
-  totalIncGST: number;     // final displayed total inc GST (after floor)
+  pricePerMetre: number;    // inc GST
+  subtotalIncGST: number;   // metres × pricePerMetre, before floor
+  totalIncGST: number;      // final total inc GST (after floor)
+  totalExGST: number;       // totalIncGST ÷ 1.1 — for trade "+GST" display
+  gst: number;              // totalIncGST − totalExGST
   minimumApplied: boolean;
 }
 
@@ -173,15 +175,21 @@ export function getPricePerMetre(metres: number): number {
 }
 
 export function calculateKitPricing(metres: number): KitPricing {
-  const pricePerMetre    = getPricePerMetre(metres);
-  const subtotalIncGST   = +(metres * pricePerMetre).toFixed(2);
-  const minimumApplied   = subtotalIncGST < MIN_ORDER_INC_GST;
-  const totalIncGST      = minimumApplied ? MIN_ORDER_INC_GST : subtotalIncGST;
+  const pricePerMetre  = getPricePerMetre(metres);
+  const subtotalIncGST = +(metres * pricePerMetre).toFixed(2);
+  const minimumApplied = subtotalIncGST < MIN_ORDER_INC_GST;
+  const totalIncGST    = minimumApplied ? MIN_ORDER_INC_GST : subtotalIncGST;
+  // Derive ex-GST by dividing the inc-GST total — never multiply an inc-GST
+  // figure by 1.1, that applies GST twice.
+  const totalExGST     = +( totalIncGST / 1.1).toFixed(2);
+  const gst            = +(totalIncGST - totalExGST).toFixed(2);
   return {
     metres,
     pricePerMetre,
     subtotalIncGST,
     totalIncGST,
+    totalExGST,
+    gst,
     minimumApplied,
   };
 }
