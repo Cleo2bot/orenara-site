@@ -40,7 +40,7 @@ const TYPE_CONFIG: Record<ItemType, {
 }> = {
   pool:  { label: "Pool",   defaultName: "Pool",   defaultShape: "curved",   hint: "Total perimeter (m)" },
   path:  { label: "Path",   defaultName: "Path",   defaultShape: "straight", hint: "Total run length (m)" },
-  stair: { label: "Stairs", defaultName: "Stairs", defaultShape: "straight", defaultSteps: "8", hint: "Total run length (m)" },
+  stair: { label: "Stairs", defaultName: "Stairs", defaultShape: "straight", defaultSteps: "8", hint: "Tread width per step (m)" },
   box:   { label: "Zone",   defaultName: "Zone",   defaultShape: "straight", hint: "Total run length (m)" },
 };
 
@@ -57,7 +57,7 @@ function PoolSchematic({ metres, shape }: { metres: number; shape: "straight" | 
       <rect x="22" y="18" width="156" height="76" rx={rx} fill="rgba(15,17,19,0.04)" stroke="rgba(15,17,19,0.12)" strokeWidth="1"/>
       {/* LED strip on coping */}
       <rect x="22" y="18" width="156" height="76" rx={rx} fill="none"
-        stroke="#C8922A" strokeWidth="3" strokeLinecap="round"
+        stroke="var(--ember)" strokeWidth="3" strokeLinecap="round"
         strokeDasharray={metres > 0 ? "none" : "6 4"}
         opacity="0.85"/>
       {/* water texture lines */}
@@ -79,14 +79,14 @@ function PathSchematic({ metres, shape }: { metres: number; shape: "straight" | 
           {/* ground surface */}
           <path d="M18 80 C55 35 145 95 182 48" stroke="rgba(15,17,19,0.10)" strokeWidth="14" strokeLinecap="round"/>
           {/* LED strip */}
-          <path d="M18 80 C55 35 145 95 182 48" stroke="#C8922A" strokeWidth="3" strokeLinecap="round" opacity="0.85"/>
+          <path d="M18 80 C55 35 145 95 182 48" stroke="var(--ember)" strokeWidth="3" strokeLinecap="round" opacity="0.85"/>
         </>
       ) : (
         <>
           {/* ground surface */}
           <line x1="18" y1="65" x2="182" y2="65" stroke="rgba(15,17,19,0.10)" strokeWidth="14" strokeLinecap="round"/>
           {/* LED strip */}
-          <line x1="18" y1="65" x2="182" y2="65" stroke="#C8922A" strokeWidth="3" strokeLinecap="round" opacity="0.85"/>
+          <line x1="18" y1="65" x2="182" y2="65" stroke="var(--ember)" strokeWidth="3" strokeLinecap="round" opacity="0.85"/>
         </>
       )}
       {/* label */}
@@ -95,19 +95,19 @@ function PathSchematic({ metres, shape }: { metres: number; shape: "straight" | 
   );
 }
 
-function StairSchematic({ metres, steps }: { metres: number; steps: number }) {
+function StairSchematic({ treadWidth, steps }: { treadWidth: number; steps: number }) {
   const n = Math.max(2, Math.min(steps, 8));
   const stepW = 140 / n;
   const stepH = 60 / n;
   const startX = 30;
   const startY = 90;
-  // build stair path
+  // build stair body path
   let d = `M ${startX} ${startY}`;
   for (let i = 0; i < n; i++) {
     d += ` L ${startX + i * stepW} ${startY - i * stepH}`;
     d += ` L ${startX + (i + 1) * stepW} ${startY - i * stepH}`;
   }
-  // strip on nosing edges
+  // strip on each nosing — each is a separate physical run
   let stripD = "";
   for (let i = 0; i < n; i++) {
     const x1 = startX + i * stepW;
@@ -115,13 +115,16 @@ function StairSchematic({ metres, steps }: { metres: number; steps: number }) {
     const y = startY - i * stepH;
     stripD += `M ${x1} ${y} L ${x2} ${y} `;
   }
-  const label = metres > 0 ? `${metres}m · ${steps} steps` : `${steps} steps`;
+  const totalM = treadWidth > 0 ? +(treadWidth * steps).toFixed(1) : 0;
+  const label = treadWidth > 0
+    ? `${treadWidth}m × ${steps} steps = ${totalM}m`
+    : `${steps} steps`;
   return (
     <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
       {/* stair body */}
       <path d={d} stroke="rgba(15,17,19,0.14)" strokeWidth="1.5" fill="rgba(15,17,19,0.04)" strokeLinejoin="miter"/>
-      {/* LED strips on nosing */}
-      <path d={stripD} stroke="#C8922A" strokeWidth="3" strokeLinecap="round" opacity="0.85"/>
+      {/* LED strip on each nosing — one segment per physical run */}
+      <path d={stripD} stroke="var(--ember)" strokeWidth="3" strokeLinecap="round" opacity="0.85"/>
       <text x="100" y="112" textAnchor="middle" fontSize="9" fill="rgba(15,17,19,0.3)" fontFamily="sans-serif">{label}</text>
     </svg>
   );
@@ -134,7 +137,7 @@ function BoxSchematic({ metres }: { metres: number }) {
       {/* zone rectangle */}
       <rect x="22" y="20" width="156" height="72" rx="3" fill="rgba(15,17,19,0.04)" stroke="rgba(15,17,19,0.12)" strokeWidth="1" strokeDasharray="5 3"/>
       {/* LED strip on top edge */}
-      <line x1="22" y1="20" x2="178" y2="20" stroke="#C8922A" strokeWidth="3.5" strokeLinecap="round" opacity="0.85"/>
+      <line x1="22" y1="20" x2="178" y2="20" stroke="var(--ember)" strokeWidth="3.5" strokeLinecap="round" opacity="0.85"/>
       {/* label */}
       <text x="100" y="110" textAnchor="middle" fontSize="9" fill="rgba(15,17,19,0.3)" fontFamily="sans-serif">{label}</text>
     </svg>
@@ -148,7 +151,7 @@ function ItemSchematic({ item }: { item: BuildItem }) {
   switch (item.type) {
     case "pool":  return <PoolSchematic  metres={metres} shape={item.shape}/>;
     case "path":  return <PathSchematic  metres={metres} shape={item.shape}/>;
-    case "stair": return <StairSchematic metres={metres} steps={steps}/>;
+    case "stair": return <StairSchematic treadWidth={metres} steps={steps}/>;
     case "box":   return <BoxSchematic   metres={metres}/>;
   }
 }
@@ -650,16 +653,22 @@ export default function BuildPage() {
     setItems(prev => prev.filter(item => item.id !== id));
   }, []);
 
-  // Derive shared computation from all valid items
-  const validRuns: QuoteRunInput[] = items
-    .filter(item => {
-      const m = parseFloat(item.metres);
-      return !isNaN(m) && m > 0;
-    })
-    .map(item => ({
-      lengthMetres: parseFloat(item.metres),
-      shape: item.shape,
-    }));
+  // Derive shared computation from all valid items.
+  // Stairs expand into N separate runs of tread_width each — each tread is
+  // an independently-fed physical run with its own connector set, matching
+  // how multi-tread jobs actually ship. All other item types produce one run.
+  const validRuns: QuoteRunInput[] = items.flatMap(item => {
+    const m = parseFloat(item.metres);
+    if (isNaN(m) || m <= 0) return [];
+    if (item.type === "stair") {
+      const stepCount = Math.max(1, parseInt(item.steps ?? "8") || 8);
+      return Array.from({ length: stepCount }, () => ({
+        lengthMetres: m,          // m = tread width per step
+        shape: item.shape,
+      }));
+    }
+    return [{ lengthMetres: m, shape: item.shape }];
+  });
 
   const totalMetres   = +validRuns.reduce((s, r) => s + r.lengthMetres, 0).toFixed(2);
   const stripType     = validRuns.length > 0 ? zoneStripType(validRuns) : "mono";

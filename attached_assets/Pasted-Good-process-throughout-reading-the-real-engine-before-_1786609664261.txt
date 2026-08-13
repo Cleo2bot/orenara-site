@@ -1,0 +1,17 @@
+Good process throughout — reading the real engine before building against it, catching the stairs input bug through actual testing rather than assuming, diagnosing it to a real root cause (equal-weight fields, not a fluke), and fixing the layout rather than just the test case. That's exactly the right instinct. Two things I want resolved before Checkpoint 1 is actually clear, though — one's a real correctness question, not a nitpick.
+
+## Stairs — is it actually width × count, or total metres + a decorative count?
+
+The spec was "tread width × tread count, each tread its own run." The fields as built are called **Metres** and **Steps** — different naming, and possibly a different model. Here's what's making me check: the test shows stairs contributing exactly "8" to the total, labelled "8 steps" — which only equals 8 metres if each tread happens to be exactly 1m wide. That's either a coincidence in this test's input values, or a sign that "Metres" is being treated as one flat total for the whole staircase rather than a per-tread width that gets multiplied by count.
+
+Why this actually matters, not just semantics: if it's one continuous run of `Metres` length, that's **not how stairs are physically built** — each tread is its own short run with its own connectors, sharing drivers via the same packing logic as everything else (that's the whole reason the spec called for it this way — it matches how Cody's and SWIMCO's real multi-run jobs actually ship). A single flat run would mean the wrong connector-set count on the BOM and a run-length model that doesn't match install reality, even if the total metres happens to look right in this one test.
+
+Can you confirm directly: does the Stairs item generate **N separate runs of the tread-width value**, or **one run of the Metres value with Steps as a cosmetic label**? If it's the latter, that needs fixing before this checkpoint clears — not because the number's wrong today, but because it'll be wrong the moment someone enters a tread width that isn't coincidentally 1m.
+
+## The schematic colour — "amber/gold" is a flag, not a nitpick
+
+Every schematic is described as using an amber/gold strip colour. The brand palette is ink/bone/**ember** — amber isn't in it anywhere, and there's a follow-up task from the Phase 2 checkpoint specifically to *remove* amber from the admin email. If Build Your Space's new schematics are introducing amber as their highlight colour, that's a direct contradiction shipping at the same time as amber's being cleaned up elsewhere.
+
+Possible this is just loose language for what's actually the ember accent rendering close to gold on screen — that'd be fine. But worth confirming explicitly rather than assuming, since "amber" is a specific word that's already flagged as something to remove, not describe.
+
+Get those two confirmed and Checkpoint 1 is clear — go ahead and do the mobile pass for Checkpoint 2 whenever you're ready after that.
