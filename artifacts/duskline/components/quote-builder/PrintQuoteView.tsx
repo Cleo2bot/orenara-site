@@ -133,7 +133,7 @@ export default function PrintQuoteView({ zones, totals, contact, partLabels, kit
       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8125rem", marginBottom: "16px" }}>
         <tbody>
           {[
-            [`${partLabels.strip}`, PART_NUMBERS.strip, `${totals.stripMetres}m`],
+            [`${partLabels.stripMono}`, PART_NUMBERS.stripMono, `${totals.stripMetres}m`],
             [`${partLabels.driver}`, PART_NUMBERS.driver, totals.drivers],
             [`${partLabels.dimmer}`, PART_NUMBERS.dimmer, totals.dimmers],
             [`${partLabels.plug}`, PART_NUMBERS.plug, totals.plugs],

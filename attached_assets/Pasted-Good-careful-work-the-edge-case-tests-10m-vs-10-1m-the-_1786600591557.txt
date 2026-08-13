@@ -1,0 +1,22 @@
+Good, careful work — the edge-case tests (10m vs 10.1m, the multi-short-run case) are exactly what I'd have wanted to see, not just the one regression case I specified. Let me check the results and the one open question.
+
+## Verification
+
+All five test outcomes are correct against the rules:
+- **35m → 3 drivers, CC** — matches.
+- **8m → 1 driver, mono** — correct, under both the 10m mono cap and 12m driver cap.
+- **4+4+3m → 1 driver, 3 connector sets** — correct. Total load (11m × 10W/m = 110W) fits comfortably under one derated 150W driver (120W usable), so multiple short runs sharing one driver via a splitter is right — same pattern as Cody's real job. This is a genuinely good test to have included; it confirms the engine is actually greedy-packing by wattage, not naively assigning one driver per run.
+- **10m / 10.1m boundary** — exactly the edge case that matters, and it lands on the right side both times.
+
+**One thing worth naming, not fixing:** my Phase 2 table assumed roughly one driver per physical run for the 15–40m tiers, which holds because those totals genuinely exceed one driver's capacity regardless of how the runs split. For the Stair category specifically, don't be surprised if the real engine output combines multiple short step-runs onto a single driver rather than matching a literal "runs = drivers" reading of my table — that's the engine being more accurate than my hand-drafted table, not a bug. Trust `calculateRunConfig`'s actual output over my table if they ever diverge on a short-total tier.
+
+**`zoneStripType` picking CC vs mono off the longest run in the zone** is the right call — standardizing one strip type per zone avoids mixing mono and CC in one job, which is worth a small per-metre cost premium on the shorter runs in exchange for simpler fabrication. Fine as-is.
+
+## The part-number question — fix now, and it's a bigger fix than it sounds
+
+`OR-STRIP-24V-WW` isn't just "missing a CC variant" — that part number predates the OR- numbering standardisation from 29 July entirely. It's not in the current scheme at all (current system: `OR-SF-16M` mono, `OR-SF-16CC` CC). So this isn't "add one more case" — it's "replace the whole hardcoded string with the current mapping":
+
+- Mono → `OR-SF-16M`
+- CC → `OR-SF-16CC`
+
+Fix it now, properly, not just the CC branch. Reasoning: it's a two-line change with full context already loaded, it's a correctness fix to something already shipped rather than new scope, and it closes Phase 1 out clean before moving on — matches the checkpoint discipline the brief's been built around all the way through.**Approved — proceed to Phase 2.** Do the part-number fix as described above first (mono/CC mapped correctly, not just CC added), then move into the fixed-tier restructure. Brief's updated to mark Phase 1 done so it stays an accurate record of where this actually is.

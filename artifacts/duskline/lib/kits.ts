@@ -33,7 +33,7 @@ export const kits: Kit[] = [
     longDescription:
       "The Pathway Kit is built for ground-level and near-ground runs — garden edges, stepping paths, low retaining walls. The flexible segmented track allows tight horizontal bends around garden beds and curved paths without cutting or splicing the strip, and every component in the kit is rated for continuous outdoor exposure.",
     specTable: [
-      { item: "LED Strip, 24V warm white", partNumber: PART_NUMBERS.strip, details: "IP68 fully submersible, 24V DC, 10W/m, dot-free diffusion, sealed end caps, dimmable 0–10V" },
+      { item: "LED Strip, 24V warm white", partNumber: PART_NUMBERS.stripMono, details: "IP68 fully submersible, 24V DC, 10W/m, dot-free diffusion, sealed end caps, dimmable 0–10V" },
       { item: "Flexible Segmented Track", partNumber: PART_NUMBERS.flexibleTrack, details: "Horizontal bend, ground-level mount" },
       { item: "Driver, 150W", partNumber: PART_NUMBERS.driver, details: "150W, IP67 rated, 0–10V dim input, 240V mains feed" },
       { item: "Dimmer, 0–10V wall control", partNumber: PART_NUMBERS.dimmer, details: "Wall-mounted touch panel, scene presets, wireless pairing, 1 per driver" },
@@ -54,7 +54,7 @@ export const kits: Kit[] = [
     longDescription:
       "The Pergola Kit is designed for overhead structural mounting — rafters, beams, alfresco roof lines. It uses a rigid aluminium channel for a clean, straight installation line and consistent light diffusion across long spans, with the strip, driver, and dimmer matched for reliable colour temperature over the full run.",
     specTable: [
-      { item: "LED Strip, 24V warm white", partNumber: PART_NUMBERS.strip, details: "IP68 fully submersible, 24V DC, 10W/m, dot-free diffusion, sealed end caps, dimmable 0–10V" },
+      { item: "LED Strip, 24V warm white", partNumber: PART_NUMBERS.stripMono, details: "IP68 fully submersible, 24V DC, 10W/m, dot-free diffusion, sealed end caps, dimmable 0–10V" },
       { item: "Rigid Channel", partNumber: PART_NUMBERS.rigidChannel, details: "Straight runs, overhead/structural mount" },
       { item: "Driver, 150W", partNumber: PART_NUMBERS.driver, details: "150W, IP67 rated, 0–10V dim input, 240V mains feed" },
       { item: "Dimmer, 0–10V wall control", partNumber: PART_NUMBERS.dimmer, details: "Wall-mounted touch panel, scene presets, wireless pairing, 1 per driver" },
@@ -75,7 +75,7 @@ export const kits: Kit[] = [
     longDescription:
       "The Pool & Water Feature Kit is our most demanding configuration, sealed for permanent submersion (1.5m/30min per EN60529) around pool edges, water features, and other submerged elements. All electrical work near water must be carried out by a licensed electrician in line with AS/NZS 3000.",
     specTable: [
-      { item: "LED Strip, 24V warm white (submersible)", partNumber: PART_NUMBERS.strip, details: "IP68 fully submersible, 24V DC, 10W/m, dot-free diffusion, sealed end caps, dimmable 0–10V, sealed to 1.5m/30min per EN60529" },
+      { item: "LED Strip, 24V warm white (submersible)", partNumber: PART_NUMBERS.stripMono, details: "IP68 fully submersible, 24V DC, 10W/m, dot-free diffusion, sealed end caps, dimmable 0–10V, sealed to 1.5m/30min per EN60529" },
       { item: "Flexible Segmented Track", partNumber: PART_NUMBERS.flexibleTrack, details: "Curved edges around pool/water feature" },
       { item: "Driver, 150W", partNumber: PART_NUMBERS.driver, details: "150W, IP67 rated, 0–10V dim input, 240V mains feed" },
       { item: "Dimmer, 0–10V wall control", partNumber: PART_NUMBERS.dimmer, details: "Wall-mounted touch panel, scene presets, wireless pairing, 1 per driver" },
@@ -96,7 +96,7 @@ export const kits: Kit[] = [
     longDescription:
       "The Custom Zone Kit covers larger properties, multiple lighting zones, or architectural applications that don't fit a single pre-specced kit. Use the Quote Builder to lay out each zone's run length and shape — we'll work out the drivers, dimmers, and mounting track and come back with a detailed breakdown.",
     specTable: [
-      { item: "LED Strip, 24V warm white", partNumber: PART_NUMBERS.strip, details: "IP68 fully submersible, 24V DC, 10W/m, dot-free diffusion, sealed end caps, dimmable 0–10V" },
+      { item: "LED Strip, 24V warm white", partNumber: PART_NUMBERS.stripMono, details: "IP68 fully submersible, 24V DC, 10W/m, dot-free diffusion, sealed end caps, dimmable 0–10V" },
       { item: "Flexible Segmented Track", partNumber: PART_NUMBERS.flexibleTrack, details: "For curved runs within a zone" },
       { item: "Rigid Channel", partNumber: PART_NUMBERS.rigidChannel, details: "For straight runs within a zone" },
       { item: "Driver, 150W", partNumber: PART_NUMBERS.driver, details: "150W, IP67 rated, 0–10V dim input, 240V mains feed" },

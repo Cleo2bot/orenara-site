@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
-import { kits } from "@/lib/kits";
+import { KITS } from "@/lib/kits-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
+    "/kits",
     "/trade",
     "/quote-builder",
     "/trade-resources",
@@ -15,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/privacy",
   ];
 
-  const kitRoutes = kits.map((kit) => `/kits/${kit.slug}`);
+  const kitRoutes = KITS.map((kit) => `/kits/${kit.id}`);
 
   return [...staticRoutes, ...kitRoutes].map((path) => ({
     url: `${SITE_URL}${path}`,

@@ -174,6 +174,14 @@ function mountingPartNumber(shape: "straight" | "curved"): string {
   return shape === "curved" ? PART_NUMBERS.flexibleTrack : PART_NUMBERS.rigidChannel;
 }
 
+function stripPartNumber(stripType?: StripType): string {
+  return stripType === "cc" ? PART_NUMBERS.stripCC : PART_NUMBERS.stripMono;
+}
+
+function stripPartLabel(stripType?: StripType): string {
+  return stripType === "cc" ? PART_LABELS.stripCC : PART_LABELS.stripMono;
+}
+
 async function sendEmailNotification(enquiry: StoredEnquiry): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL;
@@ -204,7 +212,7 @@ async function sendEmailNotification(enquiry: StoredEnquiry): Promise<void> {
             <tr>
               <td style="padding: 8px 0; border-top: 1px solid #eee; font-weight: 600; vertical-align: top;">${escapeHtml(z.name)}</td>
               <td style="padding: 8px 0; border-top: 1px solid #eee; vertical-align: top;">${runsHtml} (${z.totalLengthMetres}m total)</td>
-              <td style="padding: 8px 0; border-top: 1px solid #eee; vertical-align: top;">${z.driversNeeded}x ${PART_LABELS.driver} (${PART_NUMBERS.driver})<br>${z.dimmersNeeded}x ${PART_LABELS.dimmer} (${PART_NUMBERS.dimmer})<br>${z.plugsNeeded}x ${PART_LABELS.plug} (${PART_NUMBERS.plug})</td>
+              <td style="padding: 8px 0; border-top: 1px solid #eee; vertical-align: top;">${z.totalLengthMetres}m ${stripPartLabel(z.stripType)} (${stripPartNumber(z.stripType)})<br>${z.driversNeeded}x ${PART_LABELS.driver} (${PART_NUMBERS.driver})<br>${z.plugsNeeded}x ${PART_LABELS.plug} (${PART_NUMBERS.plug})</td>
             </tr>
             ${noteRow}
           `;
@@ -218,7 +226,15 @@ async function sendEmailNotification(enquiry: StoredEnquiry): Promise<void> {
         <div style="margin-top: 24px; padding: 16px; background: #f7f5f0; border-radius: 6px;">
           <p style="margin: 0 0 10px; font-weight: 700; color: #15171C;">Totals</p>
           <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-            <tr><td style="padding: 3px 0; color: #666;">${PART_LABELS.strip} (${PART_NUMBERS.strip})</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.stripMetres}m</td></tr>
+            ${(() => {
+              const monoM = (enquiry.zones ?? []).filter(z => z.stripType !== "cc").reduce((s, z) => s + z.totalLengthMetres, 0);
+              const ccM   = (enquiry.zones ?? []).filter(z => z.stripType === "cc").reduce((s, z) => s + z.totalLengthMetres, 0);
+              const rows = [];
+              if (monoM > 0) rows.push(`<tr><td style="padding: 3px 0; color: #666;">${PART_LABELS.stripMono} (${PART_NUMBERS.stripMono})</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${monoM}m</td></tr>`);
+              if (ccM   > 0) rows.push(`<tr><td style="padding: 3px 0; color: #666;">${PART_LABELS.stripCC} (${PART_NUMBERS.stripCC})</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${ccM}m</td></tr>`);
+              if (rows.length === 0) rows.push(`<tr><td style="padding: 3px 0; color: #666;">${PART_LABELS.stripMono} (${PART_NUMBERS.stripMono})</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals?.stripMetres ?? 0}m</td></tr>`);
+              return rows.join("");
+            })()}
             <tr><td style="padding: 3px 0; color: #666;">${PART_LABELS.driver} (${PART_NUMBERS.driver})</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.drivers}</td></tr>
             <tr><td style="padding: 3px 0; color: #666;">${PART_LABELS.dimmer} (${PART_NUMBERS.dimmer})</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.dimmers}</td></tr>
             <tr><td style="padding: 3px 0; color: #666;">${PART_LABELS.plug} (${PART_NUMBERS.plug})</td><td style="padding: 3px 0; font-weight: 600; text-align: right;">${enquiry.totals.plugs}</td></tr>

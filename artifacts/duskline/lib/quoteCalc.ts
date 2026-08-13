@@ -17,10 +17,10 @@ export type StripType = "mono" | "cc";
 export type ZoneShape = "straight" | "curved";
 
 export const PART_NUMBERS = {
-  stripMono: "OR-STRIP-24V-WW",  // standard mono strip, single-colour
-  stripCC:   "OR-SF-16CC",        // CC (constant-current) strip for runs > 10m
+  stripMono: "OR-SF-16M",   // standard mono strip, single-colour
+  stripCC:   "OR-SF-16CC",  // CC (constant-current) strip for runs > 10m
   /** @deprecated use stripMono or stripCC */
-  strip: "OR-STRIP-24V-WW",
+  strip: "OR-SF-16M",
   flexibleTrack: "OR-TRK-FLEX",
   rigidChannel: "OR-TRK-RIGID",
   driver: "OR-DRV-150W",
@@ -36,10 +36,10 @@ export const PART_NUMBERS = {
 } as const;
 
 export const PART_LABELS = {
-  stripMono: "Strip, 24V, warm white (mono)",
-  stripCC:   "Strip, 24V, CC (constant current)",
+  stripMono: "SF16 strip, 24V mono",
+  stripCC:   "SF16 strip, 24V CC",
   /** @deprecated use stripMono or stripCC */
-  strip: "Strip, 24V, warm white",
+  strip: "SF16 strip, 24V mono",
   flexibleTrack: "Flexible Segmented Track (per metre)",
   rigidChannel: "Rigid Channel (per metre)",
   driver: "Driver, 150W, 0-10V",

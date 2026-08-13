@@ -330,7 +330,7 @@ export default function QuoteBuilder({ initialKitSlug }: QuoteBuilderProps) {
                 <>
                   <div className="flex flex-col gap-3 mb-6">
                     {[
-                      ["Strip metres", `${totals.stripMetres}m`, PART_NUMBERS.strip],
+                      ["Strip metres", `${totals.stripMetres}m`, calculatedZones.some(z => z.stripType === "cc") ? PART_NUMBERS.stripCC : PART_NUMBERS.stripMono],
                       ["Drivers", totals.drivers, PART_NUMBERS.driver],
                       ["Dimmers", totals.dimmers, PART_NUMBERS.dimmer],
                       ["240V plugs", totals.plugs, PART_NUMBERS.plug],
