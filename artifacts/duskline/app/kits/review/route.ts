@@ -3,6 +3,12 @@ import { writeFile, readFile, mkdir } from "fs/promises";
 import path from "path";
 import {
   calculateRunConfig,
+  zoneStripType,
+  packDriversForRuns,
+  MAX_PHYSICAL_RUN_MONO,
+  MAX_PHYSICAL_RUN_CC,
+  QuoteRunInput,
+  StripType,
   PART_NUMBERS,
   PART_LABELS,
 } from "@/lib/quoteCalc";
@@ -148,18 +154,118 @@ function zoneRow(z: ZoneEntry, idx: number): string {
   </tr>`;
 }
 
+/**
+ * Convert a ZoneEntry from the SpaceBuilder payload into physical QuoteRunInputs.
+ * Mirrors SpaceBuilder's per-item run logic — used to derive per-zone strip type
+ * in the email (B3: CC is per-item, not whole-order).
+ * Shape is always "straight" here because zoneStripType and packDriversForRuns
+ * only use lengthMetres — shape has no effect on either function.
+ */
+function runsForZone(z: ZoneEntry): QuoteRunInput[] {
+  if (z.type === "pool") {
+    const l = parseFloat(z.poolL ?? "0");
+    const w = parseFloat(z.poolW ?? "0");
+    if (isNaN(l) || l <= 0 || isNaN(w) || w <= 0) return [];
+    const mount  = z.poolMount ?? "coping";
+    const tileM  = mount === "recessed" ? (parseFloat(z.poolTileWidth ?? "600") || 600) / 1000 : 0;
+    const sides  = z.poolSides ?? { top: true, bottom: true, left: true, right: true };
+    const sideLens = {
+      top:    +(l + 2 * tileM).toFixed(3),
+      bottom: +(l + 2 * tileM).toFixed(3),
+      left:   +(w + 2 * tileM).toFixed(3),
+      right:  +(w + 2 * tileM).toFixed(3),
+    };
+    return (["top", "bottom", "left", "right"] as const).flatMap(side => {
+      if (!sides[side]) return [];
+      const len = sideLens[side];
+      if (len <= 0) return [];
+      if (len > 12) {
+        const n = Math.ceil(len / 12);
+        const seg = +(len / n).toFixed(2);
+        return Array.from({ length: n }, () => ({ lengthMetres: seg, shape: "straight" as const }));
+      }
+      return [{ lengthMetres: len, shape: "straight" as const }];
+    });
+  }
+  const m = parseFloat(z.metres ?? "0");
+  if (isNaN(m) || m <= 0) return [];
+  if (z.type === "stair") {
+    const stepCount = Math.max(1, parseInt(z.steps ?? "8") || 8);
+    return Array.from({ length: stepCount }, () => ({ lengthMetres: m, shape: "straight" as const }));
+  }
+  return [{ lengthMetres: m, shape: "straight" as const }];
+}
+
 function configBlock(p: SubmissionPayload): string {
   const metres = p.length ? getLengthMetres(p.length) : null;
   if (!metres) return "";
 
-  const runCfg = calculateRunConfig(metres);
-  const stripPart =
-    runCfg.stripType === "cc" ? PART_NUMBERS.stripCC : PART_NUMBERS.stripMono;
-  const stripLabel =
-    runCfg.stripType === "cc" ? PART_LABELS.stripCC : PART_LABELS.stripMono;
   const pricing = calculateKitPricing(metres);
 
-  // Per-area breakdown — shown when zones payload is present
+  // System component rows — Strip / Runs / Drivers.
+  // When zones are present, compute per-item so each area's strip type is
+  // derived from its own run lengths (B3 fix). Falls back to calculateRunConfig
+  // for legacy single-zone payloads that predate the zones field.
+  let stripRows: string;
+  let runsRow: string;
+  let driversRow: string;
+
+  if (p.zones && p.zones.length > 0) {
+    const zoneStats = p.zones.map(z => {
+      const runs = runsForZone(z);
+      if (runs.length === 0) {
+        return { name: z.name, stripType: "mono" as StripType, connectorSets: 0, drivers: 0, physicalLens: [] as number[] };
+      }
+      const st    = zoneStripType(runs);
+      const maxPR = st === "mono" ? MAX_PHYSICAL_RUN_MONO : MAX_PHYSICAL_RUN_CC;
+      const connectorSets = runs.reduce((sum, r) => sum + Math.ceil(r.lengthMetres / maxPR), 0);
+      const physicalLens  = runs.flatMap(r => {
+        const n = Math.ceil(r.lengthMetres / maxPR);
+        return n <= 1
+          ? [r.lengthMetres]
+          : Array.from({ length: n }, () => +(r.lengthMetres / n).toFixed(2));
+      });
+      return { name: z.name, stripType: st, connectorSets, drivers: packDriversForRuns(runs, st), physicalLens };
+    });
+
+    const monoZones = zoneStats.filter(s => s.stripType === "mono" && s.connectorSets > 0);
+    const ccZones   = zoneStats.filter(s => s.stripType === "cc"   && s.connectorSets > 0);
+    const mixed     = monoZones.length > 0 && ccZones.length > 0;
+
+    if (mixed) {
+      // Mixed order: list each strip type with the areas that drive it
+      stripRows = `
+        <tr><td style="padding:4px 0;color:#666;">Strip — mono areas</td>
+            <td style="padding:4px 0;">${PART_LABELS.stripMono} (${PART_NUMBERS.stripMono})<br>
+              <span style="font-size:11px;color:#999;">${monoZones.map(s => s.name).join(", ")}</span></td></tr>
+        <tr><td style="padding:4px 0;color:#666;">Strip — CC areas</td>
+            <td style="padding:4px 0;">${PART_LABELS.stripCC} (${PART_NUMBERS.stripCC})<br>
+              <span style="font-size:11px;color:#999;">${ccZones.map(s => s.name).join(", ")}</span></td></tr>`;
+    } else {
+      const isCC       = ccZones.length > 0;
+      const stripPart  = isCC ? PART_NUMBERS.stripCC  : PART_NUMBERS.stripMono;
+      const stripLabel = isCC ? PART_LABELS.stripCC   : PART_LABELS.stripMono;
+      stripRows = `<tr><td style="padding:4px 0;color:#666;">Strip</td><td style="padding:4px 0;">${stripLabel} (${stripPart})</td></tr>`;
+    }
+
+    const allLens      = zoneStats.flatMap(s => s.physicalLens);
+    const totalRuns    = zoneStats.reduce((sum, s) => sum + s.connectorSets, 0);
+    const totalDrivers = zoneStats.reduce((sum, s) => sum + s.drivers, 0);
+
+    runsRow    = `<tr><td style="padding:4px 0;color:#666;">Runs</td><td style="padding:4px 0;">${allLens.map(r => `${r.toFixed(1)}m`).join(" + ")} (${totalRuns}× independently fed)</td></tr>`;
+    driversRow = `<tr><td style="padding:4px 0;color:#666;">Drivers</td><td style="padding:4px 0;">${totalDrivers}× ${PART_NUMBERS.driver}</td></tr>`;
+
+  } else {
+    // Legacy fallback: no zones payload, use aggregate calculateRunConfig
+    const runCfg     = calculateRunConfig(metres);
+    const stripPart  = runCfg.stripType === "cc" ? PART_NUMBERS.stripCC  : PART_NUMBERS.stripMono;
+    const stripLabel = runCfg.stripType === "cc" ? PART_LABELS.stripCC   : PART_LABELS.stripMono;
+    stripRows  = `<tr><td style="padding:4px 0;color:#666;">Strip</td><td style="padding:4px 0;">${stripLabel} (${stripPart})</td></tr>`;
+    runsRow    = `<tr><td style="padding:4px 0;color:#666;">Runs</td><td style="padding:4px 0;">${runCfg.physicalRuns.map(r => `${r.toFixed(1)}m`).join(" + ")} (${runCfg.physicalRuns.length}× independently fed)</td></tr>`;
+    driversRow = `<tr><td style="padding:4px 0;color:#666;">Drivers</td><td style="padding:4px 0;">${runCfg.driversNeeded}× ${PART_NUMBERS.driver}</td></tr>`;
+  }
+
+  // Per-area breakdown (zones) or legacy single-zone table
   const zonesSection = p.zones && p.zones.length > 0
     ? `<table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px;">
          <tr><td colspan="2" style="padding:4px 0 8px;color:#666;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;">Areas configured</td></tr>
@@ -186,9 +292,9 @@ function configBlock(p: SubmissionPayload): string {
     </table>
     ${zonesSection}
     <table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px;">
-      <tr><td style="padding:4px 0;color:#666;">Strip</td><td style="padding:4px 0;">${stripLabel} (${stripPart})</td></tr>
-      <tr><td style="padding:4px 0;color:#666;">Runs</td><td style="padding:4px 0;">${runCfg.physicalRuns.map(r=>`${r.toFixed(1)}m`).join(" + ")} (${runCfg.physicalRuns.length}× independently fed)</td></tr>
-      <tr><td style="padding:4px 0;color:#666;">Drivers</td><td style="padding:4px 0;">${runCfg.driversNeeded}× ${PART_NUMBERS.driver}</td></tr>
+      ${stripRows}
+      ${runsRow}
+      ${driversRow}
     </table>
     <table style="width:100%;border-collapse:collapse;font-size:13px;border-top:1px solid #eee;padding-top:10px;margin-bottom:16px;">
       ${pricing.minimumApplied
