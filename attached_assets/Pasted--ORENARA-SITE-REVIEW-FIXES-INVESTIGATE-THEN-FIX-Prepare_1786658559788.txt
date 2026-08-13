@@ -1,0 +1,90 @@
+# ORENARA — SITE REVIEW FIXES: INVESTIGATE, THEN FIX
+**Prepared 13 August 2026 — for the Replit Agent.**
+
+Four stages, in order. Stage A is investigation only — no code changes. Report findings and wait for confirmation before starting Stage B. This matters because several Stage B/C fixes depend directly on what Stage A finds — fixing blind risks patching the wrong thing twice.
+
+Standing rules, unchanged: no push without explicit approval, full production build (not just typecheck) before anything's called done, checkpoint before proceeding to the next stage, mobile spot-check before push.
+
+---
+
+## Stage A — Investigate, report, do not fix yet
+
+**A1. Root cause of the connector/driver count mismatch.**
+Confirmed on two separate pages: a Zone run (15m) and a Path run (28m) each show a connector count that doesn't match the driver count — e.g. "1 run" / "3 drivers." Compare against Pool (per-side) and Stairs (per-tread), where this doesn't happen. Read how each item type hands its runs to the shared engine. Hypothesis to confirm or rule out: Pool and Stairs generate multiple explicit run objects before calling the engine; Zone and Path pass one single "total length" value, and something downstream isn't re-expanding that into the same number of physical sub-runs the driver-packing logic is clearly already using internally (since the driver count *is* correct). Report exactly where the two counts diverge.
+
+**A2. Is `LM-150-24` real or mislabeled?**
+Flagged multiple times now, never directly confirmed. Every other driver reference in this project uses Mean Well's `HLG-XXXH-24A/B` naming. Check where this string is defined, confirm whether it's intentional or a mislabel, and check every place it appears (What's Included cards, system summary panels — confirmed showing up on at least Pool, Stair, Patio, Path pages).
+
+**A3. Is the whole-order CC strip forcing deliberate or a side effect?**
+Confirmed: adding an 11m Path to a 4.8m Stairs order pushed the *entire combined order* — including the 1.2m stair treads — onto CC strip and the $149/m rate. Check whether `zoneStripType` (or equivalent) is being evaluated per-item or across the whole combined order. If it's whole-order, confirm whether that's an intentional fulfilment-simplicity decision or an unintended side effect of per-zone logic being applied at the wrong scope during the SpaceBuilder consolidation.
+
+**A4. Can the trim feature's spare connector actually be fitted in the field?**
+Still open from earlier. Factory connectors are described as mould-injection — a factory process, not field-terminable. Confirm what connector type is actually supplied as the trim spare. If it's the same mould-injection type, the trim feature as currently built can't be delivered as described and needs a different connector (M12-style is field-terminable and already in the parts catalogue for other uses).
+
+**A5. Is `submerged` actually wired on Stair?**
+The "Ideal for" copy on the Stair page lists "pool stairs" as a use case, but the Advanced section wasn't seen expanded in review. Confirm the submerged toggle, stainless lock, and no-trim notice all function correctly on a Stair item, not just Pool.
+
+**Report all five findings together. Wait for confirmation before Stage B.**
+
+---
+
+## Stage B — Confirmed bugs, fix once A1–A3 are answered
+
+**B1. Fix the connector/driver count mismatch** (per A1's findings) — likely fix is making Zone and Path expand into explicit run objects before handing off, same pattern as Pool and Stairs, rather than passing one combined length.
+
+**B2. Fix `LM-150-24`** (per A2) if it's confirmed wrong — correct to the real Mean Well designation everywhere it appears, not just one instance.
+
+**B3. Resolve the whole-order strip-type behaviour** (per A3) — if unintended, scope `zoneStripType` back to per-item evaluation so a short mono-eligible item isn't forced onto the CC rate just because it shares an order with a longer item.
+
+**B4. Make "What's Included" cards read live configuration, not static text.** Confirmed bug: Pool page shows Straight selected in the toggle while the card below still reads "Flexible segmented profile" — contradicting itself on the same page at the same time. Fix at the component level so material and profile selections are reflected accurately.
+
+**B5. Remove "frosted PC diffuser" and audit all "What's Included" copy.** Not a confirmed real spec — not present in any verified component data. Confirmed appearing on both Stainless and Aluminium channel cards, so it's templated text, not per-material description. Remove it, then check every other line in every "What's Included" card across all four kit pages against actual confirmed component specs — don't assume this is the only fabricated line.
+
+**Checkpoint before Stage C.**
+
+---
+
+## Stage C — Feature additions
+
+**C1. Path: replace "Total run length" with "Length per run" × "Number of runs."**
+Mirrors Stairs' existing "tread width × step count" pattern. Solves the real case of lighting both sides of a path (14m × 2 runs, not typing "28" into one field and losing the fact it's two runs). Default runs = 1. This should also route around B1's bug for Path specifically, since it produces explicit run objects the same way Stairs already does.
+
+**C2. Zone: add a Shape toggle — Linear / Rectangle.**
+Restores functionality that existed in the original design (a fourth shape called "Box" — a rectangle with per-side include/exclude, no mount/tile logic) but didn't make it into what shipped as "Zone." Linear keeps current behaviour (single length). Rectangle adds W×L inputs and reuses Pool's existing side-toggle component directly — don't rebuild it. Do this as a mode within Zone, not a fifth add-button, to keep the "four kits" framing already live in marketing copy across multiple pages intact.
+
+**C3. Pool: change default Channel Profile from Flex to Straight.**
+Pool is a rectangular shape with straight sides — nothing to bend around. Flex was an earlier recommendation based on curved coping in general, doesn't match the actual rectangular geometry built. Path's Flex default is unaffected — this is Pool-specific only.
+
+**C4. Order summary panel header should reflect a combined multi-area order.**
+Confirmed: after adding Path to a Stairs order, the summary panel still read "STAIR" — no indication the second item was included. Update the header to something generic once more than one area exists (e.g. "Your order"), rather than staying fixed to whichever item was added first.
+
+**C5. Make the "add more areas" hint persistent, not tied to an empty canvas.**
+Likely cause: the encouragement copy was written for Build Your Space's blank-canvas state. Kit pages always load pre-seeded with one item, so if the hint only shows at zero items, it never displays there at all — meaning most entry points into the builder never show it. Make it visible near the Add buttons regardless of item count.
+
+**Checkpoint before Stage D.**
+
+---
+
+## Stage D — Copy fixes
+
+**D1. Rewrite the hero and trust-section copy on `/kits` to stop claiming nothing is ever cut.**
+Current copy ("not cutting or splicing anything," "nothing to waterproof, nothing to splice, nothing to commission") contradicts the trim feature, which is real and intentional everywhere except submerged runs. **Hold this until A4 is answered** — the correct wording depends on whether the trim spare is genuinely field-fittable.
+- Hero: *"Your licensed electrician installs it. Runs can be trimmed to fit on site — except pool perimeters, which ship as sealed, uncut lengths to protect the warranty."*
+- Trust section (provisional, pending A4): *"Every connection ships factory-sealed and pressure-tested. Pool perimeters arrive as one uncut, warranty-sealed run. Other applications ship with a spare connector, so your electrician can trim to the exact length on site. If a factory seal fails under warranty, that's our problem to fix, not theirs."*
+
+**D2. Remove or fix the "5YR WARRANTY" badge.**
+Conflicts with the real 3yr standard / 2yr submerged system warranty. Likely the strip component's own manufacturer warranty leaking into system-level trust messaging. Recommend removing from the general badge row entirely — a flat single badge can't represent a split term accurately.
+
+**D3. Add the 3yr/2yr distinction to the "Why it's still an Orenara system" section.**
+Currently makes one blanket warranty promise with no mention of the split. This is exactly the section a customer would check to understand coverage.
+- *"Orenara owns the IP68 seal. Three years standard, two years on submerged runs. If it fails under warranty, we fix it — not your electrician."*
+
+**D4. Small naming fix on Path: rename the cosmetic "Profile: Straight/Curved" field** (schematic shape only, no price effect) to something like "Path shape," so it's not confusable with "Channel Profile: Straight/Flex" sitting directly below it — same word, two different real fields.
+
+**D5. Minor copy polish, low priority, batch together:**
+- "Pool, path, and stairs in one order" heading omits "zone" even though body copy and the bullet list include all four types.
+- Kit card badges (Stainless 316L / Aluminium / Flexible Aluminium) read as fixed-per-kit — material is now a per-item toggle. Consider "default" framing.
+- Build Your Space cross-promo section doesn't mention material choice, connector entry, or the submerged/warranty distinction at all.
+- "Custom zone" description doesn't mention submerged use cases (a water-feature edge), even though the submerged flag was specifically generalised to support exactly that on Zone items.
+
+**Checkpoint before push. Mobile spot-check required — this touches every kit page and Build Your Space.**
