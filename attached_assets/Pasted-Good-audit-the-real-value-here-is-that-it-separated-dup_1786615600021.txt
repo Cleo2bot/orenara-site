@@ -1,0 +1,30 @@
+Good audit — the real value here is that it separated "duplicated cruft that should never have existed twice" from "a genuinely different model that needs a real decision," rather than treating everything as the same kind of problem. That's exactly the right instinct.
+
+## The open question — I'd push back on Option 1
+
+Auto-determining channel and connector isn't really "matching the pattern BYS already established" — it's **removing functionality that was deliberately specified, built, and verified.** Channel material/profile and connector entry weren't omitted from Quick Order by accident; they were explicit, tested items in the Phase 3a checkpoint, built with defaults specifically *because* a customer might reasonably want to override them — cost trade-offs on material, physical install constraints on entry orientation. BYS not having these isn't BYS's correct design, it's a gap from when the two flows were built somewhat separately. Converging on "drop them" would be quietly discarding real requirements under the banner of simplification.
+
+**Recommend Option 2, with one refinement the framing didn't quite capture: these need to be per-item, not per-order.** The whole reason Pool defaults to Stainless+Flex while Stair defaults to Aluminium+Straight is that different item types genuinely warrant different materials — someone building a pool plus a garden path in one Build Your Space session needs stainless on the wet one and aluminium on the dry one, not a single order-wide choice forcing one material onto both.
+
+**On the "too many clicks" concern specifically** — I'd split these two differently rather than treat them as one bundle:
+- **Material/profile stays always-visible.** It's a real durability decision (stainless vs. aluminium in a chlorinated pool isn't cosmetic), worth surfacing plainly on every item.
+- **Connector entry and trim collapse into an expandable "advanced" section per item, defaulted and hidden until opened.** Bottom entry already covers most installs by design — most people should never need to touch it. This keeps each item card looking like BYS's clean current cards for the common case, while the real choice is still there for anyone who needs it.
+
+Two things that must survive the merge, explicitly:
+- **L-shape-disabled-when-Stainless logic stays per-item**, not a global flag — each item independently manages its own material/connector interdependency.
+- **The SF16/stainless caveat note appears wherever Stainless is selectable.** Honestly, unifying the component is what *guarantees* this — right now it'd be easy for that note to quietly go missing on whichever path gets touched less often. One component means one place it can go wrong instead of two.
+
+## A free correctness fix hiding in this consolidation
+
+Worth checking, not just assuming: does Quick Order's current Stair page treat a staircase as **one continuous run** (the old flat-length-chip model, since it predates the tread-count concept built for BYS)? If so, that's the same class of bug we already fixed on BYS's Stairs — just never ported over because the two flows diverged before the fix existed. Consolidating onto the shared Stairs item corrects this automatically. Worth confirming in the report rather than discovering it later.
+
+## Sequencing — don't do this as one big rewrite
+
+Given the stale-cache incident traced back to "parallel edits and file deletions," and this refactor touches both currently-working flows simultaneously (a regression here breaks two things at once, not one), I'd want this staged with verification between steps, not delivered as a single pass:
+
+1. **Extract the schematic components + item model into a shared file, no behaviour change.** Verify both pages render identically to before — this step should be invisible to a user.
+2. **Add material/profile/connector/trim as per-item fields with type-based defaults.** Verify against known numbers already established this session — the 0.9m × 8-step stairs case, the 7×4 recessed pool case — as a regression baseline, not a fresh visual check.
+3. **Wire kit slug pages to pre-seed the shared builder**, replacing their standalone configurators.
+4. **Then** consolidate pricing panel, forms, mobile bar, submit handler.
+
+Confirm Option A on routing — right call, for the reasons given, especially keeping the "only stainless — aluminium corrodes" copy attached to its page rather than losing it in a redirect.
