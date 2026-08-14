@@ -241,7 +241,17 @@ function ItemSchematic({ item }: { item: BuildItem }) {
     />;
     case "path":  return <PathSchematic  metres={metres} shape={item.shape}/>;
     case "stair": return <StairSchematic treadWidth={metres} steps={steps}/>;
-    case "box":   return <BoxSchematic   metres={metres}/>;
+    case "box":
+      if ((item.zoneShape ?? "rect") === "rect") {
+        return <PoolSchematic
+          poolL={parseFloat(item.poolL ?? "0") || 0}
+          poolW={parseFloat(item.poolW ?? "0") || 0}
+          mount="coping"
+          tileWidthMm={0}
+          sides={item.poolSides ?? { top: true, bottom: true, left: true, right: true }}
+        />;
+      }
+      return <BoxSchematic metres={metres}/>;
   }
 }
 
@@ -1110,6 +1120,11 @@ export function makeInitialItem(type: ItemType, overrides?: Partial<BuildItem>):
       poolTileWidth: "600",
       poolSides: { top: true, bottom: true, left: true, right: true },
     } : {}),
+    ...(type === "box" ? {
+      zoneShape: "rect" as const,
+      poolL: "", poolW: "",
+      poolSides: { top: true, bottom: true, left: true, right: true },
+    } : {}),
     ...overrides,
   };
 }
@@ -1152,6 +1167,11 @@ export default function SpaceBuilder({
           poolL: "", poolW: "",
           poolMount: "coping" as const,
           poolTileWidth: "600",
+          poolSides: { top: true, bottom: true, left: true, right: true },
+        } : {}),
+        ...(type === "box" ? {
+          zoneShape: "rect" as const,
+          poolL: "", poolW: "",
           poolSides: { top: true, bottom: true, left: true, right: true },
         } : {}),
       },
