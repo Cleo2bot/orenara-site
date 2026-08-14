@@ -1145,6 +1145,7 @@ export default function SpaceBuilder({
   kitId = "build",
 }: SpaceBuilderProps) {
   const [items, setItems] = useState<BuildItem[]>(() => initialItems);
+  const [pickerOpen, setPickerOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
   const addItem = useCallback((type: ItemType) => {
@@ -1316,6 +1317,48 @@ export default function SpaceBuilder({
                     onRemove={removeItem}
                   />
                 ))}
+              </div>
+            )}
+
+            {/* quick-add picker — appears after the last card when items exist */}
+            {items.length > 0 && (
+              <div className="mt-4">
+                {pickerOpen ? (
+                  <div
+                    className="rounded-xs border border-bone-line bg-bone-tile p-4"
+                    style={{ borderStyle: "dashed" }}
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <p className="font-spec text-[8px] tracking-widest text-ink/40 uppercase">
+                        Add another area
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => setPickerOpen(false)}
+                        className="text-xs text-ink/35 hover:text-ink/60 transition-colors font-spec tracking-wider"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {(["pool", "path", "stair", "box"] as ItemType[]).map(type => (
+                        <AddButton
+                          key={type}
+                          type={type}
+                          onClick={() => { addItem(type); setPickerOpen(false); }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setPickerOpen(true)}
+                    className="w-full rounded-xs border border-dashed border-bone-line text-ink/35 hover:text-ink/60 hover:border-ink/25 transition-colors py-3 font-spec text-[9px] tracking-widest uppercase"
+                  >
+                    + Add another area
+                  </button>
+                )}
               </div>
             )}
 
