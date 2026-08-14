@@ -1,0 +1,52 @@
+# ORENARA — /kits PAGE: FLEXIBILITY MESSAGING
+**Prepared 14 August 2026 — for the Replit Agent.**
+
+Standing rules apply: no push without explicit approval, full production build (not typecheck) before anything's called done.
+
+---
+
+## Step 0 — Verify before writing new copy
+
+Confirm the "Build your space" nav CTA's actual `href` right now. This was mid-fix when the platform-wide "repls and agents stuck" incident hit — don't assume it landed correctly just because the session recovered. If it's still pointing at `/kits` instead of `/kits/build`, fix that first, separately, and confirm before touching anything below.
+
+---
+
+## The shift, in one sentence
+
+This page currently reads as "pick one of four fixed products." It should read as "one configurable system, four starting points for different environments." Nothing about the underlying kit structure changes — this is copy only.
+
+## Change 1 — Trust paragraph
+
+Current: *"...instead of a custom quote built around your exact site, you choose from a set of ready-made lengths and configurations."*
+
+Replace with:
+
+> "Everything that makes our supply-only systems hold up underwater — the sealed silicone strip, the factory-moulded connectors, the tested-before-dispatch process — is exactly the same here. What's different is how you get it: instead of a custom quote built around your exact site, you configure it yourself — material, channel profile, exact length to the nearest 10cm, connector entry — and see the price straight away."
+
+Second paragraph (submerged/trim wording) stays as already written — that one's already correct.
+
+## Change 2 — Section eyebrow, headline, subhead
+
+- Eyebrow: "Find your kit" → **"Choose your application"**
+- Headline: "Four kits. One system." → **"Four kits. One base system, configured to fit."**
+- Subhead, replace entirely:
+
+> "Every kit starts from the same IP68 SF16 system. From there, you choose the material and profile for your environment, the exact length, how power enters, and — if it's permanently submerged — a warranty term that reflects it. Same hardware, shaped to your site. Click any kit to configure it."
+
+## Change 3 — Build Your Space, surfaced before the four cards
+
+Insert one line directly after the new subhead, before the kit card grid:
+
+> "Need more than one area, or something these four don't quite cover? Build your space instead, and combine pool, path, stairs and custom zones into a single order." — link "Build your space" to `/kits/build`.
+
+Do not remove or duplicate the existing "Pool, path, and stairs in one order" section further down the page — that stays exactly as-is. This is an earlier doorway to the same destination, not a replacement.
+
+---
+
+## Explicitly out of scope for this task
+
+Do not rename "kit" as a word anywhere else — not the URL slugs (`/kits/pool-surround` etc.), not the review form's "Which kit?" dropdown, not the nav item. That's a much bigger decision touching routing and data, not a copy change, and isn't part of this task.
+
+## Checkpoint
+
+Report Step 0's findings (was the nav link already correct, or did it need fixing) alongside the three copy changes. Screenshot the reworked hero section before calling this done.

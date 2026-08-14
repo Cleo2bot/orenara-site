@@ -343,9 +343,10 @@ export default function KitsPage() {
                 Everything that makes our supply-only systems hold up underwater
                 — the sealed silicone strip, the factory-moulded connectors, the
                 tested-before-dispatch process — is exactly the same here.
-                What's different is how you get it: instead of a custom quote
-                built around your exact site, you choose from a set of
-                ready-made lengths and configurations.
+                What&apos;s different is how you get it: instead of a custom
+                quote built around your exact site, you configure it yourself —
+                material, channel profile, exact length to the nearest 10cm,
+                connector entry — and see the price straight away.
               </p>
               <p className="text-ink/65 leading-relaxed">
                 Your licensed electrician installs it. They&apos;re handling a
@@ -381,15 +382,26 @@ export default function KitsPage() {
         <div className="max-w-6xl mx-auto px-6 py-20 lg:py-28">
           <div className="mb-12">
             <p className="font-spec text-xs tracking-widest text-ink/40 uppercase mb-3">
-              Find your kit
+              Choose your application
             </p>
             <h2 className="font-display text-3xl sm:text-4xl leading-tight text-ink">
-              Four kits. One system.
+              Four kits. One base system, configured to fit.
             </h2>
             <p className="text-ink/60 mt-3 max-w-xl leading-relaxed">
-              Every kit uses the same IP68 SF16 strip. The difference is the
-              channel, the length tiers, and how it's configured for the
-              application. Click any kit to see the system spec.
+              Every kit starts from the same IP68 SF16 system. From there, you
+              choose the material and profile for your environment, the exact
+              length, how power enters, and — if it&apos;s permanently submerged
+              — a warranty term that reflects it. Same hardware, shaped to your
+              site. Click any kit to configure it.
+            </p>
+            <p className="text-ink/55 mt-4 max-w-xl text-sm leading-relaxed">
+              Need more than one area, or something these four don&apos;t quite
+              cover?{" "}
+              <Link href="/kits/build" className="underline underline-offset-2 hover:text-ink transition-colors">
+                Build your space
+              </Link>{" "}
+              instead, and combine pool, path, stairs and custom zones into a
+              single order.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
