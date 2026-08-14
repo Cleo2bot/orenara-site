@@ -1,0 +1,90 @@
+# ORENARA — /kits PAGE: FLEXIBILITY MESSAGING
+**Prepared 14 August 2026 — for the Replit Agent.**
+
+Standing rules apply: no push without explicit approval, full production build (not typecheck) before anything's called done.
+
+---
+
+## Step 0 — Verify before writing new copy
+
+Confirm the "Build your space" nav CTA's actual `href` right now. This was mid-fix when the platform-wide "repls and agents stuck" incident hit — don't assume it landed correctly just because the session recovered. If it's still pointing at `/kits` instead of `/kits/build`, fix that first, separately, and confirm before touching anything below.
+
+---
+
+## The shift, in one sentence
+
+This page currently reads as "pick one of four fixed products." It should read as "one configurable system, four starting points for different environments." Nothing about the underlying kit structure changes — this is copy only.
+
+## Change 1 — Trust paragraph
+
+Current: *"...instead of a custom quote built around your exact site, you choose from a set of ready-made lengths and configurations."*
+
+Replace with:
+
+> "Everything that makes our supply-only systems hold up underwater — the sealed silicone strip, the factory-moulded connectors, the tested-before-dispatch process — is exactly the same here. What's different is how you get it: instead of a custom quote built around your exact site, you configure it yourself — material, channel profile, exact length to the nearest 10cm, connector entry — and see the price straight away."
+
+Second paragraph (submerged/trim wording) stays as already written — that one's already correct.
+
+## Change 2 — Section eyebrow, headline, subhead
+
+- Eyebrow: "Find your kit" → **"Choose your application"**
+- Headline: "Four kits. One system." → **"Four kits. One base system, configured to fit."**
+- Subhead, replace entirely:
+
+> "Every kit starts from the same IP68 SF16 system. From there, you choose the material and profile for your environment, the exact length, how power enters, and — if it's permanently submerged — a warranty term that reflects it. Same hardware, shaped to your site. Click any kit to configure it."
+
+## Change 3 — Build Your Space, surfaced before the four cards
+
+Insert one line directly after the new subhead, before the kit card grid:
+
+> "Need more than one area, or something these four don't quite cover? Build your space instead, and combine pool, path, stairs and custom zones into a single order." — link "Build your space" to `/kits/build`.
+
+Do not remove or duplicate the existing "Pool, path, and stairs in one order" section further down the page — that stays exactly as-is. This is an earlier doorway to the same destination, not a replacement.
+
+---
+
+## Explicitly out of scope for this task
+
+Do not rename "kit" as a word anywhere else — not the URL slugs (`/kits/pool-surround` etc.), not the review form's "Which kit?" dropdown, not the nav item. That's a much bigger decision touching routing and data, not a copy change, and isn't part of this task.
+
+## Checkpoint
+
+Report Step 0's findings (was the nav link already correct, or did it need fixing) alongside the three copy changes. Screenshot the reworked hero section before calling this done.
+
+---
+
+## Addition — hero image on `/kits/build` (blank entry only)
+
+**The problem:** every kit page (`/kits/pool-surround` etc.) has a photographic hero. `/kits/build` — reached via the nav's "Build your space," with no pre-seeded item — currently just shows a plain "Build Your Space" heading with no image, making it look inconsistent next to every other page on the site.
+
+**Scope this precisely — do not apply to kit-page embeds.** `/kits/pool-surround`, `/kits/stair`, `/kits/patio`, `/kits/path` all embed the same `SpaceBuilder` component pre-seeded with one item, and they already have their own kit-specific hero photo. This new hero is only for the case where someone lands on `/kits/build` directly with an empty canvas. Confirm the shared component can tell these two cases apart (likely already does, since kit pages pass an `initialItems` prop and the standalone route doesn't) before building this — don't duplicate a hero onto pages that already have one.
+
+**Find the real image first.** There's a dark photo asset from the original site — the pool-coping-edge night shot — somewhere in the project's image library. Locate the actual file before building anything. If it can't be found, report that and ask rather than substituting a different image or generating a new one.
+
+**Structure — replaces the current plain header block, everything below it (Add an area buttons, canvas) stays exactly as-is:**
+
+- Full-bleed dark photo, text overlaid, matching the treatment already used on kit-page heroes.
+- Small "← All kits" back-link, top-left, same position/style as on kit pages.
+- Eyebrow: **"WHAT COUNTS AS A ZONE"**
+- Headline: **"A zone is an area, not a measurement."**
+- Body: *"The pool surround. The pergola. The front path. One zone can hold several runs — the curved edge, the straight edge, the steps. Pace out what you can; we confirm every measurement with you before anything is cut."*
+- Primary CTA: **"Add your first zone"** — scrolls to / focuses the "Add an area" buttons below, doesn't navigate anywhere.
+- Secondary link: keep the existing "Single area? Browse individual kit specs →" pointing back to `/kits` — fold it into this hero rather than duplicating both this and a separate "see how the process works" link, unless there's a real destination for the latter already built.
+
+**Related, do in the same pass:** rename the 4th add-button's customer-facing label from "Zone" to **"Custom"** — internal type/data key unchanged, this is a display-label-only change — to remove the collision with "zone" now being used as the hero's general term.
+
+**Checkpoint:** confirm the image was actually located (name the file), confirm the hero only renders on the blank `/kits/build` entry and not on any kit-page embed, screenshot both the new hero and the renamed "Custom" button before calling this done.
+
+---
+
+## Addition — quick-add button at the end of the item list
+
+**The problem:** adding another item currently requires scrolling back up to the "Add an area" row at the top of the page. Once someone's a few items deep configuring things, that's real friction for something that should be quick.
+
+**Recommended behaviour — needs confirmation before building, not settled:** a small "+" affordance appears once, directly after the last item card in the list (below it, before "Installation note"). Clicking it reveals the same four options already at the top — Pool / Path / Stairs / Custom — so someone can add *any* type, not just repeat whatever's already there. This mirrors the existing top row's behaviour, just reachable without scrolling. It should reposition itself to stay after whichever card is currently last, as items are added or removed.
+
+**The alternative, in case this reading is wrong:** the "+" instead quickly duplicates/adds another of the same type as the card it's attached to. This is narrower — useful for "another pool just like this one," but doesn't help if the next thing someone wants is a different type. Confirm which of these two before building either.
+
+**Do not** place a "+" after every card — one, tracking the end of the list, is the right amount. Multiple scattered "+" buttons would be visual clutter for no added benefit.
+
+**Checkpoint:** confirm which behaviour was built (picker vs. duplicate) matches what was actually intended, screenshot the "+" appearing correctly after adding a second and third item, and confirm it repositions correctly if an item is removed.
