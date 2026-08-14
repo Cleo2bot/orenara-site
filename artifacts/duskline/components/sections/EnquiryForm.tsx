@@ -4,10 +4,11 @@ import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import { reportConversion } from "@/lib/gtag";
 
 const kits = [
-  "Pathway Kit",
-  "Pergola Kit",
-  "Pool & Water Feature Kit",
-  "Custom Zone Kit",
+  "Pool Surround",
+  "Stair",
+  "Patio",
+  "Path",
+  "Custom",
   "Not sure yet",
 ];
 
@@ -96,7 +97,7 @@ export default function EnquiryForm() {
             Enquiry received.
           </h2>
           <p style={{ fontSize: "1rem", color: "var(--bone-dim)", lineHeight: 1.7, maxWidth: "480px", margin: "0 auto" }}>
-            Thanks — we'll be in touch within 1–2 business days with pricing and lead time.
+            Thanks — we&apos;ll be in touch within 1–2 business days.
           </p>
           <button
             onClick={() => setStatus("idle")}
@@ -124,7 +125,7 @@ export default function EnquiryForm() {
       <div className="max-w-3xl mx-auto px-6">
         {/* Header */}
         <div className="mb-12">
-          <p className="eyebrow mb-6">Enquire</p>
+          <p className="eyebrow mb-6">Complex projects</p>
           <h2
             className="font-medium mb-4"
             style={{
@@ -134,11 +135,12 @@ export default function EnquiryForm() {
               lineHeight: 1.15,
             }}
           >
-            Tell us about your project.
+            Something more complex? Tell us about your space.
           </h2>
           <p style={{ color: "var(--bone-dim)", fontSize: "1rem", lineHeight: 1.7 }}>
-            We'll come back within 1–2 business days with pricing and a confirmed delivery schedule.
-            No obligation, no automated quote — a real conversation about your space.
+            For non-standard applications, large runs, or anything that doesn&apos;t fit a
+            kit configuration — tell us the scope and we&apos;ll come back within 1–2 business
+            days with a confirmed spec and price.
           </p>
         </div>
 

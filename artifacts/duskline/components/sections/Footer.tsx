@@ -103,9 +103,9 @@ export default function Footer() {
               Important
             </p>
             <p style={{ fontSize: "0.8125rem", color: "var(--bone-dim)", lineHeight: 1.7 }}>
-              Orenara is a supply-only business. We supply components only;
-              installation is your responsibility and must be carried out by a licensed
-              electrician where required by Australian standards.
+              Orenara supplies the system; your licensed electrician installs it.
+              Installation must be carried out by a licensed electrician in line
+              with AS/NZS 3000.
             </p>
           </div>
         </div>

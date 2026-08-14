@@ -1,12 +1,7 @@
-"use client";
-
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
-  const scrollToForm = () => {
-    document.getElementById("enquire")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
@@ -71,14 +66,14 @@ export default function Hero() {
 
         {/* CTA group */}
         <div className="animate-fade-up-delay-3 flex flex-col items-center gap-4">
-          <button
-            onClick={scrollToForm}
+          <Link
+            href="/kits"
             className="btn-primary"
             style={{ fontSize: "1.0625rem", padding: "16px 36px" }}
             data-testid="hero-enquire-btn"
           >
-            Enquire for Pricing
-          </button>
+            Build Your Kit
+          </Link>
         </div>
       </div>
 

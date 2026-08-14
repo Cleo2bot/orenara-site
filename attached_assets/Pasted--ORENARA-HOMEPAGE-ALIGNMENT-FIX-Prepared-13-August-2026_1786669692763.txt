@@ -1,0 +1,96 @@
+# ORENARA — HOMEPAGE ALIGNMENT FIX
+**Prepared 13 August 2026 — for the Replit Agent.**
+
+This homepage predates almost every decision made across this project — including the DIY-retirement decision from before the current build even started. It describes a different product than what actually exists now. This is a content and link fix, not a redesign — the visual identity, photography, and technical credibility sections are strong and stay exactly as they are.
+
+Standing rules apply: no push without explicit approval, full production build (not typecheck) before anything's called done, checkpoint before push.
+
+---
+
+## Keep completely untouched — do not edit these sections
+- Hero photography, all gallery images, all generated environment images
+- "Why most outdoor strip lighting fails in Australia" (three-point section)
+- The six environment cards (Commercial & Hospitality, Pool & Aquatic, Marina & Private Berths, Coastal, Tropical & Humid, Rural & Acreage)
+- The gallery carousel
+- "Straight lines are easy, curves are the hard part" mounting-system section (Rigid Channel / Flexible Segmented Track)
+- Technical specification section (IP68 / 0–10V / RCM)
+- All breather/mood imagery ("Right about now," "This is what it's for")
+
+None of this references pricing, ordering, or product contents — it's accurate and on-brand as-is.
+
+---
+
+## Step 0 — Verify before assuming
+
+**Check whether the nav CTA is already fixed.** "Build Kit → Build Your Kit" currently links to `/quote-builder`. If this homepage shares the same `Navbar.tsx` component already updated elsewhere in this project (should now read "Build your space" → `/kits/build`), this may already be resolved once the current work pushes — confirm rather than duplicate the fix. If this page has its own separate hardcoded nav, fix it to match: "Kits" → `/kits`, "Build your space" → `/kits/build`.
+
+---
+
+## Fix 1 — Hero CTA and the "no pricing shown" claim
+
+Current CTA is "Enquire for Pricing," and the enquiry form section states "Pricing is enquiry-only — no pricing is displayed on this site." Both are now false — most applications price instantly.
+
+- Change hero CTA from "Enquire for Pricing" to **"Build Your Kit"**, linking to `/kits`.
+- Remove "Pricing is enquiry-only — no pricing is displayed on this site" entirely from the enquiry section (full context in Fix 5 below).
+
+---
+
+## Fix 2 — "Four components" section describes a retired product
+
+This section currently lists a **"Touch Dimmer Panel — wall-mounted, scene presets, wireless pairing"** and a **"240V Mains Lead — AU/NZ plug, pre-wired, plug & play"** as standard kit contents. Both describe the self-install, app-controlled product that was deliberately retired before this build started. Dimming/control is explicitly out of scope for the current catalog. "Plug & play" implies no electrician needed, which contradicts every installation note on every current kit page.
+
+Replace the four components with what's actually shipped:
+1. **IP68 Silicone Strip** — dot-free diffusion, fully submersible, sealed end caps, 24V DC
+2. **Channel & Mount** — aluminium or stainless, straight or flexible, matched to the application
+3. **Factory IP68 Connectors** — moulded onto strip ends, pressure-tested before dispatch
+4. **Driver** — Mean Well HLG, IP67, sized to the run
+
+**Confirm before writing mains-connection copy:** every current kit page's installation note says the electrician "connects it to mains" — check whether that means hardwired (no plug) or whether there genuinely is a plug involved. Don't guess; if it's hardwired, drop any plug/GPO language entirely rather than softening it.
+
+---
+
+## Fix 3 — Kit cards: wrong names, wrong links, and a duplication risk worth avoiding
+
+Current cards: "Pathway Kit," "Pergola Kit," "Pool & Water Feature Kit," "Custom Zone Kit," linking to `/kits/pathway-kit`, `/kits/pergola-kit`, `/kits/pool-water-feature-kit`, `/kits/custom-zone-kit` — none of which match the real slugs (`pool-surround`, `stair`, `patio`, `path`).
+
+**Don't just fix the names and links — simplify this section instead of maintaining a second copy of it.** `/kits` already has correct, current cards with real lengths and live pricing. Keeping a second, separately-written version of the same four kits on the homepage means two places that can drift apart — which is exactly the failure pattern that caused several of the bugs found and fixed this session (two places computing or describing the same thing, one gets updated, the other doesn't).
+
+Replace this section with a shorter teaser — the four category images/icons and a one-line description each is fine — with a single clear CTA: **"See all kits →"** to `/kits`. Let `/kits` be the one source of truth for kit details, not the homepage.
+
+---
+
+## Fix 4 — "How it works" describes the old manual-only process
+
+Current: Step 1 Enquire (1–2 day response) → Step 2 We confirm spec/pricing/delivery → Step 3 Made to order, shipped. This describes the process for every job, when most jobs now price and confirm instantly.
+
+Replace:
+- **Step 1 — Configure online.** Pick your application, size it to your space, see the price straight away.
+- **Step 2 — Confirm and we'll invoice you.** No wait for standard configurations. For anything unusual, request a review and we'll get back to you within 1–2 business days.
+- **Step 3 — Made to order, shipped to you.** *(keep as-is — still accurate)*
+
+---
+
+## Fix 5 — Enquiry form: reposition as the fallback, not the primary path
+
+Currently framed as the main way to engage with Orenara. It should now read as the path for anything that doesn't fit a standard kit — the same role "Request Review" plays inside the kit builder itself.
+
+- Change the section heading from something that reads as the primary CTA to something like **"Something more complex? Tell us about your space."**
+- Update the "Which kit?" dropdown options to the current four names (Pool Surround / Stair / Patio / Path / Custom / Not sure yet) — not the old Pathway/Pergola/Pool & Water Feature/Custom Zone names.
+- Remove "Pricing is enquiry-only — no pricing is displayed on this site" (already covered in Fix 1).
+
+---
+
+## Fix 6 — Footer and "made to order" section imply self-install
+
+Two lines currently allow self-install:
+- "Orenara supplies the system only; installation is arranged separately by you or your electrician."
+- Footer: "installation is your responsibility and must be carried out by a licensed electrician **where required** by Australian standards."
+
+Both should match the unconditional framing used everywhere else in the current build:
+- *"Orenara supplies the system; your licensed electrician installs it."*
+- Footer: *"Installation must be carried out by a licensed electrician."* — remove "where required," since this isn't conditional in the current model.
+
+---
+
+## Checkpoint before push
+Report: whether the nav CTA needed its own fix or was already resolved by the shared component, confirmation on the mains-connection wording (hardwired vs plug), and screenshots of the reworked sections (hero, components, kit-card teaser, how-it-works, enquiry form, footer) before treating this as done. Full production build required, not just typecheck. Mobile spot-check on this page specifically before push, given how much of it changed.

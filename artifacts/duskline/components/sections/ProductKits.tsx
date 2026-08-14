@@ -1,14 +1,8 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { kits } from "@/lib/kits";
+import { KITS } from "@/lib/kits-data";
 
 export default function ProductKits() {
-  const scrollToForm = () => {
-    document.getElementById("enquire")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section
       id="kits"
@@ -39,140 +33,85 @@ export default function ProductKits() {
               maxWidth: "560px",
             }}
           >
-            Each kit is configured for its application — strip, driver, and dimmer
-            matched and pre-specced. No separate component selection required. A
-            range of colour options is available — just tell us what you&apos;re
-            after when you enquire.
+            Each kit is configured for its application — strip, driver, channel,
+            and connectors matched and pre-specced. Size it to your space and
+            see the price straight away.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {kits.map((kit, i) => (
-            <div
+        {/* Teaser grid — four application tiles, single source of truth is /kits */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {KITS.map((kit, i) => (
+            <Link
               key={i}
-              className="kit-card rounded-lg p-8 flex flex-col"
-              style={{
-                background: "var(--ink-raised)",
-                border: "1px solid var(--ink-line)",
-              }}
+              href={`/kits/${kit.id}`}
+              className="group block"
+              style={{ textDecoration: "none" }}
               data-testid={`kit-card-${i}`}
             >
-              {/* Kit image — unified treatment, 2px radius */}
               <div
-                className="img-treated"
                 style={{
-                  marginBottom: "24px",
-                  aspectRatio: "16 / 10",
-                  overflow: "hidden",
+                  background: "var(--ink-raised)",
+                  border: "1px solid var(--ink-line)",
                   borderRadius: "var(--radius)",
+                  overflow: "hidden",
+                  transition: "border-color 0.15s ease",
                 }}
               >
-                <Image
-                  src={kit.image}
-                  alt={kit.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  style={{ objectFit: "cover" }}
-                />
+                {/* Image */}
                 <div
+                  className="img-treated"
                   style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "color-mix(in srgb, var(--ink) 40%, transparent)",
-                  }}
-                />
-              </div>
-
-              {/* Kit header */}
-              <div className="mb-5">
-                <h3
-                  className="font-medium mb-1"
-                  style={{
-                    fontSize: "1.1875rem",
-                    color: "var(--bone)",
-                    letterSpacing: "-0.02em",
+                    aspectRatio: "16 / 9",
+                    overflow: "hidden",
+                    position: "relative",
                   }}
                 >
-                  {kit.name}
-                </h3>
-                <p style={{ fontSize: "0.875rem", color: "var(--bone-dim)", fontWeight: 500 }}>
-                  {kit.tagline}
-                </p>
+                  <Image
+                    src={kit.image}
+                    alt={kit.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    style={{ objectFit: "cover", transition: "transform 0.4s ease" }}
+                    className="group-hover:scale-[1.03]"
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background: "color-mix(in srgb, var(--ink) 30%, transparent)",
+                    }}
+                  />
+                </div>
+
+                {/* Caption */}
+                <div style={{ padding: "20px 24px" }}>
+                  <p
+                    className="font-medium"
+                    style={{
+                      fontSize: "1.0625rem",
+                      color: "var(--bone)",
+                      letterSpacing: "-0.02em",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    {kit.name}
+                  </p>
+                  <p style={{ fontSize: "0.875rem", color: "var(--bone-dim)", lineHeight: 1.5 }}>
+                    {kit.tagline}
+                  </p>
+                </div>
               </div>
-
-              {/* Description */}
-              <p
-                style={{
-                  fontSize: "0.9375rem",
-                  color: "var(--bone-dim)",
-                  lineHeight: 1.7,
-                  marginBottom: "20px",
-                  flex: 1,
-                }}
-              >
-                {kit.description}
-              </p>
-
-              {/* Specs */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {kit.specs.map((spec, j) => (
-                  <span key={j} className="spec-badge">
-                    {spec}
-                  </span>
-                ))}
-              </div>
-
-              {/* Safety note */}
-              {kit.note && (
-                <p
-                  style={{
-                    fontSize: "0.8rem",
-                    color: "var(--bone-dim)",
-                    lineHeight: 1.6,
-                    marginBottom: "16px",
-                    padding: "10px 12px",
-                    background: "var(--ink)",
-                    borderRadius: "var(--radius)",
-                    borderLeft: "2px solid var(--ink-line)",
-                  }}
-                >
-                  {kit.note}
-                </p>
-              )}
-
-              {/* CTA */}
-              <Link
-                href={`/kits/${kit.slug}`}
-                className="btn-outline"
-                data-testid={`kit-specs-link-${i}`}
-              >
-                See full specifications
-              </Link>
-            </div>
+            </Link>
           ))}
         </div>
 
-        {/* Shared kit enquiry CTA */}
+        {/* Single CTA — /kits is the source of truth for all kit detail */}
         <div className="flex justify-center mt-12">
-          <button
-            className="btn-primary"
-            onClick={scrollToForm}
-            data-testid="kits-enquire-btn"
-          >
-            Enquire about a kit
-          </button>
+          <Link href="/kits" className="btn-primary" data-testid="kits-see-all-btn">
+            See all kits →
+          </Link>
         </div>
-
-        {/* Bottom note */}
-        <p
-          className="text-center mt-10"
-          style={{ fontSize: "0.8125rem", color: "var(--bone-dim)", lineHeight: 1.6 }}
-        >
-          Pricing is enquiry-only — no pricing is displayed on this site.
-          All products are made to order. Orenara supplies the system only;
-          installation is arranged separately by you or your electrician.
-        </p>
       </div>
     </section>
   );

@@ -4,26 +4,26 @@ const COMPONENTS = [
   {
     id: "strip",
     number: "01",
-    label: "Silicone LED Neon Strip",
-    specs: ["Dot-free diffusion", "Fully submersible IP68", "Sealed end caps", "24V DC"],
+    label: "IP68 Silicone Strip",
+    specs: ["Dot-free diffusion", "Fully submersible", "Sealed end caps", "24V DC"],
+  },
+  {
+    id: "channel",
+    number: "02",
+    label: "Channel & Mount",
+    specs: ["Aluminium or stainless", "Straight or flexible", "Matched to application", "Diffuser included"],
+  },
+  {
+    id: "connectors",
+    number: "03",
+    label: "Factory IP68 Connectors",
+    specs: ["Moulded onto strip ends", "Pressure-tested", "Before dispatch", "No field sealing"],
   },
   {
     id: "driver",
-    number: "02",
-    label: "24V Dimmable Driver",
-    specs: ["150W rating", "IP67 rated", "0–10V dim input", "240V mains feed"],
-  },
-  {
-    id: "dimmer",
-    number: "03",
-    label: "Touch Dimmer Panel",
-    specs: ["Wall-mounted", "Scene presets", "Wireless pairing", "Included"],
-  },
-  {
-    id: "plug",
     number: "04",
-    label: "240V Mains Lead",
-    specs: ["AU/NZ plug", "Pre-wired", "1.5m cable", "Plug & play"],
+    label: "Driver",
+    specs: ["Mean Well HLG", "IP67 rated", "Sized to the run", "Hardwired to mains"],
   },
 ];
 
@@ -63,8 +63,8 @@ export default function KitComponents() {
               maxWidth: "520px",
             }}
           >
-            Strip, driver, dimmer, and mains lead — matched, pre-specced, and ready to wire.
-            Nothing to source separately.
+            Strip, channel, connectors, and driver — matched, pre-specced, and
+            ready to install. Nothing to source separately.
           </p>
         </div>
 
@@ -171,7 +171,7 @@ export default function KitComponents() {
             color: "var(--bone-dim)",
           }}
         >
-          All kits are pre-specced by application. Quantities and ratings are confirmed when you enquire.
+          All kits are pre-specced by application. Your licensed electrician hardwires the driver and connects it to mains.
         </p>
       </div>
     </section>

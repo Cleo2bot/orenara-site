@@ -1,24 +1,25 @@
 import Image from "next/image";
-import { MessageSquare, FileCheck, Package } from "lucide-react";
+import Link from "next/link";
+import { LayoutGrid, FileCheck, Package } from "lucide-react";
 
 const steps = [
   {
-    icon: MessageSquare,
+    icon: LayoutGrid,
     number: "01",
-    title: "Enquire",
-    body: "Tell us about your space — which kit you're interested in, the approximate scope, and your location. Use the form below. We respond within 1–2 business days with pricing and a confirmed delivery schedule.",
+    title: "Configure online.",
+    body: "Pick your application, size it to your space, and see the price straight away. Pool surround, staircase, garden path, custom zone — each builder is pre-loaded with the right defaults for the application.",
   },
   {
     icon: FileCheck,
     number: "02",
-    title: "We confirm spec, pricing, and delivery",
-    body: "Once we understand the scope, we'll confirm the exact specification, quote a price, and lock in your delivery schedule. No vague estimates. You'll know exactly what you're ordering before you commit.",
+    title: "Confirm and we'll invoice you.",
+    body: "No wait for standard configurations — confirm your order and we'll send an invoice within one business day. For anything unusual, request a review and we'll get back to you within 1–2 business days with a confirmed spec and price.",
   },
   {
     icon: Package,
     number: "03",
     title: "Made to order. Shipped to you.",
-    body: "Built to your spec and dispatched direct — we'll confirm the schedule with your quote and keep you updated through the process. Orenara supplies the system; your electrician handles installation.",
+    body: "Built to your spec and dispatched direct — we'll confirm the schedule with your invoice and keep you updated through the process. Orenara supplies the system; your licensed electrician installs it.",
   },
 ];
 
@@ -176,10 +177,10 @@ export default function HowItWorks() {
               Made to order, not off the shelf.
             </p>
             <p style={{ color: "var(--bone-dim)", fontSize: "0.875rem", lineHeight: 1.7 }}>
-              We don't hold stock — every system is built to your spec. If your project
-              has a hard deadline, tell us in your enquiry and we'll be straight with you
-              about whether we can meet it. Orenara is supply-only; installation is
-              arranged by you or your electrician.
+              We don&apos;t hold stock — every system is built to your spec. If your project
+              has a hard deadline, tell us in your enquiry and we&apos;ll be straight with you
+              about whether we can meet it. Orenara supplies the system; your licensed
+              electrician installs it.
             </p>
           </div>
         </div>
@@ -194,11 +195,11 @@ export default function HowItWorks() {
               marginBottom: "24px",
             }}
           >
-            Step 01 is an enquiry. It costs nothing and commits you to nothing.
+            Most standard configurations price instantly online. For anything complex, use the enquiry form below.
           </p>
-          <a href="#enquire" className="btn-primary">
-            Start Your Enquiry
-          </a>
+          <Link href="/kits" className="btn-primary">
+            Build Your Kit
+          </Link>
         </div>
       </div>
     </section>
