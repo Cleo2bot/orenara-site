@@ -394,15 +394,19 @@ export default function KitsPage() {
               — a warranty term that reflects it. Same hardware, shaped to your
               site. Click any kit to configure it.
             </p>
-            <p className="text-ink/55 mt-4 max-w-xl text-sm leading-relaxed">
-              Need more than one area, or something these four don&apos;t quite
-              cover?{" "}
-              <Link href="/kits/build" className="underline underline-offset-2 hover:text-ink transition-colors">
-                Build your space
-              </Link>{" "}
-              instead, and combine pool, path, stairs and custom zones into a
-              single order.
-            </p>
+            <div className="mt-6 max-w-xl rounded-xs border border-bone-line bg-bone-tile px-5 py-4 flex items-center justify-between gap-4">
+              <p className="text-sm text-ink/70 leading-relaxed">
+                Need more than one area, or something these four don&apos;t
+                quite cover?{" "}
+                <span className="text-ink font-medium">Combine pool, path, stairs and custom zones into a single order.</span>
+              </p>
+              <Link
+                href="/kits/build"
+                className="flex-shrink-0 font-spec text-[9px] tracking-widest uppercase text-ink border border-ink/20 px-4 py-2 rounded-xs hover:bg-ink hover:text-bone hover:border-ink transition-colors"
+              >
+                Build your space →
+              </Link>
+            </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {KITS.map((k) => (
