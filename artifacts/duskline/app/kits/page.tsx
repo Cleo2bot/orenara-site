@@ -348,8 +348,11 @@ export default function KitsPage() {
                 ready-made lengths and configurations.
               </p>
               <p className="text-ink/65 leading-relaxed">
-                Your licensed electrician installs it. They're handling a
-                finished system — not cutting or splicing anything.
+                Your licensed electrician installs it. They&apos;re handling a
+                finished system — nothing to splice, nothing to field-seal.
+                Non-submerged runs can be trimmed to length on site using a
+                factory-matched snap end cap; permanently submerged runs ship
+                as sealed, uncut lengths to protect the IP68 rating.
               </p>
             </div>
             <div className="relative aspect-[4/3] rounded-xs overflow-hidden border border-bone-line">

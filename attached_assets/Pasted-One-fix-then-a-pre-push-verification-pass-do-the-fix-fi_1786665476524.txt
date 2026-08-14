@@ -1,0 +1,18 @@
+One fix, then a pre-push verification pass — do the fix first, then work through the checklist in order.
+
+Fix: hero copy still missing the submerged exception
+
+The trust section already correctly reads "Trim to length on site if you need to — except pool perimeters, which ship as sealed, uncut lengths to protect the warranty" (or equivalent) — but the hero section, higher up the same page, was never confirmed to have the same carve-out. Find the hero's trim/cutting line and apply the identical exception. Same reasoning as before: a blanket "you can always trim" claim is wrong for any submerged item, not just literally the word "pool" — check the hero uses submerged-aware language, not item-type-specific wording, consistent with how the rest of the system now handles this.
+
+Before push — work through this in order, report each before moving to the next
+
+1. Confirm driver-packing scope is intentional, not accidental.
+Observed: a multi-Path order packed each item's runs onto drivers independently (3 drivers used, where combining all runs into one shared pool would only need 2). This is probably correct — a driver serving two physically separate parts of a job may not be realistic to install — but confirm this is deliberate design, not an accidental side effect of the same per-item scoping that fixed B3. If it's accidental, flag it before doing anything else; don't fix it without asking, since deliberately keeping driver packing scoped per-item might be exactly the right call for the same reason per-item strip typing was.
+
+2. Full production build, run fresh after the hero fix lands. Not typecheck — the actual build, same standing rule as every stage before this.
+
+3. Mobile spot-check, populated content, across every page this phase actually touched. It's been a long time since mobile was last verified, and a lot has shipped since — Path's new "Number of runs" field, Zone's Linear/Rectangle toggle, the "Your order" header, the persistent add-area hint, and the trust section's expanded six-badge row all need checking on a real 390px viewport with real data entered, not the empty state. Pages: /kits, /kits/pool-surround, /kits/stair, /kits/patio, /kits/path, /kits/build.
+
+4. Confirm order-confirmation emails still echo correctly for Zone's new Rectangle mode. C2's report said the route handler was updated to match — worth one live test (a Zone item in Rectangle mode, submitted through Confirm & Request Invoice) to see the actual email, not just confirm the code path exists.
+
+Report back on 1–4. Push is still your call after that, not mine — but standing sequence applies once you do: verify the Vercel deploy succeeded, then live spot-check the same six pages above.
