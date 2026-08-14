@@ -358,18 +358,18 @@ export default function KitsPage() {
             </div>
             <div className="relative aspect-[4/3] rounded-xs overflow-hidden border border-bone-line">
               <Image
-                src="/images/kits/kit-connector.jpg"
-                alt="IP68 rated connector — factory moulded onto the strip"
+                src="/images/product/led-strip-glow-1600.webp"
+                alt="Silicone LED neon strip — dot-free diffusion, IP68 sealed"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[--ink] to-transparent p-5">
                 <p className="font-spec text-[9px] tracking-widest text-bone/60 uppercase mb-1">
-                  IP68 factory-moulded connector
+                  IP68 silicone neon strip
                 </p>
                 <p className="text-sm text-bone-dim">
-                  Sealed at the factory. Pressure-tested before dispatch.
+                  Dot-free diffusion. Sealed end-to-end before dispatch.
                 </p>
               </div>
             </div>
