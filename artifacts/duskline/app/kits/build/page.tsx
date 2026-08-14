@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import SpaceBuilder from "../../../components/space-builder/SpaceBuilder";
 
@@ -16,24 +17,56 @@ export default function BuildPage() {
         </div>
       </nav>
 
-      {/* page header */}
-      <div className="pt-14">
-        <div className="max-w-6xl mx-auto px-6 pt-10 pb-8 border-b border-bone-line">
-          <Link href="/kits" className="inline-flex items-center gap-1.5 text-ink/40 hover:text-ink text-xs font-spec tracking-wider mb-4 transition-colors">
-            <span>←</span> All kits
-          </Link>
-          <h1 className="font-display text-3xl sm:text-4xl text-ink mb-2">Build Your Space</h1>
-          <p className="text-ink/55 max-w-xl leading-relaxed">
-            Add the areas you want to light. Each item is priced as part of one job — all runs share a single driver calculation.
-          </p>
-          <p className="mt-3 text-xs text-ink/40">
-            Single area?{" "}
-            <Link href="/kits" className="underline underline-offset-2 hover:text-ink/70 transition-colors">
-              Browse individual kit specs →
+      {/* hero — full-bleed dark photo */}
+      <section className="pt-14">
+        <div className="relative overflow-hidden bg-ink min-h-[56vh] flex items-end">
+          <div className="absolute inset-0">
+            <Image
+              src="/images/gallery/orenara-travertine-pool-edge.webp"
+              alt="Pool coping LED lighting at dusk — Orenara IP68 strip"
+              fill
+              className="object-cover img-treated opacity-45"
+              priority
+              sizes="100vw"
+            />
+          </div>
+          <div className="relative max-w-6xl mx-auto px-6 py-16 lg:py-24 w-full">
+            <Link
+              href="/kits"
+              className="inline-flex items-center gap-1.5 font-spec text-[9px] tracking-widest text-bone/40 uppercase hover:text-bone/70 transition-colors mb-8"
+            >
+              <span>←</span> All kits
             </Link>
-          </p>
+            <p className="font-spec text-[9px] tracking-widest text-bone/40 uppercase mb-4">
+              What counts as a zone
+            </p>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-bone leading-tight max-w-2xl mb-5">
+              A zone is an area,<br />
+              not a measurement.
+            </h1>
+            <p className="text-bone/65 text-lg leading-relaxed max-w-xl mb-8">
+              The pool surround. The pergola. The front path. One zone can hold
+              several runs — the curved edge, the straight edge, the steps. Pace
+              out what you can; we confirm every measurement with you before
+              anything is cut.
+            </p>
+            <div className="flex flex-wrap items-center gap-5">
+              <a
+                href="#add-area"
+                className="inline-block font-spec text-[9px] tracking-widest uppercase bg-bone text-ink px-6 py-3 rounded-xs hover:bg-bone/90 transition-colors"
+              >
+                Add your first zone
+              </a>
+              <Link
+                href="/kits"
+                className="font-spec text-[9px] tracking-widest uppercase text-bone/50 hover:text-bone/80 transition-colors"
+              >
+                Single area? Browse individual kit specs →
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* shared builder canvas */}
       <SpaceBuilder />

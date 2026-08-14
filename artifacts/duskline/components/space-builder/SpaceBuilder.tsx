@@ -66,7 +66,7 @@ const TYPE_CONFIG: Record<ItemType, {
   pool:  { label: "Pool",   defaultName: "Pool",   defaultShape: "curved",   hint: "Total perimeter (m)", defaultMaterial: "stainless", defaultProfile: "straight" },
   path:  { label: "Path",   defaultName: "Path",   defaultShape: "straight", hint: "Length per run (m)", defaultMaterial: "aluminium", defaultProfile: "flex" },
   stair: { label: "Stairs", defaultName: "Stairs", defaultShape: "straight", defaultSteps: "8", hint: "Tread width per step (m)", defaultMaterial: "aluminium", defaultProfile: "straight" },
-  box:   { label: "Zone",   defaultName: "Zone",   defaultShape: "straight", hint: "Total run length (m)", defaultMaterial: "aluminium", defaultProfile: "straight" },
+  box:   { label: "Custom", defaultName: "Custom", defaultShape: "straight", hint: "Total run length (m)", defaultMaterial: "aluminium", defaultProfile: "straight" },
 };
 
 const CONNECTOR_LABELS: Record<"direct" | "side" | "bottom" | "l-shape", string> = {
@@ -1267,7 +1267,7 @@ export default function SpaceBuilder({
           <div>
 
             {/* add buttons */}
-            <div className="mb-6">
+            <div id="add-area" className="mb-6">
               <p className="font-spec text-[8px] tracking-widest text-ink/35 uppercase mb-3">Add an area</p>
               <div className="flex flex-wrap gap-2">
                 {(["pool", "path", "stair", "box"] as ItemType[]).map(type => (
