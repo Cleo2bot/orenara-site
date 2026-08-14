@@ -246,10 +246,7 @@ export default function Environments() {
             className="flex flex-wrap items-center justify-center"
             style={{ gap: "16px" }}
           >
-            <a href="#enquire" className="btn-primary">
-              Enquire for Pricing
-            </a>
-            <a href="/quote-builder" className="btn-outline">
+            <a href="/kits" className="btn-primary">
               Build Your Kit
             </a>
           </div>

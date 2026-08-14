@@ -169,7 +169,7 @@ export default function KitBox() {
           </ul>
 
           <div style={{ marginTop: "36px" }}>
-            <Link href="/quote-builder" className="btn-outline" style={{ width: "auto", display: "inline-flex" }}>
+            <Link href="/kits/build" className="btn-outline" style={{ width: "auto", display: "inline-flex" }}>
               Build Your Kit
             </Link>
           </div>
